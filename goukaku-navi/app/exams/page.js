@@ -2,13 +2,10 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 
-// 使用 @/ 直接指代项目根目录，Vercel 100% 认识，绝不迷路
-import bokiData from '@/data/boki3.json';
-import fpData from '@/data/fp3.json';
-
+// 放弃使用容易让人迷路的 @ 符号，直接用绝对安全的精准退级路径
+import bokiData from '../../data/boki3.json';
+import fpData from '../../data/fp3.json';
 
 export default function ExamsPage() {
   const [currentExam, setCurrentExam] = useState('boki');
@@ -18,27 +15,31 @@ export default function ExamsPage() {
   const questions = currentExam === 'boki' ? bokiData : fpData;
 
   const handleAnswerClick = (qIndex, optionLetter) => {
-    if (selectedAnswers[qIndex]) return; // 答过之后不能重复点
+    if (selectedAnswers[qIndex]) return; 
     setSelectedAnswers(prev => ({ ...prev, [qIndex]: optionLetter }));
     setShowExplanations(prev => ({ ...prev, [qIndex]: true }));
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-      <Navbar />
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f5f7fa', fontFamily: 'sans-serif' }}>
+      {/* 简易替代版顶部导航栏，防止组件报错 */}
+      <div style={{ background: '#fff', padding: '15px 20px', borderBottom: '1px solid #e1e4e8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span style={{ fontWeight: 'bold', fontSize: '18px', color: '#0070f3' }}>資格試験ナビ</span>
+        <Link href="/" style={{ color: '#666', textDecoration: 'none', fontSize: '14px' }}>返回首页</Link>
+      </div>
 
       <main style={{ flex: 1, maxWidth: '800px', width: '100%', margin: '0 auto', padding: '40px 20px' }}>
         {/* 切换按钮 */}
         <div style={{ display: 'flex', gap: '12px', marginBottom: '30px' }}>
           <button 
             onClick={() => { setCurrentExam('boki'); setSelectedAnswers({}); setShowExplanations({}); }}
-            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'boki' ? '#0070f3' : '#fff', color: currentExam === 'boki' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', transition: 'all 0.2s' }}
+            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'boki' ? '#0070f3' : '#fff', color: currentExam === 'boki' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px', transition: 'all 0.2s' }}
           >
             日商簿記3級 (仕訳)
           </button>
           <button 
             onClick={() => { setCurrentExam('fp'); setSelectedAnswers({}); setShowExplanations({}); }}
-            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'fp' ? '#0070f3' : '#fff', color: currentExam === 'fp' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', transition: 'all 0.2s' }}
+            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'fp' ? '#0070f3' : '#fff', color: currentExam === 'fp' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px', transition: 'all 0.2s' }}
           >
             FP技能士3級 (2026年最新)
           </button>
@@ -112,7 +113,9 @@ export default function ExamsPage() {
         })}
       </main>
 
-      <Footer />
+      <div style={{ textAlign: 'center', padding: '20px', color: '#999', fontSize: '12px', borderTop: '1px solid #e1e4e8', background: '#fff' }}>
+        © 2026 資格試験ナビ. All Rights Reserved.
+      </div>
     </div>
   );
 }
