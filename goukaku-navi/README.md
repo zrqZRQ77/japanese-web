@@ -34,4 +34,4 @@ http://localhost:3000 で確認できます。
 ## 問題を追加する方法
 `lib/data.js` を編集するだけです：
 - `exams` 配列：試験の基本情報
-- `questions` オブジェクト：各試験の問題
+- `questions` オブジェクト：各試験の問題 
