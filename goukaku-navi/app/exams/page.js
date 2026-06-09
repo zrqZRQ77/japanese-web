@@ -6,9 +6,9 @@ import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
-// 读取你刚刚上传的题库文件
-import bokiData from '../data/boki3.json';
-import fpData from '../data/fp3.json';
+// 注意这里改成了三个点和两个斜杠的组合 ../../ 确保能退到最外层找到 data 文件夹
+import bokiData from '../../data/boki3.json';
+import fpData from '../../data/fp3.json';
 
 export default function ExamsPage() {
   const [currentExam, setCurrentExam] = useState('boki');
