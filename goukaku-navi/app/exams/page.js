@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-// 放弃使用容易让人迷路的 @ 符号，直接用绝对安全的精准退级路径
+// 严格对应你第3张截图的真实路径：goukaku-navi/data/boki3.json
 import bokiData from '../../data/boki3.json';
 import fpData from '../../data/fp3.json';
 
@@ -22,9 +22,9 @@ export default function ExamsPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f5f7fa', fontFamily: 'sans-serif' }}>
-      {/* 简易替代版顶部导航栏，防止组件报错 */}
+      {/* 自带简易导航栏，不依赖外部组件，确保绝不报错 */}
       <div style={{ background: '#fff', padding: '15px 20px', borderBottom: '1px solid #e1e4e8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontWeight: 'bold', fontSize: '18px', color: '#0070f3' }}>資格試験ナビ</span>
+        <span style={{ fontWeight: 'bold', fontSize: '18px', color: '#0070f3' }}>资格考试导航</span>
         <Link href="/" style={{ color: '#666', textDecoration: 'none', fontSize: '14px' }}>返回首页</Link>
       </div>
 
@@ -33,23 +33,23 @@ export default function ExamsPage() {
         <div style={{ display: 'flex', gap: '12px', marginBottom: '30px' }}>
           <button 
             onClick={() => { setCurrentExam('boki'); setSelectedAnswers({}); setShowExplanations({}); }}
-            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'boki' ? '#0070f3' : '#fff', color: currentExam === 'boki' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px', transition: 'all 0.2s' }}
+            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'boki' ? '#0070f3' : '#fff', color: currentExam === 'boki' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px' }}
           >
-            日商簿記3級 (仕訳)
+            日商簿记3级 (仕訳)
           </button>
           <button 
             onClick={() => { setCurrentExam('fp'); setSelectedAnswers({}); setShowExplanations({}); }}
-            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'fp' ? '#0070f3' : '#fff', color: currentExam === 'fp' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px', transition: 'all 0.2s' }}
+            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'fp' ? '#0070f3' : '#fff', color: currentExam === 'fp' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px' }}
           >
-            FP技能士3級 (2026年最新)
+            FP技能士3级
           </button>
         </div>
 
         <h1 style={{ fontSize: '24px', color: '#111', marginBottom: '25px', paddingBottom: '10px', borderBottom: '2px solid #e1e4e8' }}>
-          {currentExam === 'boki' ? '日商簿記3級 模擬試験' : 'FP技能士3級 模擬試験'}
+          {currentExam === 'boki' ? '日商簿记3级 模拟试题' : 'FP技能士3级 模拟试题'}
         </h1>
 
-        {/* 题目循环 */}
+        {/* 题目列表 */}
         {questions.map((q, index) => {
           const userAnswer = selectedAnswers[index];
           const isCorrect = userAnswer === q.correct_answer;
@@ -71,7 +71,7 @@ export default function ExamsPage() {
                   const isCurrentOptCorrect = letter === q.correct_answer;
 
                   let btnStyle = {
-                    padding: '14px', textAlign: 'left', fontSize: '14px', borderRadius: '8px', border: '1px solid #d1d5db', backgroundColor: '#fff', cursor: 'pointer', transition: 'all 0.2s', width: '100%', fontWeight: '500'
+                    padding: '14px', textAlign: 'left', fontSize: '14px', borderRadius: '8px', border: '1px solid #d1d5db', backgroundColor: '#fff', cursor: 'pointer', width: '100%', fontWeight: '500'
                   };
 
                   if (userAnswer) {
@@ -99,11 +99,11 @@ export default function ExamsPage() {
                 })}
               </div>
 
-              {/* 答案与白话解析 */}
+              {/* 白话解析 */}
               {showExplanations[index] && (
                 <div style={{ marginTop: '20px', padding: '15px 20px', background: '#f8f9fa', borderLeft: '4px solid #0070f3', borderRadius: '0 8px 8px 0' }}>
                   <div style={{ fontWeight: 'bold', fontSize: '15px', color: isCorrect ? '#34a853' : '#ea4335', marginBottom: '8px' }}>
-                    {isCorrect ? '⭕ 正解！' : `❌ 不正解（正解は ${q.correct_answer}）`}
+                    {isCorrect ? '⭕ 正解！' : `❌ 不正解（正解是 ${q.correct_answer}）`}
                   </div>
                   <p style={{ fontSize: '14px', color: '#444', lineHeight: '1.6', margin: 0 }}>{q.explanation}</p>
                 </div>
@@ -114,7 +114,7 @@ export default function ExamsPage() {
       </main>
 
       <div style={{ textAlign: 'center', padding: '20px', color: '#999', fontSize: '12px', borderTop: '1px solid #e1e4e8', background: '#fff' }}>
-        © 2026 資格試験ナビ. All Rights Reserved.
+        © 2026 资格考试导航. All Rights Reserved.
       </div>
     </div>
   );
