@@ -1,64 +1,118 @@
-import Link from 'next/link'
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
-import { exams } from '../../lib/data'
-import styles from './exams.module.css'
+"use client";
 
-export const metadata = {
-  title: '試験一覧 | 合格ナビ',
-  description: 'FP技能士、証券外務員、宅建士など対応試験の一覧です。',
-}
+import React, { useState } from 'react';
+import Link from 'next/link';
+// 保留你原有的导航栏和页脚
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
-const categories = [
-  { id: 'fp', label: 'FP・ファイナンシャル' },
-  { id: 'securities', label: '証券・金融' },
-  { id: 'realestate', label: '不動産' },
-  { id: 'accounting', label: '会計・経理' },
-]
+// 读取你刚刚上传的题库文件
+import bokiData from '../data/boki3.json';
+import fpData from '../data/fp3.json';
 
 export default function ExamsPage() {
-  return (
-    <>
-      <Navbar />
-      <main className={styles.main}>
-        <h1 className={styles.pageTitle}>試験一覧</h1>
-        <p className={styles.pageSub}>対応している資格試験の一覧です。各試験のページから練習問題を始められます。</p>
+  const [currentExam, setCurrentExam] = useState('boki');
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [showExplanations, setShowExplanations] = useState({});
 
-        {categories.map(cat => {
-          const catExams = exams.filter(e => e.category === cat.id)
-          if (catExams.length === 0) return null
+  const questions = currentExam === 'boki' ? bokiData : fpData;
+
+  const handleAnswerClick = (qIndex, optionLetter) => {
+    if (selectedAnswers[qIndex]) return; // 答过之后不能重复点
+    setSelectedAnswers(prev => ({ ...prev, [qIndex]: optionLetter }));
+    setShowExplanations(prev => ({ ...prev, [qIndex]: true }));
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
+      <Navbar />
+
+      <main style={{ flex: 1, maxWidth: '800px', width: '100%', margin: '0 auto', padding: '40px 20px' }}>
+        {/* 切换按钮 */}
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '30px' }}>
+          <button 
+            onClick={() => { setCurrentExam('boki'); setSelectedAnswers({}); setShowExplanations({}); }}
+            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'boki' ? '#0070f3' : '#fff', color: currentExam === 'boki' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', transition: 'all 0.2s' }}
+          >
+            日商簿記3級 (仕訳)
+          </button>
+          <button 
+            onClick={() => { setCurrentExam('fp'); setSelectedAnswers({}); setShowExplanations({}); }}
+            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'fp' ? '#0070f3' : '#fff', color: currentExam === 'fp' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', transition: 'all 0.2s' }}
+          >
+            FP技能士3級 (2026年最新)
+          </button>
+        </div>
+
+        <h1 style={{ fontSize: '24px', color: '#111', marginBottom: '25px', paddingBottom: '10px', borderBottom: '2px solid #e1e4e8' }}>
+          {currentExam === 'boki' ? '日商簿記3級 模擬試験' : 'FP技能士3級 模擬試験'}
+        </h1>
+
+        {/* 题目循环 */}
+        {questions.map((q, index) => {
+          const userAnswer = selectedAnswers[index];
+          const isCorrect = userAnswer === q.correct_answer;
+
           return (
-            <section key={cat.id} className={styles.category}>
-              <h2 className="section-title">{cat.label}</h2>
-              <div className={styles.grid}>
-                {catExams.map(exam => (
-                  <div key={exam.id} className={styles.card}>
-                    <div className={styles.cardTop}>
-                      <span className={styles.icon}>{exam.icon}</span>
-                      <span className={`tag tag-${exam.tag}`}>{exam.tagLabel}</span>
-                    </div>
-                    <h3 className={styles.cardName}>{exam.name}</h3>
-                    <p className={styles.cardDesc}>{exam.description}</p>
-                    <div className={styles.cardMeta}>
-                      {exam.questionCount > 0 ? `${exam.questionCount}問収録` : '準備中'}
-                    </div>
-                    {exam.questionCount > 0 ? (
-                      <Link href={`/practice?exam=${exam.id}`} className="btn-primary" style={{fontSize:'13px',padding:'8px 18px',display:'inline-block',marginTop:'1rem'}}>
-                        練習を始める →
-                      </Link>
-                    ) : (
-                      <button disabled style={{fontSize:'13px',padding:'8px 18px',marginTop:'1rem',background:'#eee',border:'none',borderRadius:'3px',color:'#999'}}>
-                        近日公開
-                      </button>
-                    )}
-                  </div>
-                ))}
+            <div key={index} style={{ background: '#fff', padding: '25px', borderRadius: '12px', marginBottom: '25px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', border: '1px solid #e1e4e8' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
+                <span style={{ background: '#333', color: '#fff', padding: '4px 10px', fontSize: '12px', fontWeight: 'bold', borderRadius: '6px' }}>Q {index + 1}</span>
+                <span style={{ color: '#666', fontSize: '13px', background: '#f0f2f5', padding: '4px 10px', borderRadius: '6px' }}>{q.category} · {q.difficulty}</span>
               </div>
-            </section>
-          )
+              
+              <p style={{ fontSize: '16px', lineHeight: '1.6', fontWeight: '600', color: '#222', whiteSpace: 'pre-wrap' }}>{q.question_text}</p>
+
+              {/* 选项 */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '20px' }}>
+                {q.options.map((opt) => {
+                  const letter = opt.charAt(0);
+                  const isCurrentOptSelected = userAnswer === letter;
+                  const isCurrentOptCorrect = letter === q.correct_answer;
+
+                  let btnStyle = {
+                    padding: '14px', textAlign: 'left', fontSize: '14px', borderRadius: '8px', border: '1px solid #d1d5db', backgroundColor: '#fff', cursor: 'pointer', transition: 'all 0.2s', width: '100%', fontWeight: '500'
+                  };
+
+                  if (userAnswer) {
+                    if (isCurrentOptCorrect) {
+                      btnStyle.backgroundColor = '#e6f4ea';
+                      btnStyle.borderColor = '#34a853';
+                      btnStyle.color = '#137333';
+                    } else if (isCurrentOptSelected && !isCorrect) {
+                      btnStyle.backgroundColor = '#fce8e6';
+                      btnStyle.borderColor = '#ea4335';
+                      btnStyle.color = '#c5221f';
+                    }
+                  }
+
+                  return (
+                    <button 
+                      key={opt} 
+                      onClick={() => handleAnswerClick(index, letter)}
+                      disabled={!!userAnswer}
+                      style={btnStyle}
+                    >
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* 答案与白话解析 */}
+              {showExplanations[index] && (
+                <div style={{ marginTop: '20px', padding: '15px 20px', background: '#f8f9fa', borderLeft: '4px solid #0070f3', borderRadius: '0 8px 8px 0' }}>
+                  <div style={{ fontWeight: 'bold', fontSize: '15px', color: isCorrect ? '#34a853' : '#ea4335', marginBottom: '8px' }}>
+                    {isCorrect ? '⭕ 正解！' : `❌ 不正解（正解は ${q.correct_answer}）`}
+                  </div>
+                  <p style={{ fontSize: '14px', color: '#444', lineHeight: '1.6', margin: 0 }}>{q.explanation}</p>
+                </div>
+              )}
+            </div>
+          );
         })}
       </main>
+
       <Footer />
-    </>
-  )
+    </div>
+  );
 }
