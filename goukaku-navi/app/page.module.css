@@ -1,0 +1,193 @@
+.hero {
+  background: var(--jp-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroDeco {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 420px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.heroLeft {
+  padding: 3.5rem 2rem 3.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.heroBadge {
+  display: inline-block;
+  background: var(--jp-gold);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  margin-bottom: 1.2rem;
+}
+
+.heroTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+.heroTitle span { color: var(--jp-gold); }
+
+.heroSub {
+  color: #a8a8c0;
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 1.8rem;
+}
+
+.heroCta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.heroRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.cardStack {
+  position: relative;
+  width: 230px;
+  height: 290px;
+}
+
+.hcard {
+  position: absolute;
+  background: var(--jp-mid);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 1.2rem;
+  width: 220px;
+}
+
+.hcard1 { top: 30px; left: 20px; transform: rotate(3deg); }
+.hcard2 { top: 15px; left: 10px; transform: rotate(-1.5deg); }
+.hcard3 { top: 0; left: 0; transform: rotate(0); background: #252540; }
+
+.hcardLabel {
+  font-size: 10px;
+  color: var(--jp-gold);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.hcardTitle { font-size: 13px; color: #fff; font-weight: 500; margin-bottom: 10px; }
+.hcardQ {
+  font-size: 11px;
+  color: #a8a8c0;
+  line-height: 1.6;
+  border-left: 2px solid var(--jp-gold);
+  padding-left: 8px;
+}
+
+.statsBar {
+  background: #fff;
+  border-bottom: 1px solid var(--jp-border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-around;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.statItem { text-align: center; padding: 0.2rem 1rem; }
+.statNum { font-size: 1.4rem; font-weight: 700; color: var(--jp-red); }
+.statLabel { font-size: 11px; color: var(--jp-gray); margin-top: 2px; }
+
+.main { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+
+.section { padding: 2.5rem 0; }
+
+.examGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.examCard {
+  background: #fff;
+  border: 1px solid var(--jp-border);
+  border-radius: 8px;
+  padding: 1.2rem;
+  transition: border-color 0.2s, transform 0.2s;
+  display: block;
+}
+.examCard:hover { border-color: var(--jp-red); transform: translateY(-2px); }
+
+.examIcon { font-size: 1.6rem; margin-bottom: 8px; }
+.examName { font-size: 13px; font-weight: 700; color: var(--jp-dark); margin-bottom: 4px; }
+.examMeta { font-size: 11px; color: var(--jp-gray); margin-bottom: 6px; }
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.featureCard {
+  background: #fff;
+  border: 1px solid var(--jp-border);
+  border-radius: 8px;
+  padding: 1.4rem;
+}
+
+.featureIcon {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.featureTitle { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--jp-dark); }
+.featureDesc { font-size: 12px; color: var(--jp-gray); line-height: 1.7; }
+
+.ctaSection {
+  background: var(--jp-dark);
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.ctaTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+.ctaTitle span { color: var(--jp-gold); }
+.ctaSub { color: #a8a8c0; font-size: 13px; margin-bottom: 1.5rem; }
+.ctaButtons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  .heroInner { grid-template-columns: 1fr; }
+  .heroRight { display: none; }
+  .heroTitle { font-size: 1.8rem; }
+  .featureGrid { grid-template-columns: 1fr 1fr; }
+  .statsBar { flex-wrap: wrap; gap: 0.5rem; }
+}
