@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-// 保留你原有的导航栏和页脚
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
-import bokiData from '../../data/boki3.json';
-import fpData from '../../data/fp3.json';
+// 使用 @/ 直接指代项目根目录，Vercel 100% 认识，绝不迷路
+import bokiData from '@/data/boki3.json';
+import fpData from '@/data/fp3.json';
+
 
 export default function ExamsPage() {
   const [currentExam, setCurrentExam] = useState('boki');
