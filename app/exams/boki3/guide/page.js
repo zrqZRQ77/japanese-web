@@ -1,114 +1,169 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-// 📡 静态引入两个学科的 JSON 数据
+// 📡 静态引入数据（后续可根据需要继续扩展 fp3_guide.json）
 import bokiData from '../../../../data/boki3_guide.json';
 import fpData from '../../../../data/fp3_guide.json';
 
-export default function ExamGuide() {
+export default function ModernExamGuide() {
   const params = useParams();
   const examId = params.examId || 'boki3'; 
 
-  // 🎯 动态感知与分流读取：根据 URL 是 boki3 还是 fp3，自动换血
+  // 🎯 智能分流
   const currentData = examId.includes('fp') ? fpData : bokiData;
+
+  // 状态：当前高亮激活的小节 ID（用于让用户知道自己在哪个位置）
+  const [activeSection, setActiveSection] = useState('');
+
+  // 🕵️ 监测滚动，实现左侧目录根据右侧阅读进度自动高亮
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section[data-section-id]');
+      let currentActive = '';
+      
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        // 当小节距离顶部小于 120px 时，判定用户正在阅读这一节
+        if (sectionTop < 120) {
+          currentActive = section.getAttribute('data-section-id') || '';
+        }
+      });
+      
+      if (currentActive) {
+        setActiveSection(currentActive);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#ffffff', fontFamily: '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif', color: '#111111' }}>
       
-      {/* 統一感のあるナビゲーションバー */}
-      <header style={{ background: '#ffffff', padding: '16px 40px', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Link href="/" style={{ fontWeight: '900', fontSize: '22px', color: '#111111', textDecoration: 'none' }}>
-          合格<span style={{ color: '#b93a26' }}>ナビ</span>
-        </Link>
+      {/* 1. 统一的朱红色顶部导航 */}
+      <header style={{ background: '#ffffff', padding: '16px 40px', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <Link href="/" style={{ fontWeight: '900', fontSize: '22px', color: '#111111', textDecoration: 'none' }}>
+            合格<span style={{ color: '#b93a26' }}>ナビ</span>
+          </Link>
+          <span style={{ color: '#e2e8f0' }}>|</span>
+          <span style={{ fontSize: '14px', fontWeight: '700', color: '#64748b' }}>{currentData.guideTitle}</span>
+        </div>
         <Link href={`/exams/${examId}`} style={{ color: '#666666', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>
           ← ダッシュボードに戻る
         </Link>
       </header>
 
-      {/* 没入型読書のための黄金幅：最大720px */}
-      <main style={{ maxWidth: '720px', margin: '0 auto', padding: '60px 20px' }}>
+      {/* 2. 现代 Wiki 侧边栏双栏容器 */}
+      <div style={{ display: 'flex', maxWidth: '1200px', margin: '0 auto', padding: '40px 20px', gap: '40px' }}>
         
-        {/* 記事ヘッダー（动态数据注入） */}
-        <div style={{ marginBottom: '40px' }}>
-          <div style={{ fontSize: '14px', fontWeight: '700', color: '#b93a26', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px' }}>
-            {currentData.examTitle} / {currentData.chapterTitle}
+        {/* 👈 左侧固定目录 (Sticky Sidebar) */}
+        <aside style={{ width: '280px', flexShrink: 0, position: 'sticky', top: '100px', height: 'calc(100vh - 140px)', overflowY: 'auto', borderRight: '1px solid #f1f5f9', paddingRight: '20px' }}>
+          <div style={{ fontSize: '12px', fontWeight: '800', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>
+            目次 / COURSE OUTLINE
           </div>
-          <h1 style={{ fontSize: '30px', fontWeight: '900', lineHeight: '1.4', margin: '0 0 16px 0', color: '#111111' }}>
-            {currentData.articleTitle}
-          </h1>
-          <div style={{ fontSize: '14px', color: '#64748b' }}>
-            更新日: 2026年6月 • 精読時間: 約 5 分
-          </div>
-        </div>
-
-        {/* 記事本文 */}
-        <section style={{ fontSize: '16.5px', lineHeight: '1.8', color: '#334155' }}>
-          <p style={{ marginBottom: '24px' }}>
-            {currentData.intro}
-          </p>
           
-          <p style={{ marginBottom: '24px', fontWeight: '700', color: '#111111' }}>
-            {currentData.leadText}
-          </p>
-
-          <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#111111', marginTop: '40px', marginBottom: '16px', borderLeft: '4px solid #b93a26', paddingLeft: '12px' }}>
-            {currentData.sectionTitle1}
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            {currentData.sectionContent1}
-          </p>
-
-          {/* 大白話（噛み砕き）ビジネス論理ボックス */}
-          <div style={{ background: '#f8fafc', padding: '24px', borderRadius: '8px', borderLeft: '4px solid #c9a054', marginBottom: '28px' }}>
-            <h4 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: '700', color: '#c9a054' }}>{currentData.highlightTitle}</h4>
-            <p style={{ margin: 0, fontSize: '15px', color: '#475569', lineHeight: '1.7', whiteSpace: 'pre-line' }}>
-              {currentData.highlightContent}
-            </p>
-          </div>
-
-          <p style={{ marginBottom: '24px' }}>
-            {currentData.listIntro}
-          </p>
-
-          {/* 🔗 动态渲染可点击的超链接词汇 */}
-          <ul style={{ paddingLeft: '20px', marginBottom: '24px' }}>
-            {currentData.wikiConcepts.map((concept) => (
-              <li key={concept.conceptId} style={{ marginBottom: '12px' }}>
-                精読キーワード：
-                <Link href={`#${concept.conceptId}`} style={{ color: '#b93a26', fontWeight: '700', textDecoration: 'underline', margin: '0 4px' }}>
-                  {concept.conceptName}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#111111', marginTop: '48px', marginBottom: '16px', borderLeft: '4px solid #b93a26', paddingLeft: '12px' }}>
-            {currentData.sectionTitle2}
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            {currentData.sectionContent2}
-          </p>
-
-          {/* 📚 动态渲染底部对应的名词解释锚点卡片 */}
-          <div style={{ marginTop: '48px', borderTop: '2px dashed #e2e8f0', paddingTop: '24px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#111111', marginBottom: '24px' }}>{currentData.conceptsTitle}</h3>
-            
-            {currentData.wikiConcepts.map((concept) => (
-              <div id={concept.conceptId} key={concept.conceptId} style={{ marginTop: '24px', padding: '24px', background: '#fdf2f0', borderRadius: '8px', border: '1px solid #fca5a5', scrollMarginTop: '100px' }}>
-                <h4 style={{ margin: '0 0 10px 0', fontSize: '17px', fontWeight: '800', color: '#b93a26' }}>{concept.conceptName}</h4>
-                <p style={{ margin: 0, fontSize: '15px', color: '#334155', lineHeight: '1.6' }}>
-                  {concept.description}
-                </p>
+          {currentData.chapters?.map((chapter) => (
+            <div key={chapter.chapterId} style={{ marginBottom: '24px' }}>
+              {/* 大章节标题 */}
+              <div style={{ fontSize: '14px', fontWeight: '800', color: '#111111', marginBottom: '8px' }}>
+                {chapter.chapterNum}: {chapter.chapterName}
               </div>
-            ))}
+              
+              {/* 小节可选列表 */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', paddingLeft: '8px' }}>
+                {chapter.sections.map((sec) => {
+                  const isCurrent = activeSection === sec.sectionId;
+                  return (
+                    <a
+                      key={sec.sectionId}
+                      href={`#${sec.sectionId}`}
+                      style={{
+                        fontSize: '13.5px',
+                        lineHeight: '1.5',
+                        padding: '6px 10px',
+                        borderRadius: '4px',
+                        textDecoration: 'none',
+                        fontWeight: isCurrent ? '700' : '500',
+                        color: isCurrent ? '#b93a26' : '#475569',
+                        backgroundColor: isCurrent ? '#fdf2f0' : 'transparent',
+                        borderLeft: isCurrent ? '3px solid #b93a26' : '3px solid transparent',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      {sec.sectionTitle}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </aside>
+
+        {/* 👉 右侧沉浸式内容区 (720px 黄金宽度限制) */}
+        <main style={{ flex: 1, maxWidth: '720px' }}>
+          
+          <div style={{ marginBottom: '32px', borderBottom: '1px solid #f1f5f9', paddingBottom: '24px' }}>
+            <span style={{ background: '#fdf2f0', color: '#b93a26', fontSize: '12px', fontWeight: '800', padding: '4px 8px', borderRadius: '4px' }}>
+              {currentData.examTitle} 対策テキスト
+            </span>
           </div>
 
-        </section>
+          {/* 循环渲染章节下的内容小节 */}
+          {currentData.chapters?.map((chapter) => (
+            <div key={chapter.chapterId}>
+              {chapter.sections.map((sec) => (
+                <section 
+                  id={sec.sectionId} 
+                  key={sec.sectionId}
+                  data-section-id={sec.sectionId}
+                  style={{ 
+                    marginBottom: '60px', 
+                    scrollMarginTop: '120px' // 极其重要：防止点击跳转时被固定的 Header 挡住
+                  }}
+                >
+                  {/* 小节主标题 */}
+                  <h2 style={{ fontSize: '24px', fontWeight: '900', color: '#111111', lineHeight: '1.4', marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <span style={{ fontSize: '13px', fontWeight: '700', color: '#c9a054' }}>{chapter.chapterNum} • {sec.sectionTitle}</span>
+                    {sec.title}
+                  </h2>
+                  
+                  {/* 正文大白话内容 */}
+                  <p style={{ fontSize: '16.5px', lineHeight: '1.9', color: '#334155', marginBottom: '24px', whiteSpace: 'pre-line' }}>
+                    {sec.content}
+                  </p>
 
-      </main>
+                  {/* 核心第一性原理提炼框（金黄色粗线暗示） */}
+                  {sec.highlight && (
+                    <div style={{ background: '#f8fafc', padding: '24px', borderRadius: '8px', borderLeft: '4px solid #c9a054', margin: '28px 0' }}>
+                      <h4 style={{ margin: '0 0 8px 0', fontSize: '15px', fontWeight: '800', color: '#c9a054' }}>
+                        {sec.highlight.title}
+                      </h4>
+                      <p style={{ margin: 0, fontSize: '14.5px', color: '#475569', lineHeight: '1.7', whiteSpace: 'pre-line' }}>
+                        {sec.highlight.text}
+                      </p>
+                    </div>
+                  )}
+                </section>
+              ))}
+            </div>
+          ))}
+
+        </main>
+
+      </div>
+
+      {/* 在全局强制注入平滑滚动的极简垫片 */}
+      <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
+
     </div>
   );
 }
