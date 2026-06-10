@@ -1,0 +1,52 @@
+.footer {
+  background: var(--jp-dark);
+  color: #a8a8c0;
+  padding: 3rem 2rem 1.5rem;
+}
+
+.inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.brand .logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+.brand .logo span { color: var(--jp-red); }
+.brand p { font-size: 12px; line-height: 1.8; }
+
+.col h4 {
+  font-size: 12px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.5px;
+}
+.col ul { list-style: none; }
+.col ul li { margin-bottom: 6px; }
+.col ul li a {
+  font-size: 12px;
+  color: #a8a8c0;
+  transition: color 0.2s;
+}
+.col ul li a:hover { color: var(--jp-gold); }
+
+.bottom {
+  max-width: 960px;
+  margin: 1.5rem auto 0;
+  text-align: center;
+}
+.bottom p { font-size: 11px; }
+
+@media (max-width: 640px) {
+  .inner { grid-template-columns: 1fr 1fr; }
+  .brand { grid-column: 1 / -1; }
+}
