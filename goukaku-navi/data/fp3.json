@@ -2,32 +2,6 @@
   {
     "exam_id": "fp3",
     "category": "ライフプランニングと資金計画",
-    "year": "2024_5",
-    "type": "truefalse",
-    "question_text": "２ Ｅ 2024年5月学科 問3",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "ライフプランニングと資金計画",
-    "year": "2023_1",
-    "type": "truefalse",
-    "question_text": "２ Ｂ 2023年1月学科 問1",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2023_1年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "ライフプランニングと資金計画",
     "year": "2024_1",
     "type": "truefalse",
     "question_text": "国民年金の学生納付特例制度の適用を受けた期間に係る保険料のうち、追納するこ とができる保険料は、追納に係る厚生労働大臣の承認を受けた日の属する月前10年以 内の期間に係るものに限られる。",
@@ -37,58 +11,6 @@
     ],
     "correct_answer": "ア",
     "explanation": "2024_1年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "ライフプランニングと資金計画",
-    "year": "2025_5",
-    "type": "truefalse",
-    "question_text": "１ Ｂ 2025年5月学科 問4",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2025_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "ライフプランニングと資金計画",
-    "year": "2024_5",
-    "type": "truefalse",
-    "question_text": "１ Ａ 2024年5月学科 問1",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "ライフプランニングと資金計画",
-    "year": "2024_5",
-    "type": "truefalse",
-    "question_text": "１ Ｅ 2024年5月学科 問5",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "ライフプランニングと資金計画",
-    "year": "2026_5",
-    "type": "truefalse",
-    "question_text": "１ − 2026年5月学科 問2",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2026_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
   },
   {
     "exam_id": "fp3",
@@ -116,32 +38,6 @@
     ],
     "correct_answer": "ア",
     "explanation": "2026_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "リスク管理",
-    "year": "2024_5",
-    "type": "truefalse",
-    "question_text": "２ Ｄ 2024年5月学科 問6",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "リスク管理",
-    "year": "2023_1",
-    "type": "truefalse",
-    "question_text": "１ Ａ 2023年1月学科 問7",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2023_1年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
   },
   {
     "exam_id": "fp3",
@@ -184,58 +80,6 @@
   },
   {
     "exam_id": "fp3",
-    "category": "リスク管理",
-    "year": "2024_5",
-    "type": "truefalse",
-    "question_text": "１ Ａ 2024年5月学科 問8",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "リスク管理",
-    "year": "2024_1",
-    "type": "truefalse",
-    "question_text": "２ Ｂ 2024年1月学科 問6",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_1年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "リスク管理",
-    "year": "2025_5",
-    "type": "truefalse",
-    "question_text": "２ Ｃ 2025年5月学科 問7",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2025_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "リスク管理",
-    "year": "2024_5",
-    "type": "truefalse",
-    "question_text": "２ Ｄ 2024年5月学科 問7",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
     "category": "金融資産運用",
     "year": "2023_5",
     "type": "truefalse",
@@ -259,19 +103,6 @@
     ],
     "correct_answer": "ア",
     "explanation": "2025_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "金融資産運用",
-    "year": "2023_5",
-    "type": "truefalse",
-    "question_text": "２ Ｅ 2023年5月学科 問14",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2023_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
   },
   {
     "exam_id": "fp3",
@@ -315,32 +146,6 @@
   },
   {
     "exam_id": "fp3",
-    "category": "金融資産運用",
-    "year": "2023_9",
-    "type": "truefalse",
-    "question_text": "２ Ｃ 2023年9月学科 問12",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2023_9年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "金融資産運用",
-    "year": "2026_5",
-    "type": "truefalse",
-    "question_text": "２ − 2026年5月学科 問12",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2026_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
     "category": "タックスプランニング",
     "year": "2023_9",
     "type": "truefalse",
@@ -365,19 +170,6 @@
     ],
     "correct_answer": "ア",
     "explanation": "2025_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "タックスプランニング",
-    "year": "2024_1",
-    "type": "truefalse",
-    "question_text": "１ Ｃ 2024年1月学科 問19",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_1年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
   },
   {
     "exam_id": "fp3",
@@ -409,45 +201,6 @@
   {
     "exam_id": "fp3",
     "category": "タックスプランニング",
-    "year": "2024_1",
-    "type": "truefalse",
-    "question_text": "２ Ｅ 2024年1月学科 問17",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_1年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "タックスプランニング",
-    "year": "2024_5",
-    "type": "truefalse",
-    "question_text": "１ Ｂ 2024年5月学科 問18",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "タックスプランニング",
-    "year": "2023_5",
-    "type": "truefalse",
-    "question_text": "２ Ｄ 2023年5月学科 問17",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2023_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "タックスプランニング",
     "year": "2023_1",
     "type": "truefalse",
     "question_text": "夫が生計を一にする妻の負担すべき国民年金の保険料を支払った場合、その支払っ た金額は、夫に係る所得税の社会保険料控除の対象となる。",
@@ -460,49 +213,10 @@
   },
   {
     "exam_id": "fp3",
-    "category": "タックスプランニング",
-    "year": "2023_5",
-    "type": "truefalse",
-    "question_text": "２ Ｅ 2023年5月学科 問16",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2023_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
     "category": "不動産",
     "year": "2025_5",
     "type": "truefalse",
     "question_text": "都市計画法によれば、市街化区域内において行う開発行為は、その規模にかかわら ず、都道府県知事等の許可を受けなければならない。",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2025_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "不動産",
-    "year": "2023_5",
-    "type": "truefalse",
-    "question_text": "２ Ａ 2023年5月学科 問22",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2023_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "不動産",
-    "year": "2025_5",
-    "type": "truefalse",
-    "question_text": "２ Ｃ 2025年5月学科 問22",
     "options": [
       "ア: 正しい（①）",
       "イ: 誤り（②）"
@@ -523,19 +237,6 @@
     ],
     "correct_answer": "ア",
     "explanation": "2025_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "不動産",
-    "year": "2026_5",
-    "type": "truefalse",
-    "question_text": "２ − 2026年5月学科 問24",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2026_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
   },
   {
     "exam_id": "fp3",
@@ -591,19 +292,6 @@
   },
   {
     "exam_id": "fp3",
-    "category": "不動産",
-    "year": "2026_5",
-    "type": "truefalse",
-    "question_text": "２ − 2026年5月学科 問22",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2026_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
     "category": "相続・事業承継",
     "year": "2023_9",
     "type": "truefalse",
@@ -618,19 +306,6 @@
   {
     "exam_id": "fp3",
     "category": "相続・事業承継",
-    "year": "2026_5",
-    "type": "truefalse",
-    "question_text": "１ − 2026年5月学科 問26",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2026_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "相続・事業承継",
     "year": "2023_5",
     "type": "multiplechoice",
     "question_text": "下記の＜親族関係図＞において、Ａさんの相続における母Ｄさんの法定相続分は、 （ ）である。",
@@ -641,32 +316,6 @@
     ],
     "correct_answer": "ア",
     "explanation": "2023_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "相続・事業承継",
-    "year": "2023_9",
-    "type": "truefalse",
-    "question_text": "１ Ｂ 2023年9月学科 問27",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2023_9年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "相続・事業承継",
-    "year": "2024_5",
-    "type": "truefalse",
-    "question_text": "２ Ｄ 2024年5月学科 問26",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2024_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
   },
   {
     "exam_id": "fp3",
@@ -693,19 +342,6 @@
     ],
     "correct_answer": "ア",
     "explanation": "2026_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
-  },
-  {
-    "exam_id": "fp3",
-    "category": "相続・事業承継",
-    "year": "2025_5",
-    "type": "truefalse",
-    "question_text": "１ Ｂ 2025年5月学科 問27",
-    "options": [
-      "ア: 正しい（①）",
-      "イ: 誤り（②）"
-    ],
-    "correct_answer": "ア",
-    "explanation": "2025_5年試験の出題テーマです。AI解説ボタンで詳しい解説を確認できます。"
   },
   {
     "exam_id": "fp3",
