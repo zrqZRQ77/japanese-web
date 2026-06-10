@@ -26,7 +26,7 @@ export default function Home() {
         <p style={{ fontSize: '16px', color: '#666666', maxWidth: '600px', margin: '0 auto 32px auto', lineHeight: '1.6' }}>
           文字教材・知識カード・模擬試験をこれ一つで。あなたのペースで効率的に合格を掴み取りましょう。
         </p>
-        <Link href="/course?type=fp&level=3" style={{ textDecoration: 'none' }}>
+        <Link href="/practice?exam=fp3" style={{ textDecoration: 'none' }}>
           <button style={{ backgroundColor: '#b93a26', color: '#ffffff', border: 'none', padding: '14px 32px', borderRadius: '6px', fontSize: '16px', fontWeight: '700', cursor: 'pointer', boxShadow: '0 4px 12px rgba(185,58,38,0.15)' }}>
             学習を開始する →
           </button>
@@ -50,7 +50,7 @@ export default function Home() {
                 ビジネスの共通言語を学ぶ。资金の流れを正しく把握し、実务に直结する仕訳と决算の基础知识を身につけます。
               </p>
             </div>
-            <Link href="/course?type=boki&level=3" style={{ textDecoration: 'none' }}>
+            <Link href="/practice?exam=boki3" style={{ textDecoration: 'none' }}>
               <button style={{ width: '100%', padding: '12px', background: '#ffffff', color: '#111111', border: '1px solid #111111', borderRadius: '6px', fontWeight: '600', cursor: 'pointer' }}>
                 3級コースを始める →
               </button>
