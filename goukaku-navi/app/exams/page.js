@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-// 严格对应你真实的题库路径，确保退层级逻辑在 Vercel 锁定的根目录下完全合法
+// 引入本地题库数据，确保路径在 Vercel 锁定根目录下绝对安全
 import bokiData from '../../data/boki3.json';
 import fpData from '../../data/fp3.json';
 
@@ -21,70 +21,102 @@ export default function ExamsPage() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f5f7fa', fontFamily: 'sans-serif' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif' }}>
       
-      {/* 内置纯净导航栏 */}
-      <div style={{ background: '#fff', padding: '15px 20px', borderBottom: '1px solid #e1e4e8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontWeight: 'bold', fontSize: '18px', color: '#0070f3' }}>資格試験ナビ</span>
-        <Link href="/" style={{ color: '#666', textDecoration: 'none', fontSize: '14px' }}>返回首页</Link>
-      </div>
+      {/* 原生风格顶部导航栏 */}
+      <header style={{ background: '#ffffff', padding: '16px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', sticky: 'top', zIndex: 50, boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ display: 'inline-block', width: '4px', height: '18px', backgroundColor: '#0070f3', borderRadius: '2px' }}></span>
+          <span style={{ fontWeight: '700', fontSize: '18px', color: '#0f172a', letterSpacing: '-0.025em' }}>資格試験ナビ</span>
+        </div>
+        <Link href="/" style={{ color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: '500', transition: 'color 0.2s' }}>
+          トップページへ戻る
+        </Link>
+      </header>
 
-      <main style={{ flex: 1, maxWidth: '800px', width: '100%', margin: '0 auto', padding: '40px 20px' }}>
+      {/* 主体内容区 */}
+      <main style={{ flex: 1, maxWidth: '720px', width: '100%', margin: '0 auto', padding: '40px 24px' }}>
         
-        {/* 切换按钮 */}
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '30px' }}>
+        {/* 考试切换 Tab 选项卡 */}
+        <div style={{ display: 'flex', background: '#e2e8f0', padding: '4px', borderRadius: '8px', marginBottom: '32px', gap: '4px' }}>
           <button 
             onClick={() => { setCurrentExam('boki'); setSelectedAnswers({}); setShowExplanations({}); }}
-            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'boki' ? '#0070f3' : '#fff', color: currentExam === 'boki' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px' }}
+            style={{ flex: 1, padding: '10px 16px', fontSize: '14px', fontWeight: '600', cursor: 'pointer', backgroundColor: currentExam === 'boki' ? '#ffffff' : 'transparent', color: currentExam === 'boki' ? '#0f172a' : '#64748b', border: 'none', borderRadius: '6px', boxShadow: currentExam === 'boki' ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)' : 'none', transition: 'all 0.2s' }}
           >
             日商簿記3級 (仕訳)
           </button>
           <button 
             onClick={() => { setCurrentExam('fp'); setSelectedAnswers({}); setShowExplanations({}); }}
-            style={{ padding: '12px 24px', fontSize: '15px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: currentExam === 'fp' ? '#0070f3' : '#fff', color: currentExam === 'fp' ? '#fff' : '#333', border: '1px solid #ccc', borderRadius: '8px' }}
+            style={{ flex: 1, padding: '10px 16px', fontSize: '14px', fontWeight: '600', cursor: 'pointer', backgroundColor: currentExam === 'fp' ? '#ffffff' : 'transparent', color: currentExam === 'fp' ? '#0f172a' : '#64748b', border: 'none', borderRadius: '6px', boxShadow: currentExam === 'fp' ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)' : 'none', transition: 'all 0.2s' }}
           >
             FP技能士3級
           </button>
         </div>
 
-        <h1 style={{ fontSize: '24px', color: '#111', marginBottom: '25px', paddingBottom: '10px', borderBottom: '2px solid #e1e4e8' }}>
-          {currentExam === 'boki' ? '日商簿記3級 模擬試験' : 'FP技能士3級 模擬試験'}
-        </h1>
+        {/* 页面大标题 */}
+        <div style={{ marginBottom: '32px' }}>
+          <h1 style={{ fontSize: '24px', fontWeight: '800', color: '#0f172a', margin: '0 0 8px 0' }}>
+            {currentExam === 'boki' ? '日商簿記3級 模擬試験' : 'FP技能士3級 模擬試験'}
+          </h1>
+          <p style={{ fontSize: '14px', color: '#64748b', margin: 0 }}>選択肢をクリックすると、即座に正誤判定と詳細な解説が表示されます。</p>
+        </div>
 
-        {/* 题目列表 */}
+        {/* 题目卡片循环 */}
         {questions.map((q, index) => {
           const userAnswer = selectedAnswers[index];
           const isCorrect = userAnswer === q.correct_answer;
 
           return (
-            <div key={index} style={{ background: '#fff', padding: '25px', borderRadius: '12px', marginBottom: '25px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', border: '1px solid #e1e4e8' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
-                <span style={{ background: '#333', color: '#fff', padding: '4px 10px', fontSize: '12px', fontWeight: 'bold', borderRadius: '6px' }}>Q {index + 1}</span>
-                <span style={{ color: '#666', fontSize: '13px', background: '#f0f2f5', padding: '4px 10px', borderRadius: '6px' }}>{q.category} · {q.difficulty}</span>
+            <div key={index} style={{ background: '#ffffff', padding: '28px', borderRadius: '12px', marginBottom: '28px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)', border: '1px solid #e2e8f0', transition: 'transform 0.2s' }}>
+              
+              {/* 题号与分类标签 */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
+                <span style={{ background: '#0f172a', color: '#ffffff', padding: '4px 12px', fontSize: '12px', fontWeight: '700', borderRadius: '6px', letterSpacing: '0.05em' }}>
+                  QUESTION {index + 1}
+                </span>
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <span style={{ color: '#475569', fontSize: '12px', fontWeight: '500', background: '#f1f5f9', padding: '4px 10px', borderRadius: '6px' }}>{q.category}</span>
+                  <span style={{ color: '#0284c7', fontSize: '12px', fontWeight: '500', background: '#e0f2fe', padding: '4px 10px', borderRadius: '6px' }}>{q.difficulty}</span>
+                </div>
               </div>
               
-              <p style={{ fontSize: '16px', lineHeight: '1.6', fontWeight: '600', color: '#222', whiteSpace: 'pre-wrap' }}>{q.question_text}</p>
+              {/* 题目文本 */}
+              <p style={{ fontSize: '16px', lineHeight: '1.7', fontWeight: '600', color: '#1e293b', whiteSpace: 'pre-wrap', margin: '0 0 24px 0' }}>
+                {q.question_text}
+              </p>
 
-              {/* 选项 */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '20px' }}>
+              {/* 选项区域 */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {q.options.map((opt) => {
-                  const letter = opt.charAt(0);
+                  const letter = opt.charAt(0); // 获取 A, B, C, D
                   const isCurrentOptSelected = userAnswer === letter;
                   const isCurrentOptCorrect = letter === q.correct_answer;
 
+                  // 默认选项按钮样式
                   let btnStyle = {
-                    padding: '14px', textAlign: 'left', fontSize: '14px', borderRadius: '8px', border: '1px solid #d1d5db', backgroundColor: '#fff', cursor: 'pointer', width: '100%', fontWeight: '500'
+                    padding: '14px 18px', textAlign: 'left', fontSize: '14.5px', borderRadius: '8px', border: '1px solid #cbd5e1', backgroundColor: '#ffffff', cursor: 'pointer', width: '100%', fontWeight: '500', color: '#334155', transition: 'all 0.2s', outline: 'none'
                   };
 
+                  // 用户点击后的状态染色逻辑
                   if (userAnswer) {
                     if (isCurrentOptCorrect) {
-                      btnStyle.backgroundColor = '#e6f4ea';
-                      btnStyle.borderColor = '#34a853';
-                      btnStyle.color = '#137333';
+                      // 正确答案样式（优雅绿）
+                      btnStyle.backgroundColor = '#f0fdf4';
+                      btnStyle.borderColor = '#22c55e';
+                      btnStyle.color = '#15803d';
+                      btnStyle.fontWeight = '600';
                     } else if (isCurrentOptSelected && !isCorrect) {
-                      btnStyle.backgroundColor = '#fce8e6';
-                      btnStyle.borderColor = '#ea4335';
-                      btnStyle.color = '#c5221f';
+                      // 用户选错的样式（警示红）
+                      btnStyle.backgroundColor = '#fef2f2';
+                      btnStyle.borderColor = '#ef4444';
+                      btnStyle.color = '#b91c1c';
+                      btnStyle.fontWeight = '600';
+                    } else {
+                      // 未选中的其他错误选项（淡化处理）
+                      btnStyle.backgroundColor = '#ffffff';
+                      btnStyle.borderColor = '#f1f5f9';
+                      btnStyle.color = '#94a3b8';
+                      btnStyle.cursor = 'not-allowed';
                     }
                   }
 
@@ -94,6 +126,18 @@ export default function ExamsPage() {
                       onClick={() => handleAnswerClick(index, letter)}
                       disabled={!!userAnswer}
                       style={btnStyle}
+                      onMouseEnter={(e) => {
+                        if (!userAnswer) {
+                          e.currentTarget.style.borderColor = '#0070f3';
+                          e.currentTarget.style.backgroundColor = '#f8fafc';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!userAnswer) {
+                          e.currentTarget.style.borderColor = '#cbd5e1';
+                          e.currentTarget.style.backgroundColor = '#ffffff';
+                        }
+                      }}
                     >
                       {opt}
                     </button>
@@ -101,13 +145,16 @@ export default function ExamsPage() {
                 })}
               </div>
 
-              {/* 解析 */}
+              {/* 答案与白话详细解析 */}
               {showExplanations[index] && (
-                <div style={{ marginTop: '20px', padding: '15px 20px', background: '#f8f9fa', borderLeft: '4px solid #0070f3', borderRadius: '0 8px 8px 0' }}>
-                  <div style={{ fontWeight: 'bold', fontSize: '15px', color: isCorrect ? '#34a853' : '#ea4335', marginBottom: '8px' }}>
-                    {isCorrect ? '⭕ 正解！' : `❌ 不正解（正解は ${q.correct_answer}）`}
+                <div style={{ marginTop: '24px', padding: '20px', background: '#f8fafc', borderLeft: '4px solid #0070f3', borderRadius: '0 8px 8px 0', borderTop: '1px solid #f1f5f9', borderRight: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}>
+                  <div style={{ fontWeight: '700', fontSize: '15px', color: isCorrect ? '#16a34a' : '#dc2626', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    {isCorrect ? '⭕ 正解' : `❌ 不正解（正解は ${q.correct_answer}）`}
                   </div>
-                  <p style={{ fontSize: '14px', color: '#444', lineHeight: '1.6', margin: 0 }}>{q.explanation}</p>
+                  <div style={{ fontSize: '13px', fontWeight: '700', color: '#475569', marginBottom: '4px' }}>【解説】</div>
+                  <p style={{ fontSize: '14px', color: '#334155', lineHeight: '1.7', margin: 0, whiteSpace: 'pre-wrap' }}>
+                    {q.explanation}
+                  </p>
                 </div>
               )}
             </div>
@@ -115,10 +162,10 @@ export default function ExamsPage() {
         })}
       </main>
 
-      {/* 内置纯净页脚 */}
-      <div style={{ textAlign: 'center', padding: '20px', color: '#999', fontSize: '12px', borderTop: '1px solid #e1e4e8', background: '#fff' }}>
+      {/* 原生高质感页脚 */}
+      <footer style={{ textAlign: 'center', padding: '24px', color: '#94a3b8', fontSize: '13px', borderTop: '1px solid #e2e8f0', background: '#ffffff', fontWeight: '500' }}>
         © 2026 資格試験ナビ. All Rights Reserved.
-      </div>
+      </footer>
     </div>
   );
 }
