@@ -35,16 +35,21 @@ export default function CourseDashboard() {
         {/* 功能矩阵 (提前布置未来新模块) */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
           
+
           {/* 1. 文字教材入口 */}
           <div style={{ background: '#ffffff', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               <div style={{ fontSize: '24px', marginBottom: '12px' }}>📘</div>
               <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#1e293b', margin: '0 0 8px 0' }}>講義テキスト</h3>
               <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.5', margin: '0 0 20px 0' }}>高信息密度的双语图文教材，白话拆解核心考点与商业逻辑。</p>
-            </div>
-            <button disabled style={{ width: '100%', padding: '10px', background: '#f1f5f9', color: '#94a3b8', border: 'none', borderRadius: '6px', fontWeight: '600', cursor: 'not-allowed' }}>
-              準備中
-            </button>
+          </div>
+            
+            {/* 👇 替换成下面这块全新代码：移除了 disabled，换成了红色外观，并赋予了智能雷达跳转链接 */}
+            <Link href={`/reader?type=${type}&level=${level}`} style={{ textDecoration: 'none' }}>
+              <button style={{ width: '100%', padding: '10px', background: '#b93a26', color: '#ffffff', border: 'none', borderRadius: '6px', fontWeight: '600', cursor: 'pointer' }}>
+                テキストを読む →
+              </button>
+            </Link>
           </div>
 
           {/* 2. 知识卡片入口 */}
