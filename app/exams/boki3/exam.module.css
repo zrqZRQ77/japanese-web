@@ -1,0 +1,50 @@
+.examHeader { background: var(--jp-dark); padding: 2rem; }
+.examHeaderInner { max-width: 960px; margin: 0 auto; }
+.backLink { font-size: 13px; color: #a8a8c0; text-decoration: none; display: inline-block; margin-bottom: 1.2rem; transition: color 0.2s; }
+.backLink:hover { color: var(--jp-gold); }
+.examHeaderMain { display: flex; gap: 1.2rem; align-items: flex-start; margin-bottom: 1.5rem; }
+.examHeaderIcon { font-size: 2.5rem; flex-shrink: 0; margin-top: 4px; }
+.examHeaderCategory { font-size: 11px; color: var(--jp-gold); font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; text-transform: uppercase; }
+.examHeaderName { font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.examHeaderDesc { font-size: 13px; color: #a8a8c0; line-height: 1.7; }
+.examHeaderMeta { display: flex; gap: 1px; background: rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; flex-wrap: wrap; }
+.metaItem { flex: 1; min-width: 120px; padding: 0.8rem 1rem; background: rgba(255,255,255,0.03); }
+.metaLabel { font-size: 10px; color: #a8a8c0; display: block; margin-bottom: 3px; letter-spacing: 0.5px; }
+.metaValue { font-size: 13px; color: #fff; font-weight: 500; }
+
+.main { max-width: 960px; margin: 0 auto; padding: 2rem; }
+.section { margin-bottom: 2.5rem; }
+.sectionTitle { font-size: 1.1rem; font-weight: 700; color: var(--jp-dark); margin-bottom: 1.2rem; padding-left: 10px; border-left: 3px solid var(--jp-red); }
+
+.comingSoon { background: #fef9ee; border: 1px solid #f0d080; border-radius: 8px; padding: 1rem 1.4rem; font-size: 13px; color: #7a5500; margin-bottom: 2rem; }
+
+/* Tool Grid */
+.toolGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+.toolCard { background: #fff; border: 1px solid var(--jp-border); border-radius: 10px; padding: 1.4rem; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.2s, transform 0.2s; }
+.toolCard:hover { border-color: var(--tool-color, var(--jp-red)); transform: translateY(-2px); }
+.toolIcon { font-size: 1.8rem; }
+.toolTitle { font-size: 14px; font-weight: 700; color: var(--jp-dark); }
+.toolDesc { font-size: 12px; color: var(--jp-gray); line-height: 1.6; flex: 1; }
+.toolBtn { display: inline-block; margin-top: auto; background: var(--tool-bg, var(--jp-red-light)); color: var(--tool-color, var(--jp-red)); border: none; border-radius: 4px; padding: 7px 12px; font-size: 12px; font-weight: 600; text-decoration: none; transition: opacity 0.2s; }
+.toolBtn:hover { opacity: 0.85; }
+.toolBtnDisabled { display: inline-block; margin-top: auto; background: #f5f5f5; color: #999; border-radius: 4px; padding: 7px 12px; font-size: 12px; }
+
+/* Flow */
+.flowWrap { display: flex; align-items: flex-start; gap: 0; flex-wrap: wrap; }
+.flowStep { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; flex: 1; min-width: 100px; text-align: center; padding: 1rem 0.5rem; background: #fff; border: 1px solid var(--jp-border); border-radius: 8px; margin: 0 4px 8px; }
+.flowNum { width: 22px; height: 22px; background: var(--jp-red); color: #fff; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.flowIcon { font-size: 1.4rem; }
+.flowTitle { font-size: 12px; font-weight: 700; color: var(--jp-dark); }
+.flowDesc { font-size: 11px; color: var(--jp-gray); }
+.flowArrow { display: none; }
+
+/* Other Exams */
+.otherExams { display: flex; gap: 10px; flex-wrap: wrap; }
+.otherExamCard { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--jp-border); border-radius: 8px; padding: 10px 16px; font-size: 13px; font-weight: 500; color: var(--jp-dark); text-decoration: none; transition: border-color 0.2s; }
+.otherExamCard:hover { border-color: var(--jp-red); color: var(--jp-red); }
+.otherArrow { color: var(--jp-gray); font-size: 11px; }
+
+@media (max-width: 640px) {
+  .toolGrid { grid-template-columns: 1fr 1fr; }
+  .examHeaderMeta { flex-direction: column; }
+}
