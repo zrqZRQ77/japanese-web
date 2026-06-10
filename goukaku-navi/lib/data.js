@@ -7,7 +7,7 @@ export const exams = [
     tag: 'popular',
     tagLabel: '入門に最適',
     description: 'ファイナンシャルプランナーの入門資格。年3回実施。',
-    questionCount: 56,
+    questionCount: 28,
   },
   {
     id: 'fp2',
