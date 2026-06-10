@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
+// 严格对应你真实的题库路径，确保退层级逻辑在 Vercel 锁定的根目录下完全合法
 import bokiData from '../../data/boki3.json';
 import fpData from '../../data/fp3.json';
 
@@ -22,7 +23,7 @@ export default function ExamsPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f5f7fa', fontFamily: 'sans-serif' }}>
       
-      {/* 纯内置导航栏 */}
+      {/* 内置纯净导航栏 */}
       <div style={{ background: '#fff', padding: '15px 20px', borderBottom: '1px solid #e1e4e8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ fontWeight: 'bold', fontSize: '18px', color: '#0070f3' }}>資格試験ナビ</span>
         <Link href="/" style={{ color: '#666', textDecoration: 'none', fontSize: '14px' }}>返回首页</Link>
@@ -114,6 +115,7 @@ export default function ExamsPage() {
         })}
       </main>
 
+      {/* 内置纯净页脚 */}
       <div style={{ textAlign: 'center', padding: '20px', color: '#999', fontSize: '12px', borderTop: '1px solid #e1e4e8', background: '#fff' }}>
         © 2026 資格試験ナビ. All Rights Reserved.
       </div>
