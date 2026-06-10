@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-export default function ExamGuide() {
+export default function ExamGuideChapterOne() {
   const params = useParams();
   // 动态获取当前是 boki3 还是 fp3
   const examId = params.examId || 'boki3'; 
