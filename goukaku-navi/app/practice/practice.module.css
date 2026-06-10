@@ -205,3 +205,33 @@
 .resultPct { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
 .resultMsg { font-size: 13px; color: var(--jp-gray); line-height: 1.8; margin-bottom: 1.5rem; }
 .resultBtns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+.filterWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.filterBtn {
+  background: #fff;
+  border: 1px solid var(--jp-border);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--jp-gray);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filterBtn:hover {
+  border-color: var(--jp-red);
+  color: var(--jp-red);
+}
+
+.filterActive {
+  background: var(--jp-red);
+  border-color: var(--jp-red);
+  color: #fff;
+}
