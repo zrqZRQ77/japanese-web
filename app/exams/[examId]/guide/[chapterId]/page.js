@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { examDatabase } from "../../../../../data/examTexts";
+import { examDatabase } from "../../../../data/examTexts";
 
 export default function UniversalChapterDetailPage() {
   const [mounted, setMounted] = useState(false);
