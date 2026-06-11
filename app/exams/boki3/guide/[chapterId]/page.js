@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Navbar from "../../../../../components/Navbar";
-// 🚀 核心改动：从独立的数据仓库中引入地道日文文本
+// 🚀 从独立的数据仓库中引入地道日文文本
 import { examDatabase } from "../../../../../data/examTexts";
 
 export default function GuideDetailPage() {
@@ -25,7 +25,7 @@ export default function GuideDetailPage() {
     }
   }, []);
 
-  // 🎯 极其干净的皮肤逻辑：直接根据当前的 examId 和 chapterId 去数据仓库里抓取内容
+  // 🎯 动态从大仓库抓取数据
   const currentExamTexts = examDatabase[examId] || examDatabase['boki3'];
   const currentChapter = currentExamTexts[chapterId] || currentExamTexts['ch1'];
 
@@ -56,7 +56,7 @@ export default function GuideDetailPage() {
             </h1>
           </div>
 
-          {/* 📖 核心优化：智能兼容字符串或数组，自动渲染精美段落间距 */}
+          {/* 📖 智能兼容字符串或数组，渲染美观的段落间距 */}
           <div style={{ fontSize: '15px', color: '#334155', lineHeight: '1.85', letterSpacing: '0.2px' }}>
             {Array.isArray(currentChapter.content) ? (
               currentChapter.content.map((paragraph, index) => (
