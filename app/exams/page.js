@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Navbar from "../components/Navbar";
+// 🎯 路径修正：用 ../../ 完美退回到根目录，精准找到顶层 components 文件夹下的 Navbar
+import Navbar from "../../components/Navbar";
 
 export default function ExamsDashboardMainPage() {
   const [mounted, setMounted] = useState(false);
@@ -18,7 +19,7 @@ export default function ExamsDashboardMainPage() {
     { id: 'boki2', name: '日商簿記2級', tags: ['商業簿記', 'ステップアップ'], desc: '株式会社の会計、純資産の部など、より高度で実践的な商業簿記をマスターします。' },
     { id: 'fp3', name: 'FP技能士3級', tags: ['資産運用', 'ライフプラン'], desc: 'ライフプランニングと資金計画、リスク管理、税金などお金の知識を網羅します。' },
     { id: 'itpass', name: 'ITパスポート', tags: ['IT国家資格', 'ストラテジ'], desc: 'IT社会を生きるすべてのビジネスパーソンに必要な、企業活動と法務の基本。' },
-    { id: 'takken', name: '宅地建物取引士', tags: ['不動産', '難関資格'], desc: '宅建業法の免許制度の基本から取引のルールまで、不動産プロへの登竜門。' }
+    { id: 'takken', name: '宅地建物取引士', tags: ['不動産', '難関資格'], desc: '宅建業法の免許制度の基本から取引のルールまで、不動产プロへの登竜門。' }
   ];
 
   return (
@@ -41,7 +42,7 @@ export default function ExamsDashboardMainPage() {
           {examCards.map((exam) => (
             <div 
               key={exam.id}
-              style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)', transition: 'transform 0.2s' }}
+              style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' }}
             >
               <div>
                 {/* 标签栏 */}
