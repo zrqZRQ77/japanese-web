@@ -97,7 +97,7 @@ export default function ExamGuideChapterFour() {
           <div style={{ marginBottom: '40px', borderBottom: '1px solid #f1f5f9', paddingBottom: '20px' }}>
             <span style={{ color: '#b93a26', fontSize: '13px', fontWeight: '800', letterSpacing: '0.5px' }}>第4章 • 決算の全体像と試算表</span>
             <h1 style={{ fontSize: '28px', fontWeight: '900', lineHeight: '1.4', margin: '6px 0 0 0', color: '#111111' }}>
-              【大白話】試算表と決算の全体像：散らばったパズルが一瞬で一枚の絵になる瞬間
+              【超わかりやすい】試算表と決算の全体像：散らばったパズルが一瞬で一枚の絵になる瞬間
             </h1>
           </div>
 
@@ -132,13 +132,13 @@ export default function ExamGuideChapterFour() {
             <p style={{ fontSize: '16.5px', lineHeight: '1.85', color: '#334155', marginBottom: '20px' }}>
               ここで複式簿記の第一性原理が最高の威力を発揮します。
               全ての仕訳は必ず「左側（借方）の金額 ＝ 右側（貸方）の金額」というルールで書かれていました。
-              そのため、それらを何万回集計しようとも、**試算表の「左側の総合計」と「右側の総合計」は絶対に寸分の狂いもなく一致します。**
+              そのため、それらを何万回集計しようとも、<strong>試算表の「左側の総合計」と「右側の総合計」は絶対に寸分の狂いもなく一致します。</strong>
             </p>
 
             <div style={{ background: '#fdf2f0', padding: '20px', borderRadius: '8px', border: '1px solid #fca5a5', marginBottom: '20px' }}>
               <h4 style={{ margin: '0 0 6px 0', fontSize: '15px', fontWeight: '800', color: '#b93a26' }}>🛡️ 試験での絶対的防壁：</h4>
               <p style={{ margin: 0, fontSize: '14.5px', color: '#334155', lineHeight: '1.6' }}>
-                もし試験中に試算表の左右の合計が1円でもズレていたら、それはどこかの仕訳の左右を書き間違えたか、転記の計算ミスをした証拠です。言い換えれば、**自給自足でミスの場所を特定できる**仕組みになっています。
+                もし試験中に試算表の左右の合計が1円でもズレていたら、それはどこかの仕訳の左右を書き間違えたか、転記の計算ミスをした証拠です。言い換えれば、<strong>自給自足でミスの場所を特定できる</strong>仕組みになっています。
               </p>
             </div>
           </section>
@@ -149,7 +149,7 @@ export default function ExamGuideChapterFour() {
               運命の分岐点：試算表からB/SとP/Lへの自動振り分け
             </h2>
             <p style={{ fontSize: '16.5px', lineHeight: '1.85', color: '#334155', marginBottom: '20px' }}>
-              試算表の集計が終わり、左右の金額が一致したらいよいよ最終局面、**「決算（財務諸表の作成）」**です。
+              試算表の集計が終わり、左右の金額が一致したらいよいよ最終局面、<strong>「決算（財務諸表の作成）」</strong>です。
               ここでやることは、試算表に並んだ科目を、第1章・第2章で学んだ「5大要素の定位置」に基づいて、2つの報告書へ機械的に仕分けしていくだけです。
             </p>
 

@@ -39,7 +39,7 @@ export default function GuideHubPage() {
       title: '主要勘定科目の実務（現金・預金・商品売買）',
       description: 'ビジネスの現場で最も動く「お金」と「モノ」の記録方法。売掛金、買掛金、手形のやり取りなど、現場感覚で学ぶ勘定科目。',
       badges: ['商品売買', '売掛・買掛'],
-      status: 'available'
+      status: 'soon'
     },
     {
       id: 'ch4',
@@ -47,7 +47,7 @@ export default function GuideHubPage() {
       title: '決算整理と財務諸表の完成',
       description: '1年間の活動記録を締めくくり、B/SとP/Lを完成させる簿記のクライマックス。なぜ減価償却が必要なのか、その本質に迫る。',
       badges: ['決算整理', 'B/S・P/L'],
-      status: 'available'
+      status: 'soon'
     }
   ] : [
     // 如果是 FP3 级，未来预留的章节
@@ -78,7 +78,7 @@ export default function GuideHubPage() {
             TEXTBOOK HUB
           </span>
           <h1 style={{ fontSize: '32px', fontWeight: '900', color: '#111111', marginTop: '8px', marginBottom: '12px' }}>
-            {examTitle} 大白話合格テキスト
+            {examTitle} 超わかりやすい合格テキスト
           </h1>
           <p style={{ fontSize: '16px', color: '#475569', margin: 0, lineHeight: '1.6' }}>
             {subtitle}

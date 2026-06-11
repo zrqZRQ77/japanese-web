@@ -98,7 +98,7 @@ export default function ExamGuideChapterOne() {
           <div style={{ marginBottom: '40px', borderBottom: '1px solid #f1f5f9', paddingBottom: '20px' }}>
             <span style={{ color: '#b93a26', fontSize: '13px', fontWeight: '800', letterSpacing: '0.5px' }}>第1章 • 簿記の根本原理</span>
             <h1 style={{ fontSize: '28px', fontWeight: '900', lineHeight: '1.4', margin: '6px 0 0 0', color: '#111111' }}>
-              【大白話】複式簿記の本質：なぜ資産は左側、負債は右側なのか？
+              【超わかりやすい】複式簿記の本質：なぜ資産は左側、負債は右側なのか？
             </h1>
           </div>
 

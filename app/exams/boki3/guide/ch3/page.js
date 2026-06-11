@@ -97,7 +97,7 @@ export default function ExamGuideChapterThree() {
           <div style={{ marginBottom: '40px', borderBottom: '1px solid #f1f5f9', paddingBottom: '20px' }}>
             <span style={{ color: '#b93a26', fontSize: '13px', fontWeight: '800', letterSpacing: '0.5px' }}>第3章 • 主要勘定科目の実務</span>
             <h1 style={{ fontSize: '28px', fontWeight: '900', lineHeight: '1.4', margin: '6px 0 0 0', color: '#111111' }}>
-              【大白話】主要勘定科目の実務：実ビジネスの取引をすべて脳内にマッピングする
+              【超わかりやすい】主要勘定科目の実務：実ビジネスの取引をすべて脳内にマッピングする
             </h1>
           </div>
 

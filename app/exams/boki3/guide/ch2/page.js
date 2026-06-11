@@ -92,7 +92,7 @@ export default function ExamGuideChapterTwo() {
           <div style={{ marginBottom: '40px', borderBottom: '1px solid #f1f5f9', paddingBottom: '20px' }}>
             <span style={{ color: '#b93a26', fontSize: '13px', fontWeight: '800', letterSpacing: '0.5px' }}>第2章 • 仕訳の基礎とゲームのルール</span>
             <h1 style={{ fontSize: '28px', fontWeight: '900', lineHeight: '1.4', margin: '6px 0 0 0', color: '#111111' }}>
-              【大白話】仕訳の基礎：ルール違反にならないための「左右の等式」
+              【超わかりやすい】仕訳の基礎：ルール違反にならないための「左右の等式」
             </h1>
           </div>
 
