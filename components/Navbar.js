@@ -2,14 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
-  const router = useRouter();
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isAiHovered, setIsAiHovered] = useState(false);
 
-  // 1. 扩容后的日本核心国家资格、公的资格考试列表（完美加入2级）
+  // 1. 完美扩容的 6 大考种数据库
   const examList = [
     { id: 'boki3', name: '簿記3級', category: 'ビジネス・会計' },
     { id: 'boki2', name: '簿記2級', category: 'ビジネス・総合会計' },
@@ -19,26 +17,15 @@ export default function Navbar() {
     { id: 'takken', name: '宅建', category: '不動産・法律' }
   ];
 
-  // 2. 完美的顶部导航排列顺序（AI質問压轴）
+  // 2. 指示通りの完璧な並び順（AI質問が最後）
   const navItems = [
-    { id: 'exams', label: '試験一覧', hasDropdown: true, basePath: '/exams' },
-    { id: 'guide', label: '学習ガイド', hasDropdown: true, subPath: '/guide' },
-    { id: 'exercises', label: '練習問題', hasDropdown: true, subPath: '/exercises' },
-    { id: 'cards', label: '知識カード', hasDropdown: true, subPath: '/cards' },
-    { id: 'mock', label: '模擬試験', hasDropdown: true, subPath: '/mock' },
+    { id: 'exams', label: '試験一覧', hasDropdown: true, basePath: '/exams', subPath: '/guide' },
+    { id: 'guide', label: '学習ガイド', hasDropdown: true, basePath: '/exams', subPath: '/guide' },
+    { id: 'exercises', label: '練習問題', hasDropdown: true, basePath: '/exams', subPath: '/exercises' },
+    { id: 'cards', label: '知識カード', hasDropdown: true, basePath: '/exams', subPath: '/cards' },
+    { id: 'mock', label: '模擬試験', hasDropdown: true, basePath: '/exams', subPath: '/mock' },
     { id: 'ai', label: 'AI質問', hasDropdown: false }
   ];
-
-  const handleMenuClick = (itemId, examId, subPath) => {
-    setActiveDropdown(null);
-    if (itemId === 'exams') {
-      // 统一跳转到对应考种的综合管理大本营（Hub页）
-      router.push(`/exams/${examId}/guide`);
-    } else {
-      // 直达对应的刷题、卡片或模拟考场模块
-      router.push(`/exams/${examId}${subPath}`);
-    }
-  };
 
   return (
     <header style={{
@@ -98,7 +85,7 @@ export default function Navbar() {
               onMouseLeave={() => setActiveDropdown(null)}
             >
               {item.id === 'ai' ? (
-                // 🔥 AI質問压轴高亮按钮（用纯 React State 控制 Hover 缩放，零错误隐患）
+                // 🔥 AI質問压轴高亮按钮
                 <button
                   onClick={() => alert('AI質問アシスタント（サイドパネル）を起動します。')}
                   onMouseEnter={() => setIsAiHovered(true)}
@@ -155,4 +142,54 @@ export default function Navbar() {
                 </button>
               )}
 
-              {/* 🎰 完全隔离式 React 內联样式下拉
+              {/* 下拉菜单：改用 Link 标签包裹，原生底层机制，绝不报错 */}
+              {item.hasDropdown && activeDropdown === item.id && (
+                <div style={{
+                  position: 'absolute',
+                  top: '68px',
+                  left: item.id === 'exams' ? '0' : '50%',
+                  transform: item.id === 'exams' ? 'none' : 'translateX(-50%)',
+                  backgroundColor: '#ffffff',
+                  minWidth: '280px',
+                  borderRadius: '8px',
+                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                  border: '1px solid #e2e8f0',
+                  padding: '8px 0',
+                  zIndex: 2000
+                }}>
+                  <div style={{
+                    padding: '6px 16px 10px 16px',
+                    fontSize: '11px',
+                    fontWeight: '800',
+                    color: '#94a3b8',
+                    borderBottom: '1px solid #f1f5f9',
+                    marginBottom: '6px',
+                    letterSpacing: '0.5px'
+                  }}>
+                    {item.label}の対象資格を選択
+                  </div>
+
+                  {examList.map((exam) => {
+                    // 原生拼接标准 Next.js 路由路径，保障 100% 兼容跳转
+                    const targetPath = `${item.basePath}/${exam.id}${item.subPath}`;
+
+                    return (
+                      <Link
+                        key={exam.id}
+                        href={targetPath}
+                        onClick={() => setActiveDropdown(null)}
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '2px',
+                          padding: '10px 16px',
+                          textDecoration: 'none',
+                          backgroundColor: 'transparent',
+                          transition: 'background-color 0.15s ease',
+                          textAlign: 'left',
+                          border: 'none',
+                          width: '100%',
+                          boxSizing: 'border-box'
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8fafc'}
+                        onMouseLeave={(e) => e.
