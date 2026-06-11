@@ -1,19 +1,27 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
 import Navbar from "../../../../components/Navbar";
 
 export default function ExamHubPage() {
-  const params = useParams();
-  const examId = (params?.examId || 'boki3').toLowerCase();
   const [mounted, setMounted] = useState(false);
+  const [examId, setExamId] = useState('boki3'); // 默认兜底为 boki3
 
   useEffect(() => {
     setMounted(true);
+    
+    // 🚀 终极稳定：直接从浏览器地址栏的 URL 路径中精准剥离出真实的考试 ID
+    // 比如路径是 /exams/boki2/guide，下面的逻辑能 100% 稳妥地抓取到 "boki2"
+    if (typeof window !== 'undefined') {
+      const pathSegments = window.location.pathname.split('/');
+      const examsIndex = pathSegments.indexOf('exams');
+      if (examsIndex !== -1 && pathSegments[examsIndex + 1]) {
+        setExamId(pathSegments[examsIndex + 1].toLowerCase());
+      }
+    }
   }, []);
 
-  // 1. 全日本語・日本の資格試験に最適化されたデータベース
+  // 🎰 日本核心资格考试专属全日语数据库
   const examDatabase = {
     boki3: {
       name: '簿記3級',
@@ -39,11 +47,11 @@ export default function ExamHubPage() {
     fp3: {
       name: 'FP3級',
       title: 'FP3級 資産設計総合ダッシュボード',
-      subtitle: 'ライフプランニングから税金、相続まで、生活に直結するマネーリテラシーの集大成。',
+      subtitle: 'ライフプランニングから税金、相続まで、生活に直信するマネーリテラシーの集大成。',
       chapters: [
         { ch: '1', title: 'ライフプランニングと資金計画', desc: '社会保険、公的年金の仕組みと、資産設計に用いる6つの係数の使い方。' },
         { ch: '2', title: 'リスク管理（生命保険・損害保険）', desc: '各種保険商品の仕組み、保障内容、および最適な保険設計の選択基準。' },
-        { ch: '3', title: 'タックスプランニング（所得税の基本）', desc: '日本の所得税の仕組み、各種所得の計算方法と確定申告の基礎知識。' }
+        { ch: '3', title: 'タックスプランニング（所得税の基本）', desc: '日本の所得税の仕組み、各種所得の計算方法と確定申告の基础知识。' }
       ]
     },
     fp2: {
@@ -83,20 +91,15 @@ export default function ExamHubPage() {
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif' }}>
-      
-      {/* 👑 全局导航栏（唯一顶栏导航，内部重复的导航已被彻底移除） */}
       <Navbar />
 
-      {/* 📊 メインコンテンツエリア */}
       <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '50px 24px' }}>
         
-        {/* ヘッダータイトル */}
         <div style={{ marginBottom: '40px', borderLeft: `6px solid #b93a26`, paddingLeft: '16px' }}>
           <h1 style={{ fontSize: '28px', fontWeight: '900', color: '#0f172a', margin: '0 0 8px 0' }}>{currentExam.title}</h1>
           <p style={{ fontSize: '14.5px', color: '#64748b', margin: 0, fontWeight: '500' }}>{currentExam.subtitle}</p>
         </div>
 
-        {/* 4大機能カード（中文を一切排除し、洗練された日本語表現に統一） */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '50px' }}>
           {[
             { id: 'guide', title: '📘 学習ガイド', count: 'テキスト', desc: '試験範囲を分かりやすく解説したオリジナル教材。', btn: 'テキストを読む' },
@@ -126,7 +129,6 @@ export default function ExamHubPage() {
           ))}
         </div>
 
-        {/* 📑 カリキュラム一覧（课纲章节详情） */}
         <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '32px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.01)' }}>
           <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#0f172a', margin: '0 0 24px 0', borderBottom: '2px solid #f1f5f9', paddingBottom: '12px' }}>
             カリキュラム一覧
@@ -138,20 +140,16 @@ export default function ExamHubPage() {
                 key={chapter.ch} 
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px', border: '1px solid #f1f5f9', borderRadius: '8px', backgroundColor: '#f8fafc' }}
               >
-                {/* 左侧：章节序号与纯净日文内容说明 */}
                 <div style={{ flex: 1, paddingRight: '24px' }}>
                   <div style={{ fontSize: '11px', fontWeight: '800', color: '#b93a26', marginBottom: '4px', letterSpacing: '0.5px' }}>第 {chapter.ch} 章</div>
                   <h4 style={{ fontSize: '15.5px', fontWeight: '800', color: '#1e293b', margin: '0 0 6px 0' }}>{chapter.title}</h4>
                   <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: '1.5' }}>{chapter.desc}</p>
                 </div>
                 
-                {/* 右侧交互按钮：已彻底重构。颜色降噪，且剔除了右侧多余的“(第1章)”重复字样 */}
                 <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
                   <button 
                     onClick={() => { if (typeof window !== 'undefined') window.location.href = `/exams/${examId}/guide/ch${chapter.ch}`; }}
                     style={{ padding: '0 16px', height: '38px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '13px', fontWeight: '700', color: '#475569', cursor: 'pointer', transition: 'all 0.15s ease' }}
-                    onMouseEnter={(e) => e.currentTarget.style.borderColor = '#94a3b8'}
-                    onMouseLeave={(e) => e.currentTarget.style.borderColor = '#cbd5e1'}
                   >
                     解説テキスト
                   </button>
@@ -160,12 +158,12 @@ export default function ExamHubPage() {
                     style={{ 
                       padding: '0 16px', 
                       height: '38px', 
-                      backgroundColor: '#fff5f5', // 柔和的浅红色背景
+                      backgroundColor: '#fff5f5', 
                       border: '1px solid #fee2e2', 
                       borderRadius: '6px', 
                       fontSize: '13px', 
                       fontWeight: '700', 
-                      color: '#b93a26', // 深红色文字
+                      color: '#b93a26', 
                       cursor: 'pointer',
                       transition: 'all 0.15s ease'
                     }}
