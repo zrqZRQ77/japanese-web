@@ -1,344 +1,257 @@
 "use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import Navbar from "../../../../components/Navbar";
 
-export default function ExamExercisesPage() {
-  const params = useParams();
-  const examId = params.examId || 'boki3';
+export default function ExercisesPage() {
+  const [mounted, setMounted] = useState(false);
+  const [examId, setExamId] = useState('boki3');
+  const [targetChapter, setTargetChapter] = useState(null); // URLの ?ch= を格納
+  
+  // クイズ回答用の各種状態管理
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null); // ユーザーが選んだ選択肢
+  const [isAnswered, setIsAnswered] = useState(false); // 解答済みかどうか
+  const [score, setScore] = useState(0); // 正解数
 
-  // 簿記3級の厳選リアル問題データベース（1章〜4章の論点を完全網羅）
-  const exercisesData = [
-    // --- 第1章：簿記の根本原理 ---
-    {
-      id: 1,
-      chapter: 'ch1',
-      chapterTitle: '第1章 • 簿記の根本原理',
-      question: '現金 5,000,000円を出資して、新しくカフェを開業し、営業を開始した。',
-      correct: { drSubject: '現金', drAmount: '5000000', crSubject: '資本金', crAmount: '5000000' },
-      hint: '左側は手元に増えた資産、右側は元手となる自分のお金（純資産）です。',
-      explanation: '出資によって手元の「現金（資産）」が5,000,000円増加するため、借方に記録します。同時に、これは元手となる自分のお金なので「資本金（純資産）」の増加として貸方に記録します。'
-    },
-    {
-      id: 2,
-      chapter: 'ch1',
-      chapterTitle: '第1章 • 簿記の根本原理',
-      question: '店舗の家賃 120,000円を現金で支払った。',
-      correct: { drSubject: '支払家賃', drAmount: '120000', crSubject: '現金', crAmount: '120000' },
-      hint: '家賃の支払いはサービスの消費。お金が出ていった原因（費用）を左に書きます。',
-      explanation: '家賃の支払いは「支払家賃（費用）」の発生として借方（左）に記録します。同時に、手元の「現金（資産）」が減少するため、資産の減少として貸方（右）に記録します。'
-    },
-    {
-      id: 3,
-      chapter: 'ch1',
-      chapterTitle: '第1章 • 簿記の根本原理',
-      question: '顧客にコンサルティングサービスを提供し、報酬 150,000円を現金で受け取った。',
-      correct: { drSubject: '現金', drAmount: '150000', crSubject: '受取手数料', crAmount: '150000' },
-      hint: '現金が増えた理由は何ですか？稼いだ会社の成果（収益）を右に記録します。',
-      explanation: '「現金（資産）」が150,000円増加したため借方に記録します。その原因はサービス提供による稼ぎなので、「受取手数料（収益）」の発生として貸方に記録します。'
-    },
-
-    // --- 第2章：仕訳のルール ---
-    {
-      id: 4,
-      chapter: 'ch2',
-      chapterTitle: '第2章 • 仕訳のルール',
-      question: '銀行から現金 1,000,000円を借り入れ、直ちに手元に引き取った。',
-      correct: { drSubject: '現金', drAmount: '1000000', crSubject: '借入金', crAmount: '1000000' },
-      hint: 'お金が増えると同時に、将来返さなければならない義務（負債）も増えています。',
-      explanation: '現金（資産）が1,000,000円増加したため借方に書きます。後で返済する義務は「借入金（負債）」という箱になり、負債の増加（ホームポジション）として貸方に記録します。'
-    },
-    {
-      id: 5,
-      chapter: 'ch2',
-      chapterTitle: '第2章 • 仕訳のルール',
-      question: '上記の借入金のうち、200,000円を現金で銀行に返済した。',
-      correct: { drSubject: '借入金', drAmount: '200000', crSubject: '現金', crAmount: '200000' },
-      hint: '義務を果たして借金が減りました。負債の減少はどちら側でしたか？',
-      explanation: '借金を返済したことで「借入金（負債）」という義務が減少するため、ホームポジションとは逆の借方（左）に書いて消去します。同時に「現金（資産）」が減少するため貸方に記録します。'
-    },
-
-    // --- 第3章：主要勘定科目の実務 ---
-    {
-      id: 6,
-      chapter: 'ch3',
-      chapterTitle: '第3章 • 主要勘定科目の実務',
-      question: 'A商店から商品 200,000円を仕入れ、代金は掛け（ツケ）とした。',
-      correct: { drSubject: '仕入', drAmount: '200000', crSubject: '買掛金', crAmount: '200000' },
-      hint: '仕入は費用の発生。商品売買における後払いの義務（ツケ）の科目は？',
-      explanation: '商品の仕入れは「仕入（費用）」の発生として借方に記録します。商品売買のツケで、後でお金を支払う義務は「買掛金（負債）」の増加として貸方に記録します。'
-    },
-    {
-      id: 7,
-      chapter: 'ch3',
-      chapterTitle: '第3章 • 主要勘定科目の実務',
-      question: 'B商店に商品 350,000円を売り上げ、代金は掛け（ツケ）とした。',
-      correct: { drSubject: '売掛金', drAmount: '350000', crSubject: '売上', crAmount: '350000' },
-      hint: '売上は収益の発生。後でお金をもらえる権利（ツケ）の科目は？',
-      explanation: '商品を売り上げたので「売上（収益）」の発生として貸方に記録します。後でお金をもらう権利は「売掛金（資産）」の増加として借方に記録します。'
-    },
-    {
-      id: 8,
-      chapter: 'ch3',
-      chapterTitle: '第3章 • 主要勘定科目の実務',
-      question: '取引先から受け取った小切手 80,000円を、直ちに当座預金口座へ預け入れた。',
-      correct: { drSubject: '当座預金', drAmount: '80000', crSubject: '現金', crAmount: '80000' },
-      hint: '【超重要】他人振出小切手は手元にある時は「現金」扱い。それを預金口座に入れたという動きです。',
-      explanation: '他人が振り出した小切手は簿記上「現金（資産）」として扱われています。これを当座預金に預け入れたため、「当座預金（資産）」が借方に増加し、手元の「現金（資産）」が貸方に減少します。'
-    },
-    {
-      id: 9,
-      chapter: 'ch3',
-      chapterTitle: '第3章 • 主要勘定科目の実務',
-      question: 'C商店から仕入れた商品に欠陥があったため 30,000円分を返品し、買掛金から差し引くこととした。',
-      correct: { drSubject: '買掛金', drAmount: '30000', crSubject: '仕入', crAmount: '30000' },
-      hint: '返品（逆仕訳）の処理です。支払うはずだった義務と、仕入れた費用を同時に減らします。',
-      explanation: '返品によって支払う義務が減るため、借方に「買掛金（負債の減少）」を記録します。同時に、仕入れた費用も取り消すため、貸方に「仕入（費用の減少）」を記録します。'
-    },
-    {
-      id: 10,
-      chapter: 'ch3',
-      chapterTitle: '第3章 • 主要勘定科目の実務',
-      question: 'D商店に対する買掛金 150,000円の決済のため、約束手形を振り出して渡した。',
-      correct: { drSubject: '買掛金', drAmount: '150000', crSubject: '支払手形', crAmount: '150000' },
-      hint: 'ツケ（買掛金）という義務が消滅し、新しく手形による強力な義務が発生しました。',
-      explanation: '買掛金という義務が消滅するため借方に「買掛金（負債の減少）」を記録します。代わりに手形を発行したことで新たな支払義務が生じるため、貸方に「支払手形（負債の増加）」を記録します。'
-    },
-    {
-      id: 11,
-      chapter: 'ch3',
-      chapterTitle: '第3章 • 主要勘定科目の実務',
-      question: '商品 50,000円を注文し、内金（手付金）として現金 10,000円を先に支払った。',
-      correct: { drSubject: '前払金', drAmount: '10000', crSubject: '現金', crAmount: '10000' },
-      hint: '先にお金を払ったことで、「後で商品を受け取る権利」が生まれました。',
-      explanation: '先に支払った手付金は、後で商品を受け取る権利であるため「前払金（資産）」の増加として借方に記録します。同時に「現金（資産）」が減少します。'
-    },
-
-    // --- 第4章：試算表と決算の全体像 ---
-    {
-      id: 12,
-      chapter: 'ch4',
-      chapterTitle: '第4章 • 試算表と決算の全体像',
-      question: 'かねてよりツケていた売掛金 300,000円が、当座預金口座に振り込まれた。',
-      correct: { drSubject: '当座預金', drAmount: '30000', crSubject: '売掛金', crAmount: '30000' },
-      hint: '預金という新しい資産が増えた代わりに、回収する権利（資産）が役目を終えて消滅します。',
-      explanation: '当座預金（資産）が増加したため借方に記録します。これまで持っていた「売掛金（資産）」という権利はお金を回収できたことで消滅するため、資産の減少として逆側の貸方に書いて消去します。'
-    },
-    {
-      id: 13,
-      chapter: 'ch4',
-      chapterTitle: '第4章 • 試算表と決算の全体像',
-      question: '期末になり、本日までの仕訳データを集計した結果、合計残高試算表の「売上」の合計が 850,000円であった。この金額が最終的に集計される報告書はどれか。（※金額は850,000を入力してください）',
-      correct: { drSubject: '損益計算書', drAmount: '850000', crSubject: '売上', crAmount: '850000' },
-      hint: '売上は「収益」です。収益と費用が集まるのは、B/SとP/Lのどちらでしたか？',
-      explanation: '売上は収益の属するため、1年間の営業成績を表す「損益計算書（P/L）」へと自動的に振り分けられます。試算表（右側）からP/L（右側）への引っ越しです。'
-    }
-  ];
-
-  // 選択可能な日本の簿記3級標準の勘定科目・報告書一覧
-  const subjects = [
-    '選択してください', 
-    '現金', '当座預金', '売掛金', '仕入', '買掛金', 
-    '借入金', '資本金', '売上', '支払家賃', '受取手数料', 
-    '支払手形', '受取手形', '前払金', '前受金',
-    '損益計算書', '貸借対照表'
-  ];
-
-  // 状態管理
-  const [activeTab, setActiveTab] = useState('all');
-  const [userAnswers, setUserAnswers] = useState({});
-  const [results, setResults] = useState({});
-
-  const handleInputChange = (id, field, value) => {
-    setUserAnswers(prev => ({
-      ...prev,
-      [id]: { ...prev[id], [field]: value }
-    }));
+  // 🎰 日本の試験に100%適した一問一答クイズデータベース
+  const quizDatabase = {
+    boki3: [
+      { ch: "1", q: "現金10,000円を元入れして営業を開始した。この場合、借方（左側）に計上される勘定科目はどれか？", options: ["現金", "資本金", "売掛金", "当座預金"], ans: 0, hint: "元入れにより、資産である「現金」が増加するため、借方に「現金」を計上します。貸方（右側）は「資本金」となります。" },
+      { ch: "1", q: "商品の発送運賃5,000円を現金で支払った。当店（発送元）が負担する契約である場合、借方の勘定科目は？", options: ["仕入", "発送費", "売上", "立替金"], ans: 1, hint: "当店負担の発送運賃は「発送費（または支払運賃）」という費用の発生として処理します。" },
+      { ch: "2", q: "金庫を調査したところ、実際の現金が帳簿残高より2,000円多かった。この時点で処理する勘定科目はどれか？", options: ["現金過不足", "雑収入", "雑損失", "売上"], ans: 0, hint: "実際の現金が多い（帳簿が少ない）場合、まず帳簿の現金を増やし、相手勘定に「現金過不足」を計上して原因を調査します。" },
+      { ch: "3", q: "商品50,000円を売り上げ、代金は掛けとした。この際の借方（左側）の適切な勘定科目はどれか？", options: ["買掛金", "売掛金", "受取手形", "現金"], ans: 1, hint: "後で代金を受け取る権利（資産）が発生したため、借方に「売掛金」を計上します。" }
+    ],
+    boki2: [
+      { ch: "1", q: "株主総会において、繰越利益剰余金から1,000,000円の配当を行うことが決議された。この際に計上する負債の科目はどれか？", options: ["未払配当金", "利益準備金", "資本準備金", "未払金"], ans: 0, hint: "決議時点ではまだ配当金は支払われていないため、確定債務として「未払配当金（負債）」を計上します。" },
+      { ch: "3", q: "製品の製造のために、素材である鉄板500,000円分を消費した。このコストは原価計算上、どの分類に属するか？", options: ["直接材料費", "間接材料費", "直接労務費", "製造間接費"], ans: 0, hint: "製品に直接追跡できる主要な材料の消費なので「直接材料費」に分類されます。" }
+    ],
+    fp3: [
+      { ch: "1", q: "日本の公的年金制度において、日本国内に住所を有する20歳以上60歳未満のすべての人が加入する年金は何というか？", options: ["国民年金", "厚生年金", "確定拠出年金", "企業年金"], ans: 0, hint: "日本は国民皆年金であり、20歳以上60歳未満の全員が「国民年金（基礎年金）」の被保険者となります。" },
+      { ch: "3", q: "日本の所得税において、1年間の総所得金額から一律で差し引くことができる最も基本的な「所得控除」はどれか？", options: ["基礎控除", "配偶者控除", "医療費控除", "生命保険料控除"], ans: 0, hint: "納税者全員に無条件で適用されるのが「基礎控除（合計所得2,400万円以下で48万円）」です。" }
+    ]
   };
 
-  const checkAnswer = (id, correct) => {
-    const ans = userAnswers[id] || {};
+  useEffect(() => {
+    setMounted(true);
     
-    const isDrSubjectCorrect = ans.drSubject === correct.drSubject;
-    const isDrAmountCorrect = ans.drAmount === correct.drAmount;
-    const isCrSubjectCorrect = ans.crSubject === correct.crSubject;
-    const isCrAmountCorrect = ans.crAmount === correct.crAmount;
-
-    const isAllCorrect = isDrSubjectCorrect && isDrAmountCorrect && isCrSubjectCorrect && isCrAmountCorrect;
-
-    setResults(prev => ({
-      ...prev,
-      [id]: {
-        checked: true,
-        isCorrect: isAllCorrect,
-        details: { isDrSubjectCorrect, isDrAmountCorrect, isCrSubjectCorrect, isCrAmountCorrect }
+    if (typeof window !== 'undefined') {
+      // 1. URLパスから examId を抽出
+      const pathSegments = window.location.pathname.split('/');
+      const examsIndex = pathSegments.indexOf('exams');
+      let currentId = 'boki3';
+      if (examsIndex !== -1 && pathSegments[examsIndex + 1]) {
+        currentId = pathSegments[examsIndex + 1].toLowerCase();
+        setExamId(currentId);
       }
-    }));
+
+      // 2. URLパラメータから ?ch= を抽出
+      const searchParams = new URLSearchParams(window.location.search);
+      const chParam = searchParams.get('ch');
+      if (chParam) {
+        setTargetChapter(chParam);
+      }
+    }
+  }, []);
+
+  // 該当する試験の全問題を取得（データがない場合は簿記3級で兜底保護）
+  const allExamQuestions = quizDatabase[examId] || quizDatabase['boki3'];
+
+  // 章（Chapter）のパラメータがある場合はフィルタリング、ない場合は全章表示
+  const filteredQuestions = targetChapter 
+    ? allExamQuestions.filter(q => q.ch === targetChapter)
+    : allExamQuestions;
+
+  if (!mounted) return null;
+
+  // 万が一問題が1問も存在しない場合の処理
+  if (filteredQuestions.length === 0) {
+    return (
+      <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc' }}>
+        <Navbar />
+        <div style={{ maxWidth: '600px', margin: '80px auto', textAlign: 'center', padding: '24px' }}>
+          <p style={{ color: '#64748b', fontSize: '16px', fontWeight: '700' }}>現在、指定された章の演習問題は準備中です。</p>
+          <button onClick={() => window.history.back()} style={{ marginTop: '20px', padding: '8px 16px', backgroundColor: '#b93a26', color: '#ffffff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '700' }}>戻る</button>
+        </div>
+      </div>
+    );
+  }
+
+  const currentQuestion = filteredQuestions[currentQuestionIndex];
+
+  // ユーザーが選択肢をクリックしたときの信号機判定処理
+  const handleOptionClick = (optionIndex) => {
+    if (isAnswered) return; // 回答済みなら何もしない
+    
+    setSelectedAnswer(optionIndex);
+    setIsAnswered(true);
+    
+    if (optionIndex === currentQuestion.ans) {
+      setScore(score + 1);
+    }
   };
 
-  const filteredExercises = activeTab === 'all' 
-    ? exercisesData 
-    : exercisesData.filter(ex => ex.chapter === activeTab);
+  // 次の問題へ進む処理
+  const handleNextQuestion = () => {
+    setSelectedAnswer(null);
+    setIsAnswered(false);
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
+
+  // 終了画面のリセット処理
+  const handleReset = () => {
+    setCurrentQuestionIndex(0);
+    setSelectedAnswer(null);
+    setIsAnswered(false);
+    setScore(0);
+  };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif', color: '#111111' }}>
-      
-      {/* ヘッダー */}
-      <header style={{ background: '#ffffff', padding: '16px 40px', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Link href="/" style={{ fontWeight: '900', fontSize: '22px', color: '#111111', textDecoration: 'none' }}>
-            合格<span style={{ color: '#b93a26' }}>ナビ</span>
-          </Link>
-          <span style={{ color: '#e2e8f0' }}>|</span>
-          <span style={{ fontSize: '14px', fontWeight: '700', color: '#64748b' }}>日商簿記3級 スピード仕訳演習</span>
-        </div>
-        <Link href={`/exams/${examId}/guide`} style={{ color: '#666666', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>
-          ← テキスト目次に戻る
-        </Link>
-      </header>
+    <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: '"Helvetica Neue", Arial, sans-serif' }}>
+      <Navbar />
 
-      {/* メインコンテナ */}
-      <div style={{ maxWidth: '840px', margin: '0 auto', padding: '40px 20px' }}>
+      <main style={{ maxWidth: '700px', margin: '0 auto', padding: '40px 16px' }}>
         
-        <div style={{ marginBottom: '32px' }}>
-          <h1 style={{ fontSize: '28px', fontWeight: '900', color: '#111111', margin: '0 0 8px 0' }}>仕訳マスター特訓モード</h1>
-          <p style={{ margin: 0, color: '#64748b', fontSize: '15px' }}>勘定科目と金額を選んで「解答する」を押してください。ミスの原因を即座に分解判定します。</p>
+        {/* 上部タイトルエリア */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', borderBottom: '1px solid #e2e8f0', paddingBottom: '16px' }}>
+          <div>
+            <span style={{ fontSize: '12px', fontWeight: '800', color: '#b93a26', backgroundColor: '#fff5f5', padding: '3px 8px', borderRadius: '4px' }}>
+              {targetChapter ? `第 ${targetChapter} 章 限定演習` : '総合演習モード'}
+            </span>
+            <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#0f172a', margin: '6px 0 0 0' }}>一問一答・スピード演習</h2>
+          </div>
+          
+          {/* 進捗カウンター */}
+          {currentQuestionIndex < filteredQuestions.length && (
+            <div style={{ fontSize: '14px', fontWeight: '700', color: '#475569' }}>
+              <span style={{ fontSize: '20px', color: '#b93a26', fontWeight: '900' }}>{currentQuestionIndex + 1}</span> / {filteredQuestions.length} 問目
+            </div>
+          )}
         </div>
 
-        {/* タブ */}
-        <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid #e2e8f0', paddingBottom: '12px', marginBottom: '32px', overflowX: 'auto' }}>
-          {[
-            { id: 'all', label: 'すべての問題' },
-            { id: 'ch1', label: '第1章 根本原理' },
-            { id: 'ch2', label: '第2章 ルール基礎' },
-            { id: 'ch3', label: '第3章 主要科目' },
-            { id: 'ch4', label: '第4章 決算全体像' }
-          ].map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '20px',
-                border: 'none',
-                backgroundColor: activeTab === tab.id ? '#111111' : '#ffffff',
-                color: activeTab === tab.id ? '#ffffff' : '#475569',
-                fontSize: '13.5px',
-                fontWeight: '700',
-                cursor: 'pointer',
-                boxShadow: activeTab === tab.id ? 'none' : '0 1px 2px rgba(0,0,0,0.05)',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        {currentQuestionIndex < filteredQuestions.length ? (
+          /* ✍️ クイズ進行中の画面 */
+          <div>
+            {/* 問題文ボックス */}
+            <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '28px', marginBottom: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.02)' }}>
+              <p style={{ fontSize: '16px', fontWeight: '700', color: '#1e293b', margin: 0, lineHeight: '1.6' }}>
+                {currentQuestion.q}
+              </p>
+            </div>
 
-        {/* 問題リスト */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-          {filteredExercises.map((ex, index) => {
-            const ans = userAnswers[ex.id] || { drSubject: '', drAmount: '', crSubject: '', crAmount: '' };
-            const res = results[ex.id] || { checked: false, isCorrect: false, details: {} };
+            {/* 選択肢リスト（信号機判定インタラクション搭載） */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {currentQuestion.options.map((option, idx) => {
+                // ボタンの動的カラーリング決定
+                let btnBgColor = '#ffffff';
+                let btnBorderColor = '#e2e8f0';
+                let btnTextColor = '#334155';
 
-            return (
-              <div key={ex.id} style={{ background: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0', padding: '28px' }}>
-                
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                  <span style={{ color: '#b93a26', fontSize: '12px', fontWeight: '800' }}>{ex.chapterTitle}</span>
-                  <span style={{ fontSize: '13px', fontWeight: '700', color: '#94a3b8' }}>Q.{index + 1}</span>
-                </div>
+                if (isAnswered) {
+                  if (idx === currentQuestion.ans) {
+                    // 正解の選択肢は常に「緑色」に光る
+                    btnBgColor = '#ecfdf5';
+                    btnBorderColor = '#10b981';
+                    btnTextColor = '#065f46';
+                  } else if (selectedAnswer === idx && selectedAnswer !== currentQuestion.ans) {
+                    // ユーザーが選んで間違えた選択肢は「赤色」に光る
+                    btnBgColor = '#fef2f2';
+                    btnBorderColor = '#ef4444';
+                    btnTextColor = '#991b1b';
+                  } else {
+                    // それ以外の選択肢は薄くなって沈む
+                    btnBgColor = '#ffffff';
+                    btnBorderColor = '#f1f5f9';
+                    btnTextColor = '#94a3b8';
+                  }
+                }
 
-                <div style={{ fontSize: '17px', fontWeight: '700', lineHeight: '1.6', color: '#111111', marginBottom: '24px', background: '#f8fafc', padding: '16px 20px', borderRadius: '8px', borderLeft: '4px solid #111111' }}>
-                  {ex.question}
-                </div>
-
-                {/* 入力欄 */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '24px' }}>
-                  
-                  {/* 借方 */}
-                  <div style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '16px', backgroundColor: '#fafafa' }}>
-                    <div style={{ fontSize: '11px', fontWeight: '800', color: '#64748b', marginBottom: '10px' }}>借方 (左側)</div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      <select
-                        value={ans.drSubject}
-                        onChange={(e) => handleInputChange(ex.id, 'drSubject', e.target.value)}
-                        style={{ padding: '10px', borderRadius: '6px', border: res.checked && !res.details.isDrSubjectCorrect ? '2px solid #ef4444' : '1px solid #cbd5e1', fontSize: '14.5px', fontWeight: '600', backgroundColor: '#ffffff' }}
-                      >
-                        {subjects.map(s => <option key={s} value={s === '選択してください' ? '' : s}>{s}</option>)}
-                      </select>
-                      <input
-                        type="number"
-                        placeholder="金額を入力"
-                        value={ans.drAmount}
-                        onChange={(e) => handleInputChange(ex.id, 'drAmount', e.target.value)}
-                        style={{ padding: '10px', borderRadius: '6px', border: res.checked && !res.details.isDrAmountCorrect ? '2px solid #ef4444' : '1px solid #cbd5e1', fontSize: '14.5px' }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* 貸方 */}
-                  <div style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '16px', backgroundColor: '#fafafa' }}>
-                    <div style={{ fontSize: '11px', fontWeight: '800', color: '#64748b', marginBottom: '10px' }}>貸方 (右側)</div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      <select
-                        value={ans.crSubject}
-                        onChange={(e) => handleInputChange(ex.id, 'crSubject', e.target.value)}
-                        style={{ padding: '10px', borderRadius: '6px', border: res.checked && !res.details.isCrSubjectCorrect ? '2px solid #ef4444' : '1px solid #cbd5e1', fontSize: '14.5px', fontWeight: '600', backgroundColor: '#ffffff' }}
-                      >
-                        {subjects.map(s => <option key={s} value={s === '選択してください' ? '' : s}>{s}</option>)}
-                      </select>
-                      <input
-                        type="number"
-                        placeholder="金額を入力"
-                        value={ans.crAmount}
-                        onChange={(e) => handleInputChange(ex.id, 'crAmount', e.target.value)}
-                        style={{ padding: '10px', borderRadius: '6px', border: res.checked && !res.details.isCrAmountCorrect ? '2px solid #ef4444' : '1px solid #cbd5e1', fontSize: '14.5px' }}
-                      />
-                    </div>
-                  </div>
-
-                </div>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '13px', color: '#64748b', maxWidth: '60%' }}>💡 <strong>ヒント:</strong> {ex.hint}</span>
+                return (
                   <button
-                    onClick={() => checkAnswer(ex.id, ex.correct)}
-                    style={{ backgroundColor: '#111111', color: '#ffffff', border: 'none', padding: '12px 24px', borderRadius: '6px', fontSize: '14.5px', fontWeight: '700', cursor: 'pointer' }}
+                    key={idx}
+                    onClick={() => handleOptionClick(idx)}
+                    disabled={isAnswered}
+                    style={{
+                      width: '100%',
+                      padding: '18px 24px',
+                      backgroundColor: btnBgColor,
+                      border: `1px solid ${btnBorderColor}`,
+                      borderRadius: '8px',
+                      fontSize: '15px',
+                      fontWeight: '700',
+                      color: btnTextColor,
+                      textAlign: 'left',
+                      cursor: isAnswered ? 'default' : 'pointer',
+                      transition: 'all 0.15s ease',
+                      boxShadow: '0 1px 2px rgba(0,0,0,0.01)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}
                   >
-                    解答する
+                    <span>{idx + 1}. &nbsp; {option}</span>
+                    {isAnswered && idx === currentQuestion.ans && <span style={{ color: '#10b981', fontSize: '18px' }}>✓ 正解</span>}
+                    {isAnswered && selectedAnswer === idx && selectedAnswer !== currentQuestion.ans && <span style={{ color: '#ef4444', fontSize: '18px' }}>✗ 不正解</span>}
                   </button>
-                </div>
+                );
+              })}
+            </div>
 
-                {/* 解説エリア */}
-                {res.checked && (
-                  <div style={{ marginTop: '24px', padding: '20px', borderRadius: '8px', backgroundColor: res.isCorrect ? '#f0fdf4' : '#fef2f2', border: res.isCorrect ? '1px solid #bbf7d0' : '1px solid #fecaca' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                      {res.isCorrect ? (
-                        <span style={{ color: '#16a34a', fontWeight: '900', fontSize: '18px' }}>🎉 正解（素晴らしい！）</span>
-                      ) : (
-                        <span style={{ color: '#dc2626', fontWeight: '900', fontSize: '18px' }}>❌ 不正解（赤マスの部分を見直そう）</span>
-                      )}
-                    </div>
-                    <div style={{ fontSize: '14.5px', lineHeight: '1.7', color: '#334155' }}>
-                      <strong style={{ color: '#111111', display: 'block', marginBottom: '4px' }}>【超わかりやすい解説】</strong>
-                      {ex.explanation}
-                    </div>
-                    {!res.isCorrect && (
-                      <div style={{ marginTop: '12px', paddingLeft: '12px', borderLeft: '3px solid #dc2626', fontSize: '13px', color: '#7f1d1d' }}>
-                        正解の組み合わせ： 借方：<strong>{ex.correct.drSubject}</strong> ({Number(ex.correct.drAmount).toLocaleString()}円) ／ 貸方：<strong>{ex.correct.crSubject}</strong> ({Number(ex.correct.crAmount).toLocaleString()}円)
-                      </div>
-                    )}
-                  </div>
-                )}
-
+            {/* 📖 原位解説パネル（解答後に滑らかに出現） */}
+            {isAnswered && (
+              <div style={{ marginTop: '24px', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderLeft: '4px solid #b93a26', borderRadius: '8px', padding: '24px', animation: 'fadeIn 0.3s ease' }}>
+                <h4 style={{ fontSize: '14px', fontWeight: '900', color: '#b93a26', margin: '0 0 8px 0', letterSpacing: '0.5px' }}>📝 解説</h4>
+                <p style={{ fontSize: '13.5px', color: '#475569', margin: '0 0 20px 0', lineHeight: '1.6', fontWeight: '500' }}>
+                  {currentQuestion.hint}
+                </p>
+                
+                {/* 次へ進むボタン */}
+                <button
+                  onClick={handleNextQuestion}
+                  style={{ width: '100%', height: '46px', backgroundColor: '#0f172a', color: '#ffffff', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: '700', cursor: 'pointer', transition: 'background-color 0.15s ease' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1e293b'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0f172a'}
+                >
+                  {currentQuestionIndex + 1 === filteredQuestions.length ? '結果を確認する' : '次の問題へ ➔'}
+                </button>
               </div>
-            );
-          })}
-        </div>
+            )}
+          </div>
+        ) : (
+          /* 🏆 クイズ終了後のリザルト画面 */
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '40px 32px', textAlign: 'center', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.01)' }}>
+            <span style={{ fontSize: '48px' }}>🏆</span>
+            <h3 style={{ fontSize: '22px', fontWeight: '900', color: '#0f172a', margin: '16px 0 8px 0' }}>演習終了</h3>
+            <p style={{ fontSize: '14px', color: '#64748b', margin: '0 0 24px 0', fontWeight: '500' }}>お疲れ様でした！今回の結果は以下の通りです。</p>
+            
+            {/* スコア表示サークル */}
+            <div style={{ width: '160px', height: '160px', borderRadius: '50%', backgroundColor: '#fff5f5', margin: '0 auto 32px auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: '2px dashed #fee2e2' }}>
+              <span style={{ fontSize: '12px', fontWeight: '800', color: '#64748b' }}>正解率</span>
+              <span style={{ fontSize: '32px', fontWeight: '900', color: '#b93a26', margin: '4px 0' }}>
+                {score} / {filteredQuestions.length}
+              </span>
+              <span style={{ fontSize: '11px', fontWeight: '700', color: '#94a3b8' }}>（問中）</span>
+            </div>
 
-      </div>
+            {/* アクションボタン（2翼配置） */}
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                onClick={() => { if (typeof window !== 'undefined') window.location.href = `/exams/${examId}/guide`; }}
+                style={{ flex: 1, height: '46px', backgroundColor: '#f1f5f9', color: '#334155', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: '700', cursor: 'pointer' }}
+              >
+                ダッシュボードに戻る
+              </button>
+              <button
+                onClick={handleReset}
+                style={{ flex: 1, height: '46px', backgroundColor: '#b93a26', color: '#ffffff', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: '700', cursor: 'pointer' }}
+              >
+                もう一度挑戦する
+              </button>
+            </div>
+          </div>
+        )}
+
+      </main>
     </div>
   );
 }
