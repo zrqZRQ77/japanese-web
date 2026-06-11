@@ -1,13 +1,17 @@
 "use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
 
 export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isAiHovered, setIsAiHovered] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // 1. 完美扩容的 6 大考种数据库
+  // 确保组件在客户端完全挂载后再渲染，彻底杜绝 SSR 导致的 Hydration 报错
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const examList = [
     { id: 'boki3', name: '簿記3級', category: 'ビジネス・会計' },
     { id: 'boki2', name: '簿記2級', category: 'ビジネス・総合会計' },
@@ -17,15 +21,24 @@ export default function Navbar() {
     { id: 'takken', name: '宅建', category: '不動産・法律' }
   ];
 
-  // 2. 指示通りの完璧な並び順（AI質問が最後）
   const navItems = [
-    { id: 'exams', label: '試験一覧', hasDropdown: true, basePath: '/exams', subPath: '/guide' },
-    { id: 'guide', label: '学習ガイド', hasDropdown: true, basePath: '/exams', subPath: '/guide' },
-    { id: 'exercises', label: '練習問題', hasDropdown: true, basePath: '/exams', subPath: '/exercises' },
-    { id: 'cards', label: '知識カード', hasDropdown: true, basePath: '/exams', subPath: '/cards' },
-    { id: 'mock', label: '模擬試験', hasDropdown: true, basePath: '/exams', subPath: '/mock' },
+    { id: 'exams', label: '試験一覧', hasDropdown: true, subPath: '/guide' },
+    { id: 'guide', label: '学習ガイド', hasDropdown: true, subPath: '/guide' },
+    { id: 'exercises', label: '練習問題', hasDropdown: true, subPath: '/exercises' },
+    { id: 'cards', label: '知識カード', hasDropdown: true, subPath: '/cards' },
+    { id: 'mock', label: '模擬試験', hasDropdown: true, subPath: '/mock' },
     { id: 'ai', label: 'AI質問', hasDropdown: false }
   ];
+
+  const handleMenuClick = (itemId, examId, subPath) => {
+    setActiveDropdown(null);
+    if (typeof window !== 'undefined') {
+      // 使用最纯粹的 Web 原生跳转，不经过任何框架路由拦截
+      window.location.href = `/exams/${examId}${subPath}`;
+    }
+  };
+
+  if (!mounted) return null; // 客户端未挂载前返回空，保障 SSR 安全
 
   return (
     <header style={{
@@ -50,7 +63,7 @@ export default function Navbar() {
         
         {/* ロゴエリア */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Link href="/" style={{
+          <a href="/" style={{
             fontSize: '24px',
             fontWeight: '900',
             color: '#111111',
@@ -58,7 +71,7 @@ export default function Navbar() {
             letterSpacing: '-0.5px'
           }}>
             合格<span style={{ color: '#b93a26' }}>ナビ</span>
-          </Link>
+          </a>
           <span style={{
             fontSize: '11px',
             fontWeight: '700',
@@ -85,9 +98,8 @@ export default function Navbar() {
               onMouseLeave={() => setActiveDropdown(null)}
             >
               {item.id === 'ai' ? (
-                // 🔥 AI質問压轴高亮按钮
                 <button
-                  onClick={() => alert('AI質問アシスタント（サイドパネル）を起動します。')}
+                  onClick={() => alert('AI質問アシスタントを起動します。')}
                   onMouseEnter={() => setIsAiHovered(true)}
                   onMouseLeave={() => setIsAiHovered(false)}
                   style={{
@@ -113,7 +125,6 @@ export default function Navbar() {
                   {item.label}
                 </button>
               ) : (
-                // 通常のドロップダウン付きテキストメニュー
                 <button
                   style={{
                     padding: '0 16px',
@@ -142,7 +153,7 @@ export default function Navbar() {
                 </button>
               )}
 
-              {/* 下拉菜单：改用 Link 标签包裹，原生底层机制，绝不报错 */}
+              {/* 下拉菜单结构 */}
               {item.hasDropdown && activeDropdown === item.id && (
                 <div style={{
                   position: 'absolute',
@@ -169,27 +180,41 @@ export default function Navbar() {
                     {item.label}の対象資格を選択
                   </div>
 
-                  {examList.map((exam) => {
-                    // 原生拼接标准 Next.js 路由路径，保障 100% 兼容跳转
-                    const targetPath = `${item.basePath}/${exam.id}${item.subPath}`;
+                  {examList.map((exam) => (
+                    <button
+                      key={exam.id}
+                      onClick={() => handleMenuClick(item.id, exam.id, item.subPath)}
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '2px',
+                        padding: '10px 16px',
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        textAlign: 'left',
+                        cursor: 'pointer',
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        transition: 'background-color 0.15s ease'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8fafc'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                    >
+                      <span style={{ fontSize: '14px', fontWeight: '700', color: '#111111' }}>
+                        {exam.name}
+                      </span>
+                      <span style={{ fontSize: '11px', color: '#64748b', fontWeight: '500' }}>
+                        {exam.category}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </nav>
 
-                    return (
-                      <Link
-                        key={exam.id}
-                        href={targetPath}
-                        onClick={() => setActiveDropdown(null)}
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: '2px',
-                          padding: '10px 16px',
-                          textDecoration: 'none',
-                          backgroundColor: 'transparent',
-                          transition: 'background-color 0.15s ease',
-                          textAlign: 'left',
-                          border: 'none',
-                          width: '100%',
-                          boxSizing: 'border-box'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8fafc'}
-                        onMouseLeave={(e) => e.
+      </div>
+    </header>
+  );
+}
