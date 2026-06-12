@@ -10,10 +10,10 @@ export default function ExamGuideChapterNine() {
 
   // 本章内部小节目录
   const menuItems = [
-    { id: 'trial_balance_types', label: '1. 試算表（しさんひょう）の3つの種類' },
-    { id: 'balance_trial_balance', label: '2. 残高試算表の作成とチェック' },
+    { id: 'trial_balance_types', label: '1. 試算表（しさんひょう）の役割' },
+    { id: 'balance_trial_balance', label: '2. 【図解】残高試算表の構造' },
     { id: 'closing_pl', label: '3. 収益・費用の締め切り（損益振替）' },
-    { id: 'closing_bs', label: '4. 資産・負債・純資産の締め切り' },
+    { id: 'closing_bs', label: '4. 【図解】帳簿（T字勘定）の締め切り' },
   ];
 
   const [activeSection, setActiveSection] = useState('trial_balance_types');
@@ -115,9 +115,9 @@ export default function ExamGuideChapterNine() {
           <div style={{ maxWidth: '680px' }}>
             
             <section id="trial_balance_types" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h1 style={{ fontSize: '24px', fontWeight: '800', color: colors.textDark, marginBottom: '24px' }}>1. 試算表（しさんひょう）の3つの種類</h1>
+              <h1 style={{ fontSize: '24px', fontWeight: '800', color: colors.textDark, marginBottom: '24px' }}>1. 試算表（しさんひょう）の役割</h1>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                決算手続きに入る前に、日々の仕訳や総勘定元帳への転記にミスがないかを確認するための集計表を<strong>試算表（Trial Balance: T/B）</strong>と呼びます。試算表には以下の3種類があります。
+                決算手続きに入る前に、日々の仕訳や総勘定元帳（帳簿）への転記にミスがないかを確認するための集計表を<strong>試算表（Trial Balance: T/B）</strong>と呼びます。試算表には以下の3種類があります。
               </p>
               <div style={{ background: colors.avocadoLight, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
                 <ul style={{ paddingLeft: '20px', fontSize: '14.5px', color: colors.textDark, lineHeight: '1.8', margin: 0 }}>
@@ -129,85 +129,50 @@ export default function ExamGuideChapterNine() {
             </section>
 
             <section id="balance_trial_balance" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>2. 残高試算表の作成とチェック</h2>
-              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                残高試算表を作成する際の最大のルールは<strong>「簿記の5大要素のホームポジション（定位置）」</strong>に必ず残高がくるということです。もし逆側に残高が来ていたら、どこかで計算ミスをしています。
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>2. 【図解】残高試算表の構造</h2>
+              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '24px' }}>
+                百聞は一見に如かず。実際に「残高試算表」がどのような形をしているか見てみましょう。
+                最大のルールは<strong>「勘定科目のホームポジション（定位置）に必ず残高がくる」</strong>ことです。
               </p>
               
-              <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>💡 残高の定位置（超重要）</h4>
-                <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 4px 0', fontWeight: 'bold' }}>【必ず左側（借方）に残高がくるもの】</p>
-                  <p style={{ margin: '0 0 12px 0' }}>資産（現金、売掛金、備品など）／ 費用（仕入、給料、支払家賃など）</p>
-                  
-                  <p style={{ margin: '0 0 4px 0', fontWeight: 'bold' }}>【必ず右側（貸方）に残高がくるもの】</p>
-                  <p style={{ margin: '0 0 12px 0' }}>負債（買掛金、借入金など）／ 純資産（資本金など）／ 収益（売上、受取手数料など）</p>
-
-                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: '#b93a26' }}>
-                    ※試算表の「借方残高の合計」と「貸方残高の合計」は、必ず一致します（貸借平均の原理）。
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section id="closing_pl" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>3. 収益・費用の締め切り（損益振替）</h2>
-              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                決算整理が終わったら、いよいよ帳簿を締め切ります（リセットして来年に備える作業）。
-                収益と費用は「今年1年間だけの成績」なので、<strong>来年に持ち越さず、残高をすべてゼロ（0）にします。</strong>
-                このゼロにするために、すべての残高を<strong>「損益（そんえき）」</strong>という特別なゴミ箱（集計勘定）に投げ込みます。
-              </p>
-              <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：損益振替仕訳と当期純利益の計上</h4>
-                <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>ステップ①：収益と費用をゼロにして「損益」に集める</p>
-                  <p style={{ margin: '0 0 8px 0' }}>当期の売上（収益）は 1,000円、仕入（費用）は 700円だった。</p>
-                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'left', fontWeight: 'bold', color: colors.textDark, marginBottom: '16px' }}>
-                    （借方）売上 1,000 ／ （貸方）損益 1,000  ←収益の相殺<br/>
-                    （借方）損益 700 ／ （貸方）仕入 700  ←費用の相殺
-                  </div>
-                  
-                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>ステップ②：利益を算出して「繰越利益剰余金」へ移す</p>
-                  <p style={{ margin: '0 0 8px 0' }}>「損益」勘定の右側（1,000円）から左側（700円）を引くと、300円の利益が出たことがわかります。これを会社の純資産（繰越利益剰余金）に足し込みます。</p>
-                  <div style={{ background: '#fdf2f0', padding: '12px', border: `1px dashed #fca5a5`, textAlign: 'center', fontWeight: 'bold', color: '#b93a26' }}>
-                    （借方）損益 300 ／ （貸方）繰越利益剰余金 300
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section id="closing_bs" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>4. 資産・負債・純資産の締め切り</h2>
-              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                収益・費用と違い、現金（資産）や借入金（負債）は「年末でゼロになる」わけではありません。来年もそのまま引き継ぐ必要があります。
-              </p>
-              
-              <div style={{ background: colors.avocadoLight, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.avocado }}>💡 次期繰越（じきくりこし）による締め切り</h4>
-                <div style={{ fontSize: '14.5px', color: colors.textDark, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 8px 0' }}>資産・負債・純資産の各勘定口座では、借方と貸方の差額を赤字で<strong>「次期繰越」</strong>と記入し、左右の合計を一致させて二重線（＝）で締め切ります。</p>
-                  <p style={{ margin: 0 }}>そして、翌年の新しい行の反対側に黒字で<strong>「前期繰越（ぜんきくりこし）」</strong>と記入し、新しい1年をスタートさせます。</p>
-                </div>
-              </div>
-            </section>
-            
-            <div style={{ borderTop: `1px solid ${colors.border}`, paddingTop: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Link href={`/exams/${examId}/guide/ch8`} style={{ textDecoration: 'none' }}>
-                <button style={{ backgroundColor: '#ffffff', color: colors.textDark, border: `1px solid ${colors.border}`, padding: '12px 20px', borderRadius: '6px', fontSize: '14px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  ← 前の項目（第8章）
-                </button>
-              </Link>
-              <Link href={`/exams/${examId}/guide`} style={{ textDecoration: 'none', color: colors.textGray, fontSize: '14px', fontWeight: '600' }}>章のトップに戻る</Link>
-              <Link href={`/exams/${examId}/guide/ch10`}>
-                <button style={{ backgroundColor: colors.darkButton, color: '#ffffff', border: 'none', padding: '12px 24px', borderRadius: '6px', fontSize: '14px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  次の項目（第10章） →
-                </button>
-              </Link>
-            </div>
-          </div>
-        </main>
-      </div>
-      <style jsx global>{` html { scroll-behavior: smooth; } `}</style>
-    </div>
-  );
-}
+              {/* 真实的残高试算表 HTML 绘制 */}
+              <div style={{ marginBottom: '24px', overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', border: `2px solid ${colors.textDark}`, backgroundColor: '#ffffff' }}>
+                  <thead>
+                    <tr>
+                      <th colSpan="3" style={{ padding: '12px', borderBottom: `1px solid ${colors.textDark}`, backgroundColor: colors.avocadoLight, fontSize: '16px', fontWeight: '900', letterSpacing: '2px' }}>残 高 試 算 表</th>
+                    </tr>
+                    <tr style={{ backgroundColor: '#f8fafc', borderBottom: `2px solid ${colors.textDark}`, fontSize: '14px' }}>
+                      <th style={{ padding: '12px', borderRight: `1px solid ${colors.border}`, width: '30%' }}>借方（残高）</th>
+                      <th style={{ padding: '12px', borderRight: `1px solid ${colors.border}`, width: '40%' }}>勘定科目</th>
+                      <th style={{ padding: '12px', width: '30%' }}>貸方（残高）</th>
+                    </tr>
+                  </thead>
+                  <tbody style={{ fontSize: '14.5px', color: colors.textDark }}>
+                    {/* 资产类 (左边) */}
+                    <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}` }}>500,000</td>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}`, fontWeight: 'bold' }}>現 金（資産）</td>
+                      <td style={{ padding: '8px' }}></td>
+                    </tr>
+                    <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}` }}>300,000</td>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}`, fontWeight: 'bold' }}>備 品（資産）</td>
+                      <td style={{ padding: '8px' }}></td>
+                    </tr>
+                    {/* 负债/纯资产类 (右边) */}
+                    <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}`, fontWeight: 'bold' }}>買掛金（負債）</td>
+                      <td style={{ padding: '8px' }}>200,000</td>
+                    </tr>
+                    <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}`, fontWeight: 'bold' }}>資本金（純資産）</td>
+                      <td style={{ padding: '8px' }}>400,000</td>
+                    </tr>
+                    {/* 收益类 (右边) */}
+                    <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}`, fontWeight: 'bold' }}>売 上（収益）</td>
+                      <td style={{ padding: '8px' }}>60
