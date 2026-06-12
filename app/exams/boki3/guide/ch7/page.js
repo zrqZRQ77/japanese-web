@@ -10,10 +10,10 @@ export default function ExamGuideChapterSeven() {
 
   // 本章内部小节目录
   const menuItems = [
-    { id: 'accrual_basis', label: '1. なぜ決算で調整が必要なのか？' },
-    { id: 'prepaid_expense', label: '2. 費用の繰延（前払費用）' },
+    { id: 'accrual_basis', label: '1. 決算整理と「月割計算」の基本' },
+    { id: 'prepaid_expense', label: '2. 費用の繰延（前払費用）と再振替' },
     { id: 'unearned_revenue', label: '3. 収益の繰延（前受収益）' },
-    { id: 'accrued_expense', label: '4. 費用の見越（未払費用）' },
+    { id: 'accrued_expense_rev', label: '4. 費用の見越と収益の見越' },
   ];
 
   const [activeSection, setActiveSection] = useState('accrual_basis');
@@ -115,41 +115,40 @@ export default function ExamGuideChapterSeven() {
           <div style={{ maxWidth: '680px' }}>
             
             <section id="accrual_basis" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h1 style={{ fontSize: '24px', fontWeight: '800', color: colors.textDark, marginBottom: '24px' }}>1. なぜ決算で調整が必要なのか？</h1>
+              <h1 style={{ fontSize: '24px', fontWeight: '800', color: colors.textDark, marginBottom: '24px' }}>1. 決算整理と「月割計算」の基本</h1>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                簿記の損益計算書（P/L）には、<strong>「当期の純粋な1年間の費用と収益」</strong>だけを載せる必要があります。
-                しかし、現実のビジネスでは「家賃を来年分まで先払いした」「利息を後でまとめて受け取る」といったズレが発生します。
-                このズレを修正し、正しい期間に割り振る手続きを<strong>経過勘定（けいかかんじょう）</strong>の整理と呼びます。
+                損益計算書（P/L）には<strong>「当期の純粋な1年間の費用と収益」</strong>だけを載せます。しかし、「家賃を1年分まとめて先払いした」場合など、来年の分まで支払っているズレ（経過勘定）が生じます。試験では、このズレを<strong>月割計算（つきわりけいさん）</strong>で正確に割り出す能力が問われます。
               </p>
-              <div style={{ background: colors.avocadoLight, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: '800', color: colors.avocado }}>💡 2つの基本アプローチ</h4>
-                <p style={{ margin: 0, fontSize: '14.5px', color: colors.textDark, lineHeight: '1.7' }}>
-                  ① <strong>繰延（くりのべ）</strong>：当期に支払った/受け取ったが、来年分のものは今年の分から削る（前払費用・前受収益）。<br/>
-                  ② <strong>見越（みこし）</strong>：当期にまだ支払っていない/受け取っていないが、今年の分は今期に足す（未払費用・未収収益）。
-                </p>
-              </div>
             </section>
 
             <section id="prepaid_expense" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>2. 費用の繰延（前払費用）</h2>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>2. 費用の繰延（前払費用）と再振替</h2>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                当期に支払った費用のうち、来期のサービス分を今年の費用からマイナスし、<strong>前払費用（資産）</strong>に振り替えます。
+                当期に支払った費用のうち、来期のサービス分を今年の費用からマイナスし、<strong>前払費用（資産）</strong>に振り替えます。そして、<strong>翌年の期首には必ず元に戻す仕訳（再振替仕訳）</strong>を行います。
               </p>
               
               <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：保険料の前払い（月割計算）</h4>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：保険料の前払いと翌期の処理（頻出）</h4>
                 <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 8px 0' }}><strong>【状況】</strong> 決算日は12月31日。当年10月1日に、向こう1年分の保険料 12,000円を現金で支払い、全额「支払保険料（費用）」として記帳していた。</p>
-                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>【計算の考え方】</p>
+                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>【状況】決算日は12月31日。</p>
+                  <p style={{ margin: '0 0 8px 0' }}>当年8月1日に、向こう1年分（当年8月〜翌年7月）の保険料 12,000円を現金で支払い、全额「支払保険料（費用）」として記帳していた。</p>
+                  
+                  <p style={{ margin: '16px 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>① 当期の決算日（12月31日）の仕訳</p>
                   <p style={{ margin: '0 0 12px 0' }}>
-                    ・1ヶ月あたりの保険料：12,000円 ÷ 12ヶ月 ＝ 1,000円<br/>
-                    ・当期の対象期間（10月〜12月）：3ヶ月分 ➔ 3,000円（今年の費用）<br/>
-                    ・来期の対象期間（翌年1月〜9月）：<strong>9ヶ月分 ➔ 9,000円（来年の費用＝繰延べる分）</strong>
+                    ・1ヶ月分：12,000円 ÷ 12ヶ月 ＝ 1,000円<br/>
+                    ・当期分（8〜12月）：5ヶ月 ＝ 5,000円<br/>
+                    ・<strong>来期分（翌1〜7月）：7ヶ月 ＝ 7,000円 ➔ これを繰り延べる！</strong>
                   </p>
-                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>【決算整理仕訳】</p>
-                  <p style={{ margin: '0 0 12px 0' }}>支払保険料という費用を9,000円分減らし（右側）、前払保険料（左側）に変えます。</p>
                   <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
-                    （借方）前払保険料 9,000 ／ （貸方）支払保険料 9,000
+                    （借方）前払保険料 7,000 ／ （貸方）支払保険料 7,000
+                  </div>
+
+                  <p style={{ margin: '16px 0 8px 0', color: '#b93a26', fontWeight: 'bold' }}>② 翌期の期首（翌年1月1日）の再振替仕訳（超重要）</p>
+                  <p style={{ margin: '0 0 12px 0' }}>
+                    新年になったら、決算で行った仕訳を<strong>左右逆にしてリセット</strong>します。これにより、7,000円が正しく「新年の費用（支払保険料）」として計上されます。
+                  </p>
+                  <div style={{ background: '#fdf2f0', padding: '12px', border: `1px dashed #fca5a5`, textAlign: 'center', fontWeight: 'bold', color: '#b93a26' }}>
+                    （借方）支払保険料 7,000 ／ （貸方）前払保険料 7,000
                   </div>
                 </div>
               </div>
@@ -158,36 +157,37 @@ export default function ExamGuideChapterSeven() {
             <section id="unearned_revenue" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
               <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>3. 収益の繰延（前受収益）</h2>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                当期に受け取った収益のうち、来期分の金額を今年の収益からマイナスし、<strong>前受収益（負債）</strong>に振り替えます。
+                当期に受け取った収益のうち、来期分の金額を今年の収益からマイナスし、<strong>前受収益（負債）</strong>に振り替えます。「まだサービスを提供していないのに受け取ったお金＝負債」と考えます。
               </p>
               
               <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
                 <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：地代の先受け</h4>
                 <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 8px 0' }}>本地代受取総額のうち、翌期に属する期間分の地代が 50,000円あることが判明したため、決算整理を行う。</p>
-                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>【考え方】</p>
-                  <p style={{ margin: '0 0 16px 0' }}>当期の「受取地代（収益）」を50,000円減らし（左側）、まだサービスを提供していない義務として「前受地代（負債・右側）」に計上します。</p>
+                  <p style={{ margin: '0 0 8px 0' }}>決算にあたり、受取地代のうち来期分が50,000円含まれていることが判明した。</p>
                   <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
                     （借方）受取地代 50,000 ／ （貸方）前受地代 50,000
                   </div>
+                  <p style={{ margin: '12px 0 0 0', fontSize: '13px', color: colors.textGray }}>※こちらも翌期首には（借方）前受地代 ／（貸方）受取地代 と再振替仕訳を行います。</p>
                 </div>
               </div>
             </section>
 
-            <section id="accrued_expense" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>4. 費用の見越（未払費用）</h2>
+            <section id="accrued_expense_rev" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>4. 費用の見越と収益の見越</h2>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                「支払いは来年だけど、サービス自体は今年受けている」という場合、その未払いの経費を今年の費用として追加し、同時に<strong>未払費用（負債）</strong>を計上します。
+                「支払いや受け取りは来年だけど、サービス自体は今年すでに発生している」場合、今年の費用・収益として追加計上します。相手科目は<strong>未払費用（負債）</strong>または<strong>未収収益（資産）</strong>を使ります。
               </p>
               
-              <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：未払利息の計上</h4>
-                <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 8px 0' }}>借入金に対する利息が、当期分として 6,000円発生しているが、支払日は翌期のため未払いである。</p>
-                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>【考え方】</p>
-                  <p style={{ margin: '0 0 16px 0' }}>支払っていなくても今年の費用なので、借方に「支払利息（費用）」を増やし、右側に後で払う義務として「未払利息（負債）」を置きます。</p>
-                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
+              <div style={{ background: colors.avocadoLight, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.avocado }}>✍️ 見越の仕訳パターンまとめ</h4>
+                <div style={{ fontSize: '14.5px', color: colors.textDark, lineHeight: '1.8' }}>
+                  <p style={{ margin: '0 0 4px 0', fontWeight: 'bold' }}>【費用の見越】今年の借入金利息 6,000円が未払いである。</p>
+                  <div style={{ background: '#ffffff', padding: '8px', border: `1px solid ${colors.border}`, textAlign: 'center', marginBottom: '16px' }}>
                     （借方）支払利息 6,000 ／ （貸方）未払利息 6,000
+                  </div>
+                  <p style={{ margin: '0 0 4px 0', fontWeight: 'bold' }}>【収益の見越】今年の貸付金利息 8,000円が未収である。</p>
+                  <div style={{ background: '#ffffff', padding: '8px', border: `1px solid ${colors.border}`, textAlign: 'center' }}>
+                    （借方）未収利息 8,000 ／ （貸方）受取利息 8,000
                   </div>
                 </div>
               </div>
