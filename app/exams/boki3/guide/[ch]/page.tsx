@@ -3,18 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-// 👈 核心：自动引入刚才创建的内容仓库
-import { chaptersData } from './chaptersData'; 
+// 👇 1. 恢复正确的上一级路径
+import { chaptersData } from '../chaptersData'; 
 
 export default function UniversalExamGuide() {
   const params = useParams();
-  const examId = params.examId || 'boki3';
-  const ch = params.ch || 'ch1'; // 获取当前网址里的章节ID（例如 ch1）
+  
+  // 👇 2. 核心修复：加上 as string，安抚 TypeScript 的类型审查
+  const examId = (params.examId as string) || 'boki3';
+  const ch = (params.ch as string) || 'ch1'; 
 
-  // 🤖 自动提取当前章节的纯文本数据
-  const currentChapter = chaptersData[ch];
+  // 👇 3. 加上 as any，防止 TypeScript 报错找不到索引
+  const currentChapter = (chaptersData as any)[ch];
 
-  // 如果用户胡乱输入网址，找不到这一章，显示友好提示
   if (!currentChapter) {
     return (
       <div style={{ padding: '60px 20px', textAlign: 'center', fontFamily: 'sans-serif' }}>
@@ -28,7 +29,6 @@ export default function UniversalExamGuide() {
   const menuItems = currentChapter.menuItems || [];
   const [activeSection, setActiveSection] = useState(menuItems[0]?.id || '');
 
-  // 智能监测滚动高亮
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 140;
@@ -51,7 +51,6 @@ export default function UniversalExamGuide() {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#ffffff', fontFamily: '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif', color: '#111111' }}>
       
-      {/* 顶部通栏 */}
       <header style={{ background: '#ffffff', padding: '16px 40px', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 2px rgba(0,0,0,0.01)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <Link href="/" style={{ fontWeight: '900', fontSize: '22px', color: '#111111', textDecoration: 'none' }}>
@@ -65,16 +64,15 @@ export default function UniversalExamGuide() {
         </Link>
       </header>
 
-      {/* Wiki 双栏容器 */}
       <div style={{ display: 'flex', maxWidth: '1100px', margin: '0 auto', padding: '40px 20px', gap: '50px' }}>
         
-        {/* 👈 左侧固定目录 */}
         <aside style={{ width: '220px', flexShrink: 0, position: 'sticky', top: '100px', height: 'calc(100vh - 140px)' }}>
           <div style={{ fontSize: '11px', fontWeight: '800', color: '#94a3b8', letterSpacing: '1px', marginBottom: '16px' }}>
             章内の目次
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', borderLeft: '1px solid #e2e8f0' }}>
-            {menuItems.map((item) => {
+            {/* 👇 4. 给遍历项加上明确的类型 any */}
+            {menuItems.map((item: any) => {
               const isCurrent = activeSection === item.id;
               return (
                 <a
@@ -101,7 +99,6 @@ export default function UniversalExamGuide() {
           </div>
         </aside>
 
-        {/* 👉 右侧黄金沉浸长文 */}
         <main style={{ flex: 1, maxWidth: '720px' }}>
           
           <div style={{ marginBottom: '40px', borderBottom: '1px solid #f1f5f9', paddingBottom: '20px' }}>
@@ -111,8 +108,7 @@ export default function UniversalExamGuide() {
             </h1>
           </div>
 
-          {/* 核心：高阶文本渲染引擎，根据大仓库里的 block 类型自动套用精致皮肤 */}
-          {currentChapter.sections?.map((section) => (
+          {currentChapter.sections?.map((section: any) => (
             <section key={section.id} id={section.id} style={{ marginBottom: '50px', scrollMarginTop: '120px' }}>
               {section.title && (
                 <h2 style={{ fontSize: '20px', fontWeight: '900', color: '#111111', marginBottom: '16px', borderLeft: '4px solid #b93a26', paddingLeft: '12px' }}>
@@ -120,8 +116,7 @@ export default function UniversalExamGuide() {
                 </h2>
               )}
               
-              {section.blocks?.map((block, index) => {
-                // 1. 普通文本段落
+              {section.blocks?.map((block: any, index: number) => {
                 if (block.type === 'text') {
                   return (
                     <p key={index} style={{ fontSize: '16.5px', lineHeight: '1.85', color: '#334155', marginBottom: '20px', fontWeight: block.bold ? '700' : '400' }}>
@@ -130,7 +125,6 @@ export default function UniversalExamGuide() {
                   );
                 }
                 
-                // 2. 划重点高亮框（红/金）
                 if (block.type === 'callout') {
                   const isRed = block.color === 'red';
                   return (
@@ -152,11 +146,10 @@ export default function UniversalExamGuide() {
                   );
                 }
 
-                // 3. 条目列表
                 if (block.type === 'list') {
                   return (
                     <ul key={index} style={{ paddingLeft: '20px', fontSize: '16px', lineHeight: '1.8', color: '#334155', marginBottom: '20px' }}>
-                      {block.items?.map((item, i) => (
+                      {block.items?.map((item: string, i: number) => (
                         <li key={i} style={{ marginBottom: '8px' }} dangerouslySetInnerHTML={{ __html: item }} />
                       ))}
                     </ul>
@@ -168,7 +161,6 @@ export default function UniversalExamGuide() {
             </section>
           ))}
 
-          {/* 🏁 底部多闭环控制台 */}
           <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '30px' }}>
             <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
               <div>
