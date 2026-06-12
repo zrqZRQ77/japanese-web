@@ -116,7 +116,7 @@ export default function ExamGuideChapterTen() {
             <section id="worksheet" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
               <h1 style={{ fontSize: '24px', fontWeight: '800', color: colors.textDark, marginBottom: '24px' }}>1. 【図解】精算表（せいさんひょう）の構造</h1>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                精算表とは、決算のスタート地点である「残高試算表」から、ゴールである「損益計算書（P/L）」と「貸借対照表（B/S）」を作成するまでの全プロセスを1枚の紙にまとめた<strong>決算の設計図（下書き）</strong>です。試験では必ず出題される超重要項目です。
+                精算表とは、決算のスタート地点である「残高試算表」から、ゴールである「損益計算書（P/L）」と「貸借対照表（B/S）」を作成するまでの全プロセスを1枚の紙にまとめた<strong>決算の設計図（下書き）</strong>です。
               </p>
               
               {/* 精算表 HTML 绘制 */}
@@ -124,15 +124,13 @@ export default function ExamGuideChapterTen() {
                 <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', textAlign: 'center', border: `2px solid ${colors.textDark}`, backgroundColor: '#ffffff' }}>
                   <thead>
                     <tr>
-                      <th rowSpan="2" style={{ padding: '8px', borderRight: `1px solid ${colors.border}`, borderBottom: `2px solid ${colors.textDark}`, width: '20%', backgroundColor: colors.avocadoLight, fontSize: '14px' }}>勘定科目</th>
+                      <th rowSpan="2" style={{ padding: '8px', borderRight: `1px solid ${colors.border}`, borderBottom: `2px solid ${colors.textDark}`, width: '22%', backgroundColor: colors.avocadoLight, fontSize: '14px' }}>勘定科目</th>
                       <th colSpan="2" style={{ padding: '4px', borderRight: `1px solid ${colors.border}`, borderBottom: `1px solid ${colors.border}`, backgroundColor: '#f8fafc', fontSize: '13px' }}>残高試算表</th>
-                      <th colSpan="2" style={{ padding: '4px', borderRight: `1px solid ${colors.border}`, borderBottom: `1px solid ${colors.border}`, backgroundColor: '#f8fafc', fontSize: '13px' }}>整理記入</th>
                       <th colSpan="2" style={{ padding: '4px', borderRight: `1px solid ${colors.border}`, borderBottom: `1px solid ${colors.border}`, backgroundColor: '#f8fafc', fontSize: '13px' }}>損益計算書</th>
                       <th colSpan="2" style={{ padding: '4px', borderBottom: `1px solid ${colors.border}`, backgroundColor: '#f8fafc', fontSize: '13px' }}>貸借対照表</th>
                     </tr>
                     <tr style={{ backgroundColor: '#f8fafc', borderBottom: `2px solid ${colors.textDark}`, fontSize: '12px' }}>
                       <th style={{ borderRight: `1px dotted ${colors.border}`, padding: '4px' }}>借</th><th style={{ borderRight: `1px solid ${colors.border}` }}>貸</th>
-                      <th style={{ borderRight: `1px dotted ${colors.border}` }}>借</th><th style={{ borderRight: `1px solid ${colors.border}` }}>貸</th>
                       <th style={{ borderRight: `1px dotted ${colors.border}` }}>借</th><th style={{ borderRight: `1px solid ${colors.border}` }}>貸</th>
                       <th style={{ borderRight: `1px dotted ${colors.border}` }}>借</th><th>貸</th>
                     </tr>
@@ -140,39 +138,58 @@ export default function ExamGuideChapterTen() {
                   <tbody style={{ fontSize: '13px', color: colors.textDark }}>
                     <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
                       <td style={{ borderRight: `1px solid ${colors.border}`, textAlign: 'left', paddingLeft: '8px' }}>現金 (資産)</td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>100</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>300</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
                       <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}`, fontWeight: 'bold' }}>300</td><td></td>
+                    </tr>
+                    <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
+                      <td style={{ borderRight: `1px solid ${colors.border}`, textAlign: 'left', paddingLeft: '8px' }}>備品 (資産)</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>200</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
                       <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}`, fontWeight: 'bold' }}>100</td><td></td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}`, fontWeight: 'bold' }}>200</td><td></td>
                     </tr>
                     <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
                       <td style={{ borderRight: `1px solid ${colors.border}`, textAlign: 'left', paddingLeft: '8px' }}>借入金 (負債)</td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}>50</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}>150</td>
                       <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ fontWeight: 'bold' }}>150</td>
+                    </tr>
+                    <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
+                      <td style={{ borderRight: `1px solid ${colors.border}`, textAlign: 'left', paddingLeft: '8px' }}>資本金 (純資産)</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}>200</td>
                       <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ fontWeight: 'bold' }}>50</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ fontWeight: 'bold' }}>200</td>
                     </tr>
                     <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
                       <td style={{ borderRight: `1px solid ${colors.border}`, textAlign: 'left', paddingLeft: '8px' }}>売上 (収益)</td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}>200</td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}`, fontWeight: 'bold' }}>200</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}>500</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}`, fontWeight: 'bold' }}>500</td>
                       <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td></td>
                     </tr>
                     <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
                       <td style={{ borderRight: `1px solid ${colors.border}`, textAlign: 'left', paddingLeft: '8px' }}>仕入 (費用)</td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>150</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}`, fontWeight: 'bold' }}>150</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>300</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}`, fontWeight: 'bold' }}>300</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td></td>
+                    </tr>
+                    <tr style={{ borderBottom: `1px solid ${colors.textDark}` }}>
+                      <td style={{ borderRight: `1px solid ${colors.border}`, textAlign: 'left', paddingLeft: '8px' }}>給料 (費用)</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>50</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}`, fontWeight: 'bold' }}>50</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
                       <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td></td>
                     </tr>
                     {/* 当期纯利益计算行 */}
-                    <tr style={{ borderTop: `2px solid ${colors.textDark}`, backgroundColor: '#fdf2f0', fontWeight: 'bold', color: '#b93a26' }}>
+                    <tr style={{ backgroundColor: '#fdf2f0', fontWeight: 'bold', color: '#b93a26' }}>
                       <td style={{ borderRight: `1px solid ${colors.border}`, textAlign: 'left', paddingLeft: '8px' }}>当期純利益</td>
                       <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>50</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
-                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td>50</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>150</td><td style={{ borderRight: `1px solid ${colors.border}` }}></td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}></td><td>150</td>
+                    </tr>
+                    <tr style={{ borderTop: `2px solid ${colors.textDark}`, backgroundColor: '#f8fafc', fontWeight: 'bold' }}>
+                      <td style={{ borderRight: `1px solid ${colors.border}`, textAlign: 'center' }}>合 計</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>850</td><td style={{ borderRight: `1px solid ${colors.border}` }}>850</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>500</td><td style={{ borderRight: `1px solid ${colors.border}` }}>500</td>
+                      <td style={{ borderRight: `1px dotted ${colors.border}` }}>500</td><td>500</td>
                     </tr>
                   </tbody>
                 </table>
@@ -182,7 +199,7 @@ export default function ExamGuideChapterTen() {
                 <p style={{ margin: 0, fontSize: '14px', color: colors.textDark, lineHeight: '1.7' }}>
                   ・<strong>費用と収益</strong>の残高は「損益計算書」の列へ移動します。<br/>
                   ・<strong>資産・負債・純資産</strong>の残高は「貸借対照表」の列へ移動します。<br/>
-                  ・P/Lの差額（この図では 貸方200 - 借方150 = 50）が<strong>当期純利益</strong>となり、B/Sの貸方（純資産の増加）に書き写すことで、B/Sも左右がバランスします！
+                  ・P/Lの差額（この図では 貸方500 - 借方350 = 150）が<strong>当期純利益</strong>となり、B/Sの貸方に書き写すことで、B/Sも左右の合計が500でピッタリ一致します！
                 </p>
               </div>
             </section>
@@ -202,16 +219,15 @@ export default function ExamGuideChapterTen() {
                     {/* 借方：費用 */}
                     <div style={{ flex: 1, borderRight: `1px solid ${colors.textDark}`, padding: '12px' }}>
                       <div style={{ fontWeight: 'bold', borderBottom: '1px solid #ccc', marginBottom: '8px', paddingBottom: '4px' }}>借方（費用の部）</div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>売上原価（仕入）</span><span>150</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>給料</span><span>...</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>支払家賃</span><span>...</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px', color: '#b93a26', fontWeight: 'bold' }}><span>当期純利益</span><span>50</span></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>仕入（売上原価）</span><span>300</span></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>給料</span><span>50</span></div>
+                      
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px', color: '#b93a26', fontWeight: 'bold' }}><span>当期純利益</span><span>150</span></div>
                     </div>
                     {/* 貸方：収益 */}
                     <div style={{ flex: 1, padding: '12px' }}>
                       <div style={{ fontWeight: 'bold', borderBottom: '1px solid #ccc', marginBottom: '8px', paddingBottom: '4px' }}>貸方（収益の部）</div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>売上</span><span>200</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>受取手数料</span><span>...</span></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>売上</span><span>500</span></div>
                     </div>
                   </div>
                 </div>
@@ -233,24 +249,23 @@ export default function ExamGuideChapterTen() {
                     {/* 借方：資産 */}
                     <div style={{ flex: 1, borderRight: `1px solid ${colors.textDark}`, padding: '12px' }}>
                       <div style={{ fontWeight: 'bold', borderBottom: '1px solid #ccc', marginBottom: '8px', paddingBottom: '4px' }}>借方（資産の部）</div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>現金</span><span>100</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>売掛金</span><span>...</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>備品</span><span>...</span></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>現金</span><span>300</span></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>備品</span><span>200</span></div>
                     </div>
                     {/* 貸方：負債・純資産 */}
                     <div style={{ flex: 1, padding: '12px' }}>
                       <div style={{ fontWeight: 'bold', borderBottom: '1px solid #ccc', marginBottom: '8px', paddingBottom: '4px' }}>貸方（負債の部）</div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}><span>借入金</span><span>50</span></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}><span>借入金</span><span>150</span></div>
                       
                       <div style={{ fontWeight: 'bold', borderBottom: '1px solid #ccc', marginBottom: '8px', paddingBottom: '4px' }}>貸方（純資産の部）</div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>資本金</span><span>...</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b93a26', fontWeight: 'bold' }}><span>繰越利益剰余金</span><span>(＋50)</span></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>資本金</span><span>200</span></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b93a26', fontWeight: 'bold' }}><span>繰越利益剰余金</span><span>(＋150)</span></div>
                     </div>
                   </div>
                 </div>
               </div>
               <p style={{ fontSize: '14px', color: '#b93a26', fontWeight: 'bold', textAlign: 'center' }}>
-                ※P/Lで計算された「当期純利益（50）」が、B/Sの純資産（繰越利益剰余金）に合流します！
+                ※P/Lで計算された「当期純利益（150）」が、B/Sの純資産に合流し、左右が500で一致します！
               </p>
             </section>
 
@@ -263,7 +278,7 @@ export default function ExamGuideChapterTen() {
               <div style={{ background: colors.avocadoLight, padding: '24px', borderRadius: '8px', textAlign: 'center' }}>
                 <h3 style={{ color: colors.avocado, margin: '0 0 12px 0', fontSize: '20px', fontWeight: '900' }}>👑 講座修了おめでとうございます！</h3>
                 <p style={{ margin: '0 0 16px 0', fontSize: '15px', color: colors.textDark, lineHeight: '1.6' }}>
-                  これからはインプットを終わらせ、**「過去問・予想問題の演習（アウトプット）」**に全振りしてください。<br/>
+                  これからはインプットを終わらせ、<strong>「過去問・予想問題の演習（アウトプット）」</strong>に全振りしてください。<br/>
                   実際の試験時間は「60分」と非常に短いです。スピードと正確性を磨きましょう！
                 </p>
                 <Link href={`/exams/${examId}/exercises`} style={{ textDecoration: 'none' }}>
