@@ -4,16 +4,15 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-export default function ExamGuideChapterSix() {
+export default function ExamGuideChapterSixUpgrade() {
   const params = useParams();
   const examId = params.examId || 'boki3';
 
-  // 本章内部小节目录
   const menuItems = [
     { id: 'acquisition', label: '1. 固定資産の取得と付随費用' },
-    { id: 'depreciation_calc', label: '2. 減価償却費の計算ルール' },
-    { id: 'depreciation_journal', label: '3. 減価償却の記帳（間接法）' },
-    { id: 'supplies', label: '4. 消耗品の処理（資産と費用）' },
+    { id: 'depreciation_basic', label: '2. 減価償却の基礎（定額法）' },
+    { id: 'mid_term_sale', label: '3. 【最難関】固定資産の期中売却' },
+    { id: 'supplies', label: '4. 消耗品の記帳（費用/資産法）' },
   ];
 
   const [activeSection, setActiveSection] = useState('acquisition');
@@ -117,76 +116,55 @@ export default function ExamGuideChapterSix() {
             <section id="acquisition" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
               <h1 style={{ fontSize: '24px', fontWeight: '800', color: colors.textDark, marginBottom: '24px' }}>1. 固定資産の取得と付随費用</h1>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                建物、車両運搬具、備品などを購入した際、本体価格だけでなく、仲介手数料、運送料、据付費などの<strong>付随費用（ふずいひよう）</strong>がかかることがよくあります。簿記の絶対ルールとして、これら付随費用は「経費」にせず、<strong>固定資産の取得原価（本体価格）に足して仕訳</strong>します。
+                固定資産購入時の仲介手数料や運送費などの<strong>付随費用</strong>は、すべて「固定資産の取得原価」に合体させます。
+              </p>
+              <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px' }}>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：備品の購入</h4>
+                <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
+                  <p>パソコン(備品)10万円を購入し、据付費用5,000円と合わせて小切手を振り出した。<br/>
+                  <strong>（借方）備品 105,000 ／ （貸方）当座預金 105,000</strong></p>
+                </div>
+              </div>
+            </section>
+
+            <section id="depreciation_basic" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>2. 減価償却の基礎（定額法）</h2>
+              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
+                定額法は、毎年同じ額を費用にする方法です。<strong>（取得原価 － 残存価額）÷ 耐用年数</strong>。3級では「残存価額0円」が標準です。
+              </p>
+            </section>
+
+            <section id="mid_term_sale" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>3. 【最難関】固定資産の期中売却</h2>
+              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
+                試験本番で最も差がつくのがこれ。<strong>期中（決算日ではない日）に売る場合</strong>、まずは売却日まで使った分だけの「当期分減価償却費」を月割りで計上しなければなりません。
               </p>
               
               <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：付随費用を含む購入</h4>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：9月末の期中売却（間接法）</h4>
                 <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 8px 0' }}>営業用の自動車1,000,000円を購入し、購入手数料等50,000円と共に小切手を振り出して支払った。</p>
-                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>【考え方】</p>
-                  <p style={{ margin: '0 0 16px 0' }}>車両運搬具の価値は、本体 100万円 ＋ 手数料 5万円 ＝ 1,050,000円として記録します。</p>
-                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
-                    （借方）車両運搬具 1,050,000 ／ （貸方）当座預金 1,050,000
+                  <p><strong>【状況】</strong>4月1日決算の会社。当年9月末に、備品（取得原価 120,000円、前期末までの減価償却累計額 80,000円）を 30,000円で売却し、現金を受け取った。耐用年数6年、定額法。</p>
+                  
+                  <p style={{ color: colors.avocado, fontWeight: 'bold', marginTop: '12px' }}>① 当期分折旧（4月〜9月の6ヶ月分）を計上</p>
+                  <p>月額折旧：120,000 ÷ 6年 ÷ 12ヶ月 ＝ 1,666... → 年額 20,000円。 6ヶ月分＝<strong>10,000円</strong>。</p>
+                  <div style={{ background: '#f8fafc', padding: '10px', border: `1px dashed ${colors.border}`, fontWeight: 'bold' }}>
+                    （借方）減価償却費 10,000 ／ （貸方）減価償却累計額 10,000
                   </div>
-                </div>
-              </div>
-            </section>
 
-            <section id="depreciation_calc" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>2. 減価償却費の計算ルール</h2>
-              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                車やパソコンは、時間が経つにつれて価値が減っていきます。この減った価値を毎年の「費用」として計上することを<strong>減価償却（げんかしょうきゃく）</strong>と言います。日商簿記3級では、毎年同じ金額を減らしていく<strong>定額法（ていがくほう）</strong>の計算が頻出します。
-              </p>
-              
-              <div style={{ background: colors.avocadoLight, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: '800', color: colors.avocado }}>💡 定額法の計算公式</h4>
-                <p style={{ margin: '0 0 16px 0', fontSize: '14.5px', color: colors.textDark, lineHeight: '1.7' }}>
-                  <strong>1年分の減価償却費 ＝ （取得原価 － 残存価額） ÷ 耐用年数</strong><br/>
-                  ※最近の試験では「残存価額はゼロ（0円）」と指示されるのが主流です。
-                </p>
-                <div style={{ fontSize: '14.5px', color: colors.textDark, lineHeight: '1.8', background: '#ffffff', padding: '12px', borderRadius: '4px' }}>
-                  <strong>【計算例】</strong> 取得原価 1,000,000円、耐用年数 5年、残存価額 ゼロの場合<br/>
-                  1,000,000円 ÷ 5年 ＝ <strong>年間 200,000円（減価償却費）</strong>
-                </div>
-              </div>
-            </section>
-
-            <section id="depreciation_journal" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>3. 減価償却の記帳（間接法）</h2>
-              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                減価償却の記帳方法には、資産の金額を直接減らす直接法と、減った分を別の箱に貯めていく<strong>間接法（かんせつほう）</strong>があります。試験では圧倒的に間接法が出ます。間接法では<strong>減価償却累計額（資産のマイナスを意味する勘定）</strong>を使います。
-              </p>
-              
-              <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：決算時の減価償却（間接法）</h4>
-                <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 8px 0' }}>決算にあたり、車両運搬具（取得原価 1,000,000円）について定額法（耐用年数5年、残存価額ゼロ）で減価償却を行う。記帳は間接法による。</p>
-                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>【考え方】</p>
-                  <p style={{ margin: '0 0 16px 0' }}>費用の発生（左側）と、累計額の増加（右側）を記録します。車両運搬具という勘定科目は直接触りません。</p>
-                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
-                    （借方）減価償却費 200,000 ／ （貸方）減価償却累計額 200,000
+                  <p style={{ color: colors.avocado, fontWeight: 'bold', marginTop: '12px' }}>② 売却処理（帳簿価額との差額を判定）</p>
+                  <p>・帳簿価額＝取得(120,000) - 累計額(前期80,000 + 当期当月分10,000) ＝ 30,000円<br/>
+                     ・売値 30,000円 ＝ 帳簿価額 30,000円 ➔ 損益なし！</p>
+                  <div style={{ background: '#f8fafc', padding: '10px', border: `1px dashed ${colors.border}`, fontWeight: 'bold' }}>
+                    （借方）現 金 30,000<br/>
+                    （借方）減価償却累計額 90,000 ／ （貸方）備 品 120,000
                   </div>
                 </div>
               </div>
             </section>
 
             <section id="supplies" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>4. 消耗品の処理（資産と費用）</h2>
-              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                コピー用紙やインクなど、短期間で使い切るものを消耗品と呼びます。購入した時にすべて「費用」として処理する方法（費用処理法）が一般的です。この場合、勘定科目は<strong>消耗品費（費用）</strong>を使います。
-              </p>
-              
-              <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：消耗品の購入</h4>
-                <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 8px 0' }}>コピー用紙とトナー代として、10,000円を現金で支払った。購入時に全額を費用として処理する。</p>
-                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
-                    （借方）消耗品費 10,000 ／ （貸方）現金 10,000
-                  </div>
-                  <p style={{ margin: '16px 0 0 0', fontSize: '13px', color: '#b93a26' }}>※もし問題文で「資産として処理する」と指定された場合は、借方を「消耗品（資産）」とします。</p>
-                </div>
-              </div>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>4. 消耗品の処理</h2>
+              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray }}>購入時に全額「費用（消耗品費）」にする方法と、使った分だけを資産から振り替える方法があります。</p>
             </section>
             
             <div style={{ borderTop: `1px solid ${colors.border}`, paddingTop: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -196,7 +174,7 @@ export default function ExamGuideChapterSix() {
                 </button>
               </Link>
               <Link href={`/exams/${examId}/guide`} style={{ textDecoration: 'none', color: colors.textGray, fontSize: '14px', fontWeight: '600' }}>章のトップに戻る</Link>
-              <Link href={`/exams/${examId}/guide/ch7`} style={{ textDecoration: 'none' }}>
+              <Link href={`/exams/${examId}/guide/ch7`}>
                 <button style={{ backgroundColor: colors.darkButton, color: '#ffffff', border: 'none', padding: '12px 24px', borderRadius: '6px', fontSize: '14px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   次の項目（第7章） →
                 </button>
