@@ -14,7 +14,7 @@ export default function Boki3Dashboard() {
             <a href="/exams/boki3" className="flex items-center px-4 h-11 text-sm font-bold bg-blue-50 text-blue-600 rounded-lg">
               ダッシュボード
             </a>
-            <a href="/exams/boki3/guide/ch4" className="flex items-center px-4 h-11 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">
+            <a href="/exams/boki3/guide/ch1" className="flex items-center px-4 h-11 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">
               学習ガイド
             </a>
             <a href="/exams/boki3/exercises" className="flex items-center px-4 h-11 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">
