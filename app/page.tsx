@@ -1,155 +1,150 @@
-"use client";
-
-import React from 'react';
-import Link from 'next/link';
+'use client';
+import React, { useState } from 'react';
 
 export default function HomePage() {
-  // 核心牛油果色系
-  const colors = {
-    avocado: '#7A9D54',
-    avocadoLight: '#F5F8F2',
-    textDark: '#111111',
-    textGray: '#475569',
-    border: '#e2e8f0',
-    darkButton: '#2C3E20'
-  };
+  const [examMenuOpen, setExamMenuOpen] = useState(false);
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: '"Helvetica Neue", Arial, sans-serif' }}>
-      
-      {/* 1. 顶部导航栏 (按钮移至右侧) */}
-      <header style={{ background: '#ffffff', padding: '16px 40px', borderBottom: `1px solid ${colors.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 100 }}>
-        {/* 左侧 Logo */}
-        <Link href="/" style={{ fontWeight: '900', fontSize: '24px', color: colors.textDark, textDecoration: 'none', letterSpacing: '1px' }}>
-          合格<span style={{ color: colors.avocado }}>ナビ</span>
-        </Link>
+    <div className="min-h-screen bg-[#f8fafc]">
+      {/* 固定顶部导航栏 */}
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+          {/* 左侧 */}
+          <div className="text-xl font-black text-gray-900 tracking-tight">
+            資格合格ナビ
+          </div>
 
-        {/* 右侧 功能按钮 */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
-          <Link href="/exams" style={{ color: colors.textGray, textDecoration: 'none', fontSize: '15px', fontWeight: '600' }}>
-            試験一覧
-          </Link>
-          <Link href="/ai-chat" style={{ color: colors.textGray, textDecoration: 'none', fontSize: '15px', fontWeight: '600' }}>
-            AI質問
-          </Link>
-          
-          <Link href="/login" style={{ color: colors.textDark, textDecoration: 'none', fontSize: '14px', fontWeight: '700' }}>
-            ログイン
-          </Link>
-        </div>
-      </header>
+          {/* 中间 */}
+          <div className="flex items-center gap-8 relative">
+            <div className="relative">
+              <button 
+                onClick={() => setExamMenuOpen(!examMenuOpen)}
+                className="text-sm font-medium text-gray-700 hover:text-gray-900 flex items-center gap-1 py-2"
+              >
+                試験一覧
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              {examMenuOpen && (
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-xl shadow-lg py-2 z-50">
+                  <a href="/exams/boki3" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 font-medium">日商簿記3級</a>
+                  <div className="px-4 py-2 text-sm text-gray-400">FP技能士（準備中）</div>
+                  <div className="px-4 py-2 text-sm text-gray-400">宅地建物取引士（準備中）</div>
+                </div>
+              )}
+            </div>
+            <span className="text-sm font-medium text-gray-400 bg-gray-100 px-2.5 py-1 rounded-md cursor-not-allowed">
+              AI質問（準備中）
+            </span>
+          </div>
 
-      {/* 核心标语与搜索区 */}
-      <section style={{ padding: '90px 20px 100px', textAlign: 'center', background: 'linear-gradient(135deg, #ffffff 0%, #F5F8F2 100%)' }}>
-        <h1 style={{ fontSize: '46px', fontWeight: '900', color: colors.textDark, marginBottom: '24px', letterSpacing: '-1px' }}>
-          あなたのペースで、<span style={{ color: colors.avocado }}>確実な合格</span>を。
-        </h1>
-        <p style={{ fontSize: '17px', color: colors.textGray, marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px auto', lineHeight: '1.8' }}>
-          最新の試験傾向に対応した学習ガイドとAIサポートで、<br/>独学での資格取得を強力にバックアップします。
-        </p>
-
-        {/* 2. 搜索框 (替换原有的無料で始める) */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
-          <div style={{ 
-            display: 'flex', 
-            width: '100%', 
-            maxWidth: '560px', 
-            boxShadow: '0 10px 25px -5px rgba(122, 157, 84, 0.15)', 
-            borderRadius: '40px', 
-            overflow: 'hidden', 
-            border: `2px solid ${colors.avocado}`, 
-            backgroundColor: '#ffffff' 
-          }}>
-            <input
-              type="text"
-              placeholder="目指す資格を検索（例：簿記3級、FP）"
-              style={{ flex: 1, padding: '18px 24px', fontSize: '16px', border: 'none', outline: 'none', color: colors.textDark }}
-            />
-            <button style={{ backgroundColor: colors.avocado, color: '#ffffff', border: 'none', padding: '0 32px', fontSize: '16px', fontWeight: '700', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              検索
-            </button>
+          {/* 右侧 */}
+          <div>
+            <a 
+              href="/exams/boki3" 
+              className="inline-flex items-center justify-center bg-[#b93a26] text-white text-sm font-bold h-10 px-5 rounded-lg hover:bg-[#a23220] transition-colors"
+            >
+              無料で始める
+            </a>
           </div>
         </div>
+      </nav>
 
-        {/* 4. 修改为跳转到所有考试的列表页 */}
-        <Link href="/exams" style={{ textDecoration: 'none' }}>
-          <span style={{ fontSize: '14px', color: colors.textGray, fontWeight: '600', cursor: 'pointer', borderBottom: `1px solid ${colors.textLightGray}`, paddingBottom: '2px' }}>
-            すべての試験一覧を見る →
-          </span>
-        </Link>
-      </section>
-
-      {/* 3. 数据与特点展示区 (高颜值悬浮卡片排版) */}
-      <section style={{ maxWidth: '1050px', margin: '-50px auto 80px auto', position: 'relative', zIndex: 10, padding: '0 20px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
-          
-          {[
-            { label: '練習問題', value: '100+', desc: '厳選された過去問と予想問', icon: '📝' },
-            { label: '学習ツール', value: '5種', desc: '単語帳や模擬テストなど', icon: '🛠️' },
-            { label: '全コンテンツ', value: '無料', desc: '隠し課金一切なし', icon: '✨' },
-            { label: '即時解説', value: 'AI', desc: '24時間いつでも質問可能', icon: '🤖' }
-          ].map((stat, idx) => (
-            <div key={idx} style={{
-              backgroundColor: '#ffffff',
-              padding: '30px 20px',
-              borderRadius: '20px',
-              boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.08)',
-              border: `1px solid ${colors.border}`,
-              textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center'
-            }}>
-              <div style={{ fontSize: '32px', marginBottom: '16px', background: colors.avocadoLight, width: '64px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
-                {stat.icon}
-              </div>
-              <div style={{ fontSize: '36px', fontWeight: '900', color: colors.avocado, marginBottom: '4px', letterSpacing: '-1px' }}>
-                {stat.value}
-              </div>
-              <div style={{ fontSize: '16px', fontWeight: '800', color: colors.textDark, marginBottom: '8px' }}>
-                {stat.label}
-              </div>
-              <div style={{ fontSize: '13px', color: colors.textGray, fontWeight: '500', lineHeight: '1.5' }}>
-                {stat.desc}
-              </div>
+      {/* Hero区域 */}
+      <section className="max-w-[1200px] mx-auto px-6 pt-16 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* 左侧文字与按钮 */}
+          <div className="lg:col-span-7 space-y-6">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">
+              完全無料・AI搭載・登録不要
+            </span>
+            <h1 className="text-5xl lg:text-6xl font-black text-gray-900 leading-[1.15]">
+              資格合格を、<br />
+              <span className="text-[#e0533c]">無料で。</span>
+            </h1>
+            <p className="text-gray-600 text-base lg:text-lg leading-relaxed max-w-xl">
+              FP技能士・日商簿記・宅建士など、日本の主要資格に特化した学習プラットフォーム。
+              学習ガイド・練習問題・知識カード・模擬試験がすべて無料。
+            </p>
+            <div className="pt-2">
+              <a 
+                href="/exams/boki3" 
+                className="inline-flex items-center justify-center bg-[#b93a26] text-white text-base font-bold h-14 px-8 rounded-xl hover:bg-[#a23220] transition-colors"
+              >
+                試験を選ぶ
+              </a>
             </div>
-          ))}
-          
+          </div>
+
+          {/* 右侧统计卡片 2x2布局 */}
+          <div className="lg:col-span-5 bg-[#111827] p-8 rounded-[20px] grid grid-cols-2 gap-6 text-white border border-gray-800">
+            <div className="space-y-1 p-2">
+              <div className="text-3xl font-black tracking-tight text-white">100+</div>
+              <div className="text-xs font-medium text-gray-400">練習問題</div>
+            </div>
+            <div className="space-y-1 p-2">
+              <div className="text-3xl font-black tracking-tight text-white">5種</div>
+              <div className="text-xs font-medium text-gray-400">学習ツール</div>
+            </div>
+            <div className="space-y-1 p-2">
+              <div className="text-3xl font-black tracking-tight text-white">無料</div>
+              <div className="text-xs font-medium text-gray-400">全コンテンツ</div>
+            </div>
+            <div className="space-y-1 p-2">
+              <div className="text-3xl font-black tracking-tight text-white">AI</div>
+              <div className="text-xs font-medium text-gray-400">即時解説</div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 预留：推荐考试卡片展示区 */}
-      <section style={{ maxWidth: '1050px', margin: '0 auto 80px auto', padding: '0 20px' }}>
-        <h2 style={{ fontSize: '22px', fontWeight: '800', color: colors.textDark, marginBottom: '30px', textAlign: 'center' }}>
-          人気の資格から始める
+      {/* 下面工具区 */}
+      <section className="max-w-[1200px] mx-auto px-6 py-16 border-t border-gray-200">
+        <h2 className="text-2xl lg:text-3xl font-black text-gray-900 mb-10 text-center lg:text-left">
+          5つの学習ツール、すべて無料
         </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
-          {/* 这里可以放几个默认的入口卡片，例如直接进入簿记3级 */}
-          <Link href="/exams/boki3" style={{ textDecoration: 'none' }}>
-            <div style={{ border: `1px solid ${colors.border}`, borderRadius: '16px', padding: '24px', backgroundColor: '#ffffff', transition: 'all 0.2s', cursor: 'pointer' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
-                <span style={{ backgroundColor: '#fef3c7', color: '#d97706', fontSize: '12px', fontWeight: '700', padding: '4px 10px', borderRadius: '20px' }}>人気 No.1</span>
-                <span style={{ color: colors.textLightGray }}>→</span>
-              </div>
-              <h3 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '8px' }}>日商簿記3級</h3>
-              <p style={{ fontSize: '14px', color: colors.textGray, margin: 0, lineHeight: '1.6' }}>ビジネスの基本となる会計知識を身につける。初めての資格学習に最適です。</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {/* 1 */}
+          <div className="bg-white p-6 border border-gray-200 rounded-xl hover:border-gray-300 transition-all">
+            <div className="w-10 h-10 bg-[#b93a26]/10 rounded-lg flex items-center justify-center text-[#b93a26] mb-4">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
             </div>
-          </Link>
-          
-          {/* 其他考试的占位卡片 */}
-          <Link href="/exams/fp3" style={{ textDecoration: 'none' }}>
-            <div style={{ border: `1px solid ${colors.border}`, borderRadius: '16px', padding: '24px', backgroundColor: '#ffffff', transition: 'all 0.2s', cursor: 'pointer' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
-                <span style={{ backgroundColor: '#e0e7ff', color: '#2563eb', fontSize: '12px', fontWeight: '700', padding: '4px 10px', borderRadius: '20px' }}>おすすめ</span>
-                <span style={{ color: colors.textLightGray }}>→</span>
-              </div>
-              <h3 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '8px' }}>FP3級 (準備中)</h3>
-              <p style={{ fontSize: '14px', color: colors.textGray, margin: 0, lineHeight: '1.6' }}>お金の教養を身につける。新NISAや税金の基礎知識を網羅しています。</p>
+            <h3 className="font-bold text-gray-900 text-base mb-1">学習ガイド</h3>
+            <p className="text-xs text-gray-500 leading-relaxed">体系化された完全オリジナルのオンライン教材。</p>
+          </div>
+          {/* 2 */}
+          <div className="bg-white p-6 border border-gray-200 rounded-xl hover:border-gray-300 transition-all">
+            <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
             </div>
-          </Link>
+            <h3 className="font-bold text-gray-900 text-base mb-1">練習問題</h3>
+            <p className="text-xs text-gray-500 leading-relaxed">章ごとの定着度を測るハイクオリティ問題集。</p>
+          </div>
+          {/* 3 */}
+          <div className="bg-white p-6 border border-gray-200 rounded-xl hover:border-gray-300 transition-all">
+            <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center text-green-600 mb-4">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h3 className="font-bold text-gray-900 text-base mb-1">模擬試験</h3>
+            <p className="text-xs text-gray-500 leading-relaxed">本番の出題傾向を完全に再現した模擬テスト。</p>
+          </div>
+          {/* 4 */}
+          <div className="bg-white p-6 border border-gray-200 rounded-xl hover:border-gray-300 transition-all">
+            <div className="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center text-amber-600 mb-4">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+            </div>
+            <h3 className="font-bold text-gray-900 text-base mb-1">知識カード</h3>
+            <p className="text-xs text-gray-500 leading-relaxed">隙間時間で重要語句を暗記できるフラッシュカード。</p>
+          </div>
+          {/* 5 */}
+          <div className="bg-white p-6 border border-gray-200 rounded-xl hover:border-gray-300 transition-all opacity-75">
+            <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 mb-4">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+            </div>
+            <h3 className="font-bold text-gray-900 text-base mb-1">AI質問</h3>
+            <p className="text-xs text-gray-500 leading-relaxed">専属のAIチューターが即時に疑問を解決。</p>
+          </div>
         </div>
       </section>
-
     </div>
   );
 }
