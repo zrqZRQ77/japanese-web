@@ -227,4 +227,78 @@ export default function ExamGuideChapterFour() {
                 品違いや傷があったために、仕入れた商品を返すことを「仕入戻し」、売り上げた商品が返ってくることを「売上戻り」と言います。
               </p>
 
-              <div style={{ background: colors
+              <div style={{ background: colors.avocadoLight, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
+                <h4 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: '800', color: colors.avocado }}>
+                  超シンプル！返品は「逆仕訳」をするだけ
+                </h4>
+                <p style={{ margin: 0, fontSize: '14.5px', color: colors.textDark, lineHeight: '1.8' }}>
+                  簿記では、一度書いた仕訳を消しゴムで消すことはできません。<br/>
+                  無かったことにするためには、<strong>「売った時（または仕入れた時）と全く逆の仕訳」</strong>をして相殺します。
+                </p>
+              </div>
+            </section>
+
+            {/* Section 4 */}
+            <section id="credit-sales" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>
+                4. クレジット売掛金（頻出！）
+              </h2>
+              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '24px' }}>
+                現代のビジネスではクレジットカード決済が当たり前です。そのため、最近の簿記3級の試験では「クレジット売掛金」が頻繁に出題されます。
+                通常の売掛金と違い、<strong>信販会社（カード会社）への手数料（支払手数料：費用）</strong>が差し引かれるのがポイントです。
+              </p>
+              
+              <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>
+                  ✍️ 例題：クレジットカード決済の売上
+                </h4>
+                <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
+                  <p style={{ margin: '0 0 16px 0' }}>
+                    商品10,000円をクレジットカード払いで販売した。なお、信販会社への決済手数料（売上の2％）を販売時に計上する。
+                  </p>
+                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>【考え方】</p>
+                  <ul style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+                    <li>売上（収益の増加）：10,000円</li>
+                    <li>支払手数料（費用の増加）：10,000 × 2% = 200円</li>
+                    <li>クレジット売掛金（資産の増加）：10,000 - 200 = 9,800円（※手数料を引いた額）</li>
+                  </ul>
+                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
+                    （借方）<br/>
+                    クレジット売掛金 9,800<br/>
+                    支払手数料 200<br/>
+                    ／<br/>
+                    （貸方）<br/>
+                    売上 10,000
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* 🏁 底部导航栏 */}
+            <div style={{ borderTop: `1px solid ${colors.border}`, paddingTop: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              
+              <Link href={`/exams/${examId}/guide/ch3`} style={{ textDecoration: 'none' }}>
+                <button style={{ backgroundColor: '#ffffff', color: colors.textDark, border: `1px solid ${colors.border}`, padding: '12px 20px', borderRadius: '6px', fontSize: '14px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  ← 前の項目（第3章）
+                </button>
+              </Link>
+
+              <Link href={`/exams/${examId}/guide`} style={{ textDecoration: 'none', color: colors.textGray, fontSize: '14px', fontWeight: '600' }}>
+                章のトップに戻る
+              </Link>
+
+              <Link href={`/exams/${examId}/guide/ch5`} style={{ textDecoration: 'none' }}>
+                <button style={{ backgroundColor: colors.darkButton, color: '#ffffff', border: 'none', padding: '12px 24px', borderRadius: '6px', fontSize: '14px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  次の項目（第5章） →
+                </button>
+              </Link>
+              
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <style jsx global>{` html { scroll-behavior: smooth; } `}</style>
+    </div>
+  );
+}
