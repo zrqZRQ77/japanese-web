@@ -32,7 +32,7 @@ export default function HomePage() {
           <Link href="/ai-chat" style={{ color: colors.textGray, textDecoration: 'none', fontSize: '15px', fontWeight: '600' }}>
             AI質問
           </Link>
-          <div style={{ height: '20px', width: '1px', backgroundColor: colors.border }}></div>
+          
           <Link href="/login" style={{ color: colors.textDark, textDecoration: 'none', fontSize: '14px', fontWeight: '700' }}>
             ログイン
           </Link>
