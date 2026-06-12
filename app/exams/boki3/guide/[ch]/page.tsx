@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 // 👈 核心：自动引入刚才创建的内容仓库
-import { chaptersData } from '../chaptersData'; 
+import { chaptersData } from './chaptersData'; 
 
 export default function UniversalExamGuide() {
   const params = useParams();
