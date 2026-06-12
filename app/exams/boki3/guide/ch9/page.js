@@ -175,4 +175,130 @@ export default function ExamGuideChapterNine() {
                     <tr style={{ borderBottom: `1px dashed ${colors.border}` }}>
                       <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}` }}></td>
                       <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}`, fontWeight: 'bold' }}>売 上（収益）</td>
-                      <td style={{ padding: '8px' }}>60
+                      <td style={{ padding: '8px' }}>600,000</td>
+                    </tr>
+                    {/* 费用类 (左边) */}
+                    <tr style={{ borderBottom: `1px solid ${colors.border}` }}>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}` }}>400,000</td>
+                      <td style={{ padding: '8px', borderRight: `1px solid ${colors.border}`, fontWeight: 'bold' }}>仕 入（費用）</td>
+                      <td style={{ padding: '8px' }}></td>
+                    </tr>
+                    {/* 合计 */}
+                    <tr style={{ borderTop: `2px solid ${colors.textDark}`, backgroundColor: '#f8fafc', fontWeight: '900' }}>
+                      <td style={{ padding: '12px', borderRight: `1px solid ${colors.border}` }}>1,200,000</td>
+                      <td style={{ padding: '12px', borderRight: `1px solid ${colors.border}` }}>合 計</td>
+                      <td style={{ padding: '12px' }}>1,200,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style={{ fontSize: '14.5px', color: '#b93a26', fontWeight: 'bold' }}>
+                👆 注目：試算表の一番下の「借方合計」と「貸方合計」は必ず一致します（貸借平均の原理）。一致しなければ仕訳か転記にミスがあります。
+              </p>
+            </section>
+
+            <section id="closing_pl" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>3. 収益・費用の締め切り（損益振替）</h2>
+              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
+                決算整理が終わったら、いよいよ帳簿を締め切ります（リセットして来年に備える作業）。
+                収益と費用は「今年1年間だけの成績」なので、<strong>来年に持ち越さず、残高をすべてゼロ（0）にします。</strong>
+                このゼロにするために、すべての残高を<strong>「損益（そんえき）」</strong>という特別な集計勘定に投げ込みます。
+              </p>
+              <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：損益振替仕訳と当期純利益の計上</h4>
+                <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
+                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>ステップ①：収益と費用をゼロにして「損益」に集める</p>
+                  <p style={{ margin: '0 0 8px 0' }}>当期の売上（収益）は 600,000円、仕入（費用）は 400,000円だった。</p>
+                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'left', fontWeight: 'bold', color: colors.textDark, marginBottom: '16px' }}>
+                    （借方）売上 600,000 ／ （貸方）損益 600,000  ←収益の相殺<br/>
+                    （借方）損益 400,000 ／ （貸方）仕入 400,000  ←費用の相殺
+                  </div>
+                  
+                  <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>ステップ②：利益を算出して「繰越利益剰余金」へ移す</p>
+                  <p style={{ margin: '0 0 8px 0' }}>「損益」勘定の右側（60万）から左側（40万）を引くと、20万円の利益が出たことがわかります。これを会社の純資産（繰越利益剰余金）に足し込みます。</p>
+                  <div style={{ background: '#fdf2f0', padding: '12px', border: `1px dashed #fca5a5`, textAlign: 'center', fontWeight: 'bold', color: '#b93a26' }}>
+                    （借方）損益 200,000 ／ （貸方）繰越利益剰余金 200,000
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="closing_bs" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>4. 【図解】帳簿（T字勘定）の締め切り</h2>
+              <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
+                収益・費用と違い、現金（資産）や買掛金（負債）は「年末でゼロになる」わけではありません。残高を来年もそのまま引き継ぐため、帳簿（総勘定元帳）上で<strong>赤字で「次期繰越」</strong>と記入し、二重線で帳簿を締め切ります。
+              </p>
+              
+              {/* 真实的 T字账户结账 HTML 绘制 */}
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+                <div style={{ width: '400px', backgroundColor: '#ffffff', padding: '20px', border: `1px solid ${colors.border}`, borderRadius: '8px' }}>
+                  {/* T字头部 */}
+                  <div style={{ textAlign: 'center', fontWeight: '900', fontSize: '16px', color: colors.textDark, borderBottom: '2px solid #111', paddingBottom: '6px', marginBottom: '4px' }}>
+                    現 金（資産）
+                  </div>
+                  {/* T字左右两边 */}
+                  <div style={{ display: 'flex' }}>
+                    {/* 左边（借方） */}
+                    <div style={{ flex: 1, borderRight: '2px solid #111', paddingRight: '12px', paddingTop: '8px', fontSize: '14.5px', color: colors.textGray }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span>前期繰越</span><span>200,000</span></div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span>売上</span><span>400,000</span></div>
+                      <div style={{ height: '30px' }}></div> {/* 占位符保证高度一致 */}
+                      
+                      {/* 合计线 */}
+                      <div style={{ borderTop: '1px solid #111', marginTop: '16px', paddingTop: '6px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', color: colors.textDark }}>
+                        <span></span><span>600,000</span>
+                      </div>
+                      {/* 双横线结账 */}
+                      <div style={{ borderBottom: '3px double #111', marginTop: '2px' }}></div>
+                      
+                      {/* 新一年的开始 */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', fontWeight: 'bold', color: colors.textDark }}>
+                        <span>前期繰越</span><span>500,000</span>
+                      </div>
+                    </div>
+                    
+                    {/* 右边（贷方） */}
+                    <div style={{ flex: 1, paddingLeft: '12px', paddingTop: '8px', fontSize: '14.5px', color: colors.textGray }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span>仕入</span><span>100,000</span></div>
+                      
+                      {/* 红字次期繰越 */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: '#b93a26', fontWeight: 'bold' }}>
+                        <span>次期繰越</span><span>500,000</span>
+                      </div>
+                      <div style={{ height: '30px' }}></div>
+                      
+                      {/* 合计线 */}
+                      <div style={{ borderTop: '1px solid #111', marginTop: '16px', paddingTop: '6px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', color: colors.textDark }}>
+                        <span></span><span>600,000</span>
+                      </div>
+                      {/* 双横线结账 */}
+                      <div style={{ borderBottom: '3px double #111', marginTop: '2px' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
+                👆 資産グループの「現金」の帳簿（T字勘定）を締め切る様子です。左側（入金60万）と右側（出金10万）の差額である50万円を、<strong>赤字で「次期繰越」</strong>と右側に書き込むことで左右の合計を60万で一致させ、二重線（＝）を引きます。そして翌年の左側に「前期繰越 50万」として新しい帳簿がスタートします。
+              </p>
+            </section>
+            
+            <div style={{ borderTop: `1px solid ${colors.border}`, paddingTop: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Link href={`/exams/${examId}/guide/ch8`} style={{ textDecoration: 'none' }}>
+                <button style={{ backgroundColor: '#ffffff', color: colors.textDark, border: `1px solid ${colors.border}`, padding: '12px 20px', borderRadius: '6px', fontSize: '14px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  ← 前の項目（第8章）
+                </button>
+              </Link>
+              <Link href={`/exams/${examId}/guide`} style={{ textDecoration: 'none', color: colors.textGray, fontSize: '14px', fontWeight: '600' }}>章のトップに戻る</Link>
+              <Link href={`/exams/${examId}/guide/ch10`}>
+                <button style={{ backgroundColor: colors.darkButton, color: '#ffffff', border: 'none', padding: '12px 24px', borderRadius: '6px', fontSize: '14px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  次の項目（第10章） →
+                </button>
+              </Link>
+            </div>
+          </div>
+        </main>
+      </div>
+      <style jsx global>{` html { scroll-behavior: smooth; } `}</style>
+    </div>
+  );
+}
