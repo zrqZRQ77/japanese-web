@@ -1,149 +1,203 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
 
-export default function GuidePage() {
-  const [showAnswer, setShowAnswer] = useState(false);
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+// 👈 核心：自动引入刚才创建的内容仓库
+import { chaptersData } from '../chaptersData'; 
+
+export default function UniversalExamGuide() {
+  const params = useParams();
+  const examId = params.examId || 'boki3';
+  const ch = params.ch || 'ch1'; // 获取当前网址里的章节ID（例如 ch1）
+
+  // 🤖 自动提取当前章节的纯文本数据
+  const currentChapter = chaptersData[ch];
+
+  // 如果用户胡乱输入网址，找不到这一章，显示友好提示
+  if (!currentChapter) {
+    return (
+      <div style={{ padding: '60px 20px', textAlign: 'center', fontFamily: 'sans-serif' }}>
+        <h2 style={{ color: '#b93a26' }}>⚠️ 該当する章が見つかりません</h2>
+        <p style={{ color: '#666666', marginTop: '10px' }}>章ID「{ch}」のコンテンツはまだ登録されていないか、準備中です。</p>
+        <Link href={`/exams/${examId}/guide`} style={{ color: '#b93a26', fontWeight: 'bold' }}>章一覧に戻る</Link>
+      </div>
+    );
+  }
+
+  const menuItems = currentChapter.menuItems || [];
+  const [activeSection, setActiveSection] = useState(menuItems[0]?.id || '');
+
+  // 智能监测滚动高亮
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 140;
+      for (const item of menuItems) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(item.id);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [menuItems]);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      {/* 顶部固定导航区 */}
-      <header className="h-16 border-b border-gray-200 px-6 flex items-center justify-between bg-white sticky top-0 z-40">
-        <div className="flex items-center gap-3">
-          <a href="/exams/boki3" className="text-gray-400 hover:text-gray-900">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-          </a>
-          <span className="font-black text-gray-900 text-base">簿記3級 学習ガイド</span>
+    <div style={{ minHeight: '100vh', backgroundColor: '#ffffff', fontFamily: '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif', color: '#111111' }}>
+      
+      {/* 顶部通栏 */}
+      <header style={{ background: '#ffffff', padding: '16px 40px', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 2px rgba(0,0,0,0.01)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <Link href="/" style={{ fontWeight: '900', fontSize: '22px', color: '#111111', textDecoration: 'none' }}>
+            合格<span style={{ color: '#b93a26' }}>ナビ</span>
+          </Link>
+          <span style={{ color: '#e2e8f0' }}>|</span>
+          <span style={{ fontSize: '14px', fontWeight: '700', color: '#64748b' }}>日商簿記3級 合格テキスト</span>
         </div>
-        <div className="flex items-center gap-4">
-          <span className="text-xs font-bold text-gray-500">学習進捗率</span>
-          <div className="w-32 bg-gray-100 h-2 rounded-full overflow-hidden">
-            <div className="bg-blue-500 h-full w-[25%]" />
-          </div>
-          <span className="text-xs font-bold text-blue-600">25%</span>
-        </div>
+        <Link href={`/exams/${examId}`} style={{ color: '#666666', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>
+          ← ダッシュボードに戻る
+        </Link>
       </header>
 
-      <div className="flex flex-1">
-        {/* 左侧宽度: 300px 固定滚动目录 */}
-        <aside className="w-[300px] border-r border-gray-200 fixed top-16 bottom-0 overflow-y-auto bg-gray-50 p-6 space-y-6">
-          <div className="space-y-2">
-            <div className="text-xs font-bold text-gray-400 uppercase tracking-wider">章リスト</div>
-            
-            {/* 第1-3章 */}
-            <div className="p-2 text-xs font-bold text-gray-400">第1章 簿記の基本概念</div>
-            <div className="p-2 text-xs font-bold text-gray-400">第2章 仕訳と転記の基礎</div>
-            <div className="p-2 text-xs font-bold text-gray-400">第3章 残高試算表の作成</div>
-            
-            {/* 第4章 */}
-            <div className="bg-white border border-gray-200 rounded-lg p-2 space-y-1">
-              <div className="text-xs font-bold text-gray-900 px-2 py-1 border-b border-gray-100">第4章 現金と預金</div>
-              <div className="space-y-0.5">
-                <a href="#" className="block px-2 py-1.5 text-xs font-bold text-blue-600 bg-blue-50 rounded">4-1 現金とは</a>
-                <div className="px-2 py-1.5 text-xs text-gray-500 cursor-not-allowed">4-2 現金過不足の処理</div>
-                <div className="px-2 py-1.5 text-xs text-gray-500 cursor-not-allowed">4-3 当座預金と当座借越し</div>
-                <div className="px-2 py-1.5 text-xs text-gray-500 cursor-not-allowed">4-4 小口現金の仕組み</div>
-                <div className="px-2 py-1.5 text-xs text-gray-500 cursor-not-allowed">4-5 預金勘定の調整</div>
-              </div>
-            </div>
+      {/* Wiki 双栏容器 */}
+      <div style={{ display: 'flex', maxWidth: '1100px', margin: '0 auto', padding: '40px 20px', gap: '50px' }}>
+        
+        {/* 👈 左侧固定目录 */}
+        <aside style={{ width: '220px', flexShrink: 0, position: 'sticky', top: '100px', height: 'calc(100vh - 140px)' }}>
+          <div style={{ fontSize: '11px', fontWeight: '800', color: '#94a3b8', letterSpacing: '1px', marginBottom: '16px' }}>
+            章内の目次
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', borderLeft: '1px solid #e2e8f0' }}>
+            {menuItems.map((item) => {
+              const isCurrent = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  style={{
+                    fontSize: '13.5px',
+                    padding: '8px 12px',
+                    textDecoration: 'none',
+                    fontWeight: isCurrent ? '700' : '500',
+                    color: isCurrent ? '#b93a26' : '#475569',
+                    borderLeft: isCurrent ? '3px solid #b93a26' : '3px solid transparent',
+                    marginLeft: '-1px',
+                    transition: 'all 0.15s ease',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
         </aside>
 
-        {/* 右侧教材内容 */}
-        <main className="flex-1 pl-[300px] bg-white">
-          <div className="max-w-[720px] mx-auto px-8 py-10 space-y-8">
-            
-            {/* Breadcrumb */}
-            <nav className="text-xs font-bold text-gray-400 flex items-center gap-2">
-              <span>第4章 現金と預金</span>
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-              <span className="text-gray-700">4-1 現金とは</span>
-            </nav>
+        {/* 👉 右侧黄金沉浸长文 */}
+        <main style={{ flex: 1, maxWidth: '720px' }}>
+          
+          <div style={{ marginBottom: '40px', borderBottom: '1px solid #f1f5f9', paddingBottom: '20px' }}>
+            <span style={{ color: '#b93a26', fontSize: '13px', fontWeight: '800', letterSpacing: '0.5px' }}>{currentChapter.chapterTag}</span>
+            <h1 style={{ fontSize: '28px', fontWeight: '900', lineHeight: '1.4', margin: '6px 0 0 0', color: '#111111' }}>
+              {currentChapter.chapterTitle}
+            </h1>
+          </div>
 
-            {/* 正文区域 */}
-            <article className="space-y-6">
-              <h1 className="text-2xl font-black text-gray-900 border-b border-gray-100 pb-3">
-                4-1 現金とは
-              </h1>
+          {/* 核心：高阶文本渲染引擎，根据大仓库里的 block 类型自动套用精致皮肤 */}
+          {currentChapter.sections?.map((section) => (
+            <section key={section.id} id={section.id} style={{ marginBottom: '50px', scrollMarginTop: '120px' }}>
+              {section.title && (
+                <h2 style={{ fontSize: '20px', fontWeight: '900', color: '#111111', marginBottom: '16px', borderLeft: '4px solid #b93a26', paddingLeft: '12px' }}>
+                  {section.title}
+                </h2>
+              )}
               
-              <p className="text-sm text-gray-600 leading-relaxed">
-                簿記上の「現金」は、私たちが普段使っている紙幣や硬貨（通貨）だけでなく、通貨と同じようにすぐに支払いに使用できる<strong>「通貨代用証券」</strong>も含みます。この点が一般の感覚と異なるため、試験でも非常によく狙われるポイントです。
-              </p>
+              {section.blocks?.map((block, index) => {
+                // 1. 普通文本段落
+                if (block.type === 'text') {
+                  return (
+                    <p key={index} style={{ fontSize: '16.5px', lineHeight: '1.85', color: '#334155', marginBottom: '20px', fontWeight: block.bold ? '700' : '400' }}>
+                      {block.content}
+                    </p>
+                  );
+                }
+                
+                // 2. 划重点高亮框（红/金）
+                if (block.type === 'callout') {
+                  const isRed = block.color === 'red';
+                  return (
+                    <div key={index} style={{ 
+                      background: isRed ? '#fdf2f0' : '#f8fafc', 
+                      padding: '24px', 
+                      borderRadius: '8px', 
+                      borderLeft: isRed ? '4px solid #b93a26' : '4px solid #c9a054', 
+                      border: isRed ? '1px solid #fca5a5' : 'none',
+                      margin: '24px 0' 
+                    }}>
+                      <h4 style={{ margin: '0 0 8px 0', fontSize: '15px', fontWeight: '800', color: isRed ? '#b93a26' : '#c9a054' }}>
+                        {block.title}
+                      </h4>
+                      <p style={{ margin: 0, fontSize: '14.5px', color: isRed ? '#334155' : '#475569', lineHeight: '1.75', whiteSpace: 'pre-line' }}>
+                        {block.content}
+                      </p>
+                    </div>
+                  );
+                }
 
-              <h2 className="text-lg font-bold text-gray-900 pt-2">1. 通貨代用証券の具体例</h2>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                銀行に行けばすぐに現金に換金してもらえる証券を指します。具体的には以下のようなものが簿記上で「現金」として処理されます。
-              </p>
-              <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1.5">
-                <li><strong>他人振出の小切手</strong>：他人が振り出した小切手を受け取ったときは現金勘定で処理します。</li>
-                <li><strong>送金小切手・郵便為替証書</strong>：遠隔地への送金に用いられる証書です。</li>
-                <li><strong>配当金領収証</strong>：株主配当金を受け取るための権利証書で、すぐに銀行で現金化できます。</li>
-                <li><strong>期限の到来した公社債の利札</strong>：利息を受け取るための利札です。</li>
-              </ul>
+                // 3. 条目列表
+                if (block.type === 'list') {
+                  return (
+                    <ul key={index} style={{ paddingLeft: '20px', fontSize: '16px', lineHeight: '1.8', color: '#334155', marginBottom: '20px' }}>
+                      {block.items?.map((item, i) => (
+                        <li key={i} style={{ marginBottom: '8px' }} dangerouslySetInnerHTML={{ __html: item }} />
+                      ))}
+                    </ul>
+                  );
+                }
 
-              {/* 重点框 浅蓝背景 */}
-              <div className="bg-blue-50/60 border border-blue-100 rounded-xl p-5 space-y-2">
-                <div className="flex items-center gap-1.5 text-xs font-black text-blue-700">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  ポイント
-                </div>
-                <p className="text-xs text-gray-700 leading-relaxed font-medium">
-                  「自分が振り出した小切手」が戻ってきた場合は現金ではなく<strong>当座預金</strong>の減少の取消（増加）になります。他人が振り出した小切手のみが「現金」となる点を完全にマスターしましょう。
-                </p>
-              </div>
+                return null;
+              })}
+            </section>
+          ))}
 
-              <h3 className="text-base font-bold text-gray-900 pt-2">2. 仕訳の基本パターン</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                売掛金10,000円の回収として、取引先（他人）が振り出した小切手を受け取った。
-              </p>
-              <div className="bg-gray-50 border border-gray-150 rounded-lg p-4 font-mono text-xs text-gray-800 space-y-1">
-                <div className="flex justify-between"><span>（借方）現　　金</span><span>10,000</span><span>／</span><span>（貸方）売掛金</span><span>10,000</span></div>
+          {/* 🏁 底部多闭环控制台 */}
+          <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '30px' }}>
+            <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+              <div>
+                <h4 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: '800', color: '#111111' }}>🎯 知識の定着チェック</h4>
+                <p style={{ margin: 0, fontSize: '13px', color: '#64748b' }}>基礎知識を定着させるために、実際の仕訳問題に挑戦してみましょう。</p>
               </div>
-            </article>
-
-            {/* 例题区域 白色卡片 */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
-              <div className="inline-flex text-xs font-bold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded">
-                基本例題
-              </div>
-              <p className="text-sm font-bold text-gray-900 leading-normal">
-                次のうち、日商簿記3級の帳簿上で「現金」として処理されないものはどれですか？
-              </p>
-              <div className="grid grid-cols-1 gap-2 text-xs">
-                <div className="p-3 border border-gray-200 rounded-lg bg-gray-50">A. 他人振出の小切手</div>
-                <div className="p-3 border border-gray-200 rounded-lg bg-gray-50">B. 配当金領収証</div>
-                <div className="p-3 border border-gray-200 rounded-lg bg-gray-50 font-bold text-red-600 border-red-200">C. 店振出の小切手（自社振出）</div>
-                <div className="p-3 border border-gray-200 rounded-lg bg-gray-50">D. 郵便為替証書</div>
-              </div>
-              <div className="pt-2">
-                <button 
-                  onClick={() => setShowAnswer(!showAnswer)}
-                  className="w-full h-10 border border-gray-200 text-xs font-bold rounded-lg hover:bg-gray-50 text-gray-700 transition-colors"
-                >
-                  {showAnswer ? "解説を閉じる" : "解答を見る"}
+              <Link href={`/exams/${examId}/exercises`} style={{ textDecoration: 'none' }}>
+                <button style={{ backgroundColor: '#111111', color: '#ffffff', border: 'none', padding: '10px 18px', borderRadius: '6px', fontSize: '14px', fontWeight: '700', cursor: 'pointer' }}>
+                  練習問題を解く
                 </button>
-              </div>
-              {showAnswer && (
-                <div className="text-xs bg-gray-50 border border-gray-150 rounded-lg p-4 text-gray-600 leading-relaxed">
-                  <strong>正解：C</strong><br />
-                  自社（当店）が振り出した小切手は、発行時に「当座預金」勘定の減少として処理しているため、それが戻ってきた場合は当座預金勘定の増加として仕訳を行います。
-                </div>
+              </Link>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Link href={`/exams/${examId}/guide`} style={{ textDecoration: 'none', color: '#64748b', fontSize: '14.5px', fontWeight: '600' }}>
+                ← 章一覧（目次）に戻る
+              </Link>
+              {currentChapter.nextChapterId ? (
+                <Link href={`/exams/${examId}/guide/${currentChapter.nextChapterId}`} style={{ textDecoration: 'none' }}>
+                  <button style={{ backgroundColor: '#b93a26', color: '#ffffff', border: 'none', padding: '12px 24px', borderRadius: '6px', fontSize: '15px', fontWeight: '700', cursor: 'pointer' }}>
+                    {currentChapter.nextChapterTitle} →
+                  </button>
+                </Link>
+              ) : (
+                <span style={{ color: '#94a3b8', fontSize: '14.5px' }}>これが最終章です</span>
               )}
             </div>
-
-            {/* 底部导航 3按钮横向排列 */}
-            <div className="pt-6 border-t border-gray-100 flex items-center justify-between gap-4">
-              <button disabled className="flex-1 h-11 border border-gray-200 rounded-lg text-xs font-bold text-gray-300 cursor-not-allowed bg-gray-50 text-center">
-                前の項目
-              </button>
-              <a href="/exams/boki3" className="flex-1 h-11 border border-gray-200 rounded-lg text-xs font-bold text-gray-600 hover:bg-gray-50 flex items-center justify-center text-center">
-                本章のトップに戻る
-              </a>
-              <button disabled className="flex-1 h-11 border border-gray-200 rounded-lg text-xs font-bold text-gray-300 cursor-not-allowed bg-gray-50 text-center">
-                次の項目
-              </button>
-            </div>
-
           </div>
+
         </main>
       </div>
     </div>
