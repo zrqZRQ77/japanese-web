@@ -10,13 +10,13 @@ export default function ExamGuideChapterEight() {
 
   // 本章内部小节目录
   const menuItems = [
-    { id: 'bad_debt_concept', label: '1. 貸倒れ（かしだおれ）とは？' },
+    { id: 'bad_debt_current_vs_past', label: '1. 貸倒れ（当期と前期の違い）' },
     { id: 'allowance_method', label: '2. 貸倒引当金の「差額補充法」' },
-    { id: 'tax_concept', label: '3. 消費税の基本メカニズム' },
-    { id: 'tax_journal', label: '4. 税抜方式による実務仕訳' },
+    { id: 'recovery_of_bad_debt', label: '3. 償却債権取立益（奇跡の回収）' },
+    { id: 'tax_journal', label: '4. 消費税の税抜方式と決算処理' },
   ];
 
-  const [activeSection, setActiveSection] = useState('bad_debt_concept');
+  const [activeSection, setActiveSection] = useState('bad_debt_current_vs_past');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -114,35 +114,40 @@ export default function ExamGuideChapterEight() {
 
           <div style={{ maxWidth: '680px' }}>
             
-            <section id="bad_debt_concept" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h1 style={{ fontSize: '24px', fontWeight: '800', color: colors.textDark, marginBottom: '24px' }}>1. 貸倒れ（かしだおれ）とは？</h1>
+            <section id="bad_debt_current_vs_past" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
+              <h1 style={{ fontSize: '24px', fontWeight: '800', color: colors.textDark, marginBottom: '24px' }}>1. 貸倒れ（当期と前期の違い）</h1>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                売掛金などの債権が、取引先の倒産によって回収不可能になることを<strong>貸倒れ</strong>と言います。
-                実際に期中に倒産した場合は、債権を消して<strong>貸倒損失（費用）</strong>として処理します。
+                売掛金が回収できなくなる（貸倒れ）時、その売掛金が<strong>「今年発生したもの」か「去年以前からあるもの」か</strong>で使う勘定科目が全く異なります。ここは試験のひっかけポイントです！
               </p>
+              <div style={{ background: colors.avocadoLight, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
+                <h4 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: '800', color: colors.avocado }}>💡 貸倒れの絶対ルール</h4>
+                <p style={{ margin: 0, fontSize: '14.5px', color: colors.textDark, lineHeight: '1.7' }}>
+                  ・<strong>当期</strong>に発生した売掛金が貸し倒れた ➔ <strong>貸倒損失（費用）</strong>をダイレクトに使う。<br/>
+                  ・<strong>前期以前</strong>の売掛金が貸し倒れた ➔ 過去に準備しておいた<strong>貸倒引当金</strong>を取り崩して使う。（※もし引当金が足りない場合のみ、はみ出た分を「貸倒損失」にする）
+                </p>
+              </div>
             </section>
 
             <section id="allowance_method" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
               <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>2. 貸倒引当金の「差額補充法」</h2>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                将来の焦げ付きに備え、決算時にあらかじめ見積もる準備金を「貸倒引当金」と呼びます。
-                仕訳をする際、設定したい目標額と、現在残っている残高の<strong>「差額だけを付け足す（または戻す）」</strong>ルールを<strong>差額補充法</strong>と言います。
+                決算時に来年の貸倒れリスクに備えるのが貸倒引当金です。設定したい目標額と、現在残っている残高の<strong>「差額だけを付け足す（または戻す）」</strong>ルールを<strong>差額補充法</strong>と言います。
               </p>
               
               <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：差額補充法の計算と仕訳</h4>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：差額補充法の計算</h4>
                 <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
                   <p style={{ margin: '0 0 8px 0' }}><strong>【問題】</strong> 期末の売掛金残高 500,000円に対して 2% の貸倒引当金を設定する。</p>
                   <p style={{ margin: '0 0 12px 0', color: colors.avocado, fontWeight: 'bold' }}>・目標とする設定額：500,000 × 2% ＝ 10,000円</p>
                   
-                  <p style={{ margin: '0 0 4px 0', fontWeight: '700' }}>パターンA：現在、貸倒引当金の残高が「4,000円」ある場合</p>
-                  <p style={{ margin: '0 0 8px 0' }}>➔ 足りない分は 10,000 － 4,000 ＝ <strong>6,000円（補充する）推し増しする仕訳になります。</strong></p>
+                  <p style={{ margin: '0 0 4px 0', fontWeight: '700' }}>パターンA：引当金残高が「4,000円」ある場合</p>
+                  <p style={{ margin: '0 0 8px 0' }}>➔ 足りない分は 10,000 － 4,000 ＝ <strong>6,000円（補充する）</strong></p>
                   <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark, marginBottom: '20px' }}>
                     （借方）貸倒引当金繰入 6,000 ／ （貸方）貸倒引当金 6,000
                   </div>
                   
-                  <p style={{ margin: '0 0 4px 0', fontWeight: '700' }}>パターンB：現在、貸倒引当金の残高が「12,000円」ある場合（超過）</p>
-                  <p style={{ margin: '0 0 8px 0' }}>➔ 多すぎるので 12,000 － 10,000 ＝ <strong>2,000円（払い戻す）「戻入（れいにゅう）」を使います。</strong></p>
+                  <p style={{ margin: '0 0 4px 0', fontWeight: '700' }}>パターンB：引当金残高が「12,000円」ある場合（超過）</p>
+                  <p style={{ margin: '0 0 8px 0' }}>➔ 多すぎるので 12,000 － 10,000 ＝ <strong>2,000円（戻入で減らす）</strong></p>
                   <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
                     （借方）貸倒引当金 2,000 ／ （貸方）貸倒引当金戻入 2,000
                   </div>
@@ -150,38 +155,38 @@ export default function ExamGuideChapterEight() {
               </div>
             </section>
 
-            <section id="tax_concept" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>3. 消費税の基本メカニズム</h2>
+            <section id="recovery_of_bad_debt" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>3. 償却債権取立益（奇跡の回収）</h2>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                お店は、商品を売ったときにお客さんから消費税を<strong>「預かり」</strong>、仕入れたときには業者に消費税を<strong>「支払い」</strong>ます。
-                決算のときに、この【預かった消費税】から【支払った消費税】を引き算し、残った差額を国に納めます。
+                過去（前期以前）に「もう回収できない」と諦めて貸倒処理した売掛金が、奇跡的に後から振り込まれることがあります。この場合、売掛金はすでに帳簿から消去されているため、<strong>償却債権取立益（しょうきゃくさいけんとりたてえき：収益）</strong>という特別な科目を使います。
               </p>
+              <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：貸倒処理した売掛金の回収</h4>
+                <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
+                  <p style={{ margin: '0 0 8px 0' }}>前期に貸倒れとして処理していた売掛金 30,000円が、当座預金口座に振り込まれた。</p>
+                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
+                    （借方）当座預金 30,000 ／ （貸方）償却債権取立益 30,000
+                  </div>
+                </div>
+              </div>
             </section>
 
             <section id="tax_journal" style={{ marginBottom: '60px', scrollMarginTop: '120px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>4. 税抜方式による実務仕訳</h2>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: colors.textDark, marginBottom: '20px' }}>4. 消費税の税抜方式と決算処理</h2>
               <p style={{ fontSize: '15px', lineHeight: '1.8', color: colors.textGray, marginBottom: '16px' }}>
-                試験では、商品の本体価格と消費税をきっちり分けて記録する<strong>税抜方式（ぜぬきほうしき）</strong>が出題されます。
-                支払った税金は<strong>仮払消費税（資産）</strong>、預かった税金は<strong>仮受消費税（負債）</strong>で仕訳します。
+                試験では、商品の本体価格と消費税を分けて記録する<strong>税抜方式（ぜぬきほうしき）</strong>がメインです。
+                支払った税金は<strong>仮払消費税（資産）</strong>、預かった税金は<strong>仮受消費税（負債）</strong>です。
               </p>
               
               <div style={{ border: `1px solid ${colors.border}`, padding: '24px', borderRadius: '8px', marginBottom: '24px' }}>
-                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：商品の売買と決算調整</h4>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '800', color: colors.textDark }}>✍️ 例題：決算時の相殺と未払消費税</h4>
                 <div style={{ fontSize: '14.5px', color: colors.textGray, lineHeight: '1.8' }}>
-                  <p style={{ margin: '0 0 4px 0', color: colors.avocado, fontWeight: 'bold' }}>① 商品を仕入れた時</p>
-                  <p style={{ margin: '0 0 8px 0' }}>商品 50,000円（消費税10%：5,000円）を仕入れ、代金は現金で支払った。</p>
-                  <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark, marginBottom: '20px' }}>
-                    （借方）仕入 50,000 ／ （貸方）現金 55,000<br/>
-                        仮払消費税 5,000
-                  </div>
-                  
-                  <p style={{ margin: '0 0 4px 0', color: colors.avocado, fontWeight: 'bold' }}>② 決算時（相殺して納税額を確定させる）</p>
-                  <p style={{ margin: '0 0 8px 0' }}>決算にあたり、仮受消費税残高 8,000円と仮払消費税残高 5,000円を相殺し、納付額を確定させた。</p>
+                  <p style={{ margin: '0 0 8px 0' }}>決算にあたり、仮受消費税残高 88,000円と仮払消費税残高 55,000円を相殺し、納付額を確定させた。</p>
                   <p style={{ margin: '0 0 8px 0', color: colors.avocado, fontWeight: 'bold' }}>【考え方】</p>
-                  <p style={{ margin: '0 0 12px 0' }}>預かった8,000円から先に払った5,000円を引いた「3,000円」を、後で国に払う義務として<strong>未払消費税（負債）</strong>に計上します。</p>
+                  <p style={{ margin: '0 0 12px 0' }}>お客さんから預かった88,000円から、仕入先に払った55,000円を引いた「33,000円」を、国に払う義務<strong>（未払消費税：負債）</strong>として計上します。</p>
                   <div style={{ background: '#f8fafc', padding: '12px', border: `1px dashed ${colors.border}`, textAlign: 'center', fontWeight: 'bold', color: colors.textDark }}>
-                    （借方）仮受消費税 8,000 ／ （貸方）仮払消費税 5,000<br/>
-                                   ／ （貸方）未払消費税 3,000
+                    （借方）仮受消費税 88,000 ／ （貸方）仮払消費税 55,000<br/>
+                                   ／ （貸方）未払消費税 33,000
                   </div>
                 </div>
               </div>
