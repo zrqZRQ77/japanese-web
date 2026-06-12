@@ -84,7 +84,7 @@ export default function HomePage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
           
           {[
-            { label: '練習問題', value: '100+', desc: '厳選された過去問・予想問', icon: '📝' },
+            { label: '練習問題', value: '100+', desc: '厳選された過去問と予想問', icon: '📝' },
             { label: '学習ツール', value: '5種', desc: '単語帳や模擬テストなど', icon: '🛠️' },
             { label: '全コンテンツ', value: '無料', desc: '隠し課金一切なし', icon: '✨' },
             { label: '即時解説', value: 'AI', desc: '24時間いつでも質問可能', icon: '🤖' }
