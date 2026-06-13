@@ -1,11 +1,1 @@
-// @ts-ignore
-import boki3_ch1 from './boki3_ch1.json';
-
-const dataMap = {
-  'boki3_ch1': boki3_ch1,
-};
-
-export const getChapterData = (courseId, chapterId) => {
-  const key = `${courseId}_${chapterId}`;
-  return dataMap[key] || null;
-};
+export const getChapterData = () => ({});
