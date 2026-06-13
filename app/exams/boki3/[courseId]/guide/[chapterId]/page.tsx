@@ -1,7 +1,6 @@
-import { getChapterData } from '@/data';
-
 "use client";
 
+import { getChapterData } from '@/data';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
