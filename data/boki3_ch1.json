@@ -1,29 +1,35 @@
 {
-  "courseTitle": "簿記3級 学習ガイド",
   "chapterNum": 1,
-  "chapterTitle": "簿記の基本",
+  "chapterTitle": "簿記の基本概念",
   "progress": 10,
-  "prevChapter": null,
-  "nextChapter": "ch2",
-  "allChapters": [
-    { "id": 1, "title": "簿記の基本" },
-    { "id": 2, "title": "取引と仕訳の基礎" },
-    { "id": 3, "title": "現金と預金" },
-    { "id": 4, "title": "商品売買" },
-    { "id": 5, "title": "その他の債権・債務" },
-    { "id": 6, "title": "固定資産と経費" },
-    { "id": 7, "title": "収益・費用の繰延と見越" },
-    { "id": 8, "title": "貸倒引当金と消費税" },
-    { "id": 9, "title": "試算表と帳簿の締め切り" },
-    { "id": 10, "title": "決算と財務諸表の作成" }
-  ],
   "menuItems": [
-    { "id": "intro", "label": "1. 簿記とは何か？" }
+    { "id": "intro", "label": "1. 簿記とは何か" },
+    { "id": "elements", "label": "2. 財務諸表の5大要素" }
   ],
   "sections": [
     {
       "id": "intro",
-      "htmlContent": "<h1 style=\"font-size: 24px; font-weight: 800; color: #111111; margin-bottom: 24px;\">1. 簿記とは何か？（データ連携成功！）</h1><p style=\"font-size: 15px; line-height: 1.8; color: #475569; margin-bottom: 16px;\">おめでとうございます！エラーが消え、JSONデータが正常に読み込まれました。これが「コンテンツ分離」の魔法です。これからは、このJSONファイルの中にHTMLタグで文章を書いていくだけで、自動的に美しいデザインが適用されます。</p><div style=\"background: #F5F8F2; padding: 24px; border-radius: 8px; border-left: 4px solid #7A9D54;\"><h4 style=\"margin: 0 0 12px 0; font-size: 15px; font-weight: 800; color: #7A9D54;\">💡 テスト用の枠</h4><p style=\"margin: 0; font-size: 14.5px; color: #111111; line-height: 1.7;\">このように、UIのコードを一切触らずに、文字やデザインブロックを追加・修正できるようになりました。</p></div>"
+      "title": "1. 簿記とは何か",
+      "content": "<p style='font-size: 15px; line-height: 1.8; color: #475569; margin-bottom: 16px;'>簿記（ぼき）とは、企業の営業活動や財産状態を一定のルールに従って記録・計算・整理する技術です。最終的には「決算書」と呼ばれる報告书を作成し、外部の利害関係者に開示します。</p><div style='background: #F5F8F2; padding: '20px'; border-left: 4px solid #7A9D54'; border-radius: 4px;'><strong>核心本质：</strong> 簿记就是用数字给企业的经济活动记日记。</div>"
+    },
+    {
+      "id": "elements",
+      "title": "2. 財務諸表の5大要素",
+      "content": "<p style='font-size: 15px; line-height: 1.8; color: #475569; margin-bottom: 16px;'>簿記の世界では、すべての取引を5つのグループ（資産・負債・純資産・収益・費用）に分類します。これがすべての土台となります。</p>"
     }
-  ]
+  ],
+  "allChapters": [
+    { "id": "ch1", "title": "第1章 簿記の基本概念" },
+    { "id": "ch2", "title": "第2章 取引と仕訳の基礎" },
+    { "id": "ch3", "title": "第3章 現金・預金の処理" },
+    { "id": "ch4", "title": "第4章 商品売買の記帳" },
+    { "id": "ch5", "title": "第5章 その他の債権・債務" },
+    { "id": "ch6", "title": "第6章 固定資産と経費" },
+    { "id": "ch7", "title": "第7章 決算整理と経過勘定" },
+    { "id": "ch8", "title": "第8章 貸倒引当金と消費税" },
+    { "id": "ch9", "title": "第9章 試算表と帳簿の締め切り" },
+    { "id": "ch10", "title": "第10章 決算と財務諸表" }
+  ],
+  "prevChapter": null,
+  "nextChapter": "ch2"
 }
