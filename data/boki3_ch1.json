@@ -10,7 +10,7 @@
     {
       "id": "intro",
       "title": "1. 簿記とは何か",
-      "content": "<p style='font-size: 15px; line-height: 1.8; color: #475569; margin-bottom: 16px;'>簿記（ぼき）とは、企業の営業活動や財産状態を一定のルールに従って記録・計算・整理する技術です。最終的には「決算書」と呼ばれる報告书を作成し、外部の利害関係者に開示します。</p><div style='background: #F5F8F2; padding: '20px'; border-left: 4px solid #7A9D54'; border-radius: 4px;'><strong>核心本质：</strong> 簿记就是用数字给企业的经济活动记日记。</div>"
+      "content": "<p style='font-size: 15px; line-height: 1.8; color: #475569; margin-bottom: 16px;'>簿記（ぼき）とは、企業の営業活動や財産状態を一定のルールに従って記録・計算・整理する技術です。最終的には「決算書」と呼ばれる報告書を作成し、外部の利害関係者に開示します。</p><div style='background: #F5F8F2; padding: 20px; border-left: 4px solid #7A9D54; border-radius: 4px;'><strong>核心本质：</strong> 簿记就是用数字给企业的经济活动记日记。</div>"
     },
     {
       "id": "elements",
@@ -20,15 +20,7 @@
   ],
   "allChapters": [
     { "id": "ch1", "title": "第1章 簿記の基本概念" },
-    { "id": "ch2", "title": "第2章 取引と仕訳の基礎" },
-    { "id": "ch3", "title": "第3章 現金・預金の処理" },
-    { "id": "ch4", "title": "第4章 商品売買の記帳" },
-    { "id": "ch5", "title": "第5章 その他の債権・債務" },
-    { "id": "ch6", "title": "第6章 固定資産と経費" },
-    { "id": "ch7", "title": "第7章 決算整理と経過勘定" },
-    { "id": "ch8", "title": "第8章 貸倒引当金と消費税" },
-    { "id": "ch9", "title": "第9章 試算表と帳簿の締め切り" },
-    { "id": "ch10", "title": "第10章 決算と財務諸表" }
+    { "id": "ch2", "title": "第2章 取引と仕訳の基礎" }
   ],
   "prevChapter": null,
   "nextChapter": "ch2"
