@@ -30,19 +30,27 @@ export default function DynamicChapterPage() {
     darkButton: '#2C3E20'     
   };
 
-  // 3. 稳定加载 JSON 数据 (Vercel 友好版)
+  // 3. 数据加载与状态更新
   useEffect(() => {
+    // 确保参数存在
+    if (!courseId || !chapterId) return;
+
+    // 同步获取数据
     const data = getChapterData(courseId as string, chapterId as string);
+    
     if (data) {
       setChapterData(data);
+      // 默认选中第一个小节
       if (data.menuItems && data.menuItems.length > 0) {
         setActiveSection(data.menuItems[0].id);
       }
+      setError(false);
     } else {
-      console.error("找不到对应的数据:", `${courseId}_${chapterId}`);
+      console.error("找不到数据，请求的 key 是:", `${courseId}_${chapterId}`);
       setError(true);
     }
   }, [courseId, chapterId]);
+  
 
   // 4. 滚动监听器 (负责右侧阅读时，左侧目录自动打高亮)
   useEffect(() => {
