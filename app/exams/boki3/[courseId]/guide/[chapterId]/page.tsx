@@ -110,6 +110,9 @@ export default function DynamicChapterPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {/* 动态渲染所有章节列表 */}
             {chapterData.allChapters.map((ch: any) => {
+            // idが数字ではない（例えば 'guide' など）場合はスキップ
+              if (typeof ch.id !== 'number' && isNaN(Number(ch.id))) return null;
+  
               if (ch.id < chapterData.chapterNum) {
                 return (
                   <div key={ch.id} style={{ fontSize: '14px', fontWeight: '500', color: colors.textGray, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
