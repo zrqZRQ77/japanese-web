@@ -1,0 +1,18 @@
+// data/index.ts
+
+// 1. 静态引入你的 JSON 数据
+import boki3_ch1 from './boki3_ch1.json';
+
+// 2. 建立一个简单的映射字典
+const dataMap: Record<string, any> = {
+  'boki3_ch1': boki3_ch1,
+  // 以后增加了其他章，就在这里加上，比如：
+  // 'boki3_ch2': boki3_ch2,
+  // 'fp3_ch1': fp3_ch1,
+};
+
+// 3. 导出一个超级简单的获取函数
+export const getChapterData = (courseId: string, chapterId: string) => {
+  const key = `${courseId}_${chapterId}`;
+  return dataMap[key] || null;
+};
