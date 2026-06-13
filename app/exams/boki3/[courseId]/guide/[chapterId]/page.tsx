@@ -1,5 +1,7 @@
 "use client";
 
+import { getChapterData } from '@/data'; // 放在文件最上面
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -28,20 +30,18 @@ export default function DynamicChapterPage() {
     darkButton: '#2C3E20'     
   };
 
-  // 3. 动态加载 JSON 数据（核心分离逻辑）
+  // 3. 稳定加载 JSON 数据 (Vercel 友好版)
   useEffect(() => {
-    // 自动去项目根目录的 data 文件夹下找对应的 JSON 文件
-    import(`@/data/${courseId}_${chapterId}.json`)
-      .then((module) => {
-        setChapterData(module.default);
-        if (module.default.menuItems && module.default.menuItems.length > 0) {
-          setActiveSection(module.default.menuItems[0].id);
-        }
-      })
-      .catch((err) => {
-        console.error("数据加载失败:", err);
-        setError(true);
-      });
+    const data = getChapterData(courseId as string, chapterId as string);
+    if (data) {
+      setChapterData(data);
+      if (data.menuItems && data.menuItems.length > 0) {
+        setActiveSection(data.menuItems[0].id);
+      }
+    } else {
+      console.error("找不到对应的数据:", `${courseId}_${chapterId}`);
+      setError(true);
+    }
   }, [courseId, chapterId]);
 
   // 4. 滚动监听器 (负责右侧阅读时，左侧目录自动打高亮)
