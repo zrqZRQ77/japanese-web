@@ -1,6 +1,6 @@
-"use client";
+import { getChapterData } from '../../../../data';
 
-import { getChapterData } from '@/data'; // 放在文件最上面
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
