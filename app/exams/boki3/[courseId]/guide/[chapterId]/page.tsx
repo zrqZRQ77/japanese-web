@@ -1,4 +1,4 @@
-import { getChapterData } from '../../../../data';
+import { getChapterData } from '@/data';
 
 "use client";
 
