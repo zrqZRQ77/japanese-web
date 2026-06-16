@@ -1,0 +1,69 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch6",
+  "chapterTitle": "売掛金・買掛金",
+  "cards": [
+    {
+      "id": "boki3-ch6-card1",
+      "examId": "boki3",
+      "chapterId": "ch6",
+      "front": "得意先ごとに売掛金の明細を記録する補助簿を何という？",
+      "back": "売掛金元帳（得意先元帳）",
+      "tags": [
+        "補助簿"
+      ]
+    },
+    {
+      "id": "boki3-ch6-card2",
+      "examId": "boki3",
+      "chapterId": "ch6",
+      "front": "仕入先ごとに買掛金の明細を記録する補助簿を何という？",
+      "back": "買掛金元帳（仕入先元帳）",
+      "tags": [
+        "補助簿"
+      ]
+    },
+    {
+      "id": "boki3-ch6-card3",
+      "examId": "boki3",
+      "chapterId": "ch6",
+      "front": "顧客がクレジットカードで支払った場合、後日信販会社から代金を受け取る権利を表す勘定科目は？",
+      "back": "クレジット売掛金【資産】",
+      "tags": [
+        "クレジット売掛金"
+      ]
+    },
+    {
+      "id": "boki3-ch6-card4",
+      "examId": "boki3",
+      "chapterId": "ch6",
+      "front": "クレジットカード決済の際、信販会社に支払う決済手数料はどの勘定科目で処理する？",
+      "back": "支払手数料【費用】",
+      "tags": [
+        "支払手数料"
+      ]
+    },
+    {
+      "id": "boki3-ch6-card5",
+      "examId": "boki3",
+      "chapterId": "ch6",
+      "front": "買掛金を銀行振込で支払う際、当店が負担した振込手数料はどの勘定科目で処理する？",
+      "back": "支払手数料【費用】",
+      "tags": [
+        "買掛金",
+        "支払手数料"
+      ]
+    },
+    {
+      "id": "boki3-ch6-card6",
+      "examId": "boki3",
+      "chapterId": "ch6",
+      "front": "クレジット売掛金の代金が信販会社から振り込まれたとき、減少する勘定科目は？",
+      "back": "クレジット売掛金",
+      "tags": [
+        "クレジット売掛金",
+        "回収"
+      ]
+    }
+  ]
+}

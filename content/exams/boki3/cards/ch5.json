@@ -1,0 +1,91 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch5",
+  "chapterTitle": "商品売買",
+  "cards": [
+    {
+      "id": "boki3-ch5-card1",
+      "examId": "boki3",
+      "chapterId": "ch5",
+      "front": "三分法で用いる3つの勘定科目を答えよ。",
+      "back": "仕入、売上、繰越商品",
+      "tags": [
+        "三分法"
+      ]
+    },
+    {
+      "id": "boki3-ch5-card2",
+      "examId": "boki3",
+      "chapterId": "ch5",
+      "front": "商品を仕入れ、代金を後日支払う義務を何という？",
+      "back": "買掛金（かいかけきん）【負債】",
+      "tags": [
+        "掛取引"
+      ]
+    },
+    {
+      "id": "boki3-ch5-card3",
+      "examId": "boki3",
+      "chapterId": "ch5",
+      "front": "商品を販売し、代金を後日受け取る権利を何という？",
+      "back": "売掛金（うりかけきん）【資産】",
+      "tags": [
+        "掛取引"
+      ]
+    },
+    {
+      "id": "boki3-ch5-card4",
+      "examId": "boki3",
+      "chapterId": "ch5",
+      "front": "顧客がクレジットカードで代金を決済した場合に使用する勘定科目は？",
+      "back": "クレジット売掛金【資産】",
+      "tags": [
+        "掛取引",
+        "クレジットカード"
+      ]
+    },
+    {
+      "id": "boki3-ch5-card5",
+      "examId": "boki3",
+      "chapterId": "ch5",
+      "front": "返品が発生したときの仕訳の基本的なルールは？",
+      "back": "取引した時の「逆仕訳」を行う。",
+      "tags": [
+        "返品"
+      ]
+    },
+    {
+      "id": "boki3-ch5-card6",
+      "examId": "boki3",
+      "chapterId": "ch5",
+      "front": "商品を仕入れた際にかかった運賃（当店負担）は、どの勘定科目に含めるか？",
+      "back": "仕入（商品の原価に含める）",
+      "tags": [
+        "諸掛り",
+        "仕入"
+      ]
+    },
+    {
+      "id": "boki3-ch5-card7",
+      "examId": "boki3",
+      "chapterId": "ch5",
+      "front": "商品を売り上げた際にかかった運賃（当店負担）は、どの勘定科目で処理するか？",
+      "back": "発送費（はっそうひ）",
+      "tags": [
+        "諸掛り",
+        "売上"
+      ]
+    },
+    {
+      "id": "boki3-ch5-card8",
+      "examId": "boki3",
+      "chapterId": "ch5",
+      "front": "先方（相手）が負担すべき運賃などを立て替えて支払った場合に使用する勘定科目は？",
+      "back": "立替金（たてかえきん）【資産】",
+      "tags": [
+        "諸掛り",
+        "立替金"
+      ]
+    }
+  ]
+}

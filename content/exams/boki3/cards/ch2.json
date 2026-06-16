@@ -1,0 +1,47 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch2",
+  "chapterTitle": "勘定科目と5要素",
+  "cards": [
+    {
+      "id": "boki3-ch2-card1",
+      "examId": "boki3",
+      "chapterId": "ch2",
+      "front": "取引を記録するための共通の見出し（名前）を何という？",
+      "back": "勘定科目（かんじょうかもく）",
+      "tags": [
+        "基本用語"
+      ]
+    },
+    {
+      "id": "boki3-ch2-card2",
+      "examId": "boki3",
+      "chapterId": "ch2",
+      "front": "簿記の5要素をすべて答えよ。",
+      "back": "資産、負債、純資産、収益、費用",
+      "tags": [
+        "5要素"
+      ]
+    },
+    {
+      "id": "boki3-ch2-card3",
+      "examId": "boki3",
+      "chapterId": "ch2",
+      "front": "一定時点の財政状態を表す財務諸表は？",
+      "back": "貸借対照表（B/S）",
+      "tags": [
+        "財務諸表"
+      ]
+    },
+    {
+      "id": "boki3-ch2-card4",
+      "examId": "boki3",
+      "chapterId": "ch2",
+      "front": "一定期間の経営成績を表す財務諸表は？",
+      "back": "損益計算書（P/L）",
+      "tags": [
+        "財務諸表"
+      ]
+    }
+  ]
+}

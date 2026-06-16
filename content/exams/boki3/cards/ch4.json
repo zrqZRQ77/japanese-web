@@ -1,0 +1,49 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch4",
+  "chapterTitle": "現金と預金",
+  "cards": [
+    {
+      "id": "boki3-ch4-card1",
+      "examId": "boki3",
+      "chapterId": "ch4",
+      "front": "買掛金の支払いのために、「当店」が小切手を振り出した。減少する勘定科目は？",
+      "back": "当座預金",
+      "tags": [
+        "当座預金",
+        "小切手"
+      ]
+    },
+    {
+      "id": "boki3-ch4-card2",
+      "examId": "boki3",
+      "chapterId": "ch4",
+      "front": "売掛金の回収として、「他店」が振り出した小切手を受け取った。増加する勘定科目は？",
+      "back": "現金",
+      "tags": [
+        "現金",
+        "小切手"
+      ]
+    },
+    {
+      "id": "boki3-ch4-card3",
+      "examId": "boki3",
+      "chapterId": "ch4",
+      "front": "日々の少額な支払いのために、用度係などに前渡ししておく現金を何という？",
+      "back": "小口現金（こぐちげんきん）",
+      "tags": [
+        "小口現金"
+      ]
+    },
+    {
+      "id": "boki3-ch4-card4",
+      "examId": "boki3",
+      "chapterId": "ch4",
+      "front": "現金の帳簿残高と実際有高が一致しない場合に、原因が判明するまで一時的に使用する勘定科目は？",
+      "back": "現金過不足（げんきんかぶそく）",
+      "tags": [
+        "現金過不足"
+      ]
+    }
+  ]
+}

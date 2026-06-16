@@ -1,0 +1,49 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch3",
+  "chapterTitle": "仕訳の基礎",
+  "cards": [
+    {
+      "id": "boki3-ch3-card1",
+      "examId": "boki3",
+      "chapterId": "ch3",
+      "front": "簿記において、左側のことを何と呼ぶ？",
+      "back": "借方（かりかた）",
+      "tags": [
+        "基本ルール"
+      ]
+    },
+    {
+      "id": "boki3-ch3-card2",
+      "examId": "boki3",
+      "chapterId": "ch3",
+      "front": "簿記において、右側のことを何と呼ぶ？",
+      "back": "貸方（かしかた）",
+      "tags": [
+        "基本ルール"
+      ]
+    },
+    {
+      "id": "boki3-ch3-card3",
+      "examId": "boki3",
+      "chapterId": "ch3",
+      "front": "「資産」が増加したとき、借方・貸方のどちらに記入する？",
+      "back": "借方（左）",
+      "tags": [
+        "5要素",
+        "資産"
+      ]
+    },
+    {
+      "id": "boki3-ch3-card4",
+      "examId": "boki3",
+      "chapterId": "ch3",
+      "front": "「収益」が発生したとき、借方・貸方のどちらに記入する？",
+      "back": "貸方（右）",
+      "tags": [
+        "5要素",
+        "収益"
+      ]
+    }
+  ]
+}

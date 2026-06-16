@@ -1,0 +1,77 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch8",
+  "chapterTitle": "その他の債権・債務",
+  "cards": [
+    {
+      "id": "boki3-ch8-card1",
+      "examId": "boki3",
+      "chapterId": "ch8",
+      "front": "他社にお金を貸し付けた際に生じる権利を表す勘定科目は？",
+      "back": "貸付金（かしつけきん）【資産】",
+      "tags": [
+        "貸付金"
+      ]
+    },
+    {
+      "id": "boki3-ch8-card2",
+      "examId": "boki3",
+      "chapterId": "ch8",
+      "front": "他社からお金を借り入れた際に生じる義務を表す勘定科目は？",
+      "back": "借入金（かりいれきん）【負債】",
+      "tags": [
+        "借入金"
+      ]
+    },
+    {
+      "id": "boki3-ch8-card3",
+      "examId": "boki3",
+      "chapterId": "ch8",
+      "front": "借入金を返済する際に支払う利息の勘定科目は？",
+      "back": "支払利息（しはらいりそく）【費用】",
+      "tags": [
+        "利息"
+      ]
+    },
+    {
+      "id": "boki3-ch8-card4",
+      "examId": "boki3",
+      "chapterId": "ch8",
+      "front": "商品以外のもの（備品・建物など）を売却し、代金が未回収のときの権利は？",
+      "back": "未収金（みしゅうきん）【資産】",
+      "tags": [
+        "未収金"
+      ]
+    },
+    {
+      "id": "boki3-ch8-card5",
+      "examId": "boki3",
+      "chapterId": "ch8",
+      "front": "商品以外のもの（備品・建物など）を購入し、代金が未払いのときの義務は？",
+      "back": "未払金（みばらいきん）【負債】",
+      "tags": [
+        "未払金"
+      ]
+    },
+    {
+      "id": "boki3-ch8-card6",
+      "examId": "boki3",
+      "chapterId": "ch8",
+      "front": "商品を注文した際に先に支払った手付金（内金）を処理する勘定科目は？",
+      "back": "前払金（まえばらいきん）【資産】",
+      "tags": [
+        "前払金"
+      ]
+    },
+    {
+      "id": "boki3-ch8-card7",
+      "examId": "boki3",
+      "chapterId": "ch8",
+      "front": "商品の注文を受けた際に先に受け取った手付金（内金）を処理する勘定科目は？",
+      "back": "前受金（まえうけきん）【負債】",
+      "tags": [
+        "前受金"
+      ]
+    }
+  ]
+}

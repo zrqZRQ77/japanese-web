@@ -1,0 +1,89 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch13",
+  "chapterTitle": "財務諸表",
+  "cards": [
+    {
+      "id": "boki3-ch13-card1",
+      "examId": "boki3",
+      "chapterId": "ch13",
+      "front": "一定時点の財政状態（財産や借金）を明らかにする報告書を何という？",
+      "back": "貸借対照表（たいしゃくたいしょうひょう：B/S）",
+      "tags": [
+        "貸借対照表"
+      ]
+    },
+    {
+      "id": "boki3-ch13-card2",
+      "examId": "boki3",
+      "chapterId": "ch13",
+      "front": "一定期間の経営成績（収益や費用）を明らかにする報告書を何という？",
+      "back": "損益計算書（そんえきけいさんしょ：P/L）",
+      "tags": [
+        "損益計算書"
+      ]
+    },
+    {
+      "id": "boki3-ch13-card3",
+      "examId": "boki3",
+      "chapterId": "ch13",
+      "front": "貸借対照表を構成する3つの要素は？",
+      "back": "資産、負債、純資産",
+      "tags": [
+        "5要素",
+        "貸借対照表"
+      ]
+    },
+    {
+      "id": "boki3-ch13-card4",
+      "examId": "boki3",
+      "chapterId": "ch13",
+      "front": "損益計算書を構成する2つの要素は？",
+      "back": "収益、費用",
+      "tags": [
+        "5要素",
+        "損益計算書"
+      ]
+    },
+    {
+      "id": "boki3-ch13-card5",
+      "examId": "boki3",
+      "chapterId": "ch13",
+      "front": "決算日から1年以内に現金化・支払いが行われるかを基準に流動・固定を分けるルールを何という？",
+      "back": "ワン・イヤー・ルール（1年基準）",
+      "tags": [
+        "ワン・イヤー・ルール"
+      ]
+    },
+    {
+      "id": "boki3-ch13-card6",
+      "examId": "boki3",
+      "chapterId": "ch13",
+      "front": "損益計算書で計算された当期純利益は、貸借対照表のどの科目に加算される？",
+      "back": "繰越利益剰余金（純資産の部）",
+      "tags": [
+        "財務諸表のつながり"
+      ]
+    },
+    {
+      "id": "boki3-ch13-card7",
+      "examId": "boki3",
+      "chapterId": "ch13",
+      "front": "貸借対照表のバランス（左右一致）を表す等式は？",
+      "back": "資産 ＝ 負債 ＋ 純資産",
+      "tags": [
+        "等式"
+      ]
+    },
+    {
+      "id": "boki3-ch13-card8",
+      "examId": "boki3",
+      "chapterId": "ch13",
+      "front": "損益計算書のバランスを表す等式（利益が出る場合）は？",
+      "back": "収益 － 費用 ＝ 当期純利益",
+      "tags": [
+        "等式"
+      ]
+    }
+  ]
+}

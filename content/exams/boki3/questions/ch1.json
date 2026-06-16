@@ -1,0 +1,167 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch1",
+  "chapterTitle": "簿記の基本",
+  "questions": [
+    {
+      "id": "boki3-ch1-q1",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "簿記の目的として、最も適切なものはどれか。",
+      "options": [
+        { "label": "A", "text": "企業の経営成績と財政状態を明らかにすること" },
+        { "label": "B", "text": "税金を少なくすること" },
+        { "label": "C", "text": "従業員の給料を計算すること" },
+        { "label": "D", "text": "商品の在庫数を管理すること" }
+      ],
+      "correctAnswer": "A",
+      "explanation": "簿記の目的は、日々の取引を記録・整理することで、企業の経営成績（損益計算書）と財政状態（貸借対照表）を明らかにすることです。",
+      "tags": ["簿記の目的"]
+    },
+    {
+      "id": "boki3-ch1-q2",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "複式簿記の特徴として正しいものはどれか。",
+      "options": [
+        { "label": "A", "text": "現金の増減だけを記録する" },
+        { "label": "B", "text": "1つの取引を借方と貸方の2つの側面から記録する" },
+        { "label": "C", "text": "収益だけを記録する" },
+        { "label": "D", "text": "年に1回だけ記録する" }
+      ],
+      "correctAnswer": "B",
+      "explanation": "複式簿記では、1つの取引を必ず借方（左側）と貸方（右側）の2つの側面から記録します。これにより借方合計と貸方合計が必ず一致し、記録の正確性を確認できます。",
+      "tags": ["複式簿記"]
+    },
+    {
+      "id": "boki3-ch1-q3",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "貸借対照表に表示されるものとして正しい組み合わせはどれか。",
+      "options": [
+        { "label": "A", "text": "収益・費用・純資産" },
+        { "label": "B", "text": "資産・負債・純資産" },
+        { "label": "C", "text": "資産・収益・費用" },
+        { "label": "D", "text": "負債・収益・費用" }
+      ],
+      "correctAnswer": "B",
+      "explanation": "貸借対照表には財政状態を表す「資産」「負債」「純資産」が表示されます。「収益」と「費用」は経営成績を表す損益計算書に表示されます。",
+      "tags": ["貸借対照表", "財務諸表"]
+    },
+    {
+      "id": "boki3-ch1-q4",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "次の等式として正しいものはどれか。",
+      "options": [
+        { "label": "A", "text": "資産 ＝ 負債 － 純資産" },
+        { "label": "B", "text": "純資産 ＝ 資産 ＋ 負債" },
+        { "label": "C", "text": "資産 ＝ 負債 ＋ 純資産" },
+        { "label": "D", "text": "負債 ＝ 資産 ＋ 純資産" }
+      ],
+      "correctAnswer": "C",
+      "explanation": "貸借対照表等式は「資産 ＝ 負債 ＋ 純資産」です。これは常に成立する基本的な等式で、左辺（資産）と右辺（負債＋純資産）は必ず一致します。",
+      "tags": ["貸借対照表等式"]
+    },
+    {
+      "id": "boki3-ch1-q5",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "次のうち「負債」に分類されるものはどれか。",
+      "options": [
+        { "label": "A", "text": "売掛金" },
+        { "label": "B", "text": "建物" },
+        { "label": "C", "text": "買掛金" },
+        { "label": "D", "text": "現金" }
+      ],
+      "correctAnswer": "C",
+      "explanation": "買掛金は商品を仕入れてまだ支払っていない代金で、将来支払う義務があるため「負債」に分類されます。売掛金・建物・現金はいずれも「資産」です。",
+      "tags": ["資産", "負債", "分類"]
+    },
+    {
+      "id": "boki3-ch1-q6",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "資産が800,000円、負債が300,000円のとき、純資産はいくらか。",
+      "options": [
+        { "label": "A", "text": "1,100,000円" },
+        { "label": "B", "text": "500,000円" },
+        { "label": "C", "text": "300,000円" },
+        { "label": "D", "text": "800,000円" }
+      ],
+      "correctAnswer": "B",
+      "explanation": "純資産 ＝ 資産 － 負債 ＝ 800,000円 － 300,000円 ＝ 500,000円です。",
+      "tags": ["純資産", "計算"]
+    },
+    {
+      "id": "boki3-ch1-q7",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "次のうち「収益」に分類されるものはどれか。",
+      "options": [
+        { "label": "A", "text": "給料" },
+        { "label": "B", "text": "仕入" },
+        { "label": "C", "text": "売上" },
+        { "label": "D", "text": "家賃（支払い）" }
+      ],
+      "correctAnswer": "C",
+      "explanation": "売上は商品やサービスを販売して得た収入であり「収益」に分類されます。給料・仕入・家賃（支払い）はいずれも「費用」です。",
+      "tags": ["収益", "費用", "分類"]
+    },
+    {
+      "id": "boki3-ch1-q8",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "収益が600,000円、費用が420,000円のとき、当期純利益はいくらか。",
+      "options": [
+        { "label": "A", "text": "1,020,000円" },
+        { "label": "B", "text": "420,000円" },
+        { "label": "C", "text": "600,000円" },
+        { "label": "D", "text": "180,000円" }
+      ],
+      "correctAnswer": "D",
+      "explanation": "当期純利益 ＝ 収益 － 費用 ＝ 600,000円 － 420,000円 ＝ 180,000円です。",
+      "tags": ["当期純利益", "計算"]
+    },
+    {
+      "id": "boki3-ch1-q9",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "損益計算書に表示されるものとして正しいものはどれか。",
+      "options": [
+        { "label": "A", "text": "現金と借入金" },
+        { "label": "B", "text": "売上と給料" },
+        { "label": "C", "text": "資本金と建物" },
+        { "label": "D", "text": "売掛金と買掛金" }
+      ],
+      "correctAnswer": "B",
+      "explanation": "損益計算書には「収益」と「費用」が表示されます。売上は収益、給料は費用であるため、損益計算書に表示されます。現金・借入金・資本金・建物・売掛金・買掛金は貸借対照表に表示されます。",
+      "tags": ["損益計算書", "財務諸表"]
+    },
+    {
+      "id": "boki3-ch1-q10",
+      "examId": "boki3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "複式簿記における「貸借平均の原理」とはどういう意味か。",
+      "options": [
+        { "label": "A", "text": "収益と費用の合計が常に等しいこと" },
+        { "label": "B", "text": "資産と負債の合計が常に等しいこと" },
+        { "label": "C", "text": "借方の合計と貸方の合計が常に一致すること" },
+        { "label": "D", "text": "売上と仕入の金額が常に等しいこと" }
+      ],
+      "correctAnswer": "C",
+      "explanation": "貸借平均の原理とは、複式簿記において借方（左側）の合計金額と貸方（右側）の合計金額が常に一致するという原理です。これにより記録の正確性を確認できます。",
+      "tags": ["複式簿記", "貸借平均の原理"]
+    }
+  ]
+}

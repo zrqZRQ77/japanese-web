@@ -1,0 +1,87 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch9",
+  "chapterTitle": "固定資産",
+  "cards": [
+    {
+      "id": "boki3-ch9-card1",
+      "examId": "boki3",
+      "chapterId": "ch9",
+      "front": "固定資産を取得した際、購入代金に加算しなければならない追加費用を何という？",
+      "back": "付随費用（ふずいひよう）",
+      "tags": [
+        "取得原価"
+      ]
+    },
+    {
+      "id": "boki3-ch9-card2",
+      "examId": "boki3",
+      "chapterId": "ch9",
+      "front": "固定資産の取得原価を求める計算式は？",
+      "back": "取得原価 ＝ 購入対価 ＋ 付随費用",
+      "tags": [
+        "取得原価"
+      ]
+    },
+    {
+      "id": "boki3-ch9-card3",
+      "examId": "boki3",
+      "chapterId": "ch9",
+      "front": "固定資産のうち、使用しても価値が減少しないため減価償却を行わない代表的な科目は？",
+      "back": "土地（とち）",
+      "tags": [
+        "対象外"
+      ]
+    },
+    {
+      "id": "boki3-ch9-card4",
+      "examId": "boki3",
+      "chapterId": "ch9",
+      "front": "定額法による1年間の減価償却費の計算式は？",
+      "back": "減価償却費 ＝ （取得原価 － 残存価額） ÷ 耐用年数",
+      "tags": [
+        "定額法"
+      ]
+    },
+    {
+      "id": "boki3-ch9-card5",
+      "examId": "boki3",
+      "chapterId": "ch9",
+      "front": "間接法において、固定資産の価値のマイナス分を蓄積していく勘定科目は？",
+      "back": "減価償却累計額（げんかしょうきゃくるいけいがく）【資産のマイナス（評価勘定）】",
+      "tags": [
+        "間接法"
+      ]
+    },
+    {
+      "id": "boki3-ch9-card6",
+      "examId": "boki3",
+      "chapterId": "ch9",
+      "front": "固定資産の現在の価値を表す「帳簿価額（簿価）」の計算式は？",
+      "back": "帳簿価額 ＝ 取得原価 － 減価償却累計額",
+      "tags": [
+        "帳簿価額"
+      ]
+    },
+    {
+      "id": "boki3-ch9-card7",
+      "examId": "boki3",
+      "chapterId": "ch9",
+      "front": "固定資産を帳簿価額より低い価格で売却した際に発生する費用科目は？",
+      "back": "固定資産売却損（こていしさんばいきゃくそん）【費用】",
+      "tags": [
+        "売却損"
+      ]
+    },
+    {
+      "id": "boki3-ch9-card8",
+      "examId": "boki3",
+      "chapterId": "ch9",
+      "front": "固定資産を帳簿価額より高い価格で売却した際に発生する収益科目は？",
+      "back": "固定資産売却益（こていしさんばいきゃくえき）【収益】",
+      "tags": [
+        "売却益"
+      ]
+    }
+  ]
+}

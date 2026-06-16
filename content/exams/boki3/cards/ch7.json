@@ -1,0 +1,77 @@
+{
+  "examId": "boki3",
+  "chapterId": "ch7",
+  "chapterTitle": "手形",
+  "cards": [
+    {
+      "id": "boki3-ch7-card1",
+      "examId": "boki3",
+      "chapterId": "ch7",
+      "front": "約束手形を作成して相手に渡した（振り出した）ときに使用する勘定科目は？",
+      "back": "支払手形【負債】",
+      "tags": [
+        "約束手形"
+      ]
+    },
+    {
+      "id": "boki3-ch7-card2",
+      "examId": "boki3",
+      "chapterId": "ch7",
+      "front": "相手が振り出した約束手形を受け取ったときに使用する勘定科目は？",
+      "back": "受取手形【資産】",
+      "tags": [
+        "約束手形"
+      ]
+    },
+    {
+      "id": "boki3-ch7-card3",
+      "examId": "boki3",
+      "chapterId": "ch7",
+      "front": "インターネット上の記録原簿に登録されることで発生する、新しい金銭債権の受け取る権利の勘定科目は？",
+      "back": "電子記録債権【資産】",
+      "tags": [
+        "電子記録債権"
+      ]
+    },
+    {
+      "id": "boki3-ch7-card4",
+      "examId": "boki3",
+      "chapterId": "ch7",
+      "front": "インターネット上の記録原簿に登録されることで発生する、支払う義務の勘定科目は？",
+      "back": "電子記録債務【負債】",
+      "tags": [
+        "電子記録債務"
+      ]
+    },
+    {
+      "id": "boki3-ch7-card5",
+      "examId": "boki3",
+      "chapterId": "ch7",
+      "front": "自分が持っている受取手形を、買掛金の支払いなどのために他人に譲り渡すことを何という？",
+      "back": "手形の裏書譲渡（うらがきじょうと）",
+      "tags": [
+        "裏書譲渡"
+      ]
+    },
+    {
+      "id": "boki3-ch7-card6",
+      "examId": "boki3",
+      "chapterId": "ch7",
+      "front": "手形の支払期日が来る前に、銀行に買い取ってもらい換金することを何という？",
+      "back": "手形の割引（わりびき）",
+      "tags": [
+        "手形の割引"
+      ]
+    },
+    {
+      "id": "boki3-ch7-card7",
+      "examId": "boki3",
+      "chapterId": "ch7",
+      "front": "手形を銀行で割り引いた際に、銀行に支払う手数料（割引料）の勘定科目は？",
+      "back": "手形売却損（てがたばいきゃくそん）【費用】",
+      "tags": [
+        "手形売却損"
+      ]
+    }
+  ]
+}
