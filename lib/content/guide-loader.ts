@@ -17,7 +17,7 @@ export async function getGuideContent(examId: string, chapterId: string, section
   if (!fs.existsSync(filePath)) return null
   const raw = fs.readFileSync(filePath, 'utf-8')
   const { data, content } = matter(raw)
-  const processed = await remark().use(remarkGfm).use(remarkHtml).process(content)
+  const processed = await remark().use(remarkGfm).use(remarkHtml, { sanitize: false }).process(content)
   return {
     frontmatter: data as GuideFrontmatter,
     content,
