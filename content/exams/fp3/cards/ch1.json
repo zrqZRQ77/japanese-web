@@ -1,0 +1,17 @@
+{
+  "examId": "fp3",
+  "chapterId": "ch1",
+  "chapterTitle": "ライフプランニングと資金計画",
+  "cards": [
+    {
+      "id": "fp3-ch1-card1",
+      "examId": "fp3",
+      "chapterId": "ch1",
+      "front": "労災保険の保険料は誰が負担するか？",
+      "back": "事業主が全額負担する。",
+      "tags": [
+        "社会保険"
+      ]
+    }
+  ]
+}

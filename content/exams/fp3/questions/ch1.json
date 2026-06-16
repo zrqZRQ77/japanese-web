@@ -1,0 +1,33 @@
+{
+  "examId": "fp3",
+  "chapterId": "ch1",
+  "chapterTitle": "ライフプランニングと資金計画",
+  "questions": [
+    {
+      "id": "fp3-ch1-q1",
+      "examId": "fp3",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "FP資格のみを持つ者が、無償で顧客の個別具体的な確定申告書を作成した。税理士法に抵触するか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "抵触する"
+        },
+        {
+          "label": "B",
+          "text": "無償なら抵触しない"
+        },
+        {
+          "label": "C",
+          "text": "時期による"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "有償無償を問わず、具体的な税務業務は税理士の独占業務です。",
+      "tags": [
+        "関連法規"
+      ]
+    }
+  ]
+}
