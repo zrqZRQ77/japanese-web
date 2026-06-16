@@ -4,17 +4,9 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
-import ExamSidebar from '@/components/layout/ExamSidebar'
 import GuideSidebar from '@/components/layout/GuideSidebar'
 import { getExamById } from '@/lib/types/exams-registry'
 import { getChaptersByExam } from '@/lib/types/chapters-registry'
-
-const STATUS_MAP: Record<string, { label: string; color: string; bg: string; border: string }> = {
-  ch1: { label: '✓ 完了', color: 'var(--color-success)', bg: '#f0fdf4', border: '#86efac' },
-  ch2: { label: '✓ 完了', color: 'var(--color-success)', bg: '#f0fdf4', border: '#86efac' },
-  ch3: { label: '✓ 完了', color: 'var(--color-success)', bg: '#f0fdf4', border: '#86efac' },
-  ch4: { label: '学習中', color: 'var(--color-warning)', bg: '#fffbeb', border: '#fcd34d' },
-}
 
 export default async function GuideIndexPage({ params }: { params: Promise<{ examId: string }> }) {
   const { examId } = await params
@@ -27,72 +19,88 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
     <>
       <Navbar />
       <div style={{ display: 'flex', height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
-        <ExamSidebar exam={exam} />
-        <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-          <GuideSidebar examId={examId} chapters={chapters} currentChapterId="" progress={25} />
+        <GuideSidebar examId={examId} chapters={chapters} currentChapterId="" progress={0} />
 
-          <main style={{ flex: 1, overflowY: 'auto', padding: '36px 40px', background: '#fff' }}>
-            <h1 style={{ fontSize: '1.5rem', fontWeight: 900, marginBottom: 6 }}>
-              {exam.shortName} 学習ガイド
-            </h1>
-            <p style={{ color: 'var(--color-text-secondary)', marginBottom: 32, fontSize: '0.9rem' }}>
-              各章の解説を読んで、基礎から理解を深めましょう。
-            </p>
+        {/* 欢迎/导读页面 */}
+        <main style={{
+          flex: 1, overflowY: 'auto',
+          background: 'var(--color-bg-subtle)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <div style={{ maxWidth: 560, width: '100%', padding: '0 24px' }}>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {chapters.map(ch => {
-                const st = STATUS_MAP[ch.id]
-                return (
-                  <Link key={ch.id} href={`${base}/guide/${ch.id}`}
-                    style={{ textDecoration: 'none' }}>
-                    <div style={{
-                      border: `1px solid ${st ? st.border : 'var(--color-border)'}`,
-                      background: st ? st.bg : 'var(--color-bg-subtle)',
-                      borderRadius: 'var(--radius-md)',
-                      padding: '18px 22px',
-                      display: 'flex', alignItems: 'center',
-                      justifyContent: 'space-between', gap: 16,
-                      cursor: 'pointer',
-                    }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                        <div style={{
-                          width: 40, height: 40, borderRadius: '50%',
-                          background: st ? st.color : 'var(--color-border)',
-                          color: '#fff', display: 'flex',
-                          alignItems: 'center', justifyContent: 'center',
-                          fontWeight: 900, fontSize: '0.875rem', flexShrink: 0,
-                          opacity: st ? 1 : 0.4,
-                        }}>{ch.number}</div>
-                        <div>
-                          <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: 2 }}>
-                            第{ch.number}章 {ch.title}
-                          </div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>
-                            {ch.sections.length}セクション
-                          </div>
-                        </div>
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                        {st && (
-                          <span style={{
-                            fontSize: '0.8rem', fontWeight: 700,
-                            color: st.color,
-                          }}>{st.label}</span>
-                        )}
-                        {!st && (
-                          <span style={{
-                            fontSize: '0.8rem', color: 'var(--color-text-muted)',
-                          }}>未学習</span>
-                        )}
-                        <span style={{ color: 'var(--color-text-muted)', fontSize: '1rem' }}>›</span>
-                      </div>
-                    </div>
-                  </Link>
-                )
-              })}
+            {/* アイコン＋タイトル */}
+            <div style={{ textAlign: 'center', marginBottom: 40 }}>
+              <div style={{ fontSize: '3.5rem', marginBottom: 16 }}>📖</div>
+              <h1 style={{
+                fontSize: '1.75rem', fontWeight: 900,
+                color: 'var(--color-text)', marginBottom: 10,
+              }}>
+                {exam.shortName} 学習ガイド
+              </h1>
+              <p style={{
+                fontSize: '1rem', color: 'var(--color-text-secondary)',
+                lineHeight: 1.7,
+              }}>
+                全{chapters.length}章構成で、基礎から体系的に学べます。<br />
+                左のメニューから章を選んで学習を始めましょう。
+              </p>
             </div>
-          </main>
-        </div>
+
+            {/* 統計カード */}
+            <div style={{
+              display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 16, marginBottom: 40,
+            }}>
+              {[
+                { label: '総章数', value: `${chapters.length}章` },
+                { label: '総セクション', value: `${chapters.reduce((s, c) => s + c.sections.length, 0)}節` },
+                { label: '学習状況', value: '準備中' },
+              ].map(item => (
+                <div key={item.label} style={{
+                  background: '#fff',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--radius-md)',
+                  padding: '20px 16px',
+                  textAlign: 'center',
+                  boxShadow: 'var(--shadow-card)',
+                }}>
+                  <div style={{
+                    fontSize: '1.5rem', fontWeight: 900,
+                    color: 'var(--color-primary)', marginBottom: 4,
+                  }}>{item.value}</div>
+                  <div style={{
+                    fontSize: '0.78rem', color: 'var(--color-text-muted)',
+                    fontWeight: 600,
+                  }}>{item.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* 最初の章へボタン */}
+            {chapters[0] && (
+              <div style={{ textAlign: 'center' }}>
+                <Link href={`${base}/guide/${chapters[0].id}`} style={{
+                  display: 'inline-block',
+                  padding: '14px 40px',
+                  background: 'var(--color-primary)',
+                  color: '#fff',
+                  borderRadius: 'var(--radius-sm)',
+                  fontWeight: 700, fontSize: '1rem',
+                  textDecoration: 'none',
+                }}>
+                  第1章から始める →
+                </Link>
+                <div style={{
+                  marginTop: 12,
+                  fontSize: '0.8rem', color: 'var(--color-text-muted)',
+                }}>
+                  または左のメニューから任意の章を選択
+                </div>
+              </div>
+            )}
+          </div>
+        </main>
       </div>
     </>
   )
