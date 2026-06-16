@@ -6,13 +6,13 @@
 @import "tailwindcss";
 
 :root {
-  /* --- ブランドカラー --- */
-  --color-primary: #1a56db;        /* メインブルー（ナビ、ボタン） */
-  --color-primary-dark: #1e40af;   /* ホバー時 */
+  /* --- ブランドカラー（open-exam-prep風 深蓝极简） --- */
+  --color-primary: #2563eb;        /* メインブルー */
+  --color-primary-dark: #1d4ed8;   /* ホバー時 */
   --color-primary-light: #eff6ff;  /* 背景ハイライト */
 
-  --color-accent: #f97316;         /* オレンジアクセント（CTA） */
-  --color-accent-dark: #ea580c;
+  --color-accent: #2563eb;         /* CTA（主色と統一） */
+  --color-accent-dark: #1d4ed8;
 
   --color-success: #16a34a;        /* 正解・完了 */
   --color-error: #dc2626;          /* 不正解 */
@@ -20,22 +20,22 @@
 
   /* --- ニュートラル --- */
   --color-bg: #ffffff;
-  --color-bg-subtle: #f9fafb;
-  --color-bg-muted: #f3f4f6;
-  --color-border: #e5e7eb;
-  --color-border-strong: #d1d5db;
-  --color-text: #111827;
-  --color-text-secondary: #6b7280;
-  --color-text-muted: #9ca3af;
+  --color-bg-subtle: #f8fafc;
+  --color-bg-muted: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-text: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
 
   /* --- ダークヒーロー背景（ホームページ） --- */
   --color-hero-bg: #0f172a;
   --color-hero-text: #f8fafc;
 
   /* --- レイアウト --- */
-  --sidebar-width: 280px;          /* 簿記3級主页左侧导航宽度 */
-  --guide-sidebar-width: 200px;    /* 学習ガイド左侧章节目录宽度 */
-  --content-max-width: 1200px;     /* 全站最大宽度 */
+  --sidebar-width: 280px;
+  --guide-sidebar-width: 200px;
+  --content-max-width: 1200px;
 
   /* --- タイポグラフィ --- */
   --font-sans: 'Noto Sans JP', system-ui, sans-serif;
@@ -46,20 +46,8 @@
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-xl: 20px;
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-elevated: 0 4px 16px rgba(0,0,0,0.10);
-}
-
-/* --- ダークモード（将来対応） --- */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0f172a;
-    --color-bg-subtle: #1e293b;
-    --color-bg-muted: #334155;
-    --color-border: #334155;
-    --color-text: #f1f5f9;
-    --color-text-secondary: #94a3b8;
-  }
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-elevated: 0 4px 16px rgba(0,0,0,0.08);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -81,7 +69,7 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; }
   font-weight: 700;
   margin: 2rem 0 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-primary-light);
+  border-bottom: 2px solid var(--color-border);
   color: var(--color-text);
 }
 
@@ -102,9 +90,38 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; }
   color: var(--color-text);
 }
 
+/* 加粗：黄色背景ハイライト */
 .mdx-content strong {
   font-weight: 700;
+  background: #fef9c3;
+  color: #854d0e;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+/* テーブル */
+.mdx-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+  font-size: 0.9rem;
+}
+.mdx-content th,
+.mdx-content td {
+  border: 1px solid var(--color-border);
+  padding: 10px 14px;
+  text-align: left;
+}
+.mdx-content th {
+  background: var(--color-bg-subtle);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* リンク */
+.mdx-content a {
   color: var(--color-primary);
+  text-decoration: underline;
 }
 
 /* --- 進捗バー --- */
@@ -127,39 +144,18 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; }
 ::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 99px; }
 
 /* ============================================================
-   レスポンシブ対応 — モバイル・タブレット・デスクトップ
+   レスポンシブ対応
    ============================================================ */
 
-/* コンテナのパディング調整 */
 @media (max-width: 640px) {
-  .container-page {
-    padding: 0 16px;
-  }
+  .container-page { padding: 0 16px; }
 }
 
-/* 試験ページの2カラムレイアウト → モバイルで縦並び */
 @media (max-width: 768px) {
-  /* ExamSidebar を非表示にしてトップバーに変換 */
-  .exam-sidebar {
-    display: none !important;
-  }
-
-  /* ガイドサイドバーも非表示 */
-  .guide-sidebar {
-    display: none !important;
-  }
-
-  /* メインコンテンツをフル幅に */
-  .exam-main {
-    padding: 20px 16px !important;
-  }
-
-  /* 練習問題の右パネルを非表示 */
-  .question-right-panel {
-    display: none !important;
-  }
-
-  /* 練習問題の左パネルをコンパクトに */
+  .exam-sidebar { display: none !important; }
+  .guide-sidebar { display: none !important; }
+  .exam-main { padding: 20px 16px !important; }
+  .question-right-panel { display: none !important; }
   .question-left-panel {
     width: 100% !important;
     height: auto !important;
@@ -175,7 +171,6 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; }
   }
 }
 
-/* タブレット調整 */
 @media (max-width: 1024px) and (min-width: 769px) {
   :root {
     --sidebar-width: 220px;
@@ -183,42 +178,10 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; }
   }
 }
 
-/* タッチデバイス向け：タップターゲットを大きく */
 @media (hover: none) {
   a, button {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
   }
-}
-
-/* ガイドコンテンツ内のMarkdownスタイル */
-.mdx-content table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 16px 0;
-  font-size: 0.9rem;
-}
-.mdx-content th,
-.mdx-content td {
-  border: 1px solid var(--color-border);
-  padding: 10px 14px;
-  text-align: left;
-}
-.mdx-content th {
-  background: var(--color-bg-subtle);
-  font-weight: 700;
-}
-.mdx-content strong {
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.mdx-content a {
-  color: var(--color-primary);
-  text-decoration: underline;
-}
-.mdx-content strong {
-  font-weight: 700;
-  color: var(--color-accent);
 }
