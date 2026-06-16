@@ -14,12 +14,13 @@ export async function getGuideContent(examId: string, chapterId: string, section
   const filePath = path.join(CONTENT_ROOT, examId, 'guide', chapterId, `${sectionId}.mdx`)
   if (!fs.existsSync(filePath)) return null
   const raw = fs.readFileSync(filePath, 'utf-8')
-  const { data, content } = matter(raw)
+  const { data, content: rawContent } = matter(raw)
+  const content = rawContent.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   const processed = await unified()
     .use(remarkParse)
     .use(remarkGfm)
-    .use(remarkRehype)
-    .use(rehypeStringify)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content)
   return {
     frontmatter: data as GuideFrontmatter,
