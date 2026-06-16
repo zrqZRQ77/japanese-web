@@ -1,7 +1,3 @@
-// ============================================================
-// 練習問題ページ  /exams/[examId]/questions/[chapterId]
-// JSONファイルから問題を動的に読み込んでレンダリング
-// ============================================================
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import QuestionClient from '@/components/features/questions/QuestionClient'
@@ -15,16 +11,12 @@ interface Props {
 
 export default async function QuestionsPage({ params }: Props) {
   const { examId, chapterId } = await params
-
   const exam = getExamById(examId)
   if (!exam) notFound()
-
   const chapter = getChapterById(examId, chapterId)
   if (!chapter) notFound()
-
   const questionSet = getQuestionSet(examId, chapterId)
 
-  // 問題が存在しない場合のフォールバック
   if (!questionSet || questionSet.questions.length === 0) {
     return (
       <>
@@ -36,12 +28,8 @@ export default async function QuestionsPage({ params }: Props) {
           background: 'var(--color-bg-subtle)', gap: 12,
         }}>
           <div style={{ fontSize: '3rem' }}>✏️</div>
-          <div style={{ fontWeight: 700, fontSize: '1.1rem' }}>
-            第{chapter.number}章 {chapter.title}
-          </div>
-          <div style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
-            この章の練習問題は準備中です。
-          </div>
+          <div style={{ fontWeight: 700, fontSize: '1.1rem' }}>第{chapter.number}章 {chapter.title}</div>
+          <div style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>この章の練習問題は準備中です。</div>
         </main>
       </>
     )

@@ -1,6 +1,3 @@
-// ============================================================
-// 学習ガイド 左サイドバー（章節目次）
-// ============================================================
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
@@ -29,7 +26,6 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
       display: 'flex',
       flexDirection: 'column',
     }}>
-      {/* ヘッダー */}
       <div style={{ padding: '16px 14px 0' }}>
         <Link href={`/exams/${examId}`} style={{
           fontSize: '0.75rem', color: 'var(--color-text-muted)',
@@ -41,20 +37,15 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
           fontWeight: 800, fontSize: '0.9rem',
           marginBottom: 14, color: 'var(--color-text)',
           lineHeight: 1.4,
-        }}>
-          学習ガイド
-        </div>
+        }}>学習ガイド</div>
       </div>
 
-      {/* 章節リスト */}
       <nav style={{ padding: '0 8px 20px', flex: 1 }}>
         {chapters.map(ch => {
           const isCurrentChapter = ch.id === currentChapterId
           const isExpanded = expanded === ch.id
-
           return (
             <div key={ch.id} style={{ marginBottom: 1 }}>
-              {/* 章タイトル */}
               <button
                 onClick={() => setExpanded(isExpanded ? '' : ch.id)}
                 style={{
@@ -74,15 +65,10 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
                 <span style={{ flex: 1 }}>第{ch.number}章 {ch.title}</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2.5"
-                  style={{
-                    transform: isExpanded ? 'rotate(180deg)' : 'none',
-                    transition: '0.2s', flexShrink: 0, marginTop: 2,
-                  }}>
+                  style={{ transform: isExpanded ? 'rotate(180deg)' : 'none', transition: '0.2s', flexShrink: 0, marginTop: 2 }}>
                   <path d="M6 9l6 6 6-6" />
                 </svg>
               </button>
-
-              {/* セクションリスト */}
               {isExpanded && (
                 <div style={{ paddingLeft: 8, marginBottom: 4 }}>
                   {ch.sections.map(sec => {
@@ -91,33 +77,17 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
                       <Link key={sec.id}
                         href={`${base}/${ch.id}?section=${sec.id}`}
                         style={{
-                          display: 'block',
-                          padding: '6px 10px',
+                          display: 'block', padding: '6px 10px',
                           borderRadius: 'var(--radius-sm)',
                           fontSize: '0.78rem',
                           color: isActiveSection ? 'var(--color-primary)' : 'var(--color-text-secondary)',
                           textDecoration: 'none',
                           borderLeft: `2px solid ${isActiveSection ? 'var(--color-primary)' : 'var(--color-border)'}`,
-                          marginLeft: 8,
-                          marginBottom: 1,
+                          marginLeft: 8, marginBottom: 1,
                           background: isActiveSection ? 'var(--color-primary-light)' : 'transparent',
                           fontWeight: isActiveSection ? 600 : 400,
                         }}
-                        onMouseEnter={e => {
-                          if (!isActiveSection) {
-                            e.currentTarget.style.background = 'var(--color-bg-subtle)'
-                            e.currentTarget.style.color = 'var(--color-text)'
-                          }
-                        }}
-                        onMouseLeave={e => {
-                          if (!isActiveSection) {
-                            e.currentTarget.style.background = 'transparent'
-                            e.currentTarget.style.color = 'var(--color-text-secondary)'
-                          }
-                        }}
-                      >
-                        {sec.number} {sec.title}
-                      </Link>
+                      >{sec.number} {sec.title}</Link>
                     )
                   })}
                 </div>
