@@ -17,34 +17,34 @@ export default function ExamInfoSection({ exam }: Props) {
   const [booksOpen, setBooksOpen] = useState(false)
   const info = exam.info
   if (!info) return null
-
   return (
     <section style={{
-      background: '#fff',
-      border: '1px solid var(--color-border)',
-      borderRadius: 'var(--radius-lg)',
+      background: 'linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%)',
+      border: '1px solid rgba(20,24,40,0.06)',
+      borderRadius: '14px',
       overflow: 'hidden',
       marginBottom: 28,
+      boxShadow: '0 6px 18px rgba(15,23,42,0.06)'
     }}>
       {/* ヘッダー */}
       <div style={{
-        background: 'linear-gradient(135deg, #1e3a5f 0%, #1e40af 100%)',
-        padding: '22px 28px',
+        background: 'linear-gradient(90deg, #0b2447 0%, #12306b 50%, #1b4bd1 100%)',
+        padding: '28px 32px',
         color: '#fff',
       }}>
-        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#93c5fd', letterSpacing: '0.08em', marginBottom: 6 }}>
+        <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.08em', marginBottom: 8 }}>
           この試験について
         </div>
-        <div style={{ fontWeight: 900, fontSize: '1.25rem', marginBottom: 4 }}>{exam.name}</div>
-        <div style={{ fontSize: '0.9rem', color: '#cbd5e1' }}>{info.tagline}</div>
+        <div style={{ fontWeight: 800, fontSize: '1.45rem', marginBottom: 6 }}>{exam.name}</div>
+        <div style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.9)', opacity: 0.95 }}>{info.tagline}</div>
       </div>
 
       {/* 基本情報グリッド */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
         gap: 0,
-        borderBottom: '1px solid var(--color-border)',
+        borderBottom: '1px solid rgba(20,24,40,0.04)',
       }}>
         {[
           { label: '難易度', value: DIFF_STARS(info.difficulty), sub: info.difficultyLabel },
@@ -54,18 +54,21 @@ export default function ExamInfoSection({ exam }: Props) {
           { label: '試験形式', value: info.examFormat, sub: info.examTime },
         ].map((item, i) => (
           <div key={i} style={{
-            padding: '16px 20px',
-            borderRight: '1px solid var(--color-border)',
-            borderBottom: '1px solid var(--color-border)',
+            padding: '18px 22px',
+            borderRight: i !== 4 ? '1px solid rgba(20,24,40,0.04)' : 'none',
+            borderBottom: '1px solid rgba(20,24,40,0.04)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start'
           }}>
-            <div style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', fontWeight: 700, marginBottom: 4, letterSpacing: '0.04em' }}>
+            <div style={{ fontSize: '0.72rem', color: 'rgba(20,24,40,0.45)', fontWeight: 800, marginBottom: 8, letterSpacing: '0.06em' }}>
               {item.label}
             </div>
-            <div style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--color-text)', lineHeight: 1.3 }}>
+            <div style={{ fontWeight: 900, fontSize: '1.05rem', color: 'var(--color-text)', lineHeight: 1.2 }}>
               {item.value}
             </div>
             {item.sub && (
-              <div style={{ fontSize: '0.72rem', color: 'var(--color-text-secondary)', marginTop: 2 }}>{item.sub}</div>
+              <div style={{ fontSize: '0.72rem', color: 'rgba(20,24,40,0.5)', marginTop: 6 }}>{item.sub}</div>
             )}
           </div>
         ))}
@@ -75,13 +78,16 @@ export default function ExamInfoSection({ exam }: Props) {
             公式サイト
           </div>
           <a href={info.officialUrl} target="_blank" rel="noopener noreferrer" style={{
-            fontWeight: 700, fontSize: '0.85rem', color: 'var(--color-primary)',
-            textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4,
+            fontWeight: 700, fontSize: '0.9rem', color: '#0f62fe',
+            textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '6px 10px', borderRadius: 8, background: 'rgba(15,98,254,0.06)'
           }}>
-            公式ページを開く
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
-            </svg>
+            <span style={{display: 'inline-flex', alignItems: 'center', gap: 8}}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0f62fe" strokeWidth="1.8">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+              </svg>
+              公式ページを開く
+            </span>
           </a>
           <div style={{ fontSize: '0.72rem', color: 'var(--color-text-secondary)', marginTop: 2 }}>
             {info.registrationNote}
@@ -94,14 +100,15 @@ export default function ExamInfoSection({ exam }: Props) {
         <div style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--color-text)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
           🎯 合格後に得られること
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
           {info.valueAfterPass.map((v, i) => (
             <span key={i} style={{
-              display: 'inline-flex', alignItems: 'center', gap: 5,
-              background: 'var(--color-primary-light)',
-              color: 'var(--color-primary)',
-              fontSize: '0.78rem', fontWeight: 600,
-              padding: '5px 12px', borderRadius: 99,
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              background: '#f7fbff',
+              color: '#0369a1',
+              fontSize: '0.82rem', fontWeight: 700,
+              padding: '6px 14px', borderRadius: 999,
+              boxShadow: 'inset 0 -1px 0 rgba(2,6,23,0.02)'
             }}>
               ✓ {v}
             </span>
@@ -130,17 +137,18 @@ export default function ExamInfoSection({ exam }: Props) {
           </button>
           {booksOpen && (
             <div style={{ padding: '4px 24px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <p style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginBottom: 4 }}>
+              <p style={{ fontSize: '0.75rem', color: 'rgba(20,24,40,0.55)', marginBottom: 6 }}>
                 ※ 以下はAmazonアフィリエイトリンクです。購入価格は変わりません。
               </p>
               {info.books.map((book, i) => (
                 <a key={i} href={book.amazonUrl} target="_blank" rel="noopener noreferrer"
                   style={{
                     display: 'flex', gap: 12, padding: '12px 16px',
-                    background: 'var(--color-bg-subtle)',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-md)',
+                    background: '#fff',
+                    border: '1px solid rgba(20,24,40,0.04)',
+                    borderRadius: 12,
                     textDecoration: 'none', color: 'inherit',
+                    alignItems: 'center'
                   }}
                 >
                   <div style={{ fontSize: '1.5rem', flexShrink: 0 }}>📖</div>
@@ -156,7 +164,7 @@ export default function ExamInfoSection({ exam }: Props) {
                     <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginBottom: 3 }}>{book.author}</div>
                     <div style={{ fontSize: '0.78rem', color: 'var(--color-text-secondary)' }}>{book.note}</div>
                   </div>
-                  <div style={{ color: '#f59e0b', fontSize: '0.75rem', fontWeight: 700, flexShrink: 0, alignSelf: 'center' }}>
+                  <div style={{ color: '#f59e0b', fontSize: '0.85rem', fontWeight: 800, flexShrink: 0, alignSelf: 'center' }}>
                     Amazon →
                   </div>
                 </a>
