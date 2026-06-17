@@ -2,16 +2,16 @@
 // グローバルナビバー — レスポンシブ対応版
 // 修改此文件全站导航同步更新
 // ============================================================
-'use client'
+ 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import SearchModal from '@/components/features/search/SearchModal'
+import SiteLogo from '@/components/layout/SiteLogo'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [examMenuOpen, setExamMenuOpen] = useState(false)
   const [availableExams, setAvailableExams] = useState<typeof EXAMS_REGISTRY | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = usePathname()
@@ -54,112 +54,16 @@ export default function Navbar() {
           height: 60, gap: 4,
         }}>
           {/* ロゴ */}
-          <Link href="/" style={{
-            fontWeight: 900, fontSize: '1.15rem',
-            color: 'var(--color-text)', textDecoration: 'none',
-            marginRight: 24, whiteSpace: 'nowrap', flexShrink: 0,
-          }}>
-            資格合格<span style={{ color: 'var(--color-primary)' }}>ナビ</span>
-          </Link>
+          <div style={{ marginRight: 24, flexShrink: 0 }}>
+            <SiteLogo />
+          </div>
 
           {/* デスクトップメニュー */}
           <div className="nav-desktop" style={{
             display: 'flex', alignItems: 'center',
             gap: 2, flex: 1,
           }}>
-            {/* 試験を選ぶ ドロップダウン */}
-            <div style={{ position: 'relative' }}>
-              <button
-                onClick={() => setExamMenuOpen(v => !v)}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 4,
-                  padding: '7px 14px', borderRadius: 'var(--radius-sm)',
-                  background: examMenuOpen ? 'var(--color-bg-subtle)' : 'none',
-                  border: 'none', fontSize: '0.9rem', fontWeight: 600,
-                  color: isActive('/exams') ? 'var(--color-primary)' : 'var(--color-text)',
-                  cursor: 'pointer', whiteSpace: 'nowrap',
-                }}
-              >
-                試験を選ぶ
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2.5"
-                  style={{ transform: examMenuOpen ? 'rotate(180deg)' : 'none', transition: '0.2s' }}>
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-
-              {examMenuOpen && (
-                <>
-                  <div onClick={() => setExamMenuOpen(false)}
-                    style={{ position: 'fixed', inset: 0, zIndex: 10 }} />
-                  <div style={{
-                    position: 'absolute', top: 'calc(100% + 8px)', left: 0,
-                    background: '#fff',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-lg)',
-                    boxShadow: 'var(--shadow-elevated)',
-                    minWidth: 260, zIndex: 20, overflow: 'hidden',
-                    padding: '8px',
-                  }}>
-                    {/* 学習できる試験 */}
-                    <div style={{
-                      fontSize: '0.72rem', fontWeight: 700,
-                      color: 'var(--color-text-muted)',
-                      padding: '4px 10px 6px',
-                      letterSpacing: '0.06em',
-                    }}>学習できる試験</div>
-                    {(availableExams && availableExams.length ? availableExams : EXAMS_REGISTRY).map(exam => (
-                      <Link key={exam.id} href={`/exams/${exam.id}`}
-                        onClick={() => setExamMenuOpen(false)}
-                        style={{
-                          display: 'flex', alignItems: 'center',
-                          justifyContent: 'space-between',
-                          padding: '9px 10px',
-                          borderRadius: 'var(--radius-sm)',
-                          textDecoration: 'none',
-                          color: 'var(--color-text)',
-                        }}
-                        onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-bg-subtle)')}
-                        onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-                      >
-                        <div>
-                          <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>{exam.name}</div>
-                          <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginTop: 1 }}>
-                            {exam.category}
-                          </div>
-                        </div>
-                        <span style={{
-                          fontSize: '0.7rem', fontWeight: 700,
-                          color: 'var(--color-success)',
-                          background: '#f0fdf4',
-                          padding: '2px 7px', borderRadius: 99,
-                        }}>無料</span>
-                      </Link>
-                    ))}
-                    {/* すべて見る */}
-                    <div style={{
-                      borderTop: '1px solid var(--color-border)',
-                      marginTop: 6, paddingTop: 6,
-                    }}>
-                      <Link href="/exams"
-                        onClick={() => setExamMenuOpen(false)}
-                        style={{
-                          display: 'block', padding: '8px 10px',
-                          borderRadius: 'var(--radius-sm)',
-                          textDecoration: 'none',
-                          fontSize: '0.85rem', fontWeight: 600,
-                          color: 'var(--color-primary)',
-                        }}
-                        onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-primary-light)')}
-                        onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-                      >
-                        すべての試験を見る →
-                      </Link>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
+            {/* removed top '試験を選ぶ' dropdown per request */}
 
             <div style={{ flex: 1 }} />
 

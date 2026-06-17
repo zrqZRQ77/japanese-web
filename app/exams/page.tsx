@@ -8,9 +8,6 @@ import HoverCard from '@/components/ui/HoverCard'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { getAvailableExams } from '@/lib/content/exams-loader'
 
-const COMING_SOON = [
-  { name: '社会保険労務士', category: '労務', desc: '労働・社会保険の専門家。' },
-]
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {
   '会計・経理': { bg: '#eff6ff', text: '#1d4ed8' },
@@ -138,55 +135,7 @@ export default function ExamsPage() {
             })}
           </div>
 
-          {/* 近日公開 */}
-          <h2 style={{
-            fontSize: '1.1rem', fontWeight: 800,
-            marginBottom: 6, color: 'var(--color-text)',
-          }}>近日公開予定</h2>
-          <p style={{
-            fontSize: '0.875rem', color: 'var(--color-text-secondary)',
-            marginBottom: 20,
-          }}>準備中の試験です。公開をお待ちください。</p>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-            gap: 14,
-          }}>
-            {COMING_SOON.map(item => {
-              const cat = CATEGORY_COLORS[item.category] ?? { bg: '#f3f4f6', text: '#374151' }
-              return (
-                <div key={item.name} style={{
-                  background: '#fff',
-                  border: '1px dashed var(--color-border-strong)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '20px 22px',
-                  opacity: 0.65,
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
-                    <span style={{
-                      display: 'inline-block',
-                      background: cat.bg, color: cat.text,
-                      fontSize: '0.72rem', fontWeight: 700,
-                      padding: '3px 8px', borderRadius: 99,
-                    }}>{item.category}</span>
-                    <span style={{
-                      fontSize: '0.72rem', fontWeight: 600,
-                      color: 'var(--color-text-muted)',
-                      background: 'var(--color-bg-muted)',
-                      padding: '3px 8px', borderRadius: 99,
-                    }}>近日公開</span>
-                  </div>
-                  <div style={{ fontWeight: 800, fontSize: '1rem', marginBottom: 6, color: 'var(--color-text-secondary)' }}>
-                    {item.name}
-                  </div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>
-                    {item.desc}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          {/* removed '近日公開予定' section per request */}
         </div>
       </main>
     </>

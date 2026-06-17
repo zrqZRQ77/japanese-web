@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
+import SiteLogo from '@/components/layout/SiteLogo'
 import HoverCard from '@/components/ui/HoverCard'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { getAvailableExams } from '@/lib/content/exams-loader'
@@ -207,9 +208,9 @@ export default function HomePage() {
           textAlign: 'center', fontSize: '0.875rem',
         }}>
           <div className="container-page">
-            <div style={{ fontWeight: 900, fontSize: '1.1rem', color: '#fff', marginBottom: 8 }}>
-              資格合格<span style={{ color: '#60a5fa' }}>ナビ</span>
-            </div>
+              <div style={{ marginBottom: 8 }}>
+                <SiteLogo />
+              </div>
             <p>© 2026 資格合格ナビ. All rights reserved.</p>
           </div>
         </footer>
