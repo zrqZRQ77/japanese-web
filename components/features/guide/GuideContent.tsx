@@ -26,12 +26,15 @@ export default function GuideContent({
       flex: 1, overflowY: 'auto',
       background: '#fff',
       display: 'flex', flexDirection: 'column',
+      alignItems: 'center',
     }}>
       {/* トップバー：ブックマーク・お気に入り・共有 */}
       <div style={{
         display: 'flex', alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '14px 32px',
+        width: '100%',
+        maxWidth: 1120,
+        padding: '14px clamp(20px, 3vw, 32px)',
         borderBottom: '1px solid var(--color-border)',
         background: '#fff',
         position: 'sticky', top: 0, zIndex: 10,
@@ -60,7 +63,16 @@ export default function GuideContent({
       </div>
 
       {/* 本文 */}
-      <div style={{ flex: 1, padding: '36px 40px', maxWidth: 860 }}>
+      <div style={{
+        flex: 1,
+        width: '100%',
+        maxWidth: 1120,
+        padding: '32px clamp(20px, 3vw, 32px) 28px',
+      }}>
+        <div style={{
+          maxWidth: 760,
+          margin: '0 auto',
+        }}>
         {/* 小節ナビ */}
         <div style={{
           display: 'flex',
@@ -193,12 +205,15 @@ export default function GuideContent({
             fontSize: '0.875rem', textDecoration: 'none', whiteSpace: 'nowrap',
           }}>練習問題を解く →</Link>
         </div>
+        </div>
       </div>
 
       {/* 前へ / 次へ ナビゲーション */}
       <div style={{
         display: 'flex', justifyContent: 'space-between',
-        padding: '20px 40px',
+        width: '100%',
+        maxWidth: 1120,
+        padding: '20px clamp(20px, 3vw, 32px)',
         borderTop: '1px solid var(--color-border)',
         background: 'var(--color-bg-subtle)',
         gap: 12, flexWrap: 'wrap',

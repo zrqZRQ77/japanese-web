@@ -4,7 +4,6 @@
 // ============================================================
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
-import ExamSidebar from '@/components/layout/ExamSidebar'
 import GuideSidebar from '@/components/layout/GuideSidebar'
 import GuideContent from '@/components/features/guide/GuideContent'
 import { getExamById } from '@/lib/types/exams-registry'
@@ -47,7 +46,6 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
     <>
       <Navbar />
       <div style={{ display: 'flex', height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
-        <ExamSidebar exam={exam} />
         <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
           <GuideSidebar
             examId={examId}
