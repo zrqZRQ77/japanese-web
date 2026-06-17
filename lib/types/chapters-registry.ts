@@ -69,13 +69,36 @@ export const CHAPTERS_REGISTRY: Record<string, ChapterMeta[]> = {
       { id: 'ch13-s3', number: '13-3', title: '財務諸表のまとめ' },
     ]},
   ],
+
   fp3: [
     { id: 'ch1', number: 1, title: 'ライフプランニングと資金計画', sections: [
-      { id: 'ch1-s1', number: '1-1', title: 'FPとは' },
-      { id: 'ch1-s2', number: '1-2', title: 'ライフプランニング' },
+      { id: 'ch1-s1', number: '1-1', title: 'FPの基礎と関連法規' },
+      { id: 'ch1-s2', number: '1-2', title: 'ライフプランニングの手法' },
+      { id: 'ch1-s3', number: '1-3', title: '社会保険の基礎' },
+      { id: 'ch1-s4', number: '1-4', title: '公的年金' },
+      { id: 'ch1-s5', number: '1-5', title: '企業年金と個人年金' },
+      { id: 'ch1-s6', number: '1-6', title: '資金計画（住宅ローン）' },
     ]},
-    { id: 'ch2', number: 2, title: 'リスク管理', sections: [
-      { id: 'ch2-s1', number: '2-1', title: '保険の基礎知識' },
+  ],
+
+  itp: [
+    { id: 'ch1', number: 1, title: 'ITの基礎と論理', sections: [
+      { id: 'ch1-s1', number: '1-1', title: 'コンピュータの構成とソフトウェア' },
+    ]},
+    { id: 'ch2', number: 2, title: 'ネットワークとデータ', sections: [
+      { id: 'ch2-s1', number: '2-1', title: 'ネットワーク・DB・情報デザイン' },
+    ]},
+    { id: 'ch3', number: 3, title: '情報セキュリティ', sections: [
+      { id: 'ch3-s1', number: '3-1', title: 'セキュリティの脅威と暗号化技術' },
+    ]},
+    { id: 'ch4', number: 4, title: 'システムの開発と管理', sections: [
+      { id: 'ch4-s1', number: '4-1', title: '開発プロセス・プロジェクト・サービス管理' },
+    ]},
+    { id: 'ch5', number: 5, title: 'ITと企業商業戦略', sections: [
+      { id: 'ch5-s1', number: '5-1', title: '企業活動・経営戦略・システム企画' },
+    ]},
+    { id: 'ch6', number: 6, title: '法務とコンプライアンス', sections: [
+      { id: 'ch6-s1', number: '6-1', title: '知的財産権・セキュリティ法規・労働法' },
     ]},
   ],
 }

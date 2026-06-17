@@ -226,7 +226,7 @@ export default function HomePage() {
             <div style={{ fontWeight: 900, fontSize: '1.1rem', color: '#fff', marginBottom: 8 }}>
               資格合格<span style={{ color: '#60a5fa' }}>ナビ</span>
             </div>
-            <p>© 2025 資格合格ナビ. All rights reserved.</p>
+            <p>© 2026 資格合格ナビ. All rights reserved.</p>
           </div>
         </footer>
       </main>
