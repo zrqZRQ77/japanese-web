@@ -47,7 +47,6 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
       <Navbar />
       <div style={{
         display: 'flex',
-        justifyContent: 'center',
         height: 'calc(100vh - 64px)',
         overflow: 'hidden',
         background: 'var(--color-bg-subtle)',
@@ -55,11 +54,9 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
         <div style={{
           display: 'flex',
           width: '100%',
-          maxWidth: 1440,
+          height: '100%',
           minWidth: 0,
           overflow: 'hidden',
-          background: '#fff',
-          boxShadow: 'var(--shadow-card)',
         }}>
           <GuideSidebar
             examId={examId}

@@ -24,19 +24,20 @@ export default function GuideContent({
   return (
     <article style={{
       flex: 1, overflowY: 'auto',
-      background: '#fff',
+      background: 'var(--color-bg-subtle)',
       display: 'flex', flexDirection: 'column',
       alignItems: 'center',
+      minWidth: 0,
     }}>
       {/* トップバー：ブックマーク・お気に入り・共有 */}
       <div style={{
         display: 'flex', alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%',
-        maxWidth: 1120,
-        padding: '14px clamp(20px, 3vw, 32px)',
+        maxWidth: 920,
+        padding: '18px 40px',
         borderBottom: '1px solid var(--color-border)',
-        background: '#fff',
+        background: 'var(--color-bg-subtle)',
         position: 'sticky', top: 0, zIndex: 10,
       }}>
         {/* パンくずリスト */}
@@ -66,8 +67,8 @@ export default function GuideContent({
       <div style={{
         flex: 1,
         width: '100%',
-        maxWidth: 1120,
-        padding: '32px clamp(20px, 3vw, 32px) 28px',
+        maxWidth: 920,
+        padding: '42px 40px 36px',
       }}>
         <div style={{
           maxWidth: 760,
@@ -145,7 +146,7 @@ export default function GuideContent({
                   textDecoration: 'none',
                   border: `1px solid ${active ? 'var(--color-primary)' : 'var(--color-border)'}`,
                   background: active ? 'var(--color-primary-light)' : '#fff',
-                  borderRadius: 'var(--radius-md)',
+                  borderRadius: 8,
                   padding: '12px 14px',
                 }}
               >
@@ -168,8 +169,8 @@ export default function GuideContent({
 
         {/* セクションタイトル */}
         <h1 style={{
-          fontSize: '1.6rem', fontWeight: 900,
-          marginBottom: 20, color: 'var(--color-text)',
+          fontSize: '2rem', fontWeight: 900,
+          marginBottom: 24, color: 'var(--color-text)',
           lineHeight: 1.3,
         }}>
           {frontmatter.sectionNumber} {frontmatter.sectionTitle}
@@ -184,11 +185,12 @@ export default function GuideContent({
         {/* 練習問題へのリンク */}
         <div style={{
           marginTop: 40, padding: '20px 24px',
-          background: 'var(--color-primary-light)',
-          borderRadius: 'var(--radius-md)',
-          border: '1px solid #bfdbfe',
+          background: '#fff',
+          borderRadius: 8,
+          border: '1px solid var(--color-border)',
           display: 'flex', alignItems: 'center',
           justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
+          boxShadow: 'var(--shadow-card)',
         }}>
           <div>
             <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: 4 }}>
@@ -212,8 +214,8 @@ export default function GuideContent({
       <div style={{
         display: 'flex', justifyContent: 'space-between',
         width: '100%',
-        maxWidth: 1120,
-        padding: '20px clamp(20px, 3vw, 32px)',
+        maxWidth: 920,
+        padding: '20px 40px',
         borderTop: '1px solid var(--color-border)',
         background: 'var(--color-bg-subtle)',
         gap: 12, flexWrap: 'wrap',

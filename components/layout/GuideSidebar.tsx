@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ChapterMeta } from '@/lib/types'
+import { getExamById } from '@/lib/types/exams-registry'
 
 interface Props {
   examId: string
@@ -14,6 +15,7 @@ interface Props {
 export default function GuideSidebar({ examId, chapters, currentChapterId, currentSectionId }: Props) {
   const [expanded, setExpanded] = useState<string>(currentChapterId)
   const base = `/exams/${examId}/guide`
+  const exam = getExamById(examId)
 
   return (
     <aside style={{
@@ -25,68 +27,108 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
       overflowY: 'auto',
       display: 'flex',
       flexDirection: 'column',
-      paddingBottom: 16,
+      paddingBottom: 24,
     }}>
-      <div style={{ padding: '20px 18px 0' }}>
+      <div style={{
+        padding: '28px 28px 24px',
+        borderBottom: '1px solid var(--color-border)',
+      }}>
         <Link href={`/exams/${examId}`} style={{
-          fontSize: '0.75rem', color: 'var(--color-text-muted)',
+          fontSize: '0.78rem', color: 'var(--color-text-muted)',
           textDecoration: 'none', fontWeight: 600,
           display: 'flex', alignItems: 'center', gap: 4,
-          marginBottom: 10,
+          marginBottom: 22,
         }}>← ダッシュボード</Link>
-        <div style={{
-          fontWeight: 800, fontSize: '0.9rem',
-          marginBottom: 14, color: 'var(--color-text)',
-          lineHeight: 1.4,
-        }}>学習ガイド</div>
+        <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
+          <div style={{
+            width: 52,
+            height: 52,
+            borderRadius: 10,
+            background: '#0f172a',
+            color: '#facc15',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '1.45rem',
+            flexShrink: 0,
+          }}>📖</div>
+          <div>
+            <div style={{
+              fontWeight: 900,
+              fontSize: '1.05rem',
+              color: 'var(--color-text)',
+              lineHeight: 1.35,
+            }}>{exam?.shortName ?? '学習ガイド'}</div>
+            <div style={{
+              color: 'var(--color-text-secondary)',
+              fontSize: '0.82rem',
+              marginTop: 4,
+              fontWeight: 600,
+            }}>学習ガイド</div>
+          </div>
+        </div>
       </div>
 
-      <nav style={{ padding: '0 10px 8px', flex: 1 }}>
+      <nav style={{ padding: '18px 0 8px', flex: 1 }}>
         {chapters.map(ch => {
           const isCurrentChapter = ch.id === currentChapterId
           const isExpanded = expanded === ch.id
           return (
-            <div key={ch.id} style={{ marginBottom: 1 }}>
-                  <button
+            <div key={ch.id} style={{ marginBottom: 2 }}>
+              <button
                 onClick={() => setExpanded(isExpanded ? '' : ch.id)}
                 style={{
                   width: '100%', textAlign: 'left',
-                  display: 'flex', alignItems: 'flex-start',
-                  justifyContent: 'space-between', gap: 6,
-                  padding: '10px 12px',
-                  borderRadius: 'var(--radius-sm)',
-                  background: isCurrentChapter ? 'var(--color-primary-light)' : 'transparent',
+                  display: 'grid',
+                  gridTemplateColumns: '28px 1fr 16px',
+                  alignItems: 'start',
+                  gap: 12,
+                  padding: '14px 28px',
+                  background: 'transparent',
                   border: 'none', cursor: 'pointer',
-                  fontWeight: isCurrentChapter ? 700 : 500,
-                  fontSize: '0.82rem',
-                  color: isCurrentChapter ? 'var(--color-primary)' : 'var(--color-text)',
+                  fontWeight: isCurrentChapter ? 800 : 700,
+                  fontSize: '0.92rem',
+                  color: 'var(--color-text)',
                   lineHeight: 1.4,
                 }}
               >
-                <span style={{ flex: 1 }}>第{ch.number}章 {ch.title}</span>
+                <span style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: 999,
+                  background: isCurrentChapter ? 'var(--color-primary)' : '#fef3c7',
+                  color: isCurrentChapter ? '#fff' : '#d97706',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.76rem',
+                  fontWeight: 800,
+                  marginTop: 1,
+                }}>{ch.number}</span>
+                <span>第{ch.number}章 {ch.title}</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2.5"
-                  style={{ transform: isExpanded ? 'rotate(180deg)' : 'none', transition: '0.2s', flexShrink: 0, marginTop: 2 }}>
+                  style={{ transform: isExpanded ? 'rotate(180deg)' : 'none', transition: '0.2s', marginTop: 5 }}>
                   <path d="M6 9l6 6 6-6" />
                 </svg>
               </button>
               {isExpanded && (
-                <div style={{ paddingLeft: 6, marginBottom: 6 }}>
+                <div style={{ marginBottom: 10 }}>
                   {ch.sections.map(sec => {
                     const isActiveSection = sec.id === currentSectionId
                     return (
                       <Link key={sec.id}
                         href={`${base}/${ch.id}?section=${sec.id}`}
                         style={{
-                          display: 'block', padding: '7px 10px',
-                          borderRadius: 'var(--radius-sm)',
-                          fontSize: '0.78rem',
-                          color: isActiveSection ? 'var(--color-primary)' : 'var(--color-text-secondary)',
+                          display: 'block',
+                          padding: '10px 28px 10px 68px',
+                          fontSize: '0.88rem',
+                          color: isActiveSection ? 'var(--color-text)' : 'var(--color-text-secondary)',
                           textDecoration: 'none',
-                          borderLeft: `2px solid ${isActiveSection ? 'var(--color-primary)' : 'var(--color-border)'}`,
-                          marginLeft: 8, marginBottom: 1,
-                          background: isActiveSection ? 'var(--color-primary-light)' : 'transparent',
-                          fontWeight: isActiveSection ? 600 : 400,
+                          borderLeft: `3px solid ${isActiveSection ? 'var(--color-primary)' : 'transparent'}`,
+                          background: isActiveSection ? 'var(--color-bg-subtle)' : 'transparent',
+                          fontWeight: isActiveSection ? 700 : 500,
+                          lineHeight: 1.45,
                         }}
                       >{sec.number} {sec.title}</Link>
                     )

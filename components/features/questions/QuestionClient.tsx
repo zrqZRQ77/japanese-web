@@ -115,27 +115,28 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
       overflow: 'hidden',
       height: '100%',
       width: '100%',
-      maxWidth: 1440,
-      margin: '0 auto',
-      boxShadow: 'var(--shadow-card)',
       background: '#fff',
     }}>
 
       {/* ===== 左：問題リスト ===== */}
       <div style={{
-        width: 240, flexShrink: 0,
+        width: 'var(--guide-sidebar-width)', flexShrink: 0,
         borderRight: '1px solid var(--color-border)',
         background: '#fff', overflowY: 'auto',
-        padding: '20px 14px',
+        padding: '28px 0 24px',
       }}>
-        <div style={{ marginBottom: 16 }}>
+        <div style={{
+          padding: '0 28px 24px',
+          borderBottom: '1px solid var(--color-border)',
+          marginBottom: 18,
+        }}>
           <Link href={`${base}`} style={{
-            fontSize: '0.75rem', color: 'var(--color-text-muted)',
+            fontSize: '0.78rem', color: 'var(--color-text-muted)',
             textDecoration: 'none', fontWeight: 600,
           }}>← ダッシュボード</Link>
           <div style={{
-            fontWeight: 700, fontSize: '0.875rem',
-            marginTop: 10, marginBottom: 8, color: 'var(--color-text)',
+            fontWeight: 900, fontSize: '1.05rem',
+            marginTop: 22, marginBottom: 12, color: 'var(--color-text)',
             lineHeight: 1.5,
           }}>{chapterTitle}</div>
           <div className="progress-bar">
@@ -143,8 +144,8 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
               style={{ width: `${(Object.keys(answered).length / questions.length) * 100}%` }} />
           </div>
           <div style={{
-            fontSize: '0.75rem', color: 'var(--color-text-muted)',
-            marginTop: 4,
+            fontSize: '0.78rem', color: 'var(--color-text-muted)',
+            marginTop: 8, fontWeight: 600,
           }}>{Object.keys(answered).length}/{questions.length}問</div>
         </div>
 
@@ -153,21 +154,21 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
           return (
             <button key={i} onClick={() => goTo(i)} style={{
               width: '100%', textAlign: 'left',
-              display: 'flex', alignItems: 'center', gap: 8,
-              padding: '9px 12px',
-              borderRadius: 'var(--radius-sm)',
+              display: 'flex', alignItems: 'center', gap: 12,
+              padding: '12px 28px',
               border: 'none',
-              background: i === current ? 'var(--color-primary-light)' : 'transparent',
+              borderLeft: `3px solid ${i === current ? 'var(--color-primary)' : 'transparent'}`,
+              background: i === current ? 'var(--color-bg-subtle)' : 'transparent',
               cursor: 'pointer', marginBottom: 2,
-              color: i === current ? 'var(--color-primary)' : 'var(--color-text)',
+              color: 'var(--color-text)',
               fontWeight: i === current ? 700 : 400,
-              fontSize: '0.875rem',
+              fontSize: '0.92rem',
             }}>
               <span style={{
-                width: 24, height: 24, borderRadius: '50%',
+                width: 26, height: 26, borderRadius: '50%',
                 background: dot.bg, color: '#fff',
                 display: 'flex', alignItems: 'center',
-                justifyContent: 'center', fontSize: '0.72rem',
+                justifyContent: 'center', fontSize: '0.75rem',
                 fontWeight: 700, flexShrink: 0,
               }}>{dot.label}</span>
               問題{i + 1}
@@ -180,13 +181,13 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
       <main style={{
         flex: 1, overflowY: 'auto',
         background: 'var(--color-bg-subtle)',
-        padding: '32px clamp(20px, 3vw, 40px)',
+        padding: '56px 48px',
       }}>
         {/* ヘッダー */}
         <div style={{
           display: 'flex', justifyContent: 'space-between',
           alignItems: 'center', marginBottom: 24,
-          maxWidth: 860, width: '100%', marginLeft: 'auto', marginRight: 'auto',
+          maxWidth: 820, width: '100%', marginLeft: 'auto', marginRight: 'auto',
         }}>
           <div style={{ fontWeight: 700, fontSize: '1rem' }}>
             問題 {current + 1} / {questions.length}
@@ -195,13 +196,13 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
 
         {/* 問題カード */}
         <div style={{
-          maxWidth: 860,
+          maxWidth: 820,
           width: '100%',
           margin: '0 auto',
           background: '#fff',
           border: '1px solid var(--color-border)',
-          borderRadius: 'var(--radius-lg)',
-          padding: '28px 32px',
+          borderRadius: 8,
+          padding: '34px 38px',
           boxShadow: 'var(--shadow-card)',
         }}>
           <div style={{

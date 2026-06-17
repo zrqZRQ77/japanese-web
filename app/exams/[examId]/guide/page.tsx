@@ -17,7 +17,6 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
       <Navbar />
       <div style={{
         display: 'flex',
-        justifyContent: 'center',
         height: 'calc(100vh - 64px)',
         overflow: 'hidden',
         background: 'var(--color-bg-subtle)',
@@ -25,11 +24,9 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
         <div style={{
           display: 'flex',
           width: '100%',
-          maxWidth: 1440,
+          height: '100%',
           minWidth: 0,
           overflow: 'hidden',
-          background: '#fff',
-          boxShadow: 'var(--shadow-card)',
         }}>
           <GuideSidebar examId={examId} chapters={chapters} currentChapterId="" progress={0} />
           <main style={{
@@ -38,22 +35,23 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            padding: '40px 24px',
+            padding: '72px 48px',
           }}>
-            <div style={{ maxWidth: 760, width: '100%' }}>
+            <div style={{ maxWidth: 860, width: '100%' }}>
               <div style={{
                 background: '#fff',
                 border: '1px solid var(--color-border)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '36px 28px',
+                borderRadius: 8,
+                padding: '64px 48px',
                 textAlign: 'center',
-                marginBottom: 20,
+                marginBottom: 28,
+                boxShadow: 'var(--shadow-card)',
               }}>
-                <div style={{ fontSize: '3.2rem', marginBottom: 16 }}>📖</div>
-                <h1 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'var(--color-text)', marginBottom: 10 }}>
+                <div style={{ fontSize: '2.7rem', marginBottom: 26 }}>📖</div>
+                <h1 style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--color-text)', marginBottom: 18 }}>
                   {exam.shortName} 学習ガイド
                 </h1>
-                <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+                <p style={{ fontSize: '1.05rem', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
                   全{chapters.length}章構成で、基礎から体系的に学べます。<br />
                   左のメニューから章を選んで学習を始めましょう。
                 </p>
@@ -62,8 +60,8 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-                gap: 14,
-                marginBottom: 24,
+                gap: 16,
+                marginBottom: 32,
               }}>
                 {[
                   { label: '総章数', value: `${chapters.length}章` },
@@ -72,7 +70,7 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
                 ].map(item => (
                   <div key={item.label} style={{
                     background: '#fff', border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-md)', padding: '18px 16px',
+                    borderRadius: 8, padding: '24px 16px',
                     textAlign: 'center', boxShadow: 'var(--shadow-card)',
                   }}>
                     <div style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--color-primary)', marginBottom: 4 }}>{item.value}</div>
