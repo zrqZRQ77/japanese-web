@@ -181,8 +181,53 @@ export const EXAMS_REGISTRY: ExamMeta[] = [
         '基本情報技術者試験へのステップアップ',
         'DX・AI時代の必須ビジネス知識として職場で活用',
       ],
-      books: [],
-      courses: [],
+      
+      books: [
+        {
+          title: 'ITパスポート いちばんやさしい教科書',
+          author: '受験対策編集部',
+          type: 'テキスト',
+          note: '初学者向けに基礎をやさしく解説する定番教科書。図解と練習問題が豊富。',
+          amazonUrl: 'https://www.amazon.co.jp/s?k=ITパスポート+教科書',
+        },
+        {
+          title: 'ITパスポート 過去問題集',
+          author: '過去問編集部',
+          type: '過去問・予想問題',
+          note: '本試験形式の過去問を収録。出題傾向の把握と時間配分の訓練に最適。',
+          amazonUrl: 'https://www.amazon.co.jp/s?k=ITパスポート+過去問',
+        },
+        {
+          title: 'ITパスポート 模擬試験&問題集',
+          author: '演習問題編集部',
+          type: '問題集',
+          note: '多数の演習問題を通じて得点力を養成する問題集。',
+          amazonUrl: 'https://www.amazon.co.jp/s?k=ITパスポート+問題集',
+        },
+      ],
+      courses: [
+        {
+          title: 'スタディング ITパスポート講座',
+          provider: 'スタディング',
+          note: '動画＋スマホで学べる効率学習。短時間で要点を押さえたい人向け。',
+          url: 'https://studying.jp/itpassport/',
+          isFree: false,
+        },
+        {
+          title: 'Udemy ITパスポート講座（検索）',
+          provider: 'Udemy',
+          note: '講師ごとの講座が多数。セールで安価に購入できることが多い。',
+          url: 'https://www.udemy.com/courses/search/?q=IT%20パスポート',
+          isFree: false,
+        },
+        {
+          title: 'IPA（学習コンテンツ）',
+          provider: 'IPA',
+          note: 'IPAが提供する公式情報・学習コンテンツ。参考情報として便利（無料）。',
+          url: 'https://www.ipa.go.jp/',
+          isFree: true,
+        },
+      ],
     },
   },
 ]
