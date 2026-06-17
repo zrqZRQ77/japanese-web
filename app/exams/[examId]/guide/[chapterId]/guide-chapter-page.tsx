@@ -4,7 +4,6 @@
 // ============================================================
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
-import ExamSidebar from '@/components/layout/ExamSidebar'
 import GuideSidebar from '@/components/layout/GuideSidebar'
 import GuideContent from '@/components/features/guide/GuideContent'
 import { getExamById } from '@/lib/types/exams-registry'
@@ -66,6 +65,8 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
               frontmatter={guideData.frontmatter}
               contentHtml={guideData.contentHtml}
               chapter={chapter}
+              sections={chapter.sections}
+              currentSectionId={activeSection ?? firstSection ?? chapter.sections[0]?.id ?? ''}
               examId={examId}
               prevLink={prevChapter
                 ? { href: `${base}/guide/${prevChapter.id}`, label: `第${prevChapter.number}章` }

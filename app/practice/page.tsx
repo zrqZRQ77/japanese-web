@@ -24,10 +24,10 @@ export default function PracticePage() {
               fontWeight: 900, color: '#fff',
               marginBottom: 12, lineHeight: 1.2,
             }}>
-              更新済みの問題を、章ごとに解く
+              試験ごとの問題を、章単位で確認する
             </h1>
-            <p style={{ color: '#94a3b8', fontSize: '1rem', maxWidth: 560 }}>
-              各試験の問題数と章一覧をまとめて確認できます。学習したい試験から、そのまま問題ページへ進めます。
+            <p style={{ color: '#94a3b8', fontSize: '1rem', maxWidth: 640 }}>
+              更新済みの教材に合わせて、各試験の章一覧と出題数をまとめています。ここから直接、問題ページへ進めます。
             </p>
           </div>
         </section>
@@ -35,46 +35,62 @@ export default function PracticePage() {
         <div className="container-page" style={{ padding: '40px 24px 56px' }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             gap: 16,
           }}>
             {EXAMS_REGISTRY.map(exam => {
               const chapters = getChaptersByExam(exam.id)
-              const totalQuestions = chapters.reduce((sum, ch) => {
+              const chapterStats = chapters.map(ch => {
                 const set = getQuestionSet(exam.id, ch.id)
-                return sum + (set?.questions.length ?? 0)
-              }, 0)
+                return {
+                  chapter: ch,
+                  count: set?.questions.length ?? 0,
+                }
+              })
+              const totalQuestions = chapterStats.reduce((sum, item) => sum + item.count, 0)
 
               return (
-                <div key={exam.id} style={{
+                <section key={exam.id} style={{
                   background: '#fff',
                   border: '1px solid var(--color-border)',
                   borderRadius: 'var(--radius-lg)',
                   padding: 24,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 16,
                 }}>
                   <div style={{
-                    display: 'flex', justifyContent: 'space-between',
-                    alignItems: 'flex-start', gap: 12, marginBottom: 14,
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    gap: 12,
                   }}>
                     <div>
                       <div style={{
                         display: 'inline-block',
                         background: 'var(--color-primary-light)',
                         color: 'var(--color-primary)',
-                        fontSize: '0.75rem', fontWeight: 700,
-                        padding: '3px 10px', borderRadius: 99,
+                        fontSize: '0.75rem',
+                        fontWeight: 700,
+                        padding: '3px 10px',
+                        borderRadius: 99,
                         marginBottom: 10,
                       }}>{exam.category}</div>
-                      <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-text)', margin: 0 }}>
-                        {exam.shortName}
-                      </h2>
+                      <h2 style={{
+                        fontSize: '1.15rem',
+                        fontWeight: 800,
+                        color: 'var(--color-text)',
+                        margin: 0,
+                      }}>{exam.shortName}</h2>
                     </div>
                     <div style={{
-                      fontSize: '0.75rem', fontWeight: 700,
+                      fontSize: '0.75rem',
+                      fontWeight: 700,
                       color: 'var(--color-text-secondary)',
                       background: 'var(--color-bg-muted)',
                       border: '1px solid var(--color-border)',
-                      padding: '4px 8px', borderRadius: 99,
+                      padding: '4px 8px',
+                      borderRadius: 99,
                     }}>{totalQuestions}問</div>
                   </div>
 
@@ -82,22 +98,17 @@ export default function PracticePage() {
                     fontSize: '0.875rem',
                     color: 'var(--color-text-secondary)',
                     lineHeight: 1.6,
-                    marginBottom: 16,
+                    margin: 0,
                   }}>{exam.description}</p>
 
-                  <div style={{
-                    display: 'flex',
-                    gap: 8,
-                    flexWrap: 'wrap',
-                    marginBottom: 16,
-                  }}>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                     <span style={{
                       fontSize: '0.72rem', fontWeight: 600,
                       color: 'var(--color-text-muted)',
                       background: 'var(--color-bg-muted)',
                       padding: '2px 8px', borderRadius: 99,
                       border: '1px solid var(--color-border)',
-                    }}>練習可能 {chapters.length}章</span>
+                    }}>章数 {chapters.length}</span>
                     <span style={{
                       fontSize: '0.72rem', fontWeight: 600,
                       color: 'var(--color-text-muted)',
@@ -107,7 +118,47 @@ export default function PracticePage() {
                     }}>収録 {totalQuestions}問</span>
                   </div>
 
-                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(min(180px, 100%), 1fr))',
+                    gap: 10,
+                  }}>
+                    {chapterStats.map(({ chapter, count }) => (
+                      <Link
+                        key={chapter.id}
+                        href={`/exams/${exam.id}/questions/${chapter.id}`}
+                        style={{
+                          display: 'block',
+                          textDecoration: 'none',
+                          border: '1px solid var(--color-border)',
+                          borderRadius: 'var(--radius-md)',
+                          padding: '12px 14px',
+                          background: 'var(--color-bg-subtle)',
+                        }}
+                      >
+                        <div style={{
+                          fontSize: '0.72rem',
+                          color: 'var(--color-text-muted)',
+                          fontWeight: 700,
+                          marginBottom: 4,
+                        }}>第{chapter.number}章</div>
+                        <div style={{
+                          fontSize: '0.88rem',
+                          fontWeight: 700,
+                          color: 'var(--color-text)',
+                          lineHeight: 1.5,
+                          marginBottom: 8,
+                        }}>{chapter.title}</div>
+                        <div style={{
+                          fontSize: '0.75rem',
+                          color: 'var(--color-primary)',
+                          fontWeight: 700,
+                        }}>{count > 0 ? `${count}問を解く →` : '未収録'}</div>
+                      </Link>
+                    ))}
+                  </div>
+
+                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 2 }}>
                     <Link href={`/exams/${exam.id}`} style={{
                       display: 'inline-block',
                       padding: '9px 14px',
@@ -117,7 +168,7 @@ export default function PracticePage() {
                       textDecoration: 'none',
                       fontSize: '0.875rem',
                       fontWeight: 700,
-                    }}>問題を始める</Link>
+                    }}>ダッシュボードへ</Link>
                     <Link href={`/exams/${exam.id}/questions/${chapters[0]?.id ?? 'ch1'}`} style={{
                       display: 'inline-block',
                       padding: '9px 14px',
@@ -128,9 +179,9 @@ export default function PracticePage() {
                       fontSize: '0.875rem',
                       fontWeight: 700,
                       border: '1px solid var(--color-border)',
-                    }}>最初の章へ</Link>
+                    }}>最初の章から始める</Link>
                   </div>
-                </div>
+                </section>
               )
             })}
           </div>

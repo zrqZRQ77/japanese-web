@@ -9,13 +9,15 @@ interface Props {
   frontmatter: GuideFrontmatter
   contentHtml: string
   chapter: ChapterMeta
+  sections: ChapterMeta['sections']
+  currentSectionId: string
   examId: string
   prevLink?: { href: string; label: string }
   nextLink?: { href: string; label: string }
 }
 
 export default function GuideContent({
-  frontmatter, contentHtml, chapter, examId, prevLink, nextLink
+  frontmatter, contentHtml, chapter, sections, currentSectionId, examId, prevLink, nextLink
 }: Props) {
   const base = `/exams/${examId}`
 
@@ -58,7 +60,100 @@ export default function GuideContent({
       </div>
 
       {/* 本文 */}
-      <div style={{ flex: 1, padding: '36px 40px', maxWidth: 760 }}>
+      <div style={{ flex: 1, padding: '36px 40px', maxWidth: 860 }}>
+        {/* 小節ナビ */}
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 8,
+          marginBottom: 16,
+        }}>
+          {sections.map(sec => {
+            const active = sec.id === currentSectionId
+            return (
+              <Link
+                key={sec.id}
+                href={`${base}/guide/${chapter.id}?section=${sec.id}`}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  padding: '8px 12px',
+                  borderRadius: 999,
+                  border: `1px solid ${active ? 'var(--color-primary)' : 'var(--color-border)'}`,
+                  background: active ? 'var(--color-primary-light)' : '#fff',
+                  color: active ? 'var(--color-primary)' : 'var(--color-text-secondary)',
+                  textDecoration: 'none',
+                  fontSize: '0.8rem',
+                  fontWeight: active ? 700 : 500,
+                }}
+              >
+                <span style={{
+                  width: 18,
+                  height: 18,
+                  borderRadius: 999,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: active ? 'var(--color-primary)' : 'var(--color-bg-muted)',
+                  color: active ? '#fff' : 'var(--color-text-muted)',
+                  fontSize: '0.7rem',
+                  flexShrink: 0,
+                }}>{sec.number.split('-')[1] ?? sec.number}</span>
+                <span>{sec.title}</span>
+              </Link>
+            )
+          })}
+        </div>
+
+        <div style={{
+          fontSize: '0.78rem',
+          fontWeight: 700,
+          letterSpacing: '0.06em',
+          color: 'var(--color-text-muted)',
+          marginBottom: 12,
+        }}>
+          この章の小節
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(min(220px, 100%), 1fr))',
+          gap: 10,
+          marginBottom: 24,
+        }}>
+          {sections.map(sec => {
+            const active = sec.id === currentSectionId
+            return (
+              <Link
+                key={sec.id}
+                href={`${base}/guide/${chapter.id}?section=${sec.id}`}
+                style={{
+                  display: 'block',
+                  textDecoration: 'none',
+                  border: `1px solid ${active ? 'var(--color-primary)' : 'var(--color-border)'}`,
+                  background: active ? 'var(--color-primary-light)' : '#fff',
+                  borderRadius: 'var(--radius-md)',
+                  padding: '12px 14px',
+                }}
+              >
+                <div style={{
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  color: active ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                  marginBottom: 4,
+                }}>{sec.number}</div>
+                <div style={{
+                  fontSize: '0.86rem',
+                  fontWeight: active ? 700 : 600,
+                  color: 'var(--color-text)',
+                  lineHeight: 1.5,
+                }}>{sec.title}</div>
+              </Link>
+            )
+          })}
+        </div>
+
         {/* セクションタイトル */}
         <h1 style={{
           fontSize: '1.6rem', fontWeight: 900,

@@ -13,10 +13,12 @@ import { getGuideContent, getAllGuideSections } from '@/lib/content/guide-loader
 
 interface Props {
   params: Promise<{ examId: string; chapterId: string }>
+  searchParams: Promise<{ section?: string }>
 }
 
-export default async function GuideChapterPage({ params }: Props) {
+export default async function GuideChapterPage({ params, searchParams }: Props) {
   const { examId, chapterId } = await params
+  const { section: sectionParam } = await searchParams
 
   const exam = getExamById(examId)
   if (!exam) notFound()
@@ -25,16 +27,16 @@ export default async function GuideChapterPage({ params }: Props) {
   const chapter = getChapterById(examId, chapterId)
   if (!chapter) notFound()
 
-  // 最初のセクションを読み込む
   const sections = getAllGuideSections(examId, chapterId)
   const firstSection = sections[0]
+  const activeSection = (sectionParam && sections.includes(sectionParam))
+    ? sectionParam
+    : firstSection
 
-  // コンテンツが存在する場合は読み込む、なければフォールバック表示
-  const guideData = firstSection
-    ? await getGuideContent(examId, chapterId, firstSection)
+  const guideData = activeSection
+    ? await getGuideContent(examId, chapterId, activeSection)
     : null
 
-  // 前後章リンク
   const chapterIndex = chapters.findIndex(c => c.id === chapterId)
   const prevChapter = chapters[chapterIndex - 1]
   const nextChapter = chapters[chapterIndex + 1]
@@ -46,13 +48,12 @@ export default async function GuideChapterPage({ params }: Props) {
       <Navbar />
       <div style={{ display: 'flex', height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
         <ExamSidebar exam={exam} />
-
-        {/* ガイドコンテンツエリア */}
         <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
           <GuideSidebar
             examId={examId}
             chapters={chapters}
             currentChapterId={chapterId}
+            currentSectionId={activeSection}
             progress={25}
           />
 
@@ -61,6 +62,8 @@ export default async function GuideChapterPage({ params }: Props) {
               frontmatter={guideData.frontmatter}
               contentHtml={guideData.contentHtml}
               chapter={chapter}
+              sections={chapter.sections}
+              currentSectionId={activeSection ?? firstSection ?? chapter.sections[0]?.id ?? ''}
               examId={examId}
               prevLink={prevChapter
                 ? { href: `${base}/guide/${prevChapter.id}`, label: `第${prevChapter.number}章` }
@@ -70,7 +73,6 @@ export default async function GuideChapterPage({ params }: Props) {
                 : undefined}
             />
           ) : (
-            /* コンテンツ未作成時のフォールバック */
             <div style={{
               flex: 1, display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center',
