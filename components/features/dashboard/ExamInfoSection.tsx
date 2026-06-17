@@ -27,15 +27,14 @@ export default function ExamInfoSection({ exam }: Props) {
     }}>
       {/* ヘッダー */}
       <div style={{
-        background: 'linear-gradient(90deg, #0b2447 0%, #12306b 50%, #1b4bd1 100%)',
-        padding: '28px 32px',
+        background: 'linear-gradient(90deg, #274171 0%, #2e5aa0 100%)',
+        padding: '22px 32px',
         color: '#fff',
       }}>
-        <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.08em', marginBottom: 8 }}>
-          この試験について
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+          <div style={{ fontWeight: 800, fontSize: '1.25rem' }}>{exam.name}について</div>
         </div>
-        <div style={{ fontWeight: 800, fontSize: '1.45rem', marginBottom: 6 }}>{exam.name}</div>
-        <div style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.9)', opacity: 0.95 }}>{info.tagline}</div>
+        <div style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.9)', marginTop: 8 }}>{info.tagline}</div>
       </div>
 
       {/* 基本情報グリッド */}
