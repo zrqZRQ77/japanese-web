@@ -24,6 +24,16 @@ export const EXAMS_REGISTRY: ExamMeta[] = [
     color: 'green',
     icon: 'TrendingUp',
   },
+  {
+    id: 'itp',
+    name: 'ITパスポート',
+    shortName: 'ITパスポート',
+    category: 'IT',
+    description: 'ITの基礎知識を幅広く学ぶ国家資格。テクノロジ・経営・法務を体系的に学習できます。',
+    totalChapters: 6,
+    color: 'blue',
+    icon: 'Monitor',
+  },
   // ↓ 新しい試験を追加するときはここに1行追記するだけ
   // { id: 'takken', name: '宅地建物取引士', ... },
 ]

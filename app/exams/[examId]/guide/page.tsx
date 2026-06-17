@@ -37,7 +37,7 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
               {[
                 { label: '総章数', value: `${chapters.length}章` },
                 { label: '総セクション', value: `${chapters.reduce((s, c) => s + c.sections.length, 0)}節` },
-                { label: '学習状況', value: '準備中' },
+                { label: '学習状況', value: '公開中' },
               ].map(item => (
                 <div key={item.label} style={{
                   background: '#fff', border: '1px solid var(--color-border)',
