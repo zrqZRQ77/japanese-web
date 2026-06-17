@@ -20,7 +20,7 @@ const TOOLS = [
   {
     icon: '✏️', title: '練習問題', color: '#7c3aed',
     desc: '章ごとの問題を解いて理解を確認する',
-    linkLabel: '問題一覧を見る', path: '/questions/ch4',
+    linkLabel: '問題一覧を見る', path: '/questions',
   },
   {
     icon: '🃏', title: '知識カード', color: '#0891b2',
