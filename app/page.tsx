@@ -115,12 +115,14 @@ export default function HomePage() {
               fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
               fontWeight: 800, marginBottom: 'clamp(24px, 4vw, 40px)',
             }}>5つの学習ツール、すべて無料</h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(min(160px, 100%), 1fr))',
-              gap: 'clamp(10px, 2vw, 16px)',
-            }}>
-              {TOOLS.map(t => (
+            <div style={{ maxWidth: 980, margin: '0 auto' }}>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(min(160px, 100%), 1fr))',
+                gap: 'clamp(10px, 2vw, 16px)',
+                justifyContent: 'center',
+              }}>
+                {TOOLS.map(t => (
                 <HoverCard key={t.title} style={{
                   background: 'var(--color-bg-subtle)',
                   border: '1px solid var(--color-border)',
@@ -133,6 +135,7 @@ export default function HomePage() {
                   <div style={{ fontSize: 'clamp(0.75rem, 1.2vw, 0.8rem)', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>{t.desc}</div>
                 </HoverCard>
               ))}
+              </div>
             </div>
           </div>
         </section>
@@ -203,7 +206,7 @@ export default function HomePage() {
 
         {/* ===== フッター ===== */}
         <footer style={{
-          background: 'var(--color-hero-bg)', color: '#64748b',
+          background: 'var(--color-bg)', color: 'var(--color-text-muted)',
           padding: 'clamp(28px, 4vw, 40px) 0',
           textAlign: 'center', fontSize: '0.875rem',
         }}>
