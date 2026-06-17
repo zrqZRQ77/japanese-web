@@ -1,23 +1,26 @@
-import { notFound } from 'next/navigation'
-import Navbar from '@/components/layout/Navbar'
-import { getExamById } from '@/lib/types/exams-registry'
+import React from 'react'
+import MockExam from '../../../../components/MockExam/MockExam'
+import { getAllQuestionSets } from '../../../../lib/content/question-loader'
+import type { Question } from '../../../../lib/types'
 
-export default async function Page({ params }: { params: Promise<{ examId: string }> }) {
-  const { examId } = await params
-  const exam = getExamById(examId)
-  if (!exam) notFound()
+interface Props {
+  params: { examId: string }
+}
+
+export default function MockExamPage({ params }: Props) {
+  const { examId } = params
+  const sets = getAllQuestionSets(examId)
+  const questions: Question[] = sets.flatMap(s => s.questions)
+  // serialize to plain JSON-compatible object for client
+  const serialized = JSON.parse(JSON.stringify(questions)) as Question[]
+
   return (
-    <>
-      <Navbar />
-      <main style={{
-        height: 'calc(100vh - 64px)', display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center',
-        background: 'var(--color-bg-subtle)', gap: 16,
-      }}>
-        <div style={{ fontSize: '3rem' }}>📋</div>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--color-text)' }}>{exam.shortName} 模擬試験</h1>
-        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem' }}>このページは準備中です。</p>
-      </main>
-    </>
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-2xl font-bold mb-4">模拟考试 — {examId}</h1>
+        <MockExam initialQuestions={serialized} questionsCount={10} durationMinutes={30} />
+      </div>
+    </div>
   )
 }
+
