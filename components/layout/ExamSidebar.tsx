@@ -77,31 +77,7 @@ export default function ExamSidebar({ exam }: Props) {
         })}
       </nav>
 
-      {/* 学習ヒント */}
-      <div style={{
-        margin: '12px', padding: '14px',
-        background: 'var(--color-bg-subtle)',
-        borderRadius: 'var(--radius-md)',
-        border: '1px solid var(--color-border)',
-      }}>
-        <div style={{
-          fontSize: '0.78rem', fontWeight: 700,
-          color: 'var(--color-warning)', marginBottom: 6,
-          display: 'flex', alignItems: 'center', gap: 4,
-        }}>💡 学習のヒント</div>
-        <p style={{
-          fontSize: '0.78rem',
-          color: 'var(--color-text-secondary)',
-          lineHeight: 1.6,
-        }}>
-          毎日少しずつの学習が合格への近道です！
-        </p>
-        <Link href={`${base}/guide`} style={{
-          display: 'inline-block', marginTop: 8,
-          fontSize: '0.78rem', fontWeight: 600,
-          color: 'var(--color-primary)', textDecoration: 'none',
-        }}>学習記録を見る →</Link>
-      </div>
+      {/* 学習ヒント（已移除应客户要求） */}
     </aside>
   )
 }

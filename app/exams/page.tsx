@@ -8,8 +8,6 @@ import HoverCard from '@/components/ui/HoverCard'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 
 const COMING_SOON = [
-  { name: '宅地建物取引士', category: '不動産', desc: '不動産取引の専門家資格。合格率約15%の難関資格。' },
-  { name: '行政書士', category: '法律', desc: '官公署への書類作成・申請の専門家。' },
   { name: '社会保険労務士', category: '労務', desc: '労働・社会保険の専門家。' },
 ]
 

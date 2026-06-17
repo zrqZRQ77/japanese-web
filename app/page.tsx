@@ -18,7 +18,7 @@ const STATS = [
   { value: 'AI', label: '即時解説' },
 ]
 
-const COMING_SOON = ['宅地建物取引士', '行政書士']
+const COMING_SOON: string[] = []
 
 export default function HomePage() {
   return (
