@@ -93,10 +93,10 @@ export default function ExamInfoSection({ exam }: Props) {
         </div>
       </div>
 
-      {/* 主体内容：三栏布局 — 指标 / 合格价值 / 教材与讲座 */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 18, padding: '18px 22px', alignItems: 'start' }}>
-        {/* 合格後の価値（中间列） */}
-        <div style={{ gridColumn: '2 / 3' }}>
+      {/* 主体内容：改回竖排 — 每个区块垂直排列 */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 18, padding: '18px 22px' }}>
+        {/* 合格後の価値 */}
+        <div>
           <div style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--color-text)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
             🎯 合格後に得られること
           </div>
@@ -116,9 +116,9 @@ export default function ExamInfoSection({ exam }: Props) {
           </div>
         </div>
 
-        {/* おすすめ教材（右侧列） — 直接展示，並列卡片 */}
-        <div style={{ gridColumn: '3 / 4' }}>
-          <div style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--color-text)', marginBottom: 10 }}>📚 おすすめ教材・参考書（Amazon）</div>
+        {/* おすすめ教材（直接展示） */}
+        <div>
+          <div style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--color-text)', marginBottom: 8 }}>📚 おすすめ教材・参考書（Amazon）</div>
           <p style={{ fontSize: '0.75rem', color: 'rgba(20,24,40,0.55)', marginBottom: 12 }}>
             ※ 以下はAmazonアフィリエイトリンクです。購入価格は変わりません。
           </p>
@@ -153,31 +153,31 @@ export default function ExamInfoSection({ exam }: Props) {
               </a>
             ))}
           </div>
-
-          {/* 講座 */}
-          {info.courses && info.courses.length > 0 && (
-            <div style={{ marginTop: 12 }}>
-              <div style={{ fontSize: '0.85rem', fontWeight: 800, marginBottom: 8 }}>🖥️ おすすめ講座・スクール</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {info.courses.map((course, i) => (
-                  <a key={i} href={course.url} target="_blank" rel="noopener noreferrer" style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    gap: 12, padding: '10px 14px', background: '#fbfbff', border: '1px solid rgba(20,24,40,0.03)', borderRadius: 10, textDecoration: 'none', color: 'inherit'
-                  }}>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                        {course.isFree && <span style={{ fontSize: '0.65rem', fontWeight: 800, background: '#ecfdf5', color: '#16a34a', padding: '2px 6px', borderRadius: 99, border: '1px solid rgba(34,197,94,0.12)' }}>無料</span>}
-                        <span style={{ fontWeight: 800 }}>{course.title}</span>
-                      </div>
-                      <div style={{ fontSize: '0.78rem', color: 'rgba(20,24,40,0.55)' }}>{course.note}</div>
-                    </div>
-                    <div style={{ color: '#0f62fe', fontWeight: 800 }}>詳細 →</div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
+
+        {/* おすすめ講座・スクール */}
+        {info.courses && info.courses.length > 0 && (
+          <div>
+            <div style={{ fontSize: '0.85rem', fontWeight: 800, marginBottom: 8 }}>🖥️ おすすめ講座・スクール</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {info.courses.map((course, i) => (
+                <a key={i} href={course.url} target="_blank" rel="noopener noreferrer" style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  gap: 12, padding: '10px 14px', background: '#fbfbff', border: '1px solid rgba(20,24,40,0.03)', borderRadius: 10, textDecoration: 'none', color: 'inherit'
+                }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                      {course.isFree && <span style={{ fontSize: '0.65rem', fontWeight: 800, background: '#ecfdf5', color: '#16a34a', padding: '2px 6px', borderRadius: 99, border: '1px solid rgba(34,197,94,0.12)' }}>無料</span>}
+                      <span style={{ fontWeight: 800 }}>{course.title}</span>
+                    </div>
+                    <div style={{ fontSize: '0.78rem', color: 'rgba(20,24,40,0.55)' }}>{course.note}</div>
+                  </div>
+                  <div style={{ color: '#0f62fe', fontWeight: 800 }}>詳細 →</div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* おすすめ講座 */}
