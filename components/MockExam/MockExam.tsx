@@ -1193,54 +1193,38 @@ export default function MockExam({
                 style={{ ...buttonBase, background: 'var(--color-success)', color: '#fff', borderColor: 'var(--color-success)' }}
               >
                 <Send size={17} />
-                交卷して採点
+                採点する
               </button>
             )}
           </div>
 
           <div className="boki-exam-grid">
-            <aside className="boki-nav-panel">
-              <div className="boki-panel-title">
-                <ClipboardList size={18} />
-                大問
-              </div>
-              {sections.map((section, sectionIndex) => {
-                const sectionAnswered = section.questions.filter(q => hasAnswer(q, answers[q.id])).length
-                const active = sectionIndex === currentSection
-                return (
-                  <div key={section.id} className="boki-section-nav">
-                    <button
-                      type="button"
-                      className={active ? 'active' : ''}
-                      onClick={() => goTo(sectionIndex)}
-                    >
-                      <span>{section.title}</span>
-                      <strong>{section.focus}</strong>
-                      <em>{sectionAnswered}/{section.questions.length}問</em>
-                    </button>
-                    <div className="boki-question-dots">
-                      {section.questions.map((q, questionIndex) => {
-                        const isActive = active && questionIndex === currentQuestion
-                        const answered = hasAnswer(q, answers[q.id])
-                        return (
-                          <button
-                            key={q.id}
-                            type="button"
-                            className={`${isActive ? 'active' : ''} ${answered ? 'answered' : ''}`}
-                            onClick={() => goTo(sectionIndex, questionIndex)}
-                            aria-label={`${section.title} 問${questionIndex + 1}`}
-                          >
-                            {questionIndex + 1}
-                          </button>
-                        )
-                      })}
-                    </div>
-                  </div>
-                )
-              })}
-            </aside>
-
             <main className="boki-question-panel">
+              <nav className="boki-nav-panel" aria-label="大問ナビ">
+                <div className="boki-panel-title">
+                  <ClipboardList size={18} />
+                  大問
+                </div>
+                <div className="boki-nav-strip">
+                  {sections.map((section, sectionIndex) => {
+                    const sectionAnswered = section.questions.filter(q => hasAnswer(q, answers[q.id])).length
+                    const active = sectionIndex === currentSection
+                    return (
+                      <button
+                        key={section.id}
+                        type="button"
+                        className={active ? 'active' : ''}
+                        onClick={() => goTo(sectionIndex)}
+                      >
+                        <span>{section.title}</span>
+                        <strong>{section.focus}</strong>
+                        <em>{sectionAnswered}/{section.questions.length}問</em>
+                      </button>
+                    )
+                  })}
+                </div>
+              </nav>
+
               {submitted && (
                 <section className={result.passed ? 'boki-result passed' : 'boki-result'}>
                   <div>
@@ -1271,183 +1255,185 @@ export default function MockExam({
                   </div>
                 </div>
 
-                <p className="boki-instruction">{sectionInstruction(currentSection)}</p>
+                <div className="boki-content-wrap">
+                  <p className="boki-instruction">{sectionInstruction(currentSection)}</p>
 
-                {(() => {
-                  const material = buildExamMaterial(currentSection, currentQuestion, activeQuestion)
-                  return (
-                    <div className={`boki-material ${material.kind === 'transaction' ? 'transaction' : ''}`}>
-                      <div className="boki-material-title">{material.title}</div>
-                      {material.lead && <p>{material.lead}</p>}
-                      {material.kind === 'transaction' ? (
-                        <div className="boki-transaction-rows">
-                          {material.rows.map((row, rowIndex) => (
-                            <div key={`${row[0]}-${rowIndex}`} className="boki-transaction-row">
-                              <span>{row[0]}</span>
-                              <strong>{row[1]}</strong>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="boki-table-wrap">
-                          <table>
-                            <tbody>
-                              {material.rows.map((row, rowIndex) => (
-                                <tr key={`${row[0]}-${rowIndex}`}>
-                                  {row.map((cell, cellIndex) => (
-                                    <td key={`${cell}-${cellIndex}`}>{cell}</td>
-                                  ))}
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      )}
-                      {'note' in material && material.note && <p className="boki-material-note">{material.note}</p>}
-                    </div>
-                  )
-                })()}
-
-                <div className="boki-question-meta">
-                  問{currentQuestion + 1} / {activeSection.questions.length}
-                  <span>{activeQuestion.tags?.slice(0, 2).join(' / ') || activeQuestion.chapterId}</span>
-                </div>
-
-                <p className="boki-question-text">{promptText(activeQuestion)}</p>
-
-                {activeQuestion.answerSheet ? (
-                  activeQuestion.answerSheet.kind === 'journal' ? (
-                    <div className="boki-answer-sheet">
-                      <div className="boki-answer-title">解答欄</div>
-                      <div className="boki-journal-grid">
-                        <div>借方・貸方</div>
-                        <div>勘定科目</div>
-                        <div>金額</div>
-                        {(activeQuestion.answerSheet.lines ?? []).map(line => {
-                          const existingAnswer = answers[activeQuestion.id]
-                          const answer: Record<string, string> = isAnswerRecord(existingAnswer) ? existingAnswer : {}
-                          const accountId = `${line.id}-account`
-                          const amountId = `${line.id}-amount`
-                          const accountCorrect = submitted && normalizeAnswer(answer[accountId] ?? '') === normalizeAnswer(line.account)
-                          const amountCorrect = submitted && normalizeAnswer(answer[amountId] ?? '') === normalizeAnswer(line.amount)
-
-                          return (
-                            <div key={line.id} className="boki-journal-row">
-                              <strong>{line.side}</strong>
-                              <label className={submitted ? (accountCorrect ? 'correct' : 'wrong') : ''}>
-                                <span>科目</span>
-                                <input
-                                  value={answer[accountId] ?? ''}
-                                  disabled={submitted}
-                                  onChange={e => updateBlankAnswer(activeQuestion, accountId, e.target.value)}
-                                  placeholder="例：現金"
-                                />
-                                {submitted && <em>{line.account}</em>}
-                              </label>
-                              <label className={submitted ? (amountCorrect ? 'correct' : 'wrong') : ''}>
-                                <span>金額</span>
-                                <input
-                                  inputMode="numeric"
-                                  value={answer[amountId] ?? ''}
-                                  disabled={submitted}
-                                  onChange={e => updateBlankAnswer(activeQuestion, amountId, e.target.value)}
-                                  placeholder="円"
-                                />
-                                {submitted && <em>{Number(line.amount).toLocaleString()}円</em>}
-                              </label>
-                            </div>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="boki-answer-sheet">
-                      <div className="boki-answer-title">解答欄</div>
-                      <div className="boki-blank-grid">
-                        {(activeQuestion.answerSheet.blanks ?? []).map(blank => {
-                          const existingAnswer = answers[activeQuestion.id]
-                          const answer: Record<string, string> = isAnswerRecord(existingAnswer) ? existingAnswer : {}
-                          const correct = submitted && normalizeAnswer(answer[blank.id] ?? '') === normalizeAnswer(blank.answer)
-
-                          return (
-                            <label key={blank.id} className={submitted ? (correct ? 'correct' : 'wrong') : ''}>
-                              <span>{blank.label}</span>
-                              <div>
-                                <input
-                                  value={answer[blank.id] ?? ''}
-                                  disabled={submitted}
-                                  onChange={e => updateBlankAnswer(activeQuestion, blank.id, e.target.value)}
-                                  placeholder="解答を入力"
-                                />
-                                {blank.suffix && <strong>{blank.suffix}</strong>}
+                  {(() => {
+                    const material = buildExamMaterial(currentSection, currentQuestion, activeQuestion)
+                    return (
+                      <div className={`boki-material ${material.kind === 'transaction' ? 'transaction' : ''}`}>
+                        <div className="boki-material-title">{material.title}</div>
+                        {material.lead && <p>{material.lead}</p>}
+                        {material.kind === 'transaction' ? (
+                          <div className="boki-transaction-rows">
+                            {material.rows.map((row, rowIndex) => (
+                              <div key={`${row[0]}-${rowIndex}`} className="boki-transaction-row">
+                                <span>{row[0]}</span>
+                                <strong>{row[1]}</strong>
                               </div>
-                              {submitted && <em>正解: {Number.isNaN(Number(blank.answer)) ? blank.answer : Number(blank.answer).toLocaleString()}{blank.suffix ?? ''}</em>}
-                            </label>
-                          )
-                        })}
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="boki-table-wrap">
+                            <table>
+                              <tbody>
+                                {material.rows.map((row, rowIndex) => (
+                                  <tr key={`${row[0]}-${rowIndex}`}>
+                                    {row.map((cell, cellIndex) => (
+                                      <td key={`${cell}-${cellIndex}`}>{cell}</td>
+                                    ))}
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+                        {'note' in material && material.note && <p className="boki-material-note">{material.note}</p>}
                       </div>
+                    )
+                  })()}
+
+                  <div className="boki-question-meta">
+                    問{currentQuestion + 1} / {activeSection.questions.length}
+                    <span>{activeQuestion.tags?.slice(0, 2).join(' / ') || activeQuestion.chapterId}</span>
+                  </div>
+
+                  <p className="boki-question-text">{promptText(activeQuestion)}</p>
+
+                  {activeQuestion.answerSheet ? (
+                    activeQuestion.answerSheet.kind === 'journal' ? (
+                      <div className="boki-answer-sheet">
+                        <div className="boki-answer-title">解答欄</div>
+                        <div className="boki-journal-grid">
+                          <div>借方・貸方</div>
+                          <div>勘定科目</div>
+                          <div>金額</div>
+                          {(activeQuestion.answerSheet.lines ?? []).map(line => {
+                            const existingAnswer = answers[activeQuestion.id]
+                            const answer: Record<string, string> = isAnswerRecord(existingAnswer) ? existingAnswer : {}
+                            const accountId = `${line.id}-account`
+                            const amountId = `${line.id}-amount`
+                            const accountCorrect = submitted && normalizeAnswer(answer[accountId] ?? '') === normalizeAnswer(line.account)
+                            const amountCorrect = submitted && normalizeAnswer(answer[amountId] ?? '') === normalizeAnswer(line.amount)
+
+                            return (
+                              <div key={line.id} className="boki-journal-row">
+                                <strong>{line.side}</strong>
+                                <label className={submitted ? (accountCorrect ? 'correct' : 'wrong') : ''}>
+                                  <span>科目</span>
+                                  <input
+                                    value={answer[accountId] ?? ''}
+                                    disabled={submitted}
+                                    onChange={e => updateBlankAnswer(activeQuestion, accountId, e.target.value)}
+                                    placeholder="例：現金"
+                                  />
+                                  {submitted && <em>{line.account}</em>}
+                                </label>
+                                <label className={submitted ? (amountCorrect ? 'correct' : 'wrong') : ''}>
+                                  <span>金額</span>
+                                  <input
+                                    inputMode="numeric"
+                                    value={answer[amountId] ?? ''}
+                                    disabled={submitted}
+                                    onChange={e => updateBlankAnswer(activeQuestion, amountId, e.target.value)}
+                                    placeholder="円"
+                                  />
+                                  {submitted && <em>{Number(line.amount).toLocaleString()}円</em>}
+                                </label>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="boki-answer-sheet">
+                        <div className="boki-answer-title">解答欄</div>
+                        <div className="boki-blank-grid">
+                          {(activeQuestion.answerSheet.blanks ?? []).map(blank => {
+                            const existingAnswer = answers[activeQuestion.id]
+                            const answer: Record<string, string> = isAnswerRecord(existingAnswer) ? existingAnswer : {}
+                            const correct = submitted && normalizeAnswer(answer[blank.id] ?? '') === normalizeAnswer(blank.answer)
+
+                            return (
+                              <label key={blank.id} className={submitted ? (correct ? 'correct' : 'wrong') : ''}>
+                                <span>{blank.label}</span>
+                                <div>
+                                  <input
+                                    value={answer[blank.id] ?? ''}
+                                    disabled={submitted}
+                                    onChange={e => updateBlankAnswer(activeQuestion, blank.id, e.target.value)}
+                                    placeholder="解答を入力"
+                                  />
+                                  {blank.suffix && <strong>{blank.suffix}</strong>}
+                                </div>
+                                {submitted && <em>正解: {Number.isNaN(Number(blank.answer)) ? blank.answer : Number(blank.answer).toLocaleString()}{blank.suffix ?? ''}</em>}
+                              </label>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )
+                  ) : (
+                    <div className="boki-options">
+                      {(activeQuestion.options ?? []).map(option => {
+                        const selected = activeQuestion.type === 'multiple'
+                          ? Array.isArray(answers[activeQuestion.id]) && (answers[activeQuestion.id] as string[]).includes(option.label)
+                          : answers[activeQuestion.id] === option.label
+                        const correct = submitted && option.label === activeQuestion.correctAnswer
+                        const wrong = submitted && selected && !correct
+
+                        return (
+                          <label key={option.label} className={`${selected ? 'selected' : ''} ${correct ? 'correct' : ''} ${wrong ? 'wrong' : ''}`}>
+                            {activeQuestion.type === 'multiple' ? (
+                              <input
+                                type="checkbox"
+                                checked={selected}
+                                disabled={submitted}
+                                onChange={e => selectOption(activeQuestion, option.label, e.target.checked)}
+                              />
+                            ) : (
+                              <input
+                                type="radio"
+                                name={activeQuestion.id}
+                                checked={selected}
+                                disabled={submitted}
+                                onChange={() => selectOption(activeQuestion, option.label)}
+                              />
+                            )}
+                            <span className="boki-option-label">{option.label}</span>
+                            <span>{option.text}</span>
+                            {correct && <CheckCircle2 size={18} />}
+                            {wrong && <X size={18} />}
+                          </label>
+                        )
+                      })}
                     </div>
-                  )
-                ) : (
-                  <div className="boki-options">
-                    {(activeQuestion.options ?? []).map(option => {
-                      const selected = activeQuestion.type === 'multiple'
-                        ? Array.isArray(answers[activeQuestion.id]) && (answers[activeQuestion.id] as string[]).includes(option.label)
-                        : answers[activeQuestion.id] === option.label
-                      const correct = submitted && option.label === activeQuestion.correctAnswer
-                      const wrong = submitted && selected && !correct
+                  )}
 
-                      return (
-                        <label key={option.label} className={`${selected ? 'selected' : ''} ${correct ? 'correct' : ''} ${wrong ? 'wrong' : ''}`}>
-                          {activeQuestion.type === 'multiple' ? (
-                            <input
-                              type="checkbox"
-                              checked={selected}
-                              disabled={submitted}
-                              onChange={e => selectOption(activeQuestion, option.label, e.target.checked)}
-                            />
-                          ) : (
-                            <input
-                              type="radio"
-                              name={activeQuestion.id}
-                              checked={selected}
-                              disabled={submitted}
-                              onChange={() => selectOption(activeQuestion, option.label)}
-                            />
-                          )}
-                          <span className="boki-option-label">{option.label}</span>
-                          <span>{option.text}</span>
-                          {correct && <CheckCircle2 size={18} />}
-                          {wrong && <X size={18} />}
-                        </label>
-                      )
-                    })}
-                  </div>
-                )}
-
-                {submitted && (
-                  <div className="boki-explanation">
-                    <div>
-                      <strong>あなたの回答</strong>
-                      <span>{answerLabel(answers[activeQuestion.id])}</span>
+                  {submitted && (
+                    <div className="boki-explanation">
+                      <div>
+                        <strong>あなたの回答</strong>
+                        <span>{answerLabel(answers[activeQuestion.id])}</span>
+                      </div>
+                      <div>
+                        <strong>正解</strong>
+                        <span>{activeQuestion.answerSheet ? '各解答欄に表示' : String(activeQuestion.correctAnswer)}</span>
+                      </div>
+                      <p>{activeQuestion.explanation}</p>
                     </div>
-                  <div>
-                    <strong>正解</strong>
-                    <span>{activeQuestion.answerSheet ? '各解答欄に表示' : String(activeQuestion.correctAnswer)}</span>
-                  </div>
-                    <p>{activeQuestion.explanation}</p>
-                  </div>
-                )}
+                  )}
 
-                <div className="boki-question-actions">
-                  <button type="button" onClick={goPrev} disabled={currentSection === 0 && currentQuestion === 0} style={buttonBase}>
-                    <ArrowLeft size={17} />
-                    前へ
-                  </button>
-                  <button type="button" onClick={goNext} disabled={currentSection === sections.length - 1 && currentQuestion === activeSection.questions.length - 1} style={buttonBase}>
-                    次へ
-                    <ArrowRight size={17} />
-                  </button>
+                  <div className="boki-question-actions">
+                    <button type="button" onClick={goPrev} disabled={currentSection === 0 && currentQuestion === 0} style={buttonBase}>
+                      <ArrowLeft size={17} />
+                      前へ
+                    </button>
+                    <button type="button" onClick={goNext} disabled={currentSection === sections.length - 1 && currentQuestion === activeSection.questions.length - 1} style={buttonBase}>
+                      次へ
+                      <ArrowRight size={17} />
+                    </button>
+                  </div>
                 </div>
               </section>
 
@@ -1627,13 +1613,13 @@ export default function MockExam({
 
         .boki-nav-panel {
           display: grid;
-          grid-template-columns: auto repeat(3, minmax(0, 1fr));
-          gap: 10px;
-          align-items: stretch;
-          padding: 10px;
-          position: sticky;
-          top: 144px;
-          z-index: 8;
+          grid-template-columns: auto minmax(0, 1fr);
+          gap: 12px;
+          align-items: start;
+          padding: 12px;
+          position: static;
+          margin: 0 auto 8px;
+          width: min(100%, 980px);
         }
 
         .boki-panel-title {
@@ -1644,6 +1630,12 @@ export default function MockExam({
           font-weight: 900;
           padding: 0 8px;
           white-space: nowrap;
+        }
+
+        .boki-nav-strip {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 10px;
         }
 
         .boki-section-nav {
@@ -1762,6 +1754,16 @@ export default function MockExam({
           padding: clamp(20px, 3vw, 32px);
         }
 
+        .boki-question-panel {
+          width: min(100%, 980px);
+          margin: 0 auto;
+        }
+
+        .boki-content-wrap {
+          max-width: 860px;
+          margin: 0 auto;
+        }
+
         .boki-question-head {
           display: flex;
           justify-content: space-between;
@@ -1804,6 +1806,7 @@ export default function MockExam({
           border-radius: var(--radius-sm);
           padding: 18px;
           margin-bottom: 18px;
+          max-width: 100%;
           background: #fff;
         }
 
@@ -1865,13 +1868,14 @@ export default function MockExam({
           overflow-x: auto;
           border: 1px solid var(--color-border);
           border-radius: var(--radius-sm);
+          max-width: 100%;
         }
 
         .boki-material table {
           width: 100%;
           border-collapse: collapse;
           font-size: 0.9rem;
-          min-width: 720px;
+          min-width: 100%;
         }
 
         .boki-material td {
@@ -1945,6 +1949,7 @@ export default function MockExam({
           border-radius: var(--radius-sm);
           background: #fff;
           overflow: hidden;
+          max-width: 100%;
         }
 
         .boki-answer-title {
@@ -1959,6 +1964,7 @@ export default function MockExam({
           display: grid;
           grid-template-columns: 96px minmax(180px, 1fr) minmax(150px, 0.55fr);
           overflow-x: auto;
+          max-width: 100%;
         }
 
         .boki-journal-grid > div:not(.boki-journal-row) {
@@ -2038,6 +2044,7 @@ export default function MockExam({
           grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 12px;
           padding: 14px;
+          max-width: 100%;
         }
 
         .boki-blank-grid label {
@@ -2133,6 +2140,9 @@ export default function MockExam({
         .boki-weakness {
           padding: 18px;
           margin-top: 16px;
+          max-width: 860px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .boki-progress-track {
@@ -2175,6 +2185,10 @@ export default function MockExam({
             grid-template-columns: 1fr;
           }
 
+          .boki-nav-strip {
+            grid-template-columns: 1fr;
+          }
+
           .boki-section-nav {
             border-left: 0;
             border-top: 1px solid var(--color-border);
@@ -2204,6 +2218,12 @@ export default function MockExam({
 
           .boki-exam-topbar {
             align-items: stretch;
+          }
+
+          .boki-question-panel,
+          .boki-nav-panel,
+          .boki-weakness {
+            width: 100%;
           }
 
           .boki-options label {
