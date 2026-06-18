@@ -95,18 +95,26 @@ export default function MockExam({ initialQuestions, durationMinutes = 20, quest
   const { total, correct } = submitted ? computeScore() : { total: prepared.length, correct: 0 }
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      <div className="bg-white shadow rounded-lg p-4 mb-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold">模拟考试（MVP）</h2>
-          <div className="text-sm text-gray-600">剩余时间: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</div>
-        </div>
-        <p className="text-sm text-gray-500 mt-2">共 {prepared.length} 题 · 计时 {durationMinutes} 分钟 · 题目已随机化数字</p>
-        {!started && (
-          <div className="mt-4">
-            <button className="px-4 py-2 bg-blue-600 text-white rounded" onClick={() => setStarted(true)}>开始考试</button>
+    <div className="container-page">
+      <div style={{ padding: '32px 0' }}>
+        <div className="max-w-5xl mx-auto">
+          <div style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)', borderRadius: 10 }} className="p-4 mb-4">
+            <div className="flex items-center justify-between">
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, margin: 0 }}>模拟考试（练习）</h2>
+              <div className="text-sm text-gray-600">剩余时间: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</div>
+            </div>
+            <p className="text-sm text-gray-500 mt-2">共 {prepared.length} 题 · 计时 {durationMinutes} 分钟</p>
+            {!started && (
+              <div className="mt-4">
+                <button
+                  onClick={() => setStarted(true)}
+                  style={{ background: 'var(--color-primary)', color: '#fff', border: '1px solid var(--color-border)' }}
+                  className="px-4 py-2 rounded"
+                >开始考试</button>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       {prepared.map((q, idx) => (

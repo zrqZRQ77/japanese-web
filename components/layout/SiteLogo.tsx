@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function SiteLogo({ className }: { className?: string }) {
+export function BrandText({ className }: { className?: string }) {
   const style: React.CSSProperties = {
     fontWeight: 900,
     fontSize: '1.15rem',
@@ -10,8 +10,16 @@ export default function SiteLogo({ className }: { className?: string }) {
   }
   const spanStyle: React.CSSProperties = { color: 'var(--color-primary)' }
   return (
-    <Link href="/" style={style} className={className}>
+    <span style={style} className={className}>
       資格合格<span style={spanStyle}>ナビ</span>
+    </span>
+  )
+}
+
+export default function SiteLogo({ className }: { className?: string }) {
+  return (
+    <Link href="/" style={{ textDecoration: 'none' }} className={className}>
+      <BrandText />
     </Link>
   )
 }

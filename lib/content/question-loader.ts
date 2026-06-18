@@ -18,11 +18,34 @@ export function getQuestionSet(examId: string, chapterId: string): QuestionSet |
 export function getAllQuestionSets(examId: string): QuestionSet[] {
   const dir = path.join(CONTENT_ROOT, examId, 'questions')
   if (!fs.existsSync(dir)) return []
-  return fs.readdirSync(dir)
+  const sets: QuestionSet[] = fs.readdirSync(dir)
     .filter(f => f.endsWith('.json'))
     .sort()
     .map(f => {
       const raw = fs.readFileSync(path.join(dir, f), 'utf-8')
       return JSON.parse(raw) as QuestionSet
     })
+
+  // 如果存在官方导入文件 official.json（位于 exam 根或 questions 目录），优先放到数组开头
+  const officialPaths = [
+    path.join(CONTENT_ROOT, examId, 'official.json'),
+    path.join(CONTENT_ROOT, examId, 'questions', 'official.json'),
+  ]
+  for (const p of officialPaths) {
+    if (fs.existsSync(p)) {
+      try {
+        const raw = fs.readFileSync(p, 'utf-8')
+        const off = JSON.parse(raw) as QuestionSet
+        // 若结构看起来合理，则放到前面
+        if (off && off.questions && Array.isArray(off.questions)) {
+          sets.unshift(off)
+          break
+        }
+      } catch (e) {
+        // ignore parse errors
+      }
+    }
+  }
+
+  return sets
 }

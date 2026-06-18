@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
-import SiteLogo from '@/components/layout/SiteLogo'
+import SiteLogo, { BrandText } from '@/components/layout/SiteLogo'
 import HoverCard from '@/components/ui/HoverCard'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { getAvailableExams } from '@/lib/content/exams-loader'
@@ -212,9 +212,9 @@ export default function HomePage() {
         }}>
           <div className="container-page">
               <div style={{ marginBottom: 8 }}>
-                <SiteLogo />
-              </div>
-            <p>© 2026 資格合格ナビ. All rights reserved.</p>
+                  <SiteLogo />
+                </div>
+              <p>© 2026 <BrandText />. All rights reserved.</p>
           </div>
         </footer>
       </main>
