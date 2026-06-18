@@ -73,9 +73,13 @@ export function useProgress(examId: string) {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    const p = loadProgressFromStorage(examId) ?? getDefaultProgress(examId)
-    setProgress(p)
-    setLoaded(true)
+    const loadId = window.setTimeout(() => {
+      const p = loadProgressFromStorage(examId) ?? getDefaultProgress(examId)
+      setProgress(p)
+      setLoaded(true)
+    }, 0)
+
+    return () => window.clearTimeout(loadId)
   }, [examId])
 
   const update = useCallback((patch: Partial<ExamProgress>) => {

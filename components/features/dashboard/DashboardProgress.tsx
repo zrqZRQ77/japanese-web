@@ -3,7 +3,7 @@
 // localStorageから進捗を読み込んで表示する
 // ============================================================
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import ProgressRing from '@/components/features/dashboard/ProgressRing'
 import StatCard from '@/components/features/dashboard/StatCard'

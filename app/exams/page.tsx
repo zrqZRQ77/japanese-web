@@ -5,7 +5,6 @@
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import HoverCard from '@/components/ui/HoverCard'
-import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { getAvailableExams } from '@/lib/content/exams-loader'
 
 

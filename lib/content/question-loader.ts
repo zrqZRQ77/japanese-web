@@ -6,30 +6,32 @@ import fs from 'fs'
 import path from 'path'
 import { QuestionSet } from '../types'
 
-const CONTENT_ROOT = path.join(process.cwd(), 'content', 'exams')
+function contentPath(...segments: string[]) {
+  return path.join(process.cwd(), 'content', 'exams', ...segments)
+}
 
 export function getQuestionSet(examId: string, chapterId: string): QuestionSet | null {
-  const filePath = path.join(CONTENT_ROOT, examId, 'questions', `${chapterId}.json`)
+  const filePath = contentPath(examId, 'questions', `${chapterId}.json`)
   if (!fs.existsSync(filePath)) return null
   const raw = fs.readFileSync(filePath, 'utf-8')
   return JSON.parse(raw) as QuestionSet
 }
 
 export function getAllQuestionSets(examId: string): QuestionSet[] {
-  const dir = path.join(CONTENT_ROOT, examId, 'questions')
+  const dir = contentPath(examId, 'questions')
   if (!fs.existsSync(dir)) return []
   const sets: QuestionSet[] = fs.readdirSync(dir)
     .filter(f => f.endsWith('.json'))
     .sort()
     .map(f => {
-      const raw = fs.readFileSync(path.join(dir, f), 'utf-8')
+      const raw = fs.readFileSync(contentPath(examId, 'questions', f), 'utf-8')
       return JSON.parse(raw) as QuestionSet
     })
 
   // 如果存在官方导入文件 official.json（位于 exam 根或 questions 目录），优先放到数组开头
   const officialPaths = [
-    path.join(CONTENT_ROOT, examId, 'official.json'),
-    path.join(CONTENT_ROOT, examId, 'questions', 'official.json'),
+    contentPath(examId, 'official.json'),
+    contentPath(examId, 'questions', 'official.json'),
   ]
   for (const p of officialPaths) {
     if (fs.existsSync(p)) {
@@ -41,7 +43,7 @@ export function getAllQuestionSets(examId: string): QuestionSet[] {
           sets.unshift(off)
           break
         }
-      } catch (e) {
+      } catch {
         // ignore parse errors
       }
     }

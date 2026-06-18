@@ -6,7 +6,7 @@ import fs from 'fs'
 import path from 'path'
 import { CardSet } from '../types'
 
-const CONTENT_ROOT = path.join(process.cwd(), 'content', 'exams')
+const CONTENT_ROOT = path.join(/*turbopackIgnore: true*/ process.cwd(), 'content', 'exams')
 
 export function getCardSet(examId: string, chapterId: string): CardSet | null {
   const filePath = path.join(CONTENT_ROOT, examId, 'cards', `${chapterId}.json`)

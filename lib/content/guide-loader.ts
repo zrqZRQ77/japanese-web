@@ -8,7 +8,7 @@ import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import { GuideFrontmatter } from '../types'
 
-const CONTENT_ROOT = path.join(process.cwd(), 'content', 'exams')
+const CONTENT_ROOT = path.join(/*turbopackIgnore: true*/ process.cwd(), 'content', 'exams')
 
 export async function getGuideContent(examId: string, chapterId: string, sectionId: string) {
   const filePath = path.join(CONTENT_ROOT, examId, 'guide', chapterId, `${sectionId}.mdx`)

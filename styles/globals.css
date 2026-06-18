@@ -38,7 +38,7 @@
   --content-max-width: 1200px;
 
   /* --- タイポグラフィ --- */
-  --font-sans: 'Noto Sans JP', system-ui, sans-serif;
+  --font-sans: var(--font-noto-sans-jp), system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* --- 角丸・影 --- */

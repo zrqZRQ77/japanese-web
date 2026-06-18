@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import ExamSidebar from '@/components/layout/ExamSidebar'
@@ -49,9 +48,6 @@ export default async function QuestionsIndexPage({ params }: Props) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 18 }}>
             {chapters.map(ch => {
               const qs = qMap.get(ch.id)
-              const has = qs && qs.questions && qs.questions.length > 0
-              const sample = has ? qs.questions[0] : null
-
               const cardSet = cardMap.get(ch.id)
               const cardCount = cardSet ? cardSet.cards.length : 0
 

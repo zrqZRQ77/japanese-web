@@ -6,7 +6,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { SearchResult } from '@/app/api/search/route'
+import type { SearchResult } from '@/app/api/search/route'
 
 const TYPE_META = {
   question: { label: '練習問題', icon: '✏️', color: '#7c3aed' },
@@ -30,12 +30,16 @@ export default function SearchModal({ open, onClose }: Props) {
 
   // モーダルを開くたびにフォーカス・状態リセット
   useEffect(() => {
-    if (open) {
+    if (!open) return
+
+    const resetId = window.setTimeout(() => {
       setQuery('')
       setResults([])
       setActiveIndex(0)
-      setTimeout(() => inputRef.current?.focus(), 50)
-    }
+      inputRef.current?.focus()
+    }, 50)
+
+    return () => window.clearTimeout(resetId)
   }, [open])
 
   // キーボードショートカット Cmd+K / Ctrl+K は Navbar 側で制御

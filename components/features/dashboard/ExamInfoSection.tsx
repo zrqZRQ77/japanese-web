@@ -3,7 +3,6 @@
 // 試験概要セクション — ダッシュボードページ上部に表示
 // 修改此文件 → 所有考试页面的"试験紹介"区块同步更新
 // ============================================================
-import { useState } from 'react'
 import { ExamMeta } from '@/lib/types'
 
 interface Props {

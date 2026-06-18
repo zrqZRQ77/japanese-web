@@ -2,7 +2,6 @@
 // 試験ダッシュボード  /exams/[examId]
 // （从 page-new.tsx 提取，并包含 ExamInfoSection 的集成）
 // ============================================================
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import ExamSidebar from '@/components/layout/ExamSidebar'

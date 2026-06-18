@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import SiteLogo, { BrandText } from '@/components/layout/SiteLogo'
 import HoverCard from '@/components/ui/HoverCard'
-import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { getAvailableExams } from '@/lib/content/exams-loader'
 
 const TOOLS = [

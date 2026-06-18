@@ -4,7 +4,7 @@ export function BrandText({ className }: { className?: string }) {
   const style: React.CSSProperties = {
     fontWeight: 900,
     fontSize: '1.15rem',
-    color: 'var(--color-text)',
+    color: 'var(--color-primary)',
     textDecoration: 'none',
     whiteSpace: 'nowrap',
   }

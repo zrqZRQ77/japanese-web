@@ -9,7 +9,7 @@ import { QuestionSet, CardSet } from '@/lib/types'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { CHAPTERS_REGISTRY } from '@/lib/types/chapters-registry'
 
-const CONTENT_ROOT = path.join(process.cwd(), 'content', 'exams')
+const CONTENT_ROOT = path.join(/*turbopackIgnore: true*/ process.cwd(), 'content', 'exams')
 
 export interface SearchResult {
   type: 'question' | 'card' | 'chapter'

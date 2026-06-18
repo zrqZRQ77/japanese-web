@@ -3,7 +3,7 @@ import path from 'path'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { ExamMeta } from '@/lib/types'
 
-const CONTENT_ROOT = path.join(process.cwd(), 'content', 'exams')
+const CONTENT_ROOT = path.join(/*turbopackIgnore: true*/ process.cwd(), 'content', 'exams')
 
 export function getAvailableExams(): ExamMeta[] {
   if (!fs.existsSync(CONTENT_ROOT)) return []
