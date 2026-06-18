@@ -34,9 +34,32 @@ interface ExamMaterial {
   note?: string
 }
 
+type AnswerValue = string | string[] | Record<string, string>
+
+interface AnswerBlank {
+  id: string
+  label: string
+  answer: string
+  suffix?: string
+}
+
+interface JournalLine {
+  id: string
+  side: '借方' | '貸方'
+  account: string
+  amount: string
+}
+
+interface ExamAnswerSheet {
+  kind: 'journal' | 'blanks'
+  lines?: JournalLine[]
+  blanks?: AnswerBlank[]
+}
+
 interface ExamQuestion extends Question {
   material?: ExamMaterial
   prompt?: string
+  answerSheet?: ExamAnswerSheet
 }
 
 interface ExamSection {
@@ -596,6 +619,180 @@ const BOKI3_MOCK_QUESTIONS: ExamQuestion[] = [
   },
 ]
 
+const BOKI3_ANSWER_SHEETS: Record<string, ExamAnswerSheet> = {
+  'boki3-mock-s1-q1': {
+    kind: 'journal',
+    lines: [
+      { id: 'd1', side: '借方', account: '給料', amount: '620000' },
+      { id: 'c1', side: '貸方', account: '所得税預り金', amount: '31000' },
+      { id: 'c2', side: '貸方', account: '社会保険料預り金', amount: '58000' },
+      { id: 'c3', side: '貸方', account: '普通預金', amount: '531000' },
+    ],
+  },
+  'boki3-mock-s1-q2': {
+    kind: 'journal',
+    lines: [
+      { id: 'd1', side: '借方', account: '普通預金', amount: '265000' },
+      { id: 'd2', side: '借方', account: '修繕費', amount: '95000' },
+      { id: 'c1', side: '貸方', account: '差入保証金', amount: '360000' },
+    ],
+  },
+  'boki3-mock-s1-q3': {
+    kind: 'journal',
+    lines: [
+      { id: 'd1', side: '借方', account: '仕入', amount: '300000' },
+      { id: 'd2', side: '借方', account: '仮払消費税', amount: '30000' },
+      { id: 'c1', side: '貸方', account: '前払金', amount: '50000' },
+      { id: 'c2', side: '貸方', account: '買掛金', amount: '280000' },
+    ],
+  },
+  'boki3-mock-s1-q4': {
+    kind: 'journal',
+    lines: [
+      { id: 'd1', side: '借方', account: '未収入金', amount: '250000' },
+      { id: 'd2', side: '借方', account: '備品減価償却累計額', amount: '620000' },
+      { id: 'd3', side: '借方', account: '固定資産売却損', amount: '30000' },
+      { id: 'c1', side: '貸方', account: '備品', amount: '900000' },
+    ],
+  },
+  'boki3-mock-s1-q5': {
+    kind: 'journal',
+    lines: [
+      { id: 'd1', side: '借方', account: '社会保険料預り金', amount: '46000' },
+      { id: 'd2', side: '借方', account: '法定福利費', amount: '46000' },
+      { id: 'c1', side: '貸方', account: '普通預金', amount: '92000' },
+    ],
+  },
+  'boki3-mock-s1-q6': {
+    kind: 'journal',
+    lines: [
+      { id: 'd1', side: '借方', account: '通信費', amount: '4200' },
+      { id: 'd2', side: '借方', account: '租税公課', amount: '18500' },
+      { id: 'c1', side: '貸方', account: '貯蔵品', amount: '22700' },
+    ],
+  },
+  'boki3-mock-s1-q7': {
+    kind: 'journal',
+    lines: [
+      { id: 'd1', side: '借方', account: '現金', amount: '48000' },
+      { id: 'd2', side: '借方', account: 'クレジット売掛金', amount: '89240' },
+      { id: 'd3', side: '借方', account: '支払手数料', amount: '2760' },
+      { id: 'c1', side: '貸方', account: '売上', amount: '140000' },
+    ],
+  },
+  'boki3-mock-s1-q8': {
+    kind: 'journal',
+    lines: [
+      { id: 'd1', side: '借方', account: '買掛金', amount: '260000' },
+      { id: 'c1', side: '貸方', account: '当座預金', amount: '260000' },
+    ],
+  },
+  'boki3-mock-s1-q9': {
+    kind: 'journal',
+    lines: [
+      { id: 'd1', side: '借方', account: '当座預金', amount: '2940000' },
+      { id: 'd2', side: '借方', account: '支払利息', amount: '60000' },
+      { id: 'c1', side: '貸方', account: '手形借入金', amount: '3000000' },
+    ],
+  },
+  'boki3-mock-s2-q1': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'avg1', label: '10/6後の平均単価', answer: '424', suffix: '円' },
+      { id: 'cost1', label: '10/14払出金額', answer: '38160', suffix: '円' },
+      { id: 'avg2', label: '10/22後の平均単価', answer: '452', suffix: '円' },
+      { id: 'profit', label: '売上総利益', answer: '47780', suffix: '円' },
+    ],
+  },
+  'boki3-mock-s2-q2': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'a', label: '備品A 当期償却費', answer: '400000', suffix: '円' },
+      { id: 'b', label: '備品B 当期償却費', answer: '270000', suffix: '円' },
+      { id: 'c', label: '備品C 当期償却費', answer: '40000', suffix: '円' },
+      { id: 'total', label: '減価償却費合計', answer: '710000', suffix: '円' },
+    ],
+  },
+  'boki3-mock-s2-q3': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'monthly', label: '値上げ後の月額家賃', answer: '132000', suffix: '円' },
+      { id: 'prepaid', label: '前払家賃への振替額', answer: '528000', suffix: '円' },
+      { id: 'expense', label: '当期の支払家賃', answer: '1464000', suffix: '円' },
+    ],
+  },
+  'boki3-mock-s2-q4': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'purchase_books', label: '11日に記入する補助簿数', answer: '4', suffix: 'つ' },
+      { id: 'sales_books', label: '19日に記入する補助簿数', answer: '4', suffix: 'つ' },
+      { id: 'bill_book', label: '19日の手形に関係する補助簿名', answer: '受取手形記入帳' },
+    ],
+  },
+  'boki3-mock-s3-q1': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'cash', label: '決算整理後の現金', answer: '90100', suffix: '円' },
+      { id: 'communication', label: '通信費に追加する金額', answer: '2900', suffix: '円' },
+      { id: 'loss', label: '雑損', answer: '600', suffix: '円' },
+    ],
+  },
+  'boki3-mock-s3-q2': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'receivables', label: '修正後売掛金', answer: '1200000', suffix: '円' },
+      { id: 'allowance', label: '貸倒引当金の必要額', answer: '24000', suffix: '円' },
+      { id: 'expense', label: '貸倒引当金繰入', answer: '15000', suffix: '円' },
+    ],
+  },
+  'boki3-mock-s3-q3': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'opening', label: '期首商品棚卸高', answer: '180000', suffix: '円' },
+      { id: 'ending', label: '期末商品棚卸高', answer: '215000', suffix: '円' },
+      { id: 'cost', label: '売上原価', answer: '2725000', suffix: '円' },
+    ],
+  },
+  'boki3-mock-s3-q4': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'old', label: '期首使用分の償却費', answer: '180000', suffix: '円' },
+      { id: 'new', label: '期中取得分の償却費', answer: '60000', suffix: '円' },
+      { id: 'total', label: '減価償却費', answer: '240000', suffix: '円' },
+    ],
+  },
+  'boki3-mock-s3-q5': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'months', label: '未払計上する月数', answer: '4', suffix: 'か月' },
+      { id: 'interest', label: '未払利息', answer: '14400', suffix: '円' },
+    ],
+  },
+  'boki3-mock-s3-q6': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'received', label: '仮受消費税', answer: '692000', suffix: '円' },
+      { id: 'paid', label: '仮払消費税', answer: '384000', suffix: '円' },
+      { id: 'tax', label: '未払消費税', answer: '308000', suffix: '円' },
+    ],
+  },
+  'boki3-mock-s3-q7': {
+    kind: 'blanks',
+    blanks: [
+      { id: 'revenue', label: '収益合計', answer: '4388000', suffix: '円' },
+      { id: 'expense', label: '費用合計', answer: '3982400', suffix: '円' },
+      { id: 'profit', label: '当期純利益', answer: '405600', suffix: '円' },
+    ],
+  },
+}
+
+function decorateBokiQuestions() {
+  return BOKI3_MOCK_QUESTIONS.map(question => ({
+    ...question,
+    answerSheet: BOKI3_ANSWER_SHEETS[question.id],
+  }))
+}
+
 function stableShuffle<T>(items: T[]) {
   return items
     .map((item, index) => {
@@ -635,8 +832,47 @@ function formatTime(seconds: number) {
   return `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`
 }
 
-function isCorrect(q: Question, answer: string | string[] | undefined) {
+function normalizeAnswer(value: string) {
+  return value
+    .replace(/[,\s　円]/g, '')
+    .replace(/[（(].*?[）)]/g, '')
+    .trim()
+}
+
+function isAnswerRecord(answer: AnswerValue | undefined): answer is Record<string, string> {
+  return Boolean(answer) && !Array.isArray(answer) && typeof answer === 'object'
+}
+
+function expectedBlankEntries(q: ExamQuestion) {
+  if (!q.answerSheet) return []
+  if (q.answerSheet.kind === 'journal') {
+    return (q.answerSheet.lines ?? []).flatMap(line => [
+      [`${line.id}-account`, line.account] as const,
+      [`${line.id}-amount`, line.amount] as const,
+    ])
+  }
+  return (q.answerSheet.blanks ?? []).map(blank => [blank.id, blank.answer] as const)
+}
+
+function hasAnswer(q: ExamQuestion, answer: AnswerValue | undefined) {
+  if (q.answerSheet) {
+    if (!isAnswerRecord(answer)) return false
+    const entries = expectedBlankEntries(q)
+    return entries.length > 0 && entries.every(([id]) => Boolean(answer[id]?.trim()))
+  }
   if (!answer) return false
+  return Array.isArray(answer) ? answer.length > 0 : Boolean(String(answer).trim())
+}
+
+function isCorrect(q: ExamQuestion, answer: AnswerValue | undefined) {
+  if (!answer) return false
+  if (q.answerSheet) {
+    if (!isAnswerRecord(answer)) return false
+    return expectedBlankEntries(q).every(([id, expected]) => {
+      const actual = answer[id] ?? ''
+      return normalizeAnswer(actual) === normalizeAnswer(expected)
+    })
+  }
   if (q.type === 'multiple') {
     const expected = Array.isArray(q.correctAnswer) ? q.correctAnswer : [String(q.correctAnswer)]
     const selected = Array.isArray(answer) ? answer : [String(answer)]
@@ -645,19 +881,28 @@ function isCorrect(q: Question, answer: string | string[] | undefined) {
   return String(q.correctAnswer) === String(answer)
 }
 
-function answerLabel(answer: string | string[] | undefined) {
+function answerLabel(answer: AnswerValue | undefined) {
   if (!answer) return '未回答'
+  if (isAnswerRecord(answer)) return '解答欄に入力済み'
   return Array.isArray(answer) ? answer.join(', ') : answer
 }
 
 function sectionInstruction(sectionIndex: number) {
   if (sectionIndex === 0) {
-    return '次の各取引について、もっとも適切な仕訳または勘定科目の組合せを選びなさい。なお、消費税は考慮しないものとする。'
+    return '次の各取引について、答案用紙の借方・貸方に勘定科目と金額を記入しなさい。なお、消費税は指示がある場合のみ考慮する。'
   }
   if (sectionIndex === 1) {
-    return '次の資料にもとづいて、補助簿・伝票・試算表に関する問いに答えなさい。必要に応じて各勘定の増減を整理して判断すること。'
+    return '次の資料にもとづいて、商品有高帳・補助簿・勘定記入に関する空欄へ答えを入力しなさい。'
   }
-  return '次の決算整理事項および試算表にもとづいて、決算整理後の金額または仕訳として適切なものを選びなさい。'
+  return '次の決算整理事項および試算表にもとづいて、決算整理後の金額を計算し、空欄へ入力しなさい。'
+}
+
+function promptText(q: ExamQuestion) {
+  if (!q.answerSheet) return q.prompt ?? '解答としてもっとも適切なものを選びなさい。'
+  if (q.answerSheet.kind === 'journal') {
+    return '答案用紙に借方・貸方の勘定科目と金額を入力しなさい。'
+  }
+  return '資料を整理し、答案用紙の空欄に入る金額または語句を入力しなさい。'
 }
 
 function buildExamMaterial(sectionIndex: number, questionIndex: number, question: ExamQuestion): ExamMaterial {
@@ -736,17 +981,20 @@ export default function MockExam({
   const [timeLeft, setTimeLeft] = useState(durationMinutes * 60)
   const [currentSection, setCurrentSection] = useState(0)
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<Record<string, string | string[]>>({})
+  const [answers, setAnswers] = useState<Record<string, AnswerValue>>({})
 
   const examQuestions = useMemo<ExamQuestion[]>(
-    () => examId === 'boki3' ? BOKI3_MOCK_QUESTIONS : initialQuestions,
+    () => examId === 'boki3' ? decorateBokiQuestions() : initialQuestions,
     [examId, initialQuestions],
   )
   const sections = useMemo(() => buildSections(examQuestions), [examQuestions])
   const activeSection = sections[currentSection] ?? sections[0]
   const activeQuestion = activeSection?.questions[currentQuestion] ?? activeSection?.questions[0]
   const totalQuestions = sections.reduce((sum, section) => sum + section.questions.length, 0)
-  const answeredCount = Object.keys(answers).length
+  const answeredCount = sections
+    .flatMap(section => section.questions)
+    .filter(q => hasAnswer(q, answers[q.id]))
+    .length
 
   useEffect(() => {
     if (!started || submitted) return
@@ -776,7 +1024,7 @@ export default function MockExam({
     const roundedScore = Math.round(score)
     const weakTags = sections
       .flatMap(section => section.questions)
-      .filter(q => answers[q.id] && !isCorrect(q, answers[q.id]))
+      .filter(q => hasAnswer(q, answers[q.id]) && !isCorrect(q, answers[q.id]))
       .flatMap(q => q.tags ?? [q.chapterId])
       .reduce<Record<string, number>>((acc, tag) => {
         acc[tag] = (acc[tag] ?? 0) + 1
@@ -794,7 +1042,7 @@ export default function MockExam({
     }
   }, [answers, passRate, sections])
 
-  function selectOption(q: Question, label: string, checked?: boolean) {
+  function selectOption(q: ExamQuestion, label: string, checked?: boolean) {
     if (submitted) return
     setAnswers(prev => {
       if (q.type === 'multiple') {
@@ -805,6 +1053,15 @@ export default function MockExam({
         return { ...prev, [q.id]: next }
       }
       return { ...prev, [q.id]: label }
+    })
+  }
+
+  function updateBlankAnswer(q: ExamQuestion, fieldId: string, value: string) {
+    if (submitted) return
+    setAnswers(prev => {
+      const existing = prev[q.id]
+      const current: Record<string, string> = isAnswerRecord(existing) ? existing : {}
+      return { ...prev, [q.id]: { ...current, [fieldId]: value } }
     })
   }
 
@@ -948,7 +1205,7 @@ export default function MockExam({
                 大問
               </div>
               {sections.map((section, sectionIndex) => {
-                const sectionAnswered = section.questions.filter(q => answers[q.id]).length
+                const sectionAnswered = section.questions.filter(q => hasAnswer(q, answers[q.id])).length
                 const active = sectionIndex === currentSection
                 return (
                   <div key={section.id} className="boki-section-nav">
@@ -964,7 +1221,7 @@ export default function MockExam({
                     <div className="boki-question-dots">
                       {section.questions.map((q, questionIndex) => {
                         const isActive = active && questionIndex === currentQuestion
-                        const answered = Boolean(answers[q.id])
+                        const answered = hasAnswer(q, answers[q.id])
                         return (
                           <button
                             key={q.id}
@@ -1056,42 +1313,117 @@ export default function MockExam({
                   <span>{activeQuestion.tags?.slice(0, 2).join(' / ') || activeQuestion.chapterId}</span>
                 </div>
 
-                <p className="boki-question-text">{activeQuestion.prompt ?? '解答としてもっとも適切なものを選びなさい。'}</p>
+                <p className="boki-question-text">{promptText(activeQuestion)}</p>
 
-                <div className="boki-options">
-                  {(activeQuestion.options ?? []).map(option => {
-                    const selected = activeQuestion.type === 'multiple'
-                      ? Array.isArray(answers[activeQuestion.id]) && (answers[activeQuestion.id] as string[]).includes(option.label)
-                      : answers[activeQuestion.id] === option.label
-                    const correct = submitted && option.label === activeQuestion.correctAnswer
-                    const wrong = submitted && selected && !correct
+                {activeQuestion.answerSheet ? (
+                  activeQuestion.answerSheet.kind === 'journal' ? (
+                    <div className="boki-answer-sheet">
+                      <div className="boki-answer-title">解答欄</div>
+                      <div className="boki-journal-grid">
+                        <div>借方・貸方</div>
+                        <div>勘定科目</div>
+                        <div>金額</div>
+                        {(activeQuestion.answerSheet.lines ?? []).map(line => {
+                          const existingAnswer = answers[activeQuestion.id]
+                          const answer: Record<string, string> = isAnswerRecord(existingAnswer) ? existingAnswer : {}
+                          const accountId = `${line.id}-account`
+                          const amountId = `${line.id}-amount`
+                          const accountCorrect = submitted && normalizeAnswer(answer[accountId] ?? '') === normalizeAnswer(line.account)
+                          const amountCorrect = submitted && normalizeAnswer(answer[amountId] ?? '') === normalizeAnswer(line.amount)
 
-                    return (
-                      <label key={option.label} className={`${selected ? 'selected' : ''} ${correct ? 'correct' : ''} ${wrong ? 'wrong' : ''}`}>
-                        {activeQuestion.type === 'multiple' ? (
-                          <input
-                            type="checkbox"
-                            checked={selected}
-                            disabled={submitted}
-                            onChange={e => selectOption(activeQuestion, option.label, e.target.checked)}
-                          />
-                        ) : (
-                          <input
-                            type="radio"
-                            name={activeQuestion.id}
-                            checked={selected}
-                            disabled={submitted}
-                            onChange={() => selectOption(activeQuestion, option.label)}
-                          />
-                        )}
-                        <span className="boki-option-label">{option.label}</span>
-                        <span>{option.text}</span>
-                        {correct && <CheckCircle2 size={18} />}
-                        {wrong && <X size={18} />}
-                      </label>
-                    )
-                  })}
-                </div>
+                          return (
+                            <div key={line.id} className="boki-journal-row">
+                              <strong>{line.side}</strong>
+                              <label className={submitted ? (accountCorrect ? 'correct' : 'wrong') : ''}>
+                                <span>科目</span>
+                                <input
+                                  value={answer[accountId] ?? ''}
+                                  disabled={submitted}
+                                  onChange={e => updateBlankAnswer(activeQuestion, accountId, e.target.value)}
+                                  placeholder="例：現金"
+                                />
+                                {submitted && <em>{line.account}</em>}
+                              </label>
+                              <label className={submitted ? (amountCorrect ? 'correct' : 'wrong') : ''}>
+                                <span>金額</span>
+                                <input
+                                  inputMode="numeric"
+                                  value={answer[amountId] ?? ''}
+                                  disabled={submitted}
+                                  onChange={e => updateBlankAnswer(activeQuestion, amountId, e.target.value)}
+                                  placeholder="円"
+                                />
+                                {submitted && <em>{Number(line.amount).toLocaleString()}円</em>}
+                              </label>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="boki-answer-sheet">
+                      <div className="boki-answer-title">解答欄</div>
+                      <div className="boki-blank-grid">
+                        {(activeQuestion.answerSheet.blanks ?? []).map(blank => {
+                          const existingAnswer = answers[activeQuestion.id]
+                          const answer: Record<string, string> = isAnswerRecord(existingAnswer) ? existingAnswer : {}
+                          const correct = submitted && normalizeAnswer(answer[blank.id] ?? '') === normalizeAnswer(blank.answer)
+
+                          return (
+                            <label key={blank.id} className={submitted ? (correct ? 'correct' : 'wrong') : ''}>
+                              <span>{blank.label}</span>
+                              <div>
+                                <input
+                                  value={answer[blank.id] ?? ''}
+                                  disabled={submitted}
+                                  onChange={e => updateBlankAnswer(activeQuestion, blank.id, e.target.value)}
+                                  placeholder="解答を入力"
+                                />
+                                {blank.suffix && <strong>{blank.suffix}</strong>}
+                              </div>
+                              {submitted && <em>正解: {Number.isNaN(Number(blank.answer)) ? blank.answer : Number(blank.answer).toLocaleString()}{blank.suffix ?? ''}</em>}
+                            </label>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
+                ) : (
+                  <div className="boki-options">
+                    {(activeQuestion.options ?? []).map(option => {
+                      const selected = activeQuestion.type === 'multiple'
+                        ? Array.isArray(answers[activeQuestion.id]) && (answers[activeQuestion.id] as string[]).includes(option.label)
+                        : answers[activeQuestion.id] === option.label
+                      const correct = submitted && option.label === activeQuestion.correctAnswer
+                      const wrong = submitted && selected && !correct
+
+                      return (
+                        <label key={option.label} className={`${selected ? 'selected' : ''} ${correct ? 'correct' : ''} ${wrong ? 'wrong' : ''}`}>
+                          {activeQuestion.type === 'multiple' ? (
+                            <input
+                              type="checkbox"
+                              checked={selected}
+                              disabled={submitted}
+                              onChange={e => selectOption(activeQuestion, option.label, e.target.checked)}
+                            />
+                          ) : (
+                            <input
+                              type="radio"
+                              name={activeQuestion.id}
+                              checked={selected}
+                              disabled={submitted}
+                              onChange={() => selectOption(activeQuestion, option.label)}
+                            />
+                          )}
+                          <span className="boki-option-label">{option.label}</span>
+                          <span>{option.text}</span>
+                          {correct && <CheckCircle2 size={18} />}
+                          {wrong && <X size={18} />}
+                        </label>
+                      )
+                    })}
+                  </div>
+                )}
 
                 {submitted && (
                   <div className="boki-explanation">
@@ -1099,10 +1431,10 @@ export default function MockExam({
                       <strong>あなたの回答</strong>
                       <span>{answerLabel(answers[activeQuestion.id])}</span>
                     </div>
-                    <div>
-                      <strong>正解</strong>
-                      <span>{String(activeQuestion.correctAnswer)}</span>
-                    </div>
+                  <div>
+                    <strong>正解</strong>
+                    <span>{activeQuestion.answerSheet ? '各解答欄に表示' : String(activeQuestion.correctAnswer)}</span>
+                  </div>
                     <p>{activeQuestion.explanation}</p>
                   </div>
                 )}
@@ -1288,15 +1620,20 @@ export default function MockExam({
 
         .boki-exam-grid {
           display: grid;
-          grid-template-columns: 128px minmax(0, 1fr);
-          gap: 18px;
+          grid-template-columns: minmax(0, 1fr);
+          gap: 14px;
           align-items: start;
         }
 
         .boki-nav-panel {
+          display: grid;
+          grid-template-columns: auto repeat(3, minmax(0, 1fr));
+          gap: 10px;
+          align-items: stretch;
           padding: 10px;
           position: sticky;
           top: 144px;
+          z-index: 8;
         }
 
         .boki-panel-title {
@@ -1305,12 +1642,14 @@ export default function MockExam({
           gap: 8px;
           font-size: 0.8rem;
           font-weight: 900;
-          margin-bottom: 8px;
+          padding: 0 8px;
+          white-space: nowrap;
         }
 
         .boki-section-nav {
-          border-top: 1px solid var(--color-border);
-          padding: 8px 0;
+          border-left: 1px solid var(--color-border);
+          padding-left: 10px;
+          min-width: 0;
         }
 
         .boki-section-nav > button {
@@ -1336,9 +1675,12 @@ export default function MockExam({
         .boki-section-nav strong {
           display: block;
           color: var(--color-text);
-          font-size: 0.72rem;
+          font-size: 0.8rem;
           margin: 3px 0;
           line-height: 1.3;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .boki-section-nav em {
@@ -1349,14 +1691,17 @@ export default function MockExam({
         }
 
         .boki-question-dots {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          display: flex;
           gap: 5px;
           margin-top: 8px;
+          overflow-x: auto;
+          padding-bottom: 2px;
         }
 
         .boki-question-dots button {
-          aspect-ratio: 1;
+          width: 30px;
+          height: 30px;
+          flex: 0 0 30px;
           border: 1px solid var(--color-border);
           border-radius: var(--radius-sm);
           background: #fff;
@@ -1595,6 +1940,125 @@ export default function MockExam({
           background: #fef2f2;
         }
 
+        .boki-answer-sheet {
+          border: 1px solid var(--color-border-strong);
+          border-radius: var(--radius-sm);
+          background: #fff;
+          overflow: hidden;
+        }
+
+        .boki-answer-title {
+          padding: 10px 14px;
+          background: var(--color-bg-muted);
+          border-bottom: 1px solid var(--color-border);
+          font-weight: 900;
+          color: var(--color-text);
+        }
+
+        .boki-journal-grid {
+          display: grid;
+          grid-template-columns: 96px minmax(180px, 1fr) minmax(150px, 0.55fr);
+          overflow-x: auto;
+        }
+
+        .boki-journal-grid > div:not(.boki-journal-row) {
+          padding: 10px 12px;
+          background: #f8fafc;
+          border-bottom: 1px solid var(--color-border);
+          font-size: 0.78rem;
+          font-weight: 900;
+          color: var(--color-text-secondary);
+          white-space: nowrap;
+        }
+
+        .boki-journal-row {
+          display: contents;
+        }
+
+        .boki-journal-row > strong,
+        .boki-journal-row label {
+          border-bottom: 1px solid var(--color-border);
+          padding: 12px;
+          min-width: 0;
+        }
+
+        .boki-journal-row > strong {
+          color: var(--color-primary);
+          background: #fbfdff;
+          font-size: 0.86rem;
+        }
+
+        .boki-journal-row label,
+        .boki-blank-grid label {
+          display: grid;
+          gap: 6px;
+        }
+
+        .boki-journal-row label > span,
+        .boki-blank-grid label > span {
+          color: var(--color-text-muted);
+          font-size: 0.72rem;
+          font-weight: 800;
+        }
+
+        .boki-journal-row input,
+        .boki-blank-grid input {
+          width: 100%;
+          min-height: 40px;
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-sm);
+          padding: 8px 10px;
+          color: var(--color-text);
+          background: #fff;
+          font: inherit;
+        }
+
+        .boki-journal-row label.correct input,
+        .boki-blank-grid label.correct input {
+          border-color: var(--color-success);
+          background: #f0fdf4;
+        }
+
+        .boki-journal-row label.wrong input,
+        .boki-blank-grid label.wrong input {
+          border-color: var(--color-error);
+          background: #fef2f2;
+        }
+
+        .boki-journal-row em,
+        .boki-blank-grid em {
+          color: var(--color-text-secondary);
+          font-size: 0.76rem;
+          font-style: normal;
+          font-weight: 700;
+        }
+
+        .boki-blank-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+          padding: 14px;
+        }
+
+        .boki-blank-grid label {
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-sm);
+          padding: 12px;
+          background: #fbfdff;
+        }
+
+        .boki-blank-grid label > div {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          gap: 8px;
+          align-items: center;
+        }
+
+        .boki-blank-grid strong {
+          color: var(--color-text-secondary);
+          font-size: 0.8rem;
+        }
+
         .boki-option-label {
           width: 34px;
           height: 34px;
@@ -1707,6 +2171,16 @@ export default function MockExam({
             grid-template-columns: 1fr;
           }
 
+          .boki-nav-panel {
+            grid-template-columns: 1fr;
+          }
+
+          .boki-section-nav {
+            border-left: 0;
+            border-top: 1px solid var(--color-border);
+            padding: 8px 0 0;
+          }
+
           .boki-nav-panel,
           .boki-exam-topbar {
             position: static;
@@ -1734,6 +2208,14 @@ export default function MockExam({
 
           .boki-options label {
             grid-template-columns: auto 30px minmax(0, 1fr);
+          }
+
+          .boki-blank-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .boki-journal-grid {
+            grid-template-columns: 72px minmax(160px, 1fr) minmax(130px, 0.6fr);
           }
 
           .boki-transaction-row {
