@@ -75,6 +75,13 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   color: var(--color-text);
 }
 
+.mdx-content h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 1.5rem 0 0.55rem;
+  color: var(--color-text);
+}
+
 .mdx-content p {
   margin-bottom: 1rem;
   color: var(--color-text);
@@ -102,22 +109,96 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
 }
 
 /* テーブル */
-.mdx-content table {
-  border-collapse: collapse;
+.mdx-content .mdx-table-frame {
   width: 100%;
-  margin: 16px 0;
-  font-size: 0.9rem;
+  margin: 18px 0 26px;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-card);
 }
+
+.mdx-content .mdx-wide-table {
+  scrollbar-gutter: stable;
+}
+
+.mdx-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.mdx-content .mdx-wide-table table {
+  min-width: 860px;
+}
+
 .mdx-content th,
 .mdx-content td {
-  border: 1px solid var(--color-border);
-  padding: 10px 14px;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px 12px;
   text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
 }
+
+.mdx-content th:last-child,
+.mdx-content td:last-child {
+  border-right: 0;
+}
+
+.mdx-content tr:last-child td {
+  border-bottom: 0;
+}
+
 .mdx-content th {
-  background: var(--color-bg-subtle);
+  background: #f8fafc;
+  font-size: 0.8rem;
   font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.mdx-content td {
+  background: #fff;
   color: var(--color-text);
+}
+
+.mdx-content .mdx-summary-row td {
+  background: #fbfdff;
+  font-weight: 700;
+}
+
+.mdx-content td:empty {
+  background: #fcfdff;
+}
+
+.mdx-content th[align="right"],
+.mdx-content td[align="right"] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 1100px) {
+  .mdx-content .mdx-wide-table {
+    width: min(860px, calc(100vw - var(--guide-sidebar-width) - 120px));
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .mdx-content table {
+    font-size: 0.8125rem;
+  }
+
+  .mdx-content th,
+  .mdx-content td {
+    padding: 9px 10px;
+  }
 }
 
 /* リンク */

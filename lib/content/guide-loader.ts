@@ -10,6 +10,88 @@ import { GuideFrontmatter } from '../types'
 
 const CONTENT_ROOT = path.join(/*turbopackIgnore: true*/ process.cwd(), 'content', 'exams')
 
+type HastNode = {
+  type?: string
+  tagName?: string
+  properties?: Record<string, unknown>
+  children?: HastNode[]
+}
+
+function getTableColumnCount(node: HastNode): number {
+  if (!node.children) return 0
+
+  let max = 0
+  const walk = (child: HastNode) => {
+    if (child.type === 'element' && child.tagName === 'tr') {
+      const count = child.children?.filter(cell =>
+        cell.type === 'element' && (cell.tagName === 'th' || cell.tagName === 'td')
+      ).length ?? 0
+      max = Math.max(max, count)
+    }
+    child.children?.forEach(walk)
+  }
+
+  node.children.forEach(walk)
+  return max
+}
+
+function getTextContent(node: HastNode): string {
+  const value = (node as HastNode & { value?: string }).value
+  if (typeof value === 'string') return value
+  return node.children?.map(getTextContent).join('') ?? ''
+}
+
+function markSummaryRows(table: HastNode) {
+  const walk = (node: HastNode) => {
+    if (node.type === 'element' && node.tagName === 'tr') {
+      const firstCell = node.children?.find(child =>
+        child.type === 'element' && (child.tagName === 'th' || child.tagName === 'td')
+      )
+      const firstText = firstCell ? getTextContent(firstCell).trim() : ''
+
+      if (firstText === '合計') {
+        const className = node.properties?.className
+        node.properties = {
+          ...node.properties,
+          className: Array.isArray(className) ? [...className, 'mdx-summary-row'] : ['mdx-summary-row'],
+        }
+      }
+    }
+
+    node.children?.forEach(walk)
+  }
+
+  walk(table)
+}
+
+function rehypeTableFrames() {
+  return (tree: HastNode) => {
+    const visit = (node: HastNode) => {
+      if (!node.children) return
+
+      node.children = node.children.map(child => {
+        if (child.type === 'element' && child.tagName === 'table') {
+          const className = ['mdx-table-frame']
+          markSummaryRows(child)
+          if (getTableColumnCount(child) >= 6) className.push('mdx-wide-table')
+
+          return {
+            type: 'element',
+            tagName: 'div',
+            properties: { className },
+            children: [child],
+          }
+        }
+
+        visit(child)
+        return child
+      })
+    }
+
+    visit(tree)
+  }
+}
+
 export async function getGuideContent(examId: string, chapterId: string, sectionId: string) {
   const filePath = path.join(CONTENT_ROOT, examId, 'guide', chapterId, `${sectionId}.mdx`)
   if (!fs.existsSync(filePath)) return null
@@ -20,6 +102,7 @@ export async function getGuideContent(examId: string, chapterId: string, section
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeTableFrames)
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content)
   return {
