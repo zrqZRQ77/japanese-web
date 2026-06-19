@@ -2,6 +2,9 @@
 // 学習ガイド 右側コンテンツエリア
 // 修改此文件 → 所有教材内容页面的布局/颜色同步更新
 // ============================================================
+'use client'
+
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Bookmark, Star, Trash2 } from 'lucide-react'
 import { ChapterMeta, GuideFrontmatter } from '@/lib/types'
@@ -18,8 +21,9 @@ interface Props {
 }
 
 export default function GuideContent({
-  frontmatter, contentHtml, chapter, examId, prevLink, nextLink
+  frontmatter, contentHtml, chapter, currentSectionId, examId, prevLink, nextLink
 }: Props) {
+  const articleRef = useRef<HTMLElement>(null)
   const base = `/exams/${examId}`
   const actions = [
     { label: 'ブックマーク', icon: Bookmark },
@@ -27,8 +31,12 @@ export default function GuideContent({
     { label: '削除', icon: Trash2 },
   ]
 
+  useEffect(() => {
+    articleRef.current?.scrollTo({ top: 0, left: 0 })
+  }, [currentSectionId])
+
   return (
-    <article style={{
+    <article ref={articleRef} style={{
       flex: 1, overflowY: 'auto',
       background: 'var(--color-bg-subtle)',
       display: 'flex', flexDirection: 'column',

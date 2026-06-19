@@ -69,6 +69,7 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
 
           {guideData ? (
             <GuideContent
+              key={`${chapterId}-${activeSection}`}
               frontmatter={guideData.frontmatter}
               contentHtml={guideData.contentHtml}
               chapter={chapter}
