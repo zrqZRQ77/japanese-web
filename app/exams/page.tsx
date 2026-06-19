@@ -26,21 +26,22 @@ export default function ExamsPage() {
         <div style={{
           background: 'var(--color-hero-bg)',
           padding: '48px 0 40px',
+          borderBottom: '1px solid var(--color-border)',
         }}>
           <div className="container-page">
             <div style={{
               fontSize: '0.8rem', fontWeight: 700,
-              color: '#60a5fa', letterSpacing: '0.08em',
+              color: 'var(--color-primary)',
               marginBottom: 12,
             }}>試験を選ぶ</div>
             <h1 style={{
               fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
-              fontWeight: 900, color: '#fff',
+              fontWeight: 900, color: 'var(--color-text)',
               marginBottom: 12, lineHeight: 1.2,
             }}>
               どの資格を目指しますか？
             </h1>
-            <p style={{ color: '#94a3b8', fontSize: '1rem', maxWidth: 480 }}>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', maxWidth: 480 }}>
               すべての学習コンテンツが無料。練習問題・学習ガイド・AI解説で合格を目指しましょう。
             </p>
           </div>
@@ -74,6 +75,7 @@ export default function ExamsPage() {
                     padding: '24px',
                     cursor: 'pointer',
                     height: '100%',
+                    boxShadow: 'var(--shadow-card)',
                   }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
                       <span style={{

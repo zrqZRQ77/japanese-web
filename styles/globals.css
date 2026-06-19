@@ -6,10 +6,11 @@
 @import "tailwindcss";
 
 :root {
-  /* --- ブランドカラー（open-exam-prep風 深蓝极简） --- */
+  /* --- ブランドカラー --- */
+  --color-brand: #111827;
   --color-primary: #2563eb;        /* メインブルー */
   --color-primary-dark: #1d4ed8;   /* ホバー時 */
-  --color-primary-light: #eff6ff;  /* 背景ハイライト */
+  --color-primary-light: #eef4ff;  /* 背景ハイライト */
 
   --color-accent: #2563eb;         /* CTA（主色と統一） */
   --color-accent-dark: #1d4ed8;
@@ -20,17 +21,17 @@
 
   /* --- ニュートラル --- */
   --color-bg: #ffffff;
-  --color-bg-subtle: #f8fafc;
+  --color-bg-subtle: #f7f9fc;
   --color-bg-muted: #f1f5f9;
-  --color-border: #e2e8f0;
+  --color-border: #e5eaf2;
   --color-border-strong: #cbd5e1;
   --color-text: #1e293b;
   --color-text-secondary: #64748b;
   --color-text-muted: #94a3b8;
 
-  /* --- ダークヒーロー背景（ホームページ） --- */
-  --color-hero-bg: #0f172a;
-  --color-hero-text: #f8fafc;
+  /* --- ヒーロー背景 --- */
+  --color-hero-bg: #f8fafc;
+  --color-hero-text: var(--color-text);
 
   /* --- レイアウト --- */
   --sidebar-width: 280px;
@@ -44,18 +45,18 @@
 
   /* --- 角丸・影 --- */
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-elevated: 0 4px 16px rgba(0,0,0,0.08);
+  --radius-md: 8px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --shadow-card: 0 10px 24px rgba(15,23,42,0.04);
+  --shadow-elevated: 0 18px 36px rgba(15,23,42,0.08);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { font-family: var(--font-sans); color: var(--color-text); background: var(--color-bg); }
+html { font-family: var(--font-sans); color: var(--color-text); background: var(--color-bg-subtle); }
 
-body { line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--color-bg-subtle); }
 
 /* --- 共通ユーティリティ --- */
 .container-page {

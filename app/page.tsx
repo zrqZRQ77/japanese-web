@@ -3,13 +3,14 @@ import Navbar from '@/components/layout/Navbar'
 import SiteLogo, { BrandText } from '@/components/layout/SiteLogo'
 import HoverCard from '@/components/ui/HoverCard'
 import { getAvailableExams } from '@/lib/content/exams-loader'
+import { Bot, BookOpen, CreditCard, FileText, PencilLine } from 'lucide-react'
 
 const TOOLS = [
-  { icon: '📝', title: '練習問題', desc: '章ごとの練習で知識を定着' },
-  { icon: '🎓', title: '学習ガイド', desc: 'やさしい解説で理解を深める' },
-  { icon: '📋', title: '模擬試験', desc: '本番形式で実力をチェック' },
-  { icon: '🃏', title: '知識カード', desc: 'スキマ時間に効率よく暗記' },
-  { icon: '🤖', title: 'AI質問', desc: 'AIがいつでも質問に回答' },
+  { icon: PencilLine, title: '練習問題', desc: '章ごとの練習で知識を定着' },
+  { icon: BookOpen, title: '学習ガイド', desc: 'やさしい解説で理解を深める' },
+  { icon: FileText, title: '模擬試験', desc: '本番形式で実力をチェック' },
+  { icon: CreditCard, title: '知識カード', desc: 'スキマ時間に効率よく暗記' },
+  { icon: Bot, title: 'AI質問', desc: 'AIがいつでも質問に回答' },
 ]
 
 const STATS = [
@@ -30,7 +31,8 @@ export default function HomePage() {
         <section style={{
           background: 'var(--color-hero-bg)',
           color: 'var(--color-hero-text)',
-          padding: 'clamp(48px, 8vw, 80px) 0 clamp(40px, 6vw, 64px)',
+          padding: 'clamp(56px, 8vw, 88px) 0 clamp(44px, 6vw, 68px)',
+          borderBottom: '1px solid var(--color-border)',
         }}>
           <div className="container-page" style={{
             display: 'flex', gap: 'clamp(24px, 4vw, 56px)',
@@ -40,22 +42,24 @@ export default function HomePage() {
             <div style={{ flex: '1 1 min(100%, 360px)' }}>
               <div style={{
                 display: 'inline-block',
-                background: '#1e3a5f', color: '#93c5fd',
-                fontSize: '0.78rem', fontWeight: 700,
-                padding: '4px 14px', borderRadius: 99,
-                marginBottom: 20, letterSpacing: '0.05em',
+                background: '#fff', color: 'var(--color-primary)',
+                fontSize: '0.78rem', fontWeight: 800,
+                padding: '5px 12px', borderRadius: 'var(--radius-sm)',
+                marginBottom: 18,
+                border: '1px solid var(--color-border)',
               }}>完全無料・AI解説・登録不要</div>
 
               <h1 style={{
-                fontSize: 'clamp(2rem, 6vw, 3.6rem)',
+                fontSize: 'clamp(2rem, 6vw, 3.7rem)',
                 fontWeight: 900, lineHeight: 1.15, marginBottom: 14,
+                color: 'var(--color-text)',
               }}>
                 資格合格を、<br />
-                <span style={{ color: '#facc15' }}>無料で。</span>
+                <span style={{ color: 'var(--color-primary)' }}>無料で。</span>
               </h1>
 
               <p style={{
-                color: '#94a3b8', fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                color: 'var(--color-text-secondary)', fontSize: 'clamp(0.9rem, 2vw, 1rem)',
                 lineHeight: 1.8, marginBottom: 32, maxWidth: 420,
               }}>
                 FP技能士・日商簿記・宅建士など、<br />
@@ -70,6 +74,7 @@ export default function HomePage() {
                 borderRadius: 'var(--radius-sm)', fontWeight: 700,
                 fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
                 textDecoration: 'none',
+                boxShadow: '0 12px 26px rgba(37,99,235,0.18)',
               }}>試験を選ぶ →</Link>
             </div>
 
@@ -82,19 +87,20 @@ export default function HomePage() {
             }}>
               {STATS.map(s => (
                 <div key={s.label} style={{
-                  background: 'rgba(255,255,255,0.07)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: '#fff',
+                  border: '1px solid var(--color-border)',
                   borderRadius: 'var(--radius-lg)',
                   padding: 'clamp(16px, 3vw, 28px) clamp(12px, 2vw, 24px)',
                   textAlign: 'center',
+                  boxShadow: 'var(--shadow-card)',
                 }}>
                   <div style={{
                     fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
-                    fontWeight: 900, color: '#facc15', lineHeight: 1,
+                    fontWeight: 900, color: 'var(--color-text)', lineHeight: 1,
                   }}>{s.value}</div>
                   <div style={{
                     fontSize: 'clamp(0.75rem, 1.5vw, 0.875rem)',
-                    color: '#94a3b8', marginTop: 6,
+                    color: 'var(--color-text-secondary)', marginTop: 6,
                   }}>{s.label}</div>
                 </div>
               ))}
@@ -121,19 +127,33 @@ export default function HomePage() {
                 gap: 'clamp(10px, 2vw, 16px)',
                 justifyContent: 'center',
               }}>
-                {TOOLS.map(t => (
+                {TOOLS.map(t => {
+                  const Icon = t.icon
+                  return (
                 <HoverCard key={t.title} style={{
-                  background: 'var(--color-bg-subtle)',
+                  background: '#fff',
                   border: '1px solid var(--color-border)',
                   borderRadius: 'var(--radius-md)',
                   padding: 'clamp(16px, 3vw, 24px) clamp(12px, 2vw, 20px)',
                   textAlign: 'center', cursor: 'pointer',
+                  boxShadow: 'var(--shadow-card)',
                 }}>
-                  <div style={{ fontSize: 'clamp(1.6rem, 3vw, 2rem)', marginBottom: 10 }}>{t.icon}</div>
+                  <div style={{
+                    width: 42,
+                    height: 42,
+                    margin: '0 auto 12px',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'var(--color-primary-light)',
+                    color: 'var(--color-primary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}><Icon size={20} strokeWidth={2.2} /></div>
                   <div style={{ fontWeight: 700, fontSize: 'clamp(0.875rem, 1.5vw, 0.95rem)', marginBottom: 6 }}>{t.title}</div>
                   <div style={{ fontSize: 'clamp(0.75rem, 1.2vw, 0.8rem)', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>{t.desc}</div>
                 </HoverCard>
-              ))}
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -173,13 +193,14 @@ export default function HomePage() {
                     borderRadius: 'var(--radius-md)',
                     padding: 'clamp(16px, 3vw, 24px)',
                     cursor: 'pointer', height: '100%',
+                    boxShadow: 'var(--shadow-card)',
                   }}>
                     <div style={{
                       display: 'inline-block',
                       background: 'var(--color-primary-light)',
                       color: 'var(--color-primary)',
                       fontSize: '0.75rem', fontWeight: 700,
-                      padding: '3px 10px', borderRadius: 99, marginBottom: 12,
+                      padding: '3px 10px', borderRadius: 'var(--radius-sm)', marginBottom: 12,
                     }}>{exam.category}</div>
                     <div style={{
                       fontWeight: 800,

@@ -6,6 +6,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Search } from 'lucide-react'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import SearchModal from '@/components/features/search/SearchModal'
 import SiteLogo from '@/components/layout/SiteLogo'
@@ -45,13 +46,14 @@ export default function Navbar() {
     <>
       <nav style={{
         position: 'sticky', top: 0, zIndex: 50,
-        background: '#fff',
-        borderBottom: '1px solid var(--color-border)',
-        boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+        background: 'rgba(255,255,255,0.92)',
+        borderBottom: '1px solid rgba(226,232,240,0.86)',
+        boxShadow: '0 8px 24px rgba(15,23,42,0.04)',
+        backdropFilter: 'blur(14px)',
       }}>
         <div className="container-page" style={{
           display: 'flex', alignItems: 'center',
-          height: 60, gap: 4,
+          height: 64, gap: 4,
         }}>
           {/* ロゴ */}
           <div style={{ marginRight: 24, flexShrink: 0 }}>
@@ -80,17 +82,19 @@ export default function Navbar() {
               onClick={() => setSearchOpen(true)}
               style={{
                 display: 'flex', alignItems: 'center', gap: 8,
-                padding: '7px 12px',
-                background: 'var(--color-bg-subtle)',
+                padding: '8px 12px',
+                background: '#fff',
                 border: '1px solid var(--color-border)',
                 borderRadius: 'var(--radius-sm)',
                 cursor: 'pointer', color: 'var(--color-text-muted)',
                 fontSize: '0.875rem', whiteSpace: 'nowrap', flexShrink: 0,
+                boxShadow: '0 1px 2px rgba(15,23,42,0.03)',
               }}
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--color-primary)')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
             >
-              🔍 検索
+              <Search size={16} />
+              検索
               <kbd style={{
                 fontSize: '0.68rem', color: 'var(--color-text-muted)',
                 background: '#fff', border: '1px solid var(--color-border)',
@@ -138,7 +142,7 @@ export default function Navbar() {
         {mobileOpen && (
           <div style={{
             borderTop: '1px solid var(--color-border)',
-            background: '#fff',
+            background: 'rgba(255,255,255,0.96)',
             padding: '16px 20px 20px',
           }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -220,10 +224,11 @@ function NavLink({ href, children, active, highlight, forceColor }: {
   return (
     <Link href={href} style={{
       padding: '7px 14px', borderRadius: 'var(--radius-sm)',
-      fontSize: '0.9rem', fontWeight: active ? 700 : 500,
+      fontSize: '0.9rem', fontWeight: active ? 800 : 600,
       color,
       textDecoration: 'none', whiteSpace: 'nowrap',
       background: active ? 'var(--color-primary-light)' : 'transparent',
+      border: active ? '1px solid rgba(37,99,235,0.10)' : '1px solid transparent',
     }}
       onMouseEnter={e => { if (!active) e.currentTarget.style.background = 'var(--color-bg-subtle)' }}
       onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent' }}

@@ -11,21 +11,22 @@ export default function GuidePage() {
         <section style={{
           background: 'var(--color-hero-bg)',
           padding: '48px 0 40px',
+          borderBottom: '1px solid var(--color-border)',
         }}>
           <div className="container-page">
             <div style={{
               fontSize: '0.8rem', fontWeight: 700,
-              color: '#60a5fa', letterSpacing: '0.08em',
+              color: 'var(--color-primary)',
               marginBottom: 12,
             }}>学習ガイド</div>
             <h1 style={{
               fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
-              fontWeight: 900, color: '#fff',
+              fontWeight: 900, color: 'var(--color-text)',
               marginBottom: 12, lineHeight: 1.2,
             }}>
               章ごとに、基礎から順番に学ぶ
             </h1>
-            <p style={{ color: '#94a3b8', fontSize: '1rem', maxWidth: 560 }}>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', maxWidth: 560 }}>
               更新済みの教材に合わせて、試験ごとの章一覧を確認できます。学習ガイドからそのまま各章へ進めます。
             </p>
           </div>
@@ -47,6 +48,7 @@ export default function GuidePage() {
                   border: '1px solid var(--color-border)',
                   borderRadius: 'var(--radius-lg)',
                   padding: 24,
+                  boxShadow: 'var(--shadow-card)',
                 }}>
                   <div style={{
                     display: 'flex', justifyContent: 'space-between',

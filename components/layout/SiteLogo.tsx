@@ -3,15 +3,16 @@ import Link from 'next/link'
 export function BrandText({ className }: { className?: string }) {
   const style: React.CSSProperties = {
     fontWeight: 900,
-    fontSize: '1.15rem',
-    color: 'var(--color-primary)',
+    fontSize: '1.12rem',
+    color: 'var(--color-brand)',
     textDecoration: 'none',
     whiteSpace: 'nowrap',
+    letterSpacing: 0,
+    fontFamily: 'var(--font-sans)',
   }
-  const spanStyle: React.CSSProperties = { color: 'var(--color-primary)' }
   return (
     <span style={style} className={className}>
-      資格合格<span style={spanStyle}>ナビ</span>
+      資格合格ナビ
     </span>
   )
 }

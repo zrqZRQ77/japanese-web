@@ -12,21 +12,22 @@ export default function PracticePage() {
         <section style={{
           background: 'var(--color-hero-bg)',
           padding: '48px 0 40px',
+          borderBottom: '1px solid var(--color-border)',
         }}>
           <div className="container-page">
             <div style={{
               fontSize: '0.8rem', fontWeight: 700,
-              color: '#60a5fa', letterSpacing: '0.08em',
+              color: 'var(--color-primary)',
               marginBottom: 12,
             }}>練習問題</div>
             <h1 style={{
               fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
-              fontWeight: 900, color: '#fff',
+              fontWeight: 900, color: 'var(--color-text)',
               marginBottom: 12, lineHeight: 1.2,
             }}>
               試験ごとの問題を、章単位で確認する
             </h1>
-            <p style={{ color: '#94a3b8', fontSize: '1rem', maxWidth: 640 }}>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', maxWidth: 640 }}>
               更新済みの教材に合わせて、各試験の章一覧と出題数をまとめています。ここから直接、問題ページへ進めます。
             </p>
           </div>
@@ -58,6 +59,7 @@ export default function PracticePage() {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 16,
+                  boxShadow: 'var(--shadow-card)',
                 }}>
                   <div style={{
                     display: 'flex',
