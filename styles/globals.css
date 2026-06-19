@@ -270,6 +270,123 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
 }
 
 /* --- 知識カード Flashcard --- */
+.flashcard-page {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.flashcard-shell {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-card);
+  padding: 22px;
+}
+
+.flashcard-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 16px;
+  margin-bottom: 14px;
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.flashcard-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 900;
+  margin-bottom: 7px;
+}
+
+.flashcard-toolbar h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.flashcard-select-wrap {
+  display: grid;
+  gap: 6px;
+  min-width: min(390px, 100%);
+}
+
+.flashcard-select-wrap label {
+  color: var(--color-text-muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.flashcard-chapter-select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-subtle);
+  color: var(--color-text);
+  padding: 0 12px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.flashcard-meta-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.flashcard-chapter-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.flashcard-chapter-heading span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.flashcard-chapter-heading h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.08rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.flashcard-reset-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 11px;
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
 .flashcard-stage {
   perspective: 1400px;
 }
@@ -361,21 +478,57 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   padding: 4px 9px;
 }
 
+.flashcard-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.flashcard-progress {
+  margin-top: 18px;
+}
+
+.flashcard-progress > div {
+  height: 7px;
+  border-radius: 99px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.flashcard-progress span {
+  display: block;
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 99px;
+  transition: width 0.25s ease;
+}
+
+.flashcard-progress p {
+  margin: 8px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: right;
+}
+
 @media (max-width: 900px) {
-  .flashcard-stage + div {
+  .flashcard-actions {
     justify-content: center;
   }
 }
 
 @media (max-width: 760px) {
-  .flashcard-layout {
-    display: block !important;
+  .flashcard-shell {
+    padding: 16px;
   }
 
-  .flashcard-chapter-list {
-    position: static !important;
-    width: 100% !important;
-    margin-bottom: 16px;
+  .flashcard-toolbar,
+  .flashcard-chapter-heading {
+    display: grid;
+    align-items: stretch;
   }
 
   .flashcard {

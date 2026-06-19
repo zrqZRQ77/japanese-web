@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
-import ExamSidebar from '@/components/layout/ExamSidebar'
 import FlashcardDeck from '@/components/features/cards/FlashcardDeck'
 import { getExamById } from '@/lib/types/exams-registry'
 import { getChaptersByExam } from '@/lib/types/chapters-registry'
@@ -22,17 +21,14 @@ export default async function Page({ params }: { params: Promise<{ examId: strin
     <>
       <Navbar />
       <div style={{
-        display: 'flex',
         height: 'calc(100vh - 64px)',
         overflow: 'hidden',
       }}>
-        <ExamSidebar exam={exam} />
-
         <main style={{
-          flex: 1,
+          height: '100%',
           overflowY: 'auto',
           background: 'var(--color-bg-subtle)',
-          padding: '32px',
+          padding: '28px 32px',
         }}>
           <FlashcardDeck examShortName={exam.shortName} groups={groups} />
         </main>
