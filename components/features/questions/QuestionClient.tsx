@@ -62,7 +62,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
       display: 'flex', alignItems: 'center', gap: 14,
       padding: '18px 20px',
       border: '1px solid var(--color-border)',
-      borderRadius: '18px',
+      borderRadius: 8,
       cursor: isAnswered ? 'default' : 'pointer',
       marginBottom: 12,
       transition: 'transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease',
@@ -133,7 +133,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
         borderRight: '1px solid rgba(148,163,184,0.16)',
         background: 'linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(248,250,252,0.98) 100%)',
         overflowY: 'auto',
-        padding: '24px 14px 24px 18px',
+        padding: '22px 14px 24px 18px',
         backdropFilter: 'blur(12px)',
         boxShadow: 'inset -1px 0 0 rgba(255,255,255,0.55)',
       }}>
@@ -141,14 +141,14 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
           padding: '4px 8px 20px',
           marginBottom: 14,
         }}>
-          <Link href={`${base}`} style={{
+          <Link href={`${base}/questions`} style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
             fontSize: '0.78rem', color: 'var(--color-text-muted)',
             textDecoration: 'none', fontWeight: 700,
-            padding: '6px 10px', borderRadius: 999,
+            padding: '6px 10px', borderRadius: 8,
             background: 'rgba(255,255,255,0.8)',
             border: '1px solid rgba(148,163,184,0.16)',
-          }}>← ダッシュボード</Link>
+          }}>← 練習問題一覧</Link>
           <div style={{
             fontWeight: 900, fontSize: '1.02rem',
             marginTop: 16, marginBottom: 10, color: 'var(--color-text)',
@@ -178,7 +178,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
               padding: '12px 12px',
               border: '1px solid',
               borderColor: i === current ? 'rgba(59,130,246,0.20)' : 'transparent',
-              borderRadius: 16,
+              borderRadius: 8,
               background: i === current
                 ? 'linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,250,252,0.96) 100%)'
                 : 'transparent',
@@ -205,7 +205,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
       <main style={{
         flex: 1, overflowY: 'auto',
         background: 'transparent',
-        padding: '42px 32px 48px',
+        padding: '40px 32px 48px',
       }}>
         {/* ヘッダー */}
         <div style={{
@@ -218,7 +218,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
           </div>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '7px 12px', borderRadius: 999,
+            padding: '7px 12px', borderRadius: 8,
             background: 'rgba(255,255,255,0.82)',
             border: '1px solid var(--color-border)',
             color: 'var(--color-text-secondary)',
@@ -233,7 +233,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
           margin: '0 auto',
           background: 'rgba(255,255,255,0.92)',
           border: '1px solid rgba(148,163,184,0.2)',
-          borderRadius: 24,
+          borderRadius: 10,
           padding: '34px 38px',
           boxShadow: '0 24px 60px rgba(15,23,42,0.08)',
           backdropFilter: 'blur(8px)',
@@ -243,7 +243,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
             background: 'rgba(59,130,246,0.08)',
             color: 'var(--color-primary)',
             fontSize: '0.75rem', fontWeight: 800,
-            padding: '5px 12px', borderRadius: 999,
+            padding: '5px 12px', borderRadius: 8,
             marginBottom: 18,
           }}>{chapterTitle}</div>
 
@@ -276,7 +276,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
               marginTop: 20,
               background: 'linear-gradient(180deg, #fbfdff 0%, #f7fafc 100%)',
               border: '1px solid rgba(148,163,184,0.18)',
-              borderRadius: 20,
+              borderRadius: 8,
               padding: '18px 20px',
             }}>
               <div style={{
@@ -291,7 +291,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
                     fontSize: '0.74rem',
                     fontWeight: 700,
                     padding: '4px 8px',
-                    borderRadius: 999,
+                    borderRadius: 8,
                     background: currentAnswerState === 'correct' ? 'rgba(22,163,74,0.10)' : 'rgba(220,38,38,0.10)',
                     color: currentAnswerState === 'correct' ? 'var(--color-success)' : 'var(--color-error)',
                   }}>
@@ -330,7 +330,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
                 <button onClick={handleNext} style={{
                   padding: '10px 28px',
                   background: 'linear-gradient(135deg, var(--color-primary) 0%, #1d4ed8 100%)', color: '#fff',
-                  borderRadius: 999,
+                  borderRadius: 8,
                   fontWeight: 700, fontSize: '0.9rem',
                   border: 'none', cursor: 'pointer',
                   boxShadow: '0 10px 24px rgba(37,99,235,0.22)',
@@ -349,7 +349,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
                 <Link href={`${base}`} style={{
                   padding: '10px 28px',
                   background: 'linear-gradient(135deg, var(--color-success) 0%, #15803d 100%)', color: '#fff',
-                  borderRadius: 999,
+                  borderRadius: 8,
                   fontWeight: 700, fontSize: '0.9rem',
                   textDecoration: 'none',
                   boxShadow: '0 10px 24px rgba(22,163,74,0.18)',
