@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { Bookmark, Star, Trash2 } from 'lucide-react'
 import { ChapterMeta, GuideFrontmatter } from '@/lib/types'
 import { useProgress } from '@/lib/hooks/useProgress'
+import { trackEvent } from '@/lib/analytics'
 
 interface Props {
   frontmatter: GuideFrontmatter
@@ -127,7 +128,14 @@ export default function GuideContent({
               練習問題で知識を定着させましょう
             </div>
           </div>
-          <Link href={`${base}/questions/${chapter.id}`} style={{
+          <Link
+            href={`${base}/questions/${chapter.id}`}
+            onClick={() => trackEvent('guide_practice_click', {
+              exam_id: examId,
+              chapter_id: chapter.id,
+              section_id: currentSectionId,
+            })}
+            style={{
             padding: '9px 20px',
             background: 'var(--color-primary)', color: '#fff',
             borderRadius: 'var(--radius-sm)', fontWeight: 700,

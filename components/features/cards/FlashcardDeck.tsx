@@ -5,6 +5,7 @@ import { useMemo, useState } from 'react'
 import { RotateCcw, Layers, CheckCircle2 } from 'lucide-react'
 import { ChapterMeta, KnowledgeCard } from '@/lib/types'
 import { useProgress } from '@/lib/hooks/useProgress'
+import { trackEvent } from '@/lib/analytics'
 
 interface CardGroup {
   chapter: ChapterMeta
@@ -84,12 +85,26 @@ export default function FlashcardDeck({
 
   function toggleRemembered() {
     if (!activeCard || !activeGroup) return
+    const willRemember = !rememberedCardIds.has(activeCard.id)
     setCardRemembered(
       activeCard.id,
-      !rememberedCardIds.has(activeCard.id),
+      willRemember,
       activeGroup.chapter.id,
       activeGroup.chapter.title,
     )
+    trackEvent('flashcard_status_change', {
+      exam_id: examId,
+      chapter_id: activeGroup.chapter.id,
+      card_id: activeCard.id,
+      status: willRemember ? 'remembered' : 'unremembered',
+    })
+    if (willRemember && chapterRememberedCount + 1 >= cards.length) {
+      trackEvent('flashcard_chapter_complete', {
+        exam_id: examId,
+        chapter_id: activeGroup.chapter.id,
+        card_count: cards.length,
+      })
+    }
   }
 
   function resetChapter() {

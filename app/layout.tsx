@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import '../styles/globals.css'
 import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo'
 import AdSenseScript from '@/components/monetization/AdSenseScript'
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
+
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -27,12 +30,16 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} — 無料で学ぶ日本の資格`,
     description: DEFAULT_DESCRIPTION,
   },
+  verification: googleSiteVerification ? {
+    google: googleSiteVerification,
+  } : undefined,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
       <body>{children}</body>
+      <GoogleAnalytics />
       <AdSenseScript />
     </html>
   )

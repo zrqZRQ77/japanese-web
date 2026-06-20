@@ -1,5 +1,8 @@
+'use client'
+
 import { ExamMeta } from '@/lib/types'
 import { ArrowUpRight, BookOpen, Check, MonitorPlay, ShieldCheck } from 'lucide-react'
+import { trackEvent } from '@/lib/analytics'
 
 interface AffiliateRecommendationsProps {
   exam: ExamMeta
@@ -39,6 +42,12 @@ export default function AffiliateRecommendations({ exam }: AffiliateRecommendati
             target="_blank"
             rel="sponsored noopener noreferrer"
             key={course.title}
+            onClick={() => trackEvent('affiliate_click', {
+              exam_id: exam.id,
+              content_type: 'course',
+              provider: course.provider,
+              item_name: course.title,
+            })}
           >
             <div className="affiliate-card__topline">
               <span className="affiliate-card__icon"><MonitorPlay size={19} /></span>
@@ -65,6 +74,12 @@ export default function AffiliateRecommendations({ exam }: AffiliateRecommendati
             target="_blank"
             rel="sponsored noopener noreferrer"
             key={book.title}
+            onClick={() => trackEvent('affiliate_click', {
+              exam_id: exam.id,
+              content_type: 'book',
+              provider: 'Amazon',
+              item_name: book.title,
+            })}
           >
             <div className="affiliate-card__topline">
               <span className="affiliate-card__icon"><BookOpen size={19} /></span>

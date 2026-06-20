@@ -7,6 +7,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Question } from '@/lib/types'
 import { useProgress } from '@/lib/hooks/useProgress'
+import { trackEvent } from '@/lib/analytics'
 
 interface Props {
   questions: Question[]
@@ -43,6 +44,9 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
 
   function handleSelect(label: string) {
     if (isAnswered) return
+    const answerIsCorrect = isCorrect(q, label)
+    const completesChapter = !answeredIds.has(q.id)
+      && answeredIds.size + 1 >= questions.length
     const nextAnswered = { ...answered, [current]: label }
     setSelected(label)
     setAnswered(nextAnswered)
@@ -51,9 +55,23 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
       chapterTitle,
       q,
       label,
-      isCorrect(q, label),
+      answerIsCorrect,
       questions.length,
     )
+    trackEvent('practice_answer', {
+      exam_id: examId,
+      chapter_id: chapterId,
+      question_id: q.id,
+      question_number: current + 1,
+      answer_result: answerIsCorrect ? 'correct' : 'incorrect',
+    })
+    if (completesChapter) {
+      trackEvent('practice_chapter_complete', {
+        exam_id: examId,
+        chapter_id: chapterId,
+        question_count: questions.length,
+      })
+    }
     setSaved(true)
   }
 
