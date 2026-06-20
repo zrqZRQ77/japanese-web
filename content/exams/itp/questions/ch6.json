@@ -8,31 +8,32 @@
       "examId": "itp",
       "chapterId": "ch6",
       "type": "single",
-      "text": "著作権法による保護の対象となるものはどれか。",
+      "text": "創作した時点で原則として自動的に発生する権利はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "プログラムを作成するために使用したプログラミング言語"
+          "text": "著作権"
         },
         {
           "label": "B",
-          "text": "プログラムの論理的な手順であるアルゴリズム"
+          "text": "特許権"
         },
         {
           "label": "C",
-          "text": "データ通信のやり取りのルールであるプロトコル"
+          "text": "商標権"
         },
         {
           "label": "D",
-          "text": "自社で開発したシステムのソースコード"
+          "text": "意匠権"
         }
       ],
-      "correctAnswer": "D",
-      "explanation": "著作権法では「思想又は感情を創作的に表現したもの」が保護されます。プログラムのソースコードは保護対象ですが、その作成に使った「プログラム言語」「アルゴリズム（解法）」「プロトコル（規約）」は、誰もが使う公的なルールやアイデアとみなされ、著作権法では保護されません。",
+      "correctAnswer": "A",
+      "explanation": "著作権は著作物を創作した時点で原則として自動的に発生します。",
       "tags": [
         "ストラテジ系",
+        "ch6-s1",
         "法務",
-        "著作権法"
+        "著作権"
       ]
     },
     {
@@ -40,31 +41,32 @@
       "examId": "itp",
       "chapterId": "ch6",
       "type": "single",
-      "text": "システム開発の契約形態において、発注元の企業（客先）が、受注側の企業の労働者に対して直接業務の指揮命令（作業指示）を行ってよい契約はどれか。",
+      "text": "新しく高度な発明を保護する権利はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "請負契約"
+          "text": "肖像権だけ"
         },
         {
           "label": "B",
-          "text": "労働者派遣契約"
+          "text": "特許権"
         },
         {
           "label": "C",
-          "text": "準委任契約"
+          "text": "著作権"
         },
         {
           "label": "D",
-          "text": "秘密保持契約（NDA）"
+          "text": "商標権"
         }
       ],
       "correctAnswer": "B",
-      "explanation": "労働者派遣契約では、労働者への指揮命令権は「派遣先（客先）」にあります。請負契約や準委任契約において、発注元が労働者に直接指示を出すと「偽装請負」という違法行為になります。",
+      "explanation": "特許権は発明を保護する権利で、出願と登録が必要です。",
       "tags": [
         "ストラテジ系",
+        "ch6-s1",
         "法務",
-        "労働者派遣法"
+        "知的財産"
       ]
     },
     {
@@ -72,31 +74,461 @@
       "examId": "itp",
       "chapterId": "ch6",
       "type": "single",
-      "text": "他人のIDとパスワードを無断で使用して、インターネット経由で社内システムにログインする行為を処罰の対象としている法律はどれか。",
+      "text": "商品名やロゴなど、商品やサービスを区別する標識を保護する権利はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "不正アクセス禁止法"
+          "text": "実用新案権"
         },
         {
           "label": "B",
-          "text": "個人情報保護法"
+          "text": "所有権だけ"
         },
         {
           "label": "C",
-          "text": "不正競争防止法"
+          "text": "商標権"
         },
         {
           "label": "D",
-          "text": "プロバイダ責任制限法"
+          "text": "著作権"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "商標権は商品名、ロゴ、マークなどを保護します。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s1",
+        "法務",
+        "知的財産"
+      ]
+    },
+    {
+      "id": "itp-ch6-q4",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "プログラムに関する著作権の説明として適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "アルゴリズムも必ず著作権で保護される"
+        },
+        {
+          "label": "B",
+          "text": "ソースコードは著作権の対象外である"
+        },
+        {
+          "label": "C",
+          "text": "著作権は登録しなければ存在しない"
+        },
+        {
+          "label": "D",
+          "text": "ソースコードは保護されるが、アルゴリズムそのものは著作権の保護対象ではない"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "プログラムのソースコードは著作権で保護されますが、アルゴリズムそのものは対象ではありません。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s1",
+        "法務",
+        "プログラム著作権"
+      ]
+    },
+    {
+      "id": "itp-ch6-q5",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "個人情報の取得、利用、保管、第三者提供などのルールを定める法律はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "個人情報保護法"
+        },
+        {
+          "label": "B",
+          "text": "PL法"
+        },
+        {
+          "label": "C",
+          "text": "商標法"
+        },
+        {
+          "label": "D",
+          "text": "労働基準法"
         }
       ],
       "correctAnswer": "A",
-      "explanation": "不正アクセス禁止法は、他人のIDやパスワードを不正に入手・使用して（なりすまし）、本来アクセス権限のないシステムへ侵入する行為を禁止しています。",
+      "explanation": "個人情報保護法は個人情報の取扱いルールを定めています。",
       "tags": [
         "ストラテジ系",
+        "ch6-s1",
+        "法務",
+        "個人情報保護"
+      ]
+    },
+    {
+      "id": "itp-ch6-q6",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "他人のIDやパスワードを無断使用するなりすましを禁止する法律はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "民法だけ"
+        },
+        {
+          "label": "B",
+          "text": "不正アクセス禁止法"
+        },
+        {
+          "label": "C",
+          "text": "意匠法"
+        },
+        {
+          "label": "D",
+          "text": "道路交通法"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "不正アクセス禁止法はなりすましや脆弱性を突いた侵入を禁止します。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s1",
         "法務",
         "不正アクセス禁止法"
+      ]
+    },
+    {
+      "id": "itp-ch6-q7",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "労働者派遣契約で、派遣労働者へ指揮命令を行うのは誰か。",
+      "options": [
+        {
+          "label": "A",
+          "text": "監査人"
+        },
+        {
+          "label": "B",
+          "text": "株主"
+        },
+        {
+          "label": "C",
+          "text": "派遣先"
+        },
+        {
+          "label": "D",
+          "text": "請負元"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "派遣契約では指揮命令権は派遣先にあります。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s1",
+        "法務",
+        "労働者派遣"
+      ]
+    },
+    {
+      "id": "itp-ch6-q8",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "最新シラバスで「下請法」に代わって整理される取引関連法規はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "道路交通法"
+        },
+        {
+          "label": "B",
+          "text": "電波法"
+        },
+        {
+          "label": "C",
+          "text": "住民基本台帳法"
+        },
+        {
+          "label": "D",
+          "text": "中小受託取引適正化法"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "シラバスVer.6.5では中小受託取引適正化法が追加されています。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s1",
+        "法務",
+        "中小受託取引適正化法"
+      ]
+    },
+    {
+      "id": "itp-ch6-q9",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "コンプライアンスの説明として適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "法令、社内規程、社会規範、倫理を守ること"
+        },
+        {
+          "label": "B",
+          "text": "利益のために法令違反を許すこと"
+        },
+        {
+          "label": "C",
+          "text": "画面の色を統一することだけ"
+        },
+        {
+          "label": "D",
+          "text": "通信速度を上げること"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "コンプライアンスは法令だけでなく、社内規程や倫理も含みます。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s2",
+        "コンプライアンスと標準化",
+        "コンプライアンス"
+      ]
+    },
+    {
+      "id": "itp-ch6-q10",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "企業経営を監督し健全性を保つ仕組みはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ピクセル"
+        },
+        {
+          "label": "B",
+          "text": "コーポレートガバナンス"
+        },
+        {
+          "label": "C",
+          "text": "キャッシュメモリ"
+        },
+        {
+          "label": "D",
+          "text": "プロトコル"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "コーポレートガバナンスは企業統治の仕組みです。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s2",
+        "コンプライアンスと標準化",
+        "ガバナンス"
+      ]
+    },
+    {
+      "id": "itp-ch6-q11",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "企業の社会的責任を表す用語はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "CSVファイルだけ"
+        },
+        {
+          "label": "B",
+          "text": "CPU"
+        },
+        {
+          "label": "C",
+          "text": "CSR"
+        },
+        {
+          "label": "D",
+          "text": "CSS"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "CSRはCorporate Social Responsibilityで、企業の社会的責任を表します。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s2",
+        "コンプライアンスと標準化",
+        "CSR"
+      ]
+    },
+    {
+      "id": "itp-ch6-q12",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "1人に権限を集中させず、役割を分ける内部統制の考え方はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "可逆圧縮"
+        },
+        {
+          "label": "B",
+          "text": "デフラグ"
+        },
+        {
+          "label": "C",
+          "text": "スプーリング"
+        },
+        {
+          "label": "D",
+          "text": "職務分掌"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "職務分掌は不正やミスを防ぐため役割を分ける考え方です。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s2",
+        "コンプライアンスと標準化",
+        "内部統制"
+      ]
+    },
+    {
+      "id": "itp-ch6-q13",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "重要な処理に上長などの確認を必要とする内部統制はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "承認手続"
+        },
+        {
+          "label": "B",
+          "text": "公開鍵配送"
+        },
+        {
+          "label": "C",
+          "text": "画像圧縮"
+        },
+        {
+          "label": "D",
+          "text": "サンプリング"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "承認手続は重要な処理を統制し、不正や誤りを防ぎます。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s2",
+        "コンプライアンスと標準化",
+        "内部統制"
+      ]
+    },
+    {
+      "id": "itp-ch6-q14",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "日本産業規格を表す略称はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "W3C"
+        },
+        {
+          "label": "B",
+          "text": "JIS"
+        },
+        {
+          "label": "C",
+          "text": "ISO"
+        },
+        {
+          "label": "D",
+          "text": "IEC"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "JISは日本産業規格です。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s2",
+        "コンプライアンスと標準化",
+        "標準化"
+      ]
+    },
+    {
+      "id": "itp-ch6-q15",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "国際標準化機構による国際規格を表す略称はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "NFC"
+        },
+        {
+          "label": "B",
+          "text": "EDI"
+        },
+        {
+          "label": "C",
+          "text": "ISO"
+        },
+        {
+          "label": "D",
+          "text": "JIS"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "ISOは国際標準化機構およびその規格を指します。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s2",
+        "コンプライアンスと標準化",
+        "標準化"
+      ]
+    },
+    {
+      "id": "itp-ch6-q16",
+      "examId": "itp",
+      "chapterId": "ch6",
+      "type": "single",
+      "text": "標準化のメリットとして最も適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "製品比較を不可能にする"
+        },
+        {
+          "label": "B",
+          "text": "特定企業だけが仕様を独占する"
+        },
+        {
+          "label": "C",
+          "text": "全製品価格を必ず同じにする"
+        },
+        {
+          "label": "D",
+          "text": "互換性や品質が高まり、調達や取引がしやすくなる"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "標準化により互換性、品質、取引のしやすさが高まります。",
+      "tags": [
+        "ストラテジ系",
+        "ch6-s2",
+        "コンプライアンスと標準化",
+        "標準化"
       ]
     }
   ]

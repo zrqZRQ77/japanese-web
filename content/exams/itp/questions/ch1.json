@@ -1,38 +1,39 @@
 {
   "examId": "itp",
   "chapterId": "ch1",
-  "chapterTitle": "ITの基礎と論理",
+  "chapterTitle": "ITの基礎とコンピュータ",
   "questions": [
     {
       "id": "itp-ch1-q1",
       "examId": "itp",
       "chapterId": "ch1",
       "type": "single",
-      "text": "コンピュータの5大装置のうち、プログラムの命令を解読し、他の各装置に指示を与える装置はどれか。",
+      "text": "8ビットで表すことができる情報の種類数はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "演算装置"
+          "text": "256通り"
         },
         {
           "label": "B",
-          "text": "記憶装置"
+          "text": "8通り"
         },
         {
           "label": "C",
-          "text": "制御装置"
+          "text": "16通り"
         },
         {
           "label": "D",
-          "text": "入力装置"
+          "text": "128通り"
         }
       ],
-      "correctAnswer": "C",
-      "explanation": "制御装置は、主記憶装置からプログラムの命令を取り出して解読し、他の装置（演算、記憶、入力、出力）に適切な指示を出す役割を持ちます。演算装置は計算を行う部分です。",
+      "correctAnswer": "A",
+      "explanation": "nビットでは2のn乗通りを表せるため、8ビットでは256通りです。",
       "tags": [
         "テクノロジ系",
-        "ハードウェア",
-        "5大装置"
+        "ch1-s1",
+        "基礎理論",
+        "情報量"
       ]
     },
     {
@@ -40,31 +41,1550 @@
       "examId": "itp",
       "chapterId": "ch1",
       "type": "single",
-      "text": "OSS（Open Source Software）に関する記述として、最も適切なものはどれか。",
+      "text": "条件Aと条件Bの両方を満たすデータを抽出する論理演算はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "ソースコードが公開されているが、無断で改変して再配布することは一切禁止されている。"
+          "text": "XOR"
         },
         {
           "label": "B",
-          "text": "ライセンスの条件に従えば、誰でも自由に使用、改変、再配布ができる。"
+          "text": "AND"
         },
         {
           "label": "C",
-          "text": "個人利用は無料だが、企業が業務目的で利用する場合は必ず有償ライセンスが必要となる。"
+          "text": "OR"
         },
         {
           "label": "D",
-          "text": "バグや脆弱性が発見された場合、開発元が修正プログラムを必ず提供する義務を負っている。"
+          "text": "NOT"
         }
       ],
       "correctAnswer": "B",
-      "explanation": "OSSはソースコードが公開されており、定められたライセンス条件に従うことで、利用・改変・再配布が自由にできるソフトウェアです。無保証であることが多く、開発元に修正義務（D）はありません。",
+      "explanation": "ANDは両方の条件が真のときに真となる論理演算です。",
       "tags": [
         "テクノロジ系",
+        "ch1-s1",
+        "基礎理論",
+        "論理演算"
+      ]
+    },
+    {
+      "id": "itp-ch1-q3",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "外れ値の影響を受けにくく、データを小さい順に並べた中央の値を表す統計量はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "最頻値"
+        },
+        {
+          "label": "B",
+          "text": "標準偏差"
+        },
+        {
+          "label": "C",
+          "text": "中央値"
+        },
+        {
+          "label": "D",
+          "text": "平均値"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "中央値は並べたデータの中央に位置する値で、外れ値の影響を受けにくい特徴があります。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s1",
+        "基礎理論",
+        "統計"
+      ]
+    },
+    {
+      "id": "itp-ch1-q4",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "データのばらつきの大きさを表す指標はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "中央値"
+        },
+        {
+          "label": "B",
+          "text": "最頻値"
+        },
+        {
+          "label": "C",
+          "text": "構成比"
+        },
+        {
+          "label": "D",
+          "text": "標準偏差"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "標準偏差はデータが平均値の周辺にどの程度散らばっているかを表します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s1",
+        "基礎理論",
+        "統計"
+      ]
+    },
+    {
+      "id": "itp-ch1-q5",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "2つのデータに相関がある場合の説明として、最も適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "一方が変化すると他方も変化する傾向がある"
+        },
+        {
+          "label": "B",
+          "text": "必ず一方が他方の原因である"
+        },
+        {
+          "label": "C",
+          "text": "2つの値は常に等しい"
+        },
+        {
+          "label": "D",
+          "text": "外れ値が存在しない"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "相関は関係の傾向を示しますが、因果関係があるとは限りません。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s1",
+        "基礎理論",
+        "相関"
+      ]
+    },
+    {
+      "id": "itp-ch1-q6",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "データの分布を階級ごとの度数で表すグラフはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ER図"
+        },
+        {
+          "label": "B",
+          "text": "ヒストグラム"
+        },
+        {
+          "label": "C",
+          "text": "円グラフ"
+        },
+        {
+          "label": "D",
+          "text": "ガントチャート"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "ヒストグラムはデータを階級に分け、度数の分布を棒で表します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s1",
+        "基礎理論",
+        "グラフ"
+      ]
+    },
+    {
+      "id": "itp-ch1-q7",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "16進数で使われる文字の組合せとして、正しいものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "0から7だけ"
+        },
+        {
+          "label": "B",
+          "text": "AからZだけ"
+        },
+        {
+          "label": "C",
+          "text": "0から9とAからF"
+        },
+        {
+          "label": "D",
+          "text": "0と1だけ"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "16進数は0から9とAからFを使って値を表します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s1",
+        "基礎理論",
+        "進数"
+      ]
+    },
+    {
+      "id": "itp-ch1-q8",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "平均値を使うと実態を誤解しやすい場面として、最も適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "すべての値が同じ場合"
+        },
+        {
+          "label": "B",
+          "text": "件数が1件だけの場合"
+        },
+        {
+          "label": "C",
+          "text": "値がすべて整数の場合"
+        },
+        {
+          "label": "D",
+          "text": "極端に大きい値や小さい値が含まれる場合"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "平均値は外れ値の影響を受けやすいため、中央値なども確認します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s1",
+        "基礎理論",
+        "統計"
+      ]
+    },
+    {
+      "id": "itp-ch1-q9",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "条件によって実行する処理を分けるアルゴリズムの基本構造はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "選択"
+        },
+        {
+          "label": "B",
+          "text": "順次"
+        },
+        {
+          "label": "C",
+          "text": "繰返し"
+        },
+        {
+          "label": "D",
+          "text": "整列"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "選択は条件の真偽によって処理を分ける構造です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s2",
+        "アルゴリズムとプログラミング",
+        "制御構造"
+      ]
+    },
+    {
+      "id": "itp-ch1-q10",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "同じ処理を条件が成り立つ間繰り返す基本構造はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "代入"
+        },
+        {
+          "label": "B",
+          "text": "繰返し"
+        },
+        {
+          "label": "C",
+          "text": "順次"
+        },
+        {
+          "label": "D",
+          "text": "選択"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "繰返しはループとも呼ばれ、条件に従って同じ処理を反復します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s2",
+        "アルゴリズムとプログラミング",
+        "制御構造"
+      ]
+    },
+    {
+      "id": "itp-ch1-q11",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "フローチャートで条件判断を表す記号の役割として適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "結果を印刷するだけを表す"
+        },
+        {
+          "label": "B",
+          "text": "ファイルを保存するだけを表す"
+        },
+        {
+          "label": "C",
+          "text": "処理を分岐させる"
+        },
+        {
+          "label": "D",
+          "text": "処理の開始だけを表す"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "判断記号は条件に応じて処理の流れを分岐させます。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s2",
+        "アルゴリズムとプログラミング",
+        "フローチャート"
+      ]
+    },
+    {
+      "id": "itp-ch1-q12",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "プログラムで値を一時的に保存する箱に相当するものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "関数"
+        },
+        {
+          "label": "B",
+          "text": "配列"
+        },
+        {
+          "label": "C",
+          "text": "コメント"
+        },
+        {
+          "label": "D",
+          "text": "変数"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "変数は処理の途中で使う値を一時的に保存するために使います。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s2",
+        "アルゴリズムとプログラミング",
+        "変数"
+      ]
+    },
+    {
+      "id": "itp-ch1-q13",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "複数の値を番号付きでまとめて扱う仕組みはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "配列"
+        },
+        {
+          "label": "B",
+          "text": "引数"
+        },
+        {
+          "label": "C",
+          "text": "戻り値"
+        },
+        {
+          "label": "D",
+          "text": "条件式"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "配列は複数の値をまとめて管理し、添字などで要素を指定します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s2",
+        "アルゴリズムとプログラミング",
+        "配列"
+      ]
+    },
+    {
+      "id": "itp-ch1-q14",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "関数に渡す値を何というか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "命令語"
+        },
+        {
+          "label": "B",
+          "text": "引数"
+        },
+        {
+          "label": "C",
+          "text": "戻り値"
+        },
+        {
+          "label": "D",
+          "text": "添字"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "引数は関数を呼び出すときに渡す値です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s2",
+        "アルゴリズムとプログラミング",
+        "関数"
+      ]
+    },
+    {
+      "id": "itp-ch1-q15",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "整列済みのデータを半分ずつ絞り込んで探す探索方法はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "バブルソート"
+        },
+        {
+          "label": "B",
+          "text": "順次探索だけ"
+        },
+        {
+          "label": "C",
+          "text": "二分探索"
+        },
+        {
+          "label": "D",
+          "text": "線形探索"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "二分探索は整列済みデータを対象に探索範囲を半分ずつ狭めます。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s2",
+        "アルゴリズムとプログラミング",
+        "探索"
+      ]
+    },
+    {
+      "id": "itp-ch1-q16",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "Webページの構造を記述するマークアップ言語はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "CSS"
+        },
+        {
+          "label": "B",
+          "text": "SQL"
+        },
+        {
+          "label": "C",
+          "text": "PNG"
+        },
+        {
+          "label": "D",
+          "text": "HTML"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "HTMLはWebページの文書構造を記述するマークアップ言語です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s2",
+        "アルゴリズムとプログラミング",
+        "言語"
+      ]
+    },
+    {
+      "id": "itp-ch1-q17",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "コンピュータの5大装置のうち、プログラムの命令を解読して各装置へ指示を出すものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "制御装置"
+        },
+        {
+          "label": "B",
+          "text": "演算装置"
+        },
+        {
+          "label": "C",
+          "text": "入力装置"
+        },
+        {
+          "label": "D",
+          "text": "出力装置"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "制御装置は命令を解釈し、他の装置に動作を指示します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s3",
+        "コンピュータ構成要素",
+        "5大装置"
+      ]
+    },
+    {
+      "id": "itp-ch1-q18",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "計算や比較を行う装置はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "入力装置"
+        },
+        {
+          "label": "B",
+          "text": "演算装置"
+        },
+        {
+          "label": "C",
+          "text": "補助記憶装置"
+        },
+        {
+          "label": "D",
+          "text": "出力装置"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "演算装置はCPUの一部として計算や比較を行います。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s3",
+        "コンピュータ構成要素",
+        "5大装置"
+      ]
+    },
+    {
+      "id": "itp-ch1-q19",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "CPUと主記憶装置の速度差を補う高速な記憶装置はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "光ディスク"
+        },
+        {
+          "label": "B",
+          "text": "USBメモリ"
+        },
+        {
+          "label": "C",
+          "text": "キャッシュメモリ"
+        },
+        {
+          "label": "D",
+          "text": "HDD"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "キャッシュメモリはCPU近くに置かれ、よく使うデータを高速に扱います。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s3",
+        "コンピュータ構成要素",
+        "CPU"
+      ]
+    },
+    {
+      "id": "itp-ch1-q20",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "電源を切ると内容が消える主記憶装置はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "SSD"
+        },
+        {
+          "label": "B",
+          "text": "HDD"
+        },
+        {
+          "label": "C",
+          "text": "DVD"
+        },
+        {
+          "label": "D",
+          "text": "RAM"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "RAMは揮発性の主記憶装置で、電源を切ると内容が消えます。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s3",
+        "コンピュータ構成要素",
+        "メモリ"
+      ]
+    },
+    {
+      "id": "itp-ch1-q21",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "画像処理や大量の並列計算に向いている処理装置はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "GPU"
+        },
+        {
+          "label": "B",
+          "text": "DNS"
+        },
+        {
+          "label": "C",
+          "text": "SSD"
+        },
+        {
+          "label": "D",
+          "text": "ROM"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "GPUは画像処理や機械学習などの並列計算に強い処理装置です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s3",
+        "コンピュータ構成要素",
+        "CPU"
+      ]
+    },
+    {
+      "id": "itp-ch1-q22",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "CPUの処理タイミングを刻む速さを表す指標はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "圧縮率"
+        },
+        {
+          "label": "B",
+          "text": "クロック周波数"
+        },
+        {
+          "label": "C",
+          "text": "解像度"
+        },
+        {
+          "label": "D",
+          "text": "フレームレート"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "クロック周波数はCPUの動作タイミングの速さを表します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s3",
+        "コンピュータ構成要素",
+        "性能"
+      ]
+    },
+    {
+      "id": "itp-ch1-q23",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "映像と音声をディスプレイなどへ送る規格として適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "SQL"
+        },
+        {
+          "label": "B",
+          "text": "SMTP"
+        },
+        {
+          "label": "C",
+          "text": "HDMI"
+        },
+        {
+          "label": "D",
+          "text": "NFC"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "HDMIは映像と音声を伝送するインタフェース規格です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s3",
+        "コンピュータ構成要素",
+        "インタフェース"
+      ]
+    },
+    {
+      "id": "itp-ch1-q24",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "システム全体の処理速度を制限している部分を表す用語はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "スプーリング"
+        },
+        {
+          "label": "B",
+          "text": "フォーマット"
+        },
+        {
+          "label": "C",
+          "text": "プロトコル"
+        },
+        {
+          "label": "D",
+          "text": "ボトルネック"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "ボトルネックは全体性能を制限している要因です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s3",
+        "コンピュータ構成要素",
+        "性能"
+      ]
+    },
+    {
+      "id": "itp-ch1-q25",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "利用者の端末が要求し、サーバが処理やデータ提供を行う構成はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "クライアントサーバシステム"
+        },
+        {
+          "label": "B",
+          "text": "ピアツーピアだけの構成"
+        },
+        {
+          "label": "C",
+          "text": "スタンドアロン構成"
+        },
+        {
+          "label": "D",
+          "text": "デュアルシステム"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "クライアントサーバシステムでは、クライアントが要求しサーバが処理します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s4",
+        "システム構成要素",
+        "システム構成"
+      ]
+    },
+    {
+      "id": "itp-ch1-q26",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "複数のコンピュータで処理を分担する構成はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "手作業処理"
+        },
+        {
+          "label": "B",
+          "text": "分散処理"
+        },
+        {
+          "label": "C",
+          "text": "集中処理"
+        },
+        {
+          "label": "D",
+          "text": "単独処理"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "分散処理は複数のコンピュータで処理を分担する構成です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s4",
+        "システム構成要素",
+        "システム構成"
+      ]
+    },
+    {
+      "id": "itp-ch1-q27",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "平均故障間隔を表す指標はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "SLA"
+        },
+        {
+          "label": "B",
+          "text": "RFI"
+        },
+        {
+          "label": "C",
+          "text": "MTBF"
+        },
+        {
+          "label": "D",
+          "text": "MTTR"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "MTBFはMean Time Between Failuresで、平均故障間隔を表します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s4",
+        "システム構成要素",
+        "信頼性"
+      ]
+    },
+    {
+      "id": "itp-ch1-q28",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "平均修理時間を表し、短いほど復旧が速い指標はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "MTBF"
+        },
+        {
+          "label": "B",
+          "text": "ROI"
+        },
+        {
+          "label": "C",
+          "text": "ROE"
+        },
+        {
+          "label": "D",
+          "text": "MTTR"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "MTTRはMean Time To Repairで、平均修理時間を表します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s4",
+        "システム構成要素",
+        "信頼性"
+      ]
+    },
+    {
+      "id": "itp-ch1-q29",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "障害が発生したとき、安全な状態へ移行する考え方はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "フェールセーフ"
+        },
+        {
+          "label": "B",
+          "text": "フェールソフト"
+        },
+        {
+          "label": "C",
+          "text": "ロードバランス"
+        },
+        {
+          "label": "D",
+          "text": "スケールアウト"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "フェールセーフは障害時に安全側へ制御する考え方です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s4",
+        "システム構成要素",
+        "信頼性"
+      ]
+    },
+    {
+      "id": "itp-ch1-q30",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "主系と待機系を用意し、障害時に切り替える構成はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "シンクライアント"
+        },
+        {
+          "label": "B",
+          "text": "デュプレックスシステム"
+        },
+        {
+          "label": "C",
+          "text": "デュアルシステム"
+        },
+        {
+          "label": "D",
+          "text": "ピアツーピア"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "デュプレックスシステムは主系と待機系を用意して障害時に切り替えます。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s4",
+        "システム構成要素",
+        "冗長化"
+      ]
+    },
+    {
+      "id": "itp-ch1-q31",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "サーバやストレージなどの基盤を提供するクラウドサービス形態はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "SaaS"
+        },
+        {
+          "label": "B",
+          "text": "HTML"
+        },
+        {
+          "label": "C",
+          "text": "IaaS"
+        },
+        {
+          "label": "D",
+          "text": "PaaS"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "IaaSはInfrastructure as a Serviceで、IT基盤をサービスとして提供します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s4",
+        "システム構成要素",
+        "クラウド"
+      ]
+    },
+    {
+      "id": "itp-ch1-q32",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "アプリケーションソフトをインターネット経由で利用するクラウドサービス形態はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "IaaS"
+        },
+        {
+          "label": "B",
+          "text": "PaaS"
+        },
+        {
+          "label": "C",
+          "text": "NAT"
+        },
+        {
+          "label": "D",
+          "text": "SaaS"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "SaaSは完成したソフトウェアをサービスとして提供する形態です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s4",
+        "システム構成要素",
+        "クラウド"
+      ]
+    },
+    {
+      "id": "itp-ch1-q33",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "ハードウェアを管理し、アプリケーションを動かす土台となるソフトウェアはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "OS"
+        },
+        {
+          "label": "B",
+          "text": "BI"
+        },
+        {
+          "label": "C",
+          "text": "ERP"
+        },
+        {
+          "label": "D",
+          "text": "RFID"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "OSはハードウェア資源を管理し、アプリケーションの実行環境を提供します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s5",
+        "ソフトウェア",
+        "OS"
+      ]
+    },
+    {
+      "id": "itp-ch1-q34",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "OSとアプリケーションの間で共通機能を提供するソフトウェアはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "画像ファイル"
+        },
+        {
+          "label": "B",
+          "text": "ミドルウェア"
+        },
+        {
+          "label": "C",
+          "text": "ファームウェア"
+        },
+        {
+          "label": "D",
+          "text": "表計算ソフト"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "ミドルウェアはDBMSやWebサーバなど、アプリに共通機能を提供します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s5",
+        "ソフトウェア",
+        "ミドルウェア"
+      ]
+    },
+    {
+      "id": "itp-ch1-q35",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "ファイル形式を示すため、ファイル名の末尾に付けられる文字列はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "IPアドレス"
+        },
+        {
+          "label": "B",
+          "text": "タグVLAN"
+        },
+        {
+          "label": "C",
+          "text": "拡張子"
+        },
+        {
+          "label": "D",
+          "text": "主キー"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "拡張子はファイル名の末尾に付き、ファイル形式の目安になります。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s5",
+        "ソフトウェア",
+        "ファイル管理"
+      ]
+    },
+    {
+      "id": "itp-ch1-q36",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "紛失や破損に備えてデータの複製を保存することはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "デフラグ"
+        },
+        {
+          "label": "B",
+          "text": "レンダリング"
+        },
+        {
+          "label": "C",
+          "text": "コンパイル"
+        },
+        {
+          "label": "D",
+          "text": "バックアップ"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "バックアップは障害や誤操作に備えてデータを別に保存することです。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s5",
+        "ソフトウェア",
+        "バックアップ"
+      ]
+    },
+    {
+      "id": "itp-ch1-q37",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "OSSの説明として適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ライセンス条件に従って利用や改変、再配布ができる"
+        },
+        {
+          "label": "B",
+          "text": "必ず無条件で再配布できる"
+        },
+        {
+          "label": "C",
+          "text": "企業利用は常に禁止される"
+        },
+        {
+          "label": "D",
+          "text": "ソースコードは公開されない"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "OSSはソースコードが公開され、ライセンス条件のもとで利用できます。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s5",
         "ソフトウェア",
         "OSS"
+      ]
+    },
+    {
+      "id": "itp-ch1-q38",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "OSS利用時に確認すべきものとして最も適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "製品ロゴの大きさだけ"
+        },
+        {
+          "label": "B",
+          "text": "ライセンス条件"
+        },
+        {
+          "label": "C",
+          "text": "社員の血液型"
+        },
+        {
+          "label": "D",
+          "text": "画面の色だけ"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "OSSはライセンスごとに再配布条件や表示義務が異なるため確認が必要です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s5",
+        "ソフトウェア",
+        "OSS"
+      ]
+    },
+    {
+      "id": "itp-ch1-q39",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "周辺機器をOSから利用できるようにするソフトウェアはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "サブネット"
+        },
+        {
+          "label": "B",
+          "text": "ガントチャート"
+        },
+        {
+          "label": "C",
+          "text": "デバイスドライバ"
+        },
+        {
+          "label": "D",
+          "text": "ハッシュ値"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "デバイスドライバはプリンタなどの周辺機器をOSから制御するためのソフトウェアです。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s5",
+        "ソフトウェア",
+        "OS"
+      ]
+    },
+    {
+      "id": "itp-ch1-q40",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "ファイル容量を小さくする処理はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "認証"
+        },
+        {
+          "label": "B",
+          "text": "正規化"
+        },
+        {
+          "label": "C",
+          "text": "監査"
+        },
+        {
+          "label": "D",
+          "text": "圧縮"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "圧縮はデータの表現を工夫し、ファイル容量を小さくする処理です。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s5",
+        "ソフトウェア",
+        "ファイル管理"
+      ]
+    },
+    {
+      "id": "itp-ch1-q41",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "紙の文書や画像を読み取ってデジタルデータにする装置はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "スキャナ"
+        },
+        {
+          "label": "B",
+          "text": "プロジェクタ"
+        },
+        {
+          "label": "C",
+          "text": "スピーカ"
+        },
+        {
+          "label": "D",
+          "text": "ルータ"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "スキャナは紙の文書や画像を読み取ってデジタル化します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s6",
+        "ハードウェア",
+        "入力装置"
+      ]
+    },
+    {
+      "id": "itp-ch1-q42",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "商品コードなどを読み取るために使われる入力装置はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "SSD"
+        },
+        {
+          "label": "B",
+          "text": "バーコードリーダ"
+        },
+        {
+          "label": "C",
+          "text": "プロジェクタ"
+        },
+        {
+          "label": "D",
+          "text": "GPU"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "バーコードリーダはバーコードに記録された商品コードなどを読み取ります。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s6",
+        "ハードウェア",
+        "入力装置"
+      ]
+    },
+    {
+      "id": "itp-ch1-q43",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "非接触ICカードの読み取りに使われる装置はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "プリンタ"
+        },
+        {
+          "label": "B",
+          "text": "ディスプレイ"
+        },
+        {
+          "label": "C",
+          "text": "ICカードリーダ"
+        },
+        {
+          "label": "D",
+          "text": "HDD"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "ICカードリーダは非接触カードやICカードの情報を読み取ります。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s6",
+        "ハードウェア",
+        "入力装置"
+      ]
+    },
+    {
+      "id": "itp-ch1-q44",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "機器の傾きや動きを検出するIoTセンサはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "温度センサ"
+        },
+        {
+          "label": "B",
+          "text": "湿度センサ"
+        },
+        {
+          "label": "C",
+          "text": "磁気テープ"
+        },
+        {
+          "label": "D",
+          "text": "加速度センサ"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "加速度センサは動き、傾き、振動などを検出します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s6",
+        "ハードウェア",
+        "IoT"
+      ]
+    },
+    {
+      "id": "itp-ch1-q45",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "位置情報を取得するために使われる仕組みはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "GPS"
+        },
+        {
+          "label": "B",
+          "text": "CSS"
+        },
+        {
+          "label": "C",
+          "text": "SQL"
+        },
+        {
+          "label": "D",
+          "text": "JIS"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "GPSは衛星からの信号を利用して位置情報を取得します。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s6",
+        "ハードウェア",
+        "IoT"
+      ]
+    },
+    {
+      "id": "itp-ch1-q46",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "半導体メモリを使い、高速で衝撃に比較的強い補助記憶装置はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "光ディスクだけ"
+        },
+        {
+          "label": "B",
+          "text": "SSD"
+        },
+        {
+          "label": "C",
+          "text": "HDD"
+        },
+        {
+          "label": "D",
+          "text": "磁気テープ"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "SSDは半導体メモリを使う補助記憶装置で、高速で衝撃に強い特徴があります。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s6",
+        "ハードウェア",
+        "補助記憶装置"
+      ]
+    },
+    {
+      "id": "itp-ch1-q47",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "大容量バックアップで使われることがある記憶媒体はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "マウス"
+        },
+        {
+          "label": "B",
+          "text": "キーボード"
+        },
+        {
+          "label": "C",
+          "text": "磁気テープ"
+        },
+        {
+          "label": "D",
+          "text": "タッチパネル"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "磁気テープは大容量データの長期保存やバックアップで使われることがあります。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s6",
+        "ハードウェア",
+        "補助記憶装置"
+      ]
+    },
+    {
+      "id": "itp-ch1-q48",
+      "examId": "itp",
+      "chapterId": "ch1",
+      "type": "single",
+      "text": "USBメモリ利用時のリスクとして最も適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "CPUのクロックが必ず低下する"
+        },
+        {
+          "label": "B",
+          "text": "画面解像度が必ず上がる"
+        },
+        {
+          "label": "C",
+          "text": "OSの種類が自動で変わる"
+        },
+        {
+          "label": "D",
+          "text": "紛失やマルウェア感染による情報漏えい"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "USBメモリは便利ですが、紛失やマルウェア感染による情報漏えいリスクがあります。",
+      "tags": [
+        "テクノロジ系",
+        "ch1-s6",
+        "ハードウェア",
+        "情報漏えい"
       ]
     }
   ]

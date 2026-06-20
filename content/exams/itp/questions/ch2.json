@@ -1,38 +1,39 @@
 {
   "examId": "itp",
   "chapterId": "ch2",
-  "chapterTitle": "ネットワークとデータ",
+  "chapterTitle": "技術要素とデータ活用",
   "questions": [
     {
       "id": "itp-ch2-q1",
       "examId": "itp",
       "chapterId": "ch2",
       "type": "single",
-      "text": "インターネットにおいて、ドメイン名とIPアドレスを相互に変換する仕組みはどれか。",
+      "text": "利用者とシステムの接点を表す用語はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "DHCP"
+          "text": "UI"
         },
         {
           "label": "B",
-          "text": "DNS"
+          "text": "UX"
         },
         {
           "label": "C",
-          "text": "FTP"
+          "text": "SQL"
         },
         {
           "label": "D",
-          "text": "NTP"
+          "text": "ROI"
         }
       ],
-      "correctAnswer": "B",
-      "explanation": "DNS（Domain Name System）は、人間が覚えやすいドメイン名と、コンピュータが処理するIPアドレスを紐付けて変換するシステムです。DHCPはIPアドレスの自動割り当て、FTPはファイル転送、NTPは時刻同期のプロトコルです。",
+      "correctAnswer": "A",
+      "explanation": "UIは画面、ボタン、入力欄など、利用者とシステムの接点を表します。",
       "tags": [
         "テクノロジ系",
-        "ネットワーク",
-        "DNS"
+        "ch2-s1",
+        "情報デザイン",
+        "UI"
       ]
     },
     {
@@ -40,31 +41,1022 @@
       "examId": "itp",
       "chapterId": "ch2",
       "type": "single",
-      "text": "年齢や障害の有無にかかわらず、多様な人々がWebサイトやシステムを支障なく利用できる度合いを示す用語はどれか。",
+      "text": "製品やサービスを通じて利用者が得る体験全体を表す用語はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "アクセシビリティ"
+          "text": "NAT"
         },
         {
           "label": "B",
-          "text": "トレーサビリティ"
+          "text": "UX"
         },
         {
           "label": "C",
-          "text": "スケーラビリティ"
+          "text": "UI"
         },
         {
           "label": "D",
-          "text": "ダイバーシティ"
+          "text": "DNS"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "UXは利用者がサービスを利用して得る体験全体を表します。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s1",
+        "情報デザイン",
+        "UX"
+      ]
+    },
+    {
+      "id": "itp-ch2-q3",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "年齢や障害の有無にかかわらず利用しやすくする考え方はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "トレーサビリティ"
+        },
+        {
+          "label": "B",
+          "text": "ボラティリティ"
+        },
+        {
+          "label": "C",
+          "text": "アクセシビリティ"
+        },
+        {
+          "label": "D",
+          "text": "スケーラビリティ"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "アクセシビリティは誰もが利用しやすい度合いを表します。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s1",
+        "情報デザイン",
+        "アクセシビリティ"
+      ]
+    },
+    {
+      "id": "itp-ch2-q4",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "数量の比較に最も適したグラフはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "円グラフ"
+        },
+        {
+          "label": "B",
+          "text": "散布図"
+        },
+        {
+          "label": "C",
+          "text": "ER図"
+        },
+        {
+          "label": "D",
+          "text": "棒グラフ"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "棒グラフは複数項目の数量比較に適しています。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s1",
+        "情報デザイン",
+        "グラフ"
+      ]
+    },
+    {
+      "id": "itp-ch2-q5",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "時系列の推移を表すのに適したグラフはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "折れ線グラフ"
+        },
+        {
+          "label": "B",
+          "text": "円グラフ"
+        },
+        {
+          "label": "C",
+          "text": "ヒストグラム"
+        },
+        {
+          "label": "D",
+          "text": "DFD"
         }
       ],
       "correctAnswer": "A",
-      "explanation": "アクセシビリティ（Accessibility）は「アクセスのしやすさ」を意味し、誰でも使える状態を指します。トレーサビリティは追跡可能性、スケーラビリティは拡張性を示します。",
+      "explanation": "折れ線グラフは時間の経過に伴う変化を表すのに適しています。",
       "tags": [
         "テクノロジ系",
+        "ch2-s1",
+        "情報デザイン",
+        "グラフ"
+      ]
+    },
+    {
+      "id": "itp-ch2-q6",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "色だけで状態を伝えないことが重要な理由として適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "CPUを冷却するため"
+        },
+        {
+          "label": "B",
+          "text": "色の識別が難しい利用者にも情報を伝えるため"
+        },
+        {
+          "label": "C",
+          "text": "画面を必ず白黒にするため"
+        },
+        {
+          "label": "D",
+          "text": "通信速度を上げるため"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "アクセシビリティの観点では、色だけでなく文字や形でも状態を伝えます。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s1",
         "情報デザイン",
         "アクセシビリティ"
+      ]
+    },
+    {
+      "id": "itp-ch2-q7",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "画像の内容を音声読み上げなどに伝えるために設定する説明文はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "サブネットマスク"
+        },
+        {
+          "label": "B",
+          "text": "チェックサムだけ"
+        },
+        {
+          "label": "C",
+          "text": "代替テキスト"
+        },
+        {
+          "label": "D",
+          "text": "主キー"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "代替テキストは画像を見られない利用者にも内容を伝えるために使います。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s1",
+        "情報デザイン",
+        "アクセシビリティ"
+      ]
+    },
+    {
+      "id": "itp-ch2-q8",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "フォーム入力でエラーが発生したときの表示として最も適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "赤色だけで何も説明しない"
+        },
+        {
+          "label": "B",
+          "text": "画面を閉じる"
+        },
+        {
+          "label": "C",
+          "text": "入力済み内容をすべて消す"
+        },
+        {
+          "label": "D",
+          "text": "原因と修正方法を具体的に示す"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "利用者が修正できるように、エラー原因と修正方法を明確に示します。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s1",
+        "情報デザイン",
+        "フォーム"
+      ]
+    },
+    {
+      "id": "itp-ch2-q9",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "写真向きで、非可逆圧縮を用いる画像形式はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "JPEG"
+        },
+        {
+          "label": "B",
+          "text": "PNG"
+        },
+        {
+          "label": "C",
+          "text": "SVG"
+        },
+        {
+          "label": "D",
+          "text": "TXT"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "JPEGは写真に向き、容量を小さくできますが非可逆圧縮です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s2",
+        "情報メディア",
+        "画像形式"
+      ]
+    },
+    {
+      "id": "itp-ch2-q10",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "透過画像や劣化なし保存に向く画像形式はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "CSV"
+        },
+        {
+          "label": "B",
+          "text": "PNG"
+        },
+        {
+          "label": "C",
+          "text": "JPEG"
+        },
+        {
+          "label": "D",
+          "text": "MP3"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "PNGは可逆圧縮で、透過画像にも対応します。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s2",
+        "情報メディア",
+        "画像形式"
+      ]
+    },
+    {
+      "id": "itp-ch2-q11",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "拡大しても劣化しにくいベクタ画像形式はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "GIF"
+        },
+        {
+          "label": "B",
+          "text": "MP3"
+        },
+        {
+          "label": "C",
+          "text": "SVG"
+        },
+        {
+          "label": "D",
+          "text": "JPEG"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "SVGは図形をベクタ形式で表すため拡大しても劣化しにくい特徴があります。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s2",
+        "情報メディア",
+        "画像形式"
+      ]
+    },
+    {
+      "id": "itp-ch2-q12",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "音楽配信などで広く使われる音声形式はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "PNG"
+        },
+        {
+          "label": "B",
+          "text": "HTML"
+        },
+        {
+          "label": "C",
+          "text": "SQL"
+        },
+        {
+          "label": "D",
+          "text": "MP3"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "MP3は音声データで広く使われる形式です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s2",
+        "情報メディア",
+        "音声形式"
+      ]
+    },
+    {
+      "id": "itp-ch2-q13",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "元のデータに完全に戻せる圧縮方式はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "可逆圧縮"
+        },
+        {
+          "label": "B",
+          "text": "非可逆圧縮"
+        },
+        {
+          "label": "C",
+          "text": "公開鍵暗号"
+        },
+        {
+          "label": "D",
+          "text": "正規化"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "可逆圧縮は圧縮後も元のデータに完全に戻せます。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s2",
+        "情報メディア",
+        "圧縮"
+      ]
+    },
+    {
+      "id": "itp-ch2-q14",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "ディスプレイで色を表すときに使われる代表的な方式はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "SLA"
+        },
+        {
+          "label": "B",
+          "text": "RGB"
+        },
+        {
+          "label": "C",
+          "text": "CMYK"
+        },
+        {
+          "label": "D",
+          "text": "WBS"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "ディスプレイは赤、緑、青の光を組み合わせるRGBで色を表します。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s2",
+        "情報メディア",
+        "色"
+      ]
+    },
+    {
+      "id": "itp-ch2-q15",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "画像を構成する最小単位はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "パケット"
+        },
+        {
+          "label": "B",
+          "text": "スプリント"
+        },
+        {
+          "label": "C",
+          "text": "ピクセル"
+        },
+        {
+          "label": "D",
+          "text": "レコード"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "ピクセルは画像を構成する最小単位です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s2",
+        "情報メディア",
+        "画像"
+      ]
+    },
+    {
+      "id": "itp-ch2-q16",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "動画で1秒あたりに表示する静止画の枚数を表すものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "解像度"
+        },
+        {
+          "label": "B",
+          "text": "色相"
+        },
+        {
+          "label": "C",
+          "text": "チェックディジット"
+        },
+        {
+          "label": "D",
+          "text": "フレームレート"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "フレームレートは動画で1秒間に表示されるフレーム数です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s2",
+        "情報メディア",
+        "動画"
+      ]
+    },
+    {
+      "id": "itp-ch2-q17",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "関係データベースで、1件分のデータに相当するものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "行"
+        },
+        {
+          "label": "B",
+          "text": "列"
+        },
+        {
+          "label": "C",
+          "text": "表名だけ"
+        },
+        {
+          "label": "D",
+          "text": "主キーだけ"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "関係データベースでは、1件分のデータを行として管理します。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s3",
+        "データベース",
+        "RDB"
+      ]
+    },
+    {
+      "id": "itp-ch2-q18",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "表の中の1行を一意に識別する列はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ログ"
+        },
+        {
+          "label": "B",
+          "text": "主キー"
+        },
+        {
+          "label": "C",
+          "text": "外部キー"
+        },
+        {
+          "label": "D",
+          "text": "ビュー"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "主キーは表の行を一意に識別する列です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s3",
+        "データベース",
+        "主キー"
+      ]
+    },
+    {
+      "id": "itp-ch2-q19",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "別の表の主キーを参照し、表同士を関連付ける列はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "コメント"
+        },
+        {
+          "label": "B",
+          "text": "拡張子"
+        },
+        {
+          "label": "C",
+          "text": "外部キー"
+        },
+        {
+          "label": "D",
+          "text": "主キーだけ"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "外部キーは他の表の主キーを参照して表同士を関連付けます。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s3",
+        "データベース",
+        "外部キー"
+      ]
+    },
+    {
+      "id": "itp-ch2-q20",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "データの重複や更新時の矛盾を減らすために表を整理することはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "暗号化"
+        },
+        {
+          "label": "B",
+          "text": "圧縮"
+        },
+        {
+          "label": "C",
+          "text": "仮想化"
+        },
+        {
+          "label": "D",
+          "text": "正規化"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "正規化は重複や更新異常を減らすために表を整理することです。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s3",
+        "データベース",
+        "正規化"
+      ]
+    },
+    {
+      "id": "itp-ch2-q21",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "データを検索するSQL命令はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "SELECT"
+        },
+        {
+          "label": "B",
+          "text": "INSERT"
+        },
+        {
+          "label": "C",
+          "text": "UPDATE"
+        },
+        {
+          "label": "D",
+          "text": "DELETE"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "SELECTはデータを検索するSQL命令です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s3",
+        "データベース",
+        "SQL"
+      ]
+    },
+    {
+      "id": "itp-ch2-q22",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "データを追加するSQL命令はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "DELETE"
+        },
+        {
+          "label": "B",
+          "text": "INSERT"
+        },
+        {
+          "label": "C",
+          "text": "SELECT"
+        },
+        {
+          "label": "D",
+          "text": "UPDATE"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "INSERTはデータを追加するSQL命令です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s3",
+        "データベース",
+        "SQL"
+      ]
+    },
+    {
+      "id": "itp-ch2-q23",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "一連の処理をすべて成功させるか、すべて取り消す性質はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "機密性"
+        },
+        {
+          "label": "B",
+          "text": "拡張性"
+        },
+        {
+          "label": "C",
+          "text": "原子性"
+        },
+        {
+          "label": "D",
+          "text": "可用性"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "原子性はトランザクションが全部成功するか全部取り消される性質です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s3",
+        "データベース",
+        "トランザクション"
+      ]
+    },
+    {
+      "id": "itp-ch2-q24",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "確定したトランザクションの結果を保存する操作はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ロールバック"
+        },
+        {
+          "label": "B",
+          "text": "コンパイル"
+        },
+        {
+          "label": "C",
+          "text": "レンダリング"
+        },
+        {
+          "label": "D",
+          "text": "コミット"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "コミットはトランザクションの結果を確定して保存する操作です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s3",
+        "データベース",
+        "トランザクション"
+      ]
+    },
+    {
+      "id": "itp-ch2-q25",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "社内や家庭など限られた範囲のネットワークはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "LAN"
+        },
+        {
+          "label": "B",
+          "text": "WAN"
+        },
+        {
+          "label": "C",
+          "text": "GPS"
+        },
+        {
+          "label": "D",
+          "text": "HTML"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "LANはLocal Area Networkで、限られた範囲のネットワークです。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s4",
+        "ネットワーク",
+        "LAN"
+      ]
+    },
+    {
+      "id": "itp-ch2-q26",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "遠隔地のLAN同士を結ぶ広域ネットワークはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "CPU"
+        },
+        {
+          "label": "B",
+          "text": "WAN"
+        },
+        {
+          "label": "C",
+          "text": "LAN"
+        },
+        {
+          "label": "D",
+          "text": "NFC"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "WANはWide Area Networkで、広い範囲のネットワークです。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s4",
+        "ネットワーク",
+        "WAN"
+      ]
+    },
+    {
+      "id": "itp-ch2-q27",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "ドメイン名とIPアドレスを対応付ける仕組みはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "NAT"
+        },
+        {
+          "label": "B",
+          "text": "SMTP"
+        },
+        {
+          "label": "C",
+          "text": "DNS"
+        },
+        {
+          "label": "D",
+          "text": "DHCP"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "DNSはドメイン名とIPアドレスを対応付ける名前解決の仕組みです。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s4",
+        "ネットワーク",
+        "DNS"
+      ]
+    },
+    {
+      "id": "itp-ch2-q28",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "IPアドレスなどを端末に自動設定する仕組みはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "DNS"
+        },
+        {
+          "label": "B",
+          "text": "HTTP"
+        },
+        {
+          "label": "C",
+          "text": "POP"
+        },
+        {
+          "label": "D",
+          "text": "DHCP"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "DHCPは端末へIPアドレスなどのネットワーク設定を自動的に割り当てます。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s4",
+        "ネットワーク",
+        "DHCP"
+      ]
+    },
+    {
+      "id": "itp-ch2-q29",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "プライベートIPアドレスとグローバルIPアドレスを変換する技術はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "NAT"
+        },
+        {
+          "label": "B",
+          "text": "SMTP"
+        },
+        {
+          "label": "C",
+          "text": "FTP"
+        },
+        {
+          "label": "D",
+          "text": "IMAP"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "NATはプライベートIPアドレスとグローバルIPアドレスを変換します。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s4",
+        "ネットワーク",
+        "NAT"
+      ]
+    },
+    {
+      "id": "itp-ch2-q30",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "WebブラウザとWebサーバ間の暗号化された通信に使われるプロトコルはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "POP"
+        },
+        {
+          "label": "B",
+          "text": "HTTPS"
+        },
+        {
+          "label": "C",
+          "text": "HTTPだけ"
+        },
+        {
+          "label": "D",
+          "text": "FTP"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "HTTPSはHTTPに暗号化の仕組みを加えたWeb通信です。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s4",
+        "ネットワーク",
+        "HTTPS"
+      ]
+    },
+    {
+      "id": "itp-ch2-q31",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "メール送信に使われるプロトコルはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "IMAP"
+        },
+        {
+          "label": "B",
+          "text": "DNS"
+        },
+        {
+          "label": "C",
+          "text": "SMTP"
+        },
+        {
+          "label": "D",
+          "text": "POP"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "SMTPは電子メールを送信するためのプロトコルです。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s4",
+        "ネットワーク",
+        "メール"
+      ]
+    },
+    {
+      "id": "itp-ch2-q32",
+      "examId": "itp",
+      "chapterId": "ch2",
+      "type": "single",
+      "text": "近距離の無線機器接続に使われる通信方式はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "Wi-Fiだけ"
+        },
+        {
+          "label": "B",
+          "text": "HDMI"
+        },
+        {
+          "label": "C",
+          "text": "SATA"
+        },
+        {
+          "label": "D",
+          "text": "Bluetooth"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "Bluetoothはイヤホンやキーボードなど近距離機器接続に使われます。",
+      "tags": [
+        "テクノロジ系",
+        "ch2-s4",
+        "ネットワーク",
+        "無線通信"
       ]
     }
   ]

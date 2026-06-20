@@ -1,14 +1,278 @@
 {
   "examId": "itp",
   "chapterId": "ch4",
-  "chapterTitle": "システムの開発と管理",
+  "chapterTitle": "開発・マネジメント・監査",
   "questions": [
     {
       "id": "itp-ch4-q1",
       "examId": "itp",
       "chapterId": "ch4",
       "type": "single",
-      "text": "システム開発の手法のうち、短期間に開発とテストのサイクルを繰り返し、要件の変更に柔軟に対応することを目的とした手法はどれか。",
+      "text": "利用者が求める機能や条件を明確にする工程はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "要件定義"
+        },
+        {
+          "label": "B",
+          "text": "単体テスト"
+        },
+        {
+          "label": "C",
+          "text": "移行"
+        },
+        {
+          "label": "D",
+          "text": "保守"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "要件定義は利用者の要求や業務条件を明確にする工程です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s1",
+        "システム開発技術",
+        "要件定義"
+      ]
+    },
+    {
+      "id": "itp-ch4-q2",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "利用者から見える画面や帳票などを設計する工程はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "プログラミング"
+        },
+        {
+          "label": "B",
+          "text": "外部設計"
+        },
+        {
+          "label": "C",
+          "text": "内部設計"
+        },
+        {
+          "label": "D",
+          "text": "単体テスト"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "外部設計では画面、帳票、入出力など利用者から見える部分を設計します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s1",
+        "システム開発技術",
+        "設計"
+      ]
+    },
+    {
+      "id": "itp-ch4-q3",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "プログラム内部の構造や処理方式を設計する工程はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "受入テスト"
+        },
+        {
+          "label": "B",
+          "text": "運用テスト"
+        },
+        {
+          "label": "C",
+          "text": "内部設計"
+        },
+        {
+          "label": "D",
+          "text": "企画"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "内部設計ではプログラム内部の構造やデータ処理などを設計します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s1",
+        "システム開発技術",
+        "設計"
+      ]
+    },
+    {
+      "id": "itp-ch4-q4",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "個々のプログラムが正しく動くか確認するテストはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "結合テスト"
+        },
+        {
+          "label": "B",
+          "text": "システムテスト"
+        },
+        {
+          "label": "C",
+          "text": "受入テスト"
+        },
+        {
+          "label": "D",
+          "text": "単体テスト"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "単体テストは個々のモジュールやプログラム単位で確認します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s1",
+        "システム開発技術",
+        "テスト"
+      ]
+    },
+    {
+      "id": "itp-ch4-q5",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "複数のプログラムを組み合わせた動作を確認するテストはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "結合テスト"
+        },
+        {
+          "label": "B",
+          "text": "単体テスト"
+        },
+        {
+          "label": "C",
+          "text": "受入テスト"
+        },
+        {
+          "label": "D",
+          "text": "レビュー"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "結合テストは複数機能の連携やインタフェースを確認します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s1",
+        "システム開発技術",
+        "テスト"
+      ]
+    },
+    {
+      "id": "itp-ch4-q6",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "利用者側が実際の業務で使えるかを確認するテストはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "構成管理"
+        },
+        {
+          "label": "B",
+          "text": "受入テスト"
+        },
+        {
+          "label": "C",
+          "text": "単体テスト"
+        },
+        {
+          "label": "D",
+          "text": "内部設計"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "受入テストは利用者がシステムを受け入れられるか確認するテストです。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s1",
+        "システム開発技術",
+        "テスト"
+      ]
+    },
+    {
+      "id": "itp-ch4-q7",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "成果物の誤りを早い段階で見つける活動はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "圧縮"
+        },
+        {
+          "label": "B",
+          "text": "暗号化"
+        },
+        {
+          "label": "C",
+          "text": "レビュー"
+        },
+        {
+          "label": "D",
+          "text": "デプロイだけ"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "レビューは設計書やプログラムなどの成果物を確認し、誤りを早期に見つけます。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s1",
+        "システム開発技術",
+        "品質"
+      ]
+    },
+    {
+      "id": "itp-ch4-q8",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "本番環境へ切り替えるためのデータ移行や運用開始準備はどの活動に近いか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "企画"
+        },
+        {
+          "label": "B",
+          "text": "外部設計"
+        },
+        {
+          "label": "C",
+          "text": "単体テスト"
+        },
+        {
+          "label": "D",
+          "text": "移行"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "移行では既存システムから新システムへの切替えやデータ移行を行います。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s1",
+        "システム開発技術",
+        "移行"
+      ]
+    },
+    {
+      "id": "itp-ch4-q9",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "工程を順番に進める開発モデルはどれか。",
       "options": [
         {
           "label": "A",
@@ -20,35 +284,333 @@
         },
         {
           "label": "C",
-          "text": "リバースエンジニアリング"
+          "text": "プロトタイピングモデル"
         },
         {
           "label": "D",
-          "text": "プロトタイピング"
+          "text": "スパイラルモデル"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "ウォーターフォールモデルは要件定義からテストまで順番に進めるモデルです。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s2",
+        "ソフトウェア開発管理技術",
+        "開発モデル"
+      ]
+    },
+    {
+      "id": "itp-ch4-q10",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "試作品を作り、利用者確認を受けながら仕様を具体化するモデルはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "RAID"
+        },
+        {
+          "label": "B",
+          "text": "プロトタイピングモデル"
+        },
+        {
+          "label": "C",
+          "text": "ウォーターフォールモデル"
+        },
+        {
+          "label": "D",
+          "text": "デュプレックスシステム"
         }
       ],
       "correctAnswer": "B",
-      "explanation": "アジャイル（Agile：俊敏な）開発は、短い期間単位で開発とリリースを繰り返し、仕様変更にも柔軟に対応できる現代の主流な開発手法です。ウォーターフォールモデルは原則として後戻りしない手法です。",
+      "explanation": "プロトタイピングモデルは試作品を使って要求を具体化します。",
       "tags": [
         "マネジメント系",
-        "システム開発技術",
+        "ch4-s2",
+        "ソフトウェア開発管理技術",
+        "開発モデル"
+      ]
+    },
+    {
+      "id": "itp-ch4-q11",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "開発と評価を繰り返しながらリスクを段階的に減らすモデルはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "請負契約"
+        },
+        {
+          "label": "B",
+          "text": "正規化"
+        },
+        {
+          "label": "C",
+          "text": "スパイラルモデル"
+        },
+        {
+          "label": "D",
+          "text": "集中処理"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "スパイラルモデルは反復しながらリスクを評価し開発します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s2",
+        "ソフトウェア開発管理技術",
+        "開発モデル"
+      ]
+    },
+    {
+      "id": "itp-ch4-q12",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "短い期間で開発と改善を繰り返す手法はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "一括移行"
+        },
+        {
+          "label": "B",
+          "text": "監査報告"
+        },
+        {
+          "label": "C",
+          "text": "損益分岐点分析"
+        },
+        {
+          "label": "D",
+          "text": "アジャイル開発"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "アジャイル開発は短いサイクルで開発と改善を繰り返します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s2",
+        "ソフトウェア開発管理技術",
         "アジャイル"
       ]
     },
     {
-      "id": "itp-ch4-q2",
+      "id": "itp-ch4-q13",
       "examId": "itp",
       "chapterId": "ch4",
       "type": "single",
-      "text": "プロジェクトのスケジュール管理において、作業の順序関係や依存関係を視覚的に表現し、クリティカルパスを特定するために用いられる図はどれか。",
+      "text": "スクラムで実現したい機能や改善項目の一覧はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "特性要因図"
+          "text": "プロダクトバックログ"
         },
         {
           "label": "B",
-          "text": "パレート図"
+          "text": "貸借対照表"
+        },
+        {
+          "label": "C",
+          "text": "DNSレコード"
+        },
+        {
+          "label": "D",
+          "text": "監査証拠"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "プロダクトバックログは実現したい機能や改善項目を優先順位付きで整理した一覧です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s2",
+        "ソフトウェア開発管理技術",
+        "スクラム"
+      ]
+    },
+    {
+      "id": "itp-ch4-q14",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "開発担当と運用担当が連携して継続的に改善する考え方はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "NAT"
+        },
+        {
+          "label": "B",
+          "text": "DevOps"
+        },
+        {
+          "label": "C",
+          "text": "BtoC"
+        },
+        {
+          "label": "D",
+          "text": "JIS"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "DevOpsは開発と運用が連携し、継続的な改善や迅速なリリースを目指します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s2",
+        "ソフトウェア開発管理技術",
+        "DevOps"
+      ]
+    },
+    {
+      "id": "itp-ch4-q15",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "ソースコードや設定ファイル、文書などの版を管理する活動はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "市場細分化"
+        },
+        {
+          "label": "B",
+          "text": "可逆圧縮"
+        },
+        {
+          "label": "C",
+          "text": "構成管理"
+        },
+        {
+          "label": "D",
+          "text": "リスク受容"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "構成管理は成果物や設定などの状態と版を管理します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s2",
+        "ソフトウェア開発管理技術",
+        "構成管理"
+      ]
+    },
+    {
+      "id": "itp-ch4-q16",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "変更の影響を確認し、承認してから実施する管理はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "統計分析"
+        },
+        {
+          "label": "B",
+          "text": "色補正"
+        },
+        {
+          "label": "C",
+          "text": "ショルダーハッキング"
+        },
+        {
+          "label": "D",
+          "text": "変更管理"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "変更管理は変更による影響やリスクを評価し、統制して実施します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s2",
+        "ソフトウェア開発管理技術",
+        "変更管理"
+      ]
+    },
+    {
+      "id": "itp-ch4-q17",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "QCDのCが表すものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "Cost"
+        },
+        {
+          "label": "B",
+          "text": "Customer"
+        },
+        {
+          "label": "C",
+          "text": "Control"
+        },
+        {
+          "label": "D",
+          "text": "Cloud"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "QCDはQuality、Cost、Deliveryを表します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s3",
+        "プロジェクトマネジメント",
+        "QCD"
+      ]
+    },
+    {
+      "id": "itp-ch4-q18",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "プロジェクトの作業を階層的に分解する手法はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ERP"
+        },
+        {
+          "label": "B",
+          "text": "WBS"
+        },
+        {
+          "label": "C",
+          "text": "SLA"
+        },
+        {
+          "label": "D",
+          "text": "RFI"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "WBSは作業を分解し、範囲や担当を明確にします。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s3",
+        "プロジェクトマネジメント",
+        "WBS"
+      ]
+    },
+    {
+      "id": "itp-ch4-q19",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "作業期間や進捗を帯状に表示する図はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "散布図"
+        },
+        {
+          "label": "B",
+          "text": "円グラフ"
         },
         {
           "label": "C",
@@ -56,27 +618,226 @@
         },
         {
           "label": "D",
-          "text": "アローダイアグラム"
+          "text": "ER図"
         }
       ],
-      "correctAnswer": "D",
-      "explanation": "アローダイアグラム（PERT図）は作業の順序を矢印で結んだ図で、クリティカルパス（遅れが許されない最長経路）の特定に使われます。ガントチャートは予定と実績の進捗を横棒グラフで表すものです。",
+      "correctAnswer": "C",
+      "explanation": "ガントチャートは作業期間と進捗を視覚化する図です。",
       "tags": [
         "マネジメント系",
+        "ch4-s3",
         "プロジェクトマネジメント",
-        "アローダイアグラム"
+        "進捗管理"
       ]
     },
     {
-      "id": "itp-ch4-q3",
+      "id": "itp-ch4-q20",
       "examId": "itp",
       "chapterId": "ch4",
       "type": "single",
-      "text": "ITサービスマネジメントにおいて、サービスの提供者と利用者の間で、提供するサービスの内容や品質の目標値（稼働率など）を合意し、明文化した文書を何というか。",
+      "text": "遅れると全体納期に影響する最長経路はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "NDA"
+          "text": "リスク移転"
+        },
+        {
+          "label": "B",
+          "text": "ステークホルダ"
+        },
+        {
+          "label": "C",
+          "text": "サービスデスク"
+        },
+        {
+          "label": "D",
+          "text": "クリティカルパス"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "クリティカルパスはプロジェクト全体の完了日に影響する経路です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s3",
+        "プロジェクトマネジメント",
+        "PERT"
+      ]
+    },
+    {
+      "id": "itp-ch4-q21",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "発生確率と影響度を評価し対応を決める管理はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "リスク管理"
+        },
+        {
+          "label": "B",
+          "text": "画像管理"
+        },
+        {
+          "label": "C",
+          "text": "色管理"
+        },
+        {
+          "label": "D",
+          "text": "文字コード管理だけ"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "リスク管理ではリスクを識別、分析し対応策を決めます。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s3",
+        "プロジェクトマネジメント",
+        "リスク管理"
+      ]
+    },
+    {
+      "id": "itp-ch4-q22",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "プロジェクトに影響を与える、または影響を受ける関係者はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ピクセル"
+        },
+        {
+          "label": "B",
+          "text": "ステークホルダ"
+        },
+        {
+          "label": "C",
+          "text": "ハッシュ値"
+        },
+        {
+          "label": "D",
+          "text": "外部キー"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "ステークホルダはプロジェクトに関わる利害関係者です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s3",
+        "プロジェクトマネジメント",
+        "ステークホルダ"
+      ]
+    },
+    {
+      "id": "itp-ch4-q23",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "プロジェクトの特徴として最も適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "必ず1人で実施する活動である"
+        },
+        {
+          "label": "B",
+          "text": "費用を管理しない活動である"
+        },
+        {
+          "label": "C",
+          "text": "期限と目的がある一時的な活動である"
+        },
+        {
+          "label": "D",
+          "text": "永遠に同じ手順を繰り返す活動だけである"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "プロジェクトは独自の目的を持ち、期限のある一時的な活動です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s3",
+        "プロジェクトマネジメント",
+        "プロジェクト"
+      ]
+    },
+    {
+      "id": "itp-ch4-q24",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "作業範囲が勝手に拡大することを防ぐために管理すべきものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "RGB"
+        },
+        {
+          "label": "B",
+          "text": "NFC"
+        },
+        {
+          "label": "C",
+          "text": "ROM"
+        },
+        {
+          "label": "D",
+          "text": "スコープ"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "スコープはプロジェクトで実施する作業範囲を表します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s3",
+        "プロジェクトマネジメント",
+        "スコープ"
+      ]
+    },
+    {
+      "id": "itp-ch4-q25",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "ITサービスマネジメントのベストプラクティスを体系化したものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ITIL"
+        },
+        {
+          "label": "B",
+          "text": "HTML"
+        },
+        {
+          "label": "C",
+          "text": "SQL"
+        },
+        {
+          "label": "D",
+          "text": "JIS"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "ITILはITサービスマネジメントのベストプラクティスです。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s4",
+        "サービスマネジメント",
+        "ITIL"
+      ]
+    },
+    {
+      "id": "itp-ch4-q26",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "サービス提供者と利用者が品質目標を合意したものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "DFD"
         },
         {
           "label": "B",
@@ -84,19 +845,482 @@
         },
         {
           "label": "C",
-          "text": "RFP"
+          "text": "NDA"
         },
         {
           "label": "D",
-          "text": "BCP"
+          "text": "RFP"
         }
       ],
       "correctAnswer": "B",
-      "explanation": "SLA（Service Level Agreement）はサービスレベル合意書のことです。NDAは秘密保持契約、RFPは提案依頼書、BCPは事業継続計画を指します。",
+      "explanation": "SLAはサービスレベル合意書です。",
       "tags": [
         "マネジメント系",
+        "ch4-s4",
         "サービスマネジメント",
         "SLA"
+      ]
+    },
+    {
+      "id": "itp-ch4-q27",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "利用者からの問い合わせ窓口として機能するものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "プロダクトバックログ"
+        },
+        {
+          "label": "B",
+          "text": "損益計算書"
+        },
+        {
+          "label": "C",
+          "text": "サービスデスク"
+        },
+        {
+          "label": "D",
+          "text": "主記憶装置"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "サービスデスクは利用者からの問い合わせや障害連絡の窓口です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s4",
+        "サービスマネジメント",
+        "サービスデスク"
+      ]
+    },
+    {
+      "id": "itp-ch4-q28",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "障害発生時に早期復旧を目指す管理はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "問題管理"
+        },
+        {
+          "label": "B",
+          "text": "標準化"
+        },
+        {
+          "label": "C",
+          "text": "市場分析"
+        },
+        {
+          "label": "D",
+          "text": "インシデント管理"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "インシデント管理はサービスをできるだけ早く復旧することを目的とします。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s4",
+        "サービスマネジメント",
+        "インシデント管理"
+      ]
+    },
+    {
+      "id": "itp-ch4-q29",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "根本原因を分析し再発防止を目指す管理はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "問題管理"
+        },
+        {
+          "label": "B",
+          "text": "インシデント管理"
+        },
+        {
+          "label": "C",
+          "text": "在庫管理"
+        },
+        {
+          "label": "D",
+          "text": "配色管理"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "問題管理は原因分析と再発防止を目的とします。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s4",
+        "サービスマネジメント",
+        "問題管理"
+      ]
+    },
+    {
+      "id": "itp-ch4-q30",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "新機能や修正を本番環境へ展開する管理はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "標準偏差"
+        },
+        {
+          "label": "B",
+          "text": "リリース管理"
+        },
+        {
+          "label": "C",
+          "text": "正規化"
+        },
+        {
+          "label": "D",
+          "text": "秘密鍵管理だけ"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "リリース管理は変更や修正を本番環境へ安全に展開する管理です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s4",
+        "サービスマネジメント",
+        "リリース管理"
+      ]
+    },
+    {
+      "id": "itp-ch4-q31",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "利用者増加に備えて性能や資源量を管理する活動はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "意匠登録"
+        },
+        {
+          "label": "B",
+          "text": "解像度管理だけ"
+        },
+        {
+          "label": "C",
+          "text": "容量管理"
+        },
+        {
+          "label": "D",
+          "text": "著作権管理だけ"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "容量管理は将来の需要を見込み、システム資源を適切に管理します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s4",
+        "サービスマネジメント",
+        "容量管理"
+      ]
+    },
+    {
+      "id": "itp-ch4-q32",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "サービス停止に備えてデータや復旧手順を用意する対策はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "画面色の統一だけ"
+        },
+        {
+          "label": "B",
+          "text": "全員管理者化"
+        },
+        {
+          "label": "C",
+          "text": "ログ削除"
+        },
+        {
+          "label": "D",
+          "text": "バックアップと復旧手順の整備"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "バックアップと復旧手順は障害時の復旧に不可欠です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s4",
+        "サービスマネジメント",
+        "運用管理"
+      ]
+    },
+    {
+      "id": "itp-ch4-q33",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "システム監査の目的として最も適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "情報システムの管理や統制が適切か独立した立場で評価する"
+        },
+        {
+          "label": "B",
+          "text": "監査人が自ら全設定を変更する"
+        },
+        {
+          "label": "C",
+          "text": "利用者の好みだけで画面色を決める"
+        },
+        {
+          "label": "D",
+          "text": "競合企業を攻撃する"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "システム監査は独立した立場で有効性、安全性、信頼性などを評価します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s5",
+        "システム監査",
+        "監査目的"
+      ]
+    },
+    {
+      "id": "itp-ch4-q34",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "システム監査で最初に行う活動はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "改善実施代行"
+        },
+        {
+          "label": "B",
+          "text": "監査計画"
+        },
+        {
+          "label": "C",
+          "text": "監査報告"
+        },
+        {
+          "label": "D",
+          "text": "フォローアップ"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "監査ではまず目的、範囲、方法などを定める監査計画を作成します。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s5",
+        "システム監査",
+        "監査手順"
+      ]
+    },
+    {
+      "id": "itp-ch4-q35",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "監査判断の根拠となる記録や資料はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "公開鍵だけ"
+        },
+        {
+          "label": "B",
+          "text": "顧客満足度だけ"
+        },
+        {
+          "label": "C",
+          "text": "監査証拠"
+        },
+        {
+          "label": "D",
+          "text": "主キー"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "監査証拠は監査人の判断を裏付ける資料や記録です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s5",
+        "システム監査",
+        "監査証拠"
+      ]
+    },
+    {
+      "id": "itp-ch4-q36",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "監査対象から独立した立場で評価するために重要な性質はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "揮発性"
+        },
+        {
+          "label": "B",
+          "text": "可逆性"
+        },
+        {
+          "label": "C",
+          "text": "秘匿性だけ"
+        },
+        {
+          "label": "D",
+          "text": "独立性"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "監査人には監査対象からの独立性が求められます。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s5",
+        "システム監査",
+        "独立性"
+      ]
+    },
+    {
+      "id": "itp-ch4-q37",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "監査人の役割として適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "改善を助言・勧告する"
+        },
+        {
+          "label": "B",
+          "text": "改善作業を必ず自分で実行する"
+        },
+        {
+          "label": "C",
+          "text": "被監査部門の承認者になる"
+        },
+        {
+          "label": "D",
+          "text": "証拠を残さず評価する"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "監査人は助言・勧告を行いますが、原則として改善の実行者ではありません。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s5",
+        "システム監査",
+        "監査人"
+      ]
+    },
+    {
+      "id": "itp-ch4-q38",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "監査報告後に改善状況を確認する活動はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ファイル圧縮"
+        },
+        {
+          "label": "B",
+          "text": "フォローアップ"
+        },
+        {
+          "label": "C",
+          "text": "コンパイル"
+        },
+        {
+          "label": "D",
+          "text": "サンプリング周波数"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "フォローアップは指摘事項の改善状況を確認する活動です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s5",
+        "システム監査",
+        "監査手順"
+      ]
+    },
+    {
+      "id": "itp-ch4-q39",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "承認手続や職務分掌、アクセス制御などを含む組織内の仕組みはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "色分解"
+        },
+        {
+          "label": "B",
+          "text": "NAT"
+        },
+        {
+          "label": "C",
+          "text": "内部統制"
+        },
+        {
+          "label": "D",
+          "text": "画像圧縮"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "内部統制は業務を適正に行うための仕組みです。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s5",
+        "システム監査",
+        "内部統制"
+      ]
+    },
+    {
+      "id": "itp-ch4-q40",
+      "examId": "itp",
+      "chapterId": "ch4",
+      "type": "single",
+      "text": "監査人が避けるべき行為として最も適切なものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "証拠を収集する"
+        },
+        {
+          "label": "B",
+          "text": "監査計画を立てる"
+        },
+        {
+          "label": "C",
+          "text": "報告書を作成する"
+        },
+        {
+          "label": "D",
+          "text": "監査対象システムの改善作業を自ら直接実施する"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "監査人が自ら改善を実施すると独立性を損なうため不適切です。",
+      "tags": [
+        "マネジメント系",
+        "ch4-s5",
+        "システム監査",
+        "監査人"
       ]
     }
   ]

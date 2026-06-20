@@ -8,31 +8,32 @@
       "examId": "itp",
       "chapterId": "ch3",
       "type": "single",
-      "text": "公開鍵暗号方式において、送信者が受信者に暗号文を送る場合、暗号化に使用する鍵はどれか。",
+      "text": "許可された人だけが情報を見られる性質はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "送信者の公開鍵"
+          "text": "機密性"
         },
         {
           "label": "B",
-          "text": "送信者の秘密鍵"
+          "text": "完全性"
         },
         {
           "label": "C",
-          "text": "受信者の公開鍵"
+          "text": "可用性"
         },
         {
           "label": "D",
-          "text": "受信者の秘密鍵"
+          "text": "移植性"
         }
       ],
-      "correctAnswer": "C",
-      "explanation": "公開鍵暗号方式では、暗号化には「受信者の公開鍵（広く公開されている）」を使い、復号には「受信者の秘密鍵（受信者本人しか持っていない）」を使います。これにより、受信者だけが暗号文を解読できます。",
+      "correctAnswer": "A",
+      "explanation": "機密性は許可された人だけが情報にアクセスできる性質です。",
       "tags": [
         "テクノロジ系",
-        "セキュリティ",
-        "暗号化"
+        "ch3-s1",
+        "セキュリティの基礎とリスク",
+        "CIA"
       ]
     },
     {
@@ -40,31 +41,758 @@
       "examId": "itp",
       "chapterId": "ch3",
       "type": "single",
-      "text": "PC内のファイルを勝手に暗号化し、元に戻すためのパスワードを教える条件として金銭を要求するマルウェアはどれか。",
+      "text": "情報が正確で改ざんされていない性質はどれか。",
       "options": [
         {
           "label": "A",
-          "text": "キーロガー"
+          "text": "拡張性"
         },
         {
           "label": "B",
-          "text": "ランサムウェア"
+          "text": "完全性"
         },
         {
           "label": "C",
-          "text": "スパイウェア"
+          "text": "機密性"
         },
         {
           "label": "D",
-          "text": "ボット"
+          "text": "可用性"
         }
       ],
       "correctAnswer": "B",
-      "explanation": "ランサムウェア（Ransomware）は、Ransom（身代金）とSoftware（ソフトウェア）を組み合わせた造語で、データを人質に取って身代金を要求するマルウェアです。",
+      "explanation": "完全性は情報が正確で改ざんされていないことを表します。",
       "tags": [
         "テクノロジ系",
-        "セキュリティ",
+        "ch3-s1",
+        "セキュリティの基礎とリスク",
+        "CIA"
+      ]
+    },
+    {
+      "id": "itp-ch3-q3",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "必要なときに情報やシステムを利用できる性質はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "完全性"
+        },
+        {
+          "label": "B",
+          "text": "匿名性"
+        },
+        {
+          "label": "C",
+          "text": "可用性"
+        },
+        {
+          "label": "D",
+          "text": "機密性"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "可用性は必要なときに利用できる性質です。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s1",
+        "セキュリティの基礎とリスク",
+        "CIA"
+      ]
+    },
+    {
+      "id": "itp-ch3-q4",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "守るべきデータ、システム、設備などを総称して何というか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "脆弱性"
+        },
+        {
+          "label": "B",
+          "text": "脅威"
+        },
+        {
+          "label": "C",
+          "text": "暗号鍵だけ"
+        },
+        {
+          "label": "D",
+          "text": "情報資産"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "情報資産は組織が守るべき情報やシステムなどです。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s1",
+        "セキュリティの基礎とリスク",
+        "リスク管理"
+      ]
+    },
+    {
+      "id": "itp-ch3-q5",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "システムや運用上の弱点を表す用語はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "脆弱性"
+        },
+        {
+          "label": "B",
+          "text": "脅威"
+        },
+        {
+          "label": "C",
+          "text": "資産"
+        },
+        {
+          "label": "D",
+          "text": "証跡"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "脆弱性は攻撃や事故につながる弱点です。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s1",
+        "セキュリティの基礎とリスク",
+        "リスク管理"
+      ]
+    },
+    {
+      "id": "itp-ch3-q6",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "リスクを洗い出し、発生可能性や影響度を評価する活動はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "マージ"
+        },
+        {
+          "label": "B",
+          "text": "リスクアセスメント"
+        },
+        {
+          "label": "C",
+          "text": "コンパイル"
+        },
+        {
+          "label": "D",
+          "text": "正規化"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "リスクアセスメントはリスクを識別し評価する活動です。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s1",
+        "セキュリティの基礎とリスク",
+        "リスク管理"
+      ]
+    },
+    {
+      "id": "itp-ch3-q7",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "リスク対応で、危険な業務をやめるなどしてリスクを発生させない対応はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "リスク受容"
+        },
+        {
+          "label": "B",
+          "text": "リスク共有だけ"
+        },
+        {
+          "label": "C",
+          "text": "リスク回避"
+        },
+        {
+          "label": "D",
+          "text": "リスク移転"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "リスク回避はリスクの原因となる活動を行わない対応です。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s1",
+        "セキュリティの基礎とリスク",
+        "リスク対応"
+      ]
+    },
+    {
+      "id": "itp-ch3-q8",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "組織のセキュリティ方針、対策基準、実施手順を定めるものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "RFP"
+        },
+        {
+          "label": "B",
+          "text": "ER図"
+        },
+        {
+          "label": "C",
+          "text": "貸借対照表"
+        },
+        {
+          "label": "D",
+          "text": "セキュリティポリシ"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "セキュリティポリシは組織のセキュリティに関する方針やルールです。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s1",
+        "セキュリティの基礎とリスク",
+        "ポリシ"
+      ]
+    },
+    {
+      "id": "itp-ch3-q9",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "ネットワークを通じて自己増殖するマルウェアはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ワーム"
+        },
+        {
+          "label": "B",
+          "text": "スパイウェア"
+        },
+        {
+          "label": "C",
+          "text": "キーロガー"
+        },
+        {
+          "label": "D",
+          "text": "アドウェア"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "ワームは自己増殖し、ネットワークを通じて拡散するマルウェアです。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s2",
+        "脅威と攻撃手法",
         "マルウェア"
+      ]
+    },
+    {
+      "id": "itp-ch3-q10",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "有用なソフトウェアに見せかけて侵入するマルウェアはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "DoS"
+        },
+        {
+          "label": "B",
+          "text": "トロイの木馬"
+        },
+        {
+          "label": "C",
+          "text": "ワーム"
+        },
+        {
+          "label": "D",
+          "text": "フィッシング"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "トロイの木馬は正規ソフトのように見せかけて侵入します。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s2",
+        "脅威と攻撃手法",
+        "マルウェア"
+      ]
+    },
+    {
+      "id": "itp-ch3-q11",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "ファイルを暗号化して復旧と引き換えに金銭を要求するマルウェアはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ワーム"
+        },
+        {
+          "label": "B",
+          "text": "ボットだけ"
+        },
+        {
+          "label": "C",
+          "text": "ランサムウェア"
+        },
+        {
+          "label": "D",
+          "text": "スパイウェア"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "ランサムウェアはデータを利用不能にし、身代金を要求します。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s2",
+        "脅威と攻撃手法",
+        "マルウェア"
+      ]
+    },
+    {
+      "id": "itp-ch3-q12",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "偽メールや偽サイトでIDやパスワードを盗む攻撃はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "SQLインジェクション"
+        },
+        {
+          "label": "B",
+          "text": "DoS"
+        },
+        {
+          "label": "C",
+          "text": "ゼロデイ攻撃"
+        },
+        {
+          "label": "D",
+          "text": "フィッシング"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "フィッシングは利用者をだまして認証情報などを盗む攻撃です。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s2",
+        "脅威と攻撃手法",
+        "フィッシング"
+      ]
+    },
+    {
+      "id": "itp-ch3-q13",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "大量の通信でサービスを妨害する攻撃はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "DDoS攻撃"
+        },
+        {
+          "label": "B",
+          "text": "クロスサイトスクリプティング"
+        },
+        {
+          "label": "C",
+          "text": "パスワードリスト攻撃"
+        },
+        {
+          "label": "D",
+          "text": "ショルダーハッキング"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "DDoS攻撃は分散した多数の機器から大量通信を送りサービスを妨害します。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s2",
+        "脅威と攻撃手法",
+        "DoS"
+      ]
+    },
+    {
+      "id": "itp-ch3-q14",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "入力欄に不正なSQLを混入させ、DBを不正操作する攻撃はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ランサムウェア"
+        },
+        {
+          "label": "B",
+          "text": "SQLインジェクション"
+        },
+        {
+          "label": "C",
+          "text": "フィッシング"
+        },
+        {
+          "label": "D",
+          "text": "盗聴だけ"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "SQLインジェクションは不正なSQLを混入させるWeb攻撃です。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s2",
+        "脅威と攻撃手法",
+        "SQLインジェクション"
+      ]
+    },
+    {
+      "id": "itp-ch3-q15",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "人の心理や不注意を悪用して情報を得る手法はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "正規化"
+        },
+        {
+          "label": "B",
+          "text": "ロードバランシング"
+        },
+        {
+          "label": "C",
+          "text": "ソーシャルエンジニアリング"
+        },
+        {
+          "label": "D",
+          "text": "暗号化"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "ソーシャルエンジニアリングは人の心理や行動の隙を悪用します。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s2",
+        "脅威と攻撃手法",
+        "ソーシャルエンジニアリング"
+      ]
+    },
+    {
+      "id": "itp-ch3-q16",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "流出済みのIDとパスワードの組合せを使ってログインを試す攻撃はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "ゼロデイ攻撃"
+        },
+        {
+          "label": "B",
+          "text": "DNSキャッシュ"
+        },
+        {
+          "label": "C",
+          "text": "フォールトトレランス"
+        },
+        {
+          "label": "D",
+          "text": "パスワードリスト攻撃"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "パスワードリスト攻撃は流出した認証情報を他サービスで試す攻撃です。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s2",
+        "脅威と攻撃手法",
+        "認証攻撃"
+      ]
+    },
+    {
+      "id": "itp-ch3-q17",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "暗号化と復号に同じ鍵を使う方式はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "共通鍵暗号方式"
+        },
+        {
+          "label": "B",
+          "text": "公開鍵暗号方式"
+        },
+        {
+          "label": "C",
+          "text": "ハッシュ関数"
+        },
+        {
+          "label": "D",
+          "text": "デジタル署名"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "共通鍵暗号方式は暗号化と復号で同じ鍵を使います。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s3",
+        "暗号・認証・セキュリティ対策",
+        "暗号"
+      ]
+    },
+    {
+      "id": "itp-ch3-q18",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "公開鍵と秘密鍵を組み合わせて使う方式はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "RAID"
+        },
+        {
+          "label": "B",
+          "text": "公開鍵暗号方式"
+        },
+        {
+          "label": "C",
+          "text": "共通鍵暗号方式"
+        },
+        {
+          "label": "D",
+          "text": "可逆圧縮"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "公開鍵暗号方式は公開鍵と秘密鍵のペアを利用します。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s3",
+        "暗号・認証・セキュリティ対策",
+        "暗号"
+      ]
+    },
+    {
+      "id": "itp-ch3-q19",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "データから固定長の値を生成し、改ざん検知に使うものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "WAF"
+        },
+        {
+          "label": "B",
+          "text": "DHCP"
+        },
+        {
+          "label": "C",
+          "text": "ハッシュ関数"
+        },
+        {
+          "label": "D",
+          "text": "VPN"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "ハッシュ関数はデータの改ざん検知などに使われます。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s3",
+        "暗号・認証・セキュリティ対策",
+        "ハッシュ"
+      ]
+    },
+    {
+      "id": "itp-ch3-q20",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "本人性と改ざん有無の確認、否認防止に関係する技術はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "NAT"
+        },
+        {
+          "label": "B",
+          "text": "デフラグ"
+        },
+        {
+          "label": "C",
+          "text": "スプーリング"
+        },
+        {
+          "label": "D",
+          "text": "デジタル署名"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "デジタル署名は本人性や改ざん有無の確認、否認防止に役立ちます。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s3",
+        "暗号・認証・セキュリティ対策",
+        "デジタル署名"
+      ]
+    },
+    {
+      "id": "itp-ch3-q21",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "知識情報、所持情報、生体情報の複数種類を組み合わせる認証はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "多要素認証"
+        },
+        {
+          "label": "B",
+          "text": "単一障害点"
+        },
+        {
+          "label": "C",
+          "text": "匿名加工"
+        },
+        {
+          "label": "D",
+          "text": "共通鍵配送"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "多要素認証は異なる種類の認証要素を組み合わせます。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s3",
+        "暗号・認証・セキュリティ対策",
+        "認証"
+      ]
+    },
+    {
+      "id": "itp-ch3-q22",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "Webアプリケーションへの攻撃を検知・防御する仕組みはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "GPS"
+        },
+        {
+          "label": "B",
+          "text": "WAF"
+        },
+        {
+          "label": "C",
+          "text": "DHCP"
+        },
+        {
+          "label": "D",
+          "text": "SMTP"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "WAFはWeb Application Firewallで、Webアプリへの攻撃対策です。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s3",
+        "暗号・認証・セキュリティ対策",
+        "WAF"
+      ]
+    },
+    {
+      "id": "itp-ch3-q23",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "公衆回線上に仮想的な専用線を作り、安全に接続する技術はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "CSS"
+        },
+        {
+          "label": "B",
+          "text": "ROI"
+        },
+        {
+          "label": "C",
+          "text": "VPN"
+        },
+        {
+          "label": "D",
+          "text": "POP"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "VPNは通信経路を暗号化するなどして安全な接続を実現します。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s3",
+        "暗号・認証・セキュリティ対策",
+        "VPN"
+      ]
+    },
+    {
+      "id": "itp-ch3-q24",
+      "examId": "itp",
+      "chapterId": "ch3",
+      "type": "single",
+      "text": "利用者には業務に必要な最小限の権限だけを与える考え方はどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "最大権限の原則"
+        },
+        {
+          "label": "B",
+          "text": "全員管理者の原則"
+        },
+        {
+          "label": "C",
+          "text": "共有IDの原則"
+        },
+        {
+          "label": "D",
+          "text": "最小権限の原則"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "最小権限の原則は、必要最小限の権限だけを付与する考え方です。",
+      "tags": [
+        "テクノロジ系",
+        "ch3-s3",
+        "暗号・認証・セキュリティ対策",
+        "アクセス制御"
       ]
     }
   ]
