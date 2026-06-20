@@ -1,5 +1,14 @@
+import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
 import { Bot } from 'lucide-react'
+import { createPageMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = createPageMetadata({
+  title: 'AI質問',
+  description: '資格合格ナビのAI質問ページです。',
+  path: '/ai-chat',
+  noIndex: true,
+})
 
 export default function AiChatPage() {
   return (

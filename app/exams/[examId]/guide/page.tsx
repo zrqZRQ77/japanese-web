@@ -1,10 +1,28 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import GuideSidebar from '@/components/layout/GuideSidebar'
 import { getExamById } from '@/lib/types/exams-registry'
 import { getChaptersByExam } from '@/lib/types/chapters-registry'
 import { BookOpen } from 'lucide-react'
+import { createPageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ examId: string }>
+}): Promise<Metadata> {
+  const { examId } = await params
+  const exam = getExamById(examId)
+  if (!exam) return createPageMetadata({ title: '学習ガイド', path: `/exams/${examId}/guide`, noIndex: true })
+
+  return createPageMetadata({
+    title: `${exam.shortName} 学習ガイド`,
+    description: `${exam.name}の学習ガイド。章ごとの教材で基礎から体系的に学べます。`,
+    path: `/exams/${examId}/guide`,
+  })
+}
 
 export default async function GuideIndexPage({ params }: { params: Promise<{ examId: string }> }) {
   const { examId } = await params

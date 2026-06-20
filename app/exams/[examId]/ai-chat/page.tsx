@@ -1,7 +1,25 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
 import { getExamById } from '@/lib/types/exams-registry'
 import { Bot } from 'lucide-react'
+import { createPageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ examId: string }>
+}): Promise<Metadata> {
+  const { examId } = await params
+  const exam = getExamById(examId)
+
+  return createPageMetadata({
+    title: exam ? `${exam.shortName} AI質問` : 'AI質問',
+    description: exam ? `${exam.name}のAI質問ページです。` : '資格合格ナビのAI質問ページです。',
+    path: `/exams/${examId}/ai-chat`,
+    noIndex: true,
+  })
+}
 
 export default async function Page({ params }: { params: Promise<{ examId: string }> }) {
   const { examId } = await params

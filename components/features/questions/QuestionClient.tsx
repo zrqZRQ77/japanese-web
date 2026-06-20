@@ -118,7 +118,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
     : null
 
   return (
-    <div style={{
+    <div className="question-layout" style={{
       display: 'flex',
       flex: 1,
       overflow: 'hidden',
@@ -128,7 +128,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
     }}>
 
       {/* ===== 左：問題リスト ===== */}
-      <div style={{
+      <div className="question-left-panel" style={{
         width: 'var(--guide-sidebar-width)', flexShrink: 0,
         borderRight: '1px solid rgba(148,163,184,0.16)',
         background: 'linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(248,250,252,0.98) 100%)',

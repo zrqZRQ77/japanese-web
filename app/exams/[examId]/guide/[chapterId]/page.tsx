@@ -2,6 +2,7 @@
 // 学習ガイド 章ページ  /exams/[examId]/guide/[chapterId]
 // MDXファイルを読み込んで動的レンダリング
 // ============================================================
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import GuideSidebar from '@/components/layout/GuideSidebar'
@@ -10,10 +11,31 @@ import { getExamById } from '@/lib/types/exams-registry'
 import { getChaptersByExam, getChapterById } from '@/lib/types/chapters-registry'
 import { getGuideContent, getAllGuideSections } from '@/lib/content/guide-loader'
 import { BookOpen } from 'lucide-react'
+import { createPageMetadata } from '@/lib/seo'
 
 interface Props {
   params: Promise<{ examId: string; chapterId: string }>
   searchParams: Promise<{ section?: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { examId, chapterId } = await params
+  const exam = getExamById(examId)
+  const chapter = getChapterById(examId, chapterId)
+
+  if (!exam || !chapter) {
+    return createPageMetadata({
+      title: '学習ガイド',
+      path: `/exams/${examId}/guide/${chapterId}`,
+      noIndex: true,
+    })
+  }
+
+  return createPageMetadata({
+    title: `${exam.shortName} 第${chapter.number}章 ${chapter.title}`,
+    description: `${exam.name}の学習ガイド第${chapter.number}章「${chapter.title}」。重要知識を章ごとに整理して学べます。`,
+    path: `/exams/${examId}/guide/${chapterId}`,
+  })
 }
 
 export default async function GuideChapterPage({ params, searchParams }: Props) {

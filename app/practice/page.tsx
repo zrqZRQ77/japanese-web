@@ -1,8 +1,16 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { getChaptersByExam } from '@/lib/types/chapters-registry'
 import { getQuestionSet } from '@/lib/content/question-loader'
+import { createPageMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = createPageMetadata({
+  title: '練習問題',
+  description: '日商簿記3級、FP3級、ITパスポートの練習問題一覧。章ごとの問題で理解度を確認できます。',
+  path: '/practice',
+})
 
 export default function PracticePage() {
   return (

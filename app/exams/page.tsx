@@ -3,9 +3,17 @@
 // 「試験を選ぶ」ボタンからここに遷移
 // ============================================================
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
 import HoverCard from '@/components/ui/HoverCard'
 import { getAvailableExams } from '@/lib/content/exams-loader'
+import { createPageMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = createPageMetadata({
+  title: '資格一覧',
+  description: '資格合格ナビで学習できる日商簿記3級、FP3級、ITパスポートの一覧。無料の学習ガイド、練習問題、知識カードを利用できます。',
+  path: '/exams',
+})
 
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {

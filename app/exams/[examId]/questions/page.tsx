@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
 import ExamSidebar from '@/components/layout/ExamSidebar'
 import { getExamById } from '@/lib/types/exams-registry'
@@ -7,9 +8,22 @@ import { getChaptersByExam } from '@/lib/types/chapters-registry'
 import { getAllQuestionSets } from '@/lib/content/question-loader'
 import { getAllCardSets } from '@/lib/content/card-loader'
 import { ArrowRight, BookOpen, CheckCircle2, PencilLine } from 'lucide-react'
+import { createPageMetadata } from '@/lib/seo'
 
 interface Props {
   params: Promise<{ examId: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { examId } = await params
+  const exam = getExamById(examId)
+  if (!exam) return createPageMetadata({ title: '練習問題', path: `/exams/${examId}/questions`, noIndex: true })
+
+  return createPageMetadata({
+    title: `${exam.shortName} 練習問題`,
+    description: `${exam.name}の章別練習問題。学習ガイドに対応した問題で理解度を確認できます。`,
+    path: `/exams/${examId}/questions`,
+  })
 }
 
 function accentColor(colorKey?: string) {

@@ -1,9 +1,17 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
-import SiteLogo, { BrandText } from '@/components/layout/SiteLogo'
+import SiteFooter from '@/components/layout/SiteFooter'
 import HoverCard from '@/components/ui/HoverCard'
 import { getAvailableExams } from '@/lib/content/exams-loader'
 import { Bot, BookOpen, CreditCard, PencilLine } from 'lucide-react'
+import { createPageMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = createPageMetadata({
+  title: '資格合格ナビ — 無料で学ぶ日本の資格',
+  description: '日商簿記3級、FP3級、ITパスポートを無料で学べる資格学習サイト。学習ガイド、練習問題、知識カードで効率よく復習できます。',
+  path: '/',
+})
 
 const TOOLS = [
   { icon: PencilLine, title: '練習問題', desc: '章ごとの練習で知識を定着' },
@@ -223,19 +231,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== フッター ===== */}
-        <footer style={{
-          background: 'var(--color-bg)', color: 'var(--color-text-muted)',
-          padding: 'clamp(28px, 4vw, 40px) 0',
-          textAlign: 'center', fontSize: '0.875rem',
-        }}>
-          <div className="container-page">
-              <div style={{ marginBottom: 8 }}>
-                  <SiteLogo />
-                </div>
-              <p>© 2026 <BrandText />. All rights reserved.</p>
-          </div>
-        </footer>
+        <SiteFooter />
       </main>
     </>
   )

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import QuestionClient from '@/components/features/questions/QuestionClient'
@@ -5,9 +6,31 @@ import { getExamById } from '@/lib/types/exams-registry'
 import { getChapterById } from '@/lib/types/chapters-registry'
 import { getQuestionSet } from '@/lib/content/question-loader'
 import { BookOpen, PencilLine } from 'lucide-react'
+import { createPageMetadata } from '@/lib/seo'
 
 interface Props {
   params: Promise<{ examId: string; chapterId: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { examId, chapterId } = await params
+  const exam = getExamById(examId)
+  const chapter = getChapterById(examId, chapterId)
+  const questionSet = getQuestionSet(examId, chapterId)
+
+  if (!exam || !chapter) {
+    return createPageMetadata({
+      title: '練習問題',
+      path: `/exams/${examId}/questions/${chapterId}`,
+      noIndex: true,
+    })
+  }
+
+  return createPageMetadata({
+    title: `${exam.shortName} 第${chapter.number}章 練習問題`,
+    description: `${exam.name}の第${chapter.number}章「${chapter.title}」に対応した練習問題${questionSet ? `（${questionSet.questions.length}問）` : ''}。理解度を確認しながら学習できます。`,
+    path: `/exams/${examId}/questions/${chapterId}`,
+  })
 }
 
 export default async function QuestionsPage({ params }: Props) {

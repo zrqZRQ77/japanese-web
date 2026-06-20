@@ -1,7 +1,15 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { getChaptersByExam } from '@/lib/types/chapters-registry'
+import { createPageMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = createPageMetadata({
+  title: '学習ガイド',
+  description: '日商簿記3級、FP3級、ITパスポートの学習ガイド一覧。章ごとの教材で基礎から体系的に学べます。',
+  path: '/guide',
+})
 
 export default function GuidePage() {
   return (

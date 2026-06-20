@@ -2,6 +2,7 @@
 // 試験ダッシュボード  /exams/[examId]
 // （从 page-new.tsx 提取，并包含 ExamInfoSection 的集成）
 // ============================================================
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import ExamSidebar from '@/components/layout/ExamSidebar'
@@ -11,6 +12,7 @@ import ExamInfoSection from '@/components/features/dashboard/ExamInfoSection'
 import { getExamById } from '@/lib/types/exams-registry'
 import { getChaptersByExam } from '@/lib/types/chapters-registry'
 import { BookOpen, LibraryBig, PencilLine } from 'lucide-react'
+import { createPageMetadata } from '@/lib/seo'
 
 const TOOLS = [
   {
@@ -29,6 +31,22 @@ const TOOLS = [
     linkLabel: 'カード一覧を見る', path: '/cards',
   },
 ]
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ examId: string }>
+}): Promise<Metadata> {
+  const { examId } = await params
+  const exam = getExamById(examId)
+  if (!exam) return createPageMetadata({ title: '資格ページ', path: `/exams/${examId}`, noIndex: true })
+
+  return createPageMetadata({
+    title: `${exam.shortName} 学習ダッシュボード`,
+    description: `${exam.name}の学習ガイド、練習問題、知識カードを無料で利用できます。${exam.description}`,
+    path: `/exams/${examId}`,
+  })
+}
 
 export default async function ExamDashboardPage({
   params,
