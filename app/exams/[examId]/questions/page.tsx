@@ -53,7 +53,7 @@ export default async function QuestionsIndexPage({ params }: Props) {
   return (
     <>
       <Navbar />
-      <div style={{
+      <div className="exam-shell" style={{
         display: 'flex',
         height: 'calc(100vh - 64px)',
         overflow: 'hidden',
@@ -61,12 +61,12 @@ export default async function QuestionsIndexPage({ params }: Props) {
       }}>
         <ExamSidebar exam={exam} />
 
-        <main style={{ flex: 1, overflowY: 'auto', padding: '28px 32px 42px' }}>
+        <main className="questions-index-main" style={{ flex: 1, overflowY: 'auto', padding: '28px 32px 42px' }}>
           <div style={{
             maxWidth: 1120,
             margin: '0 auto',
           }}>
-            <div style={{
+            <div className="questions-index-header" style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -108,7 +108,7 @@ export default async function QuestionsIndexPage({ params }: Props) {
               </div>
             </div>
 
-            <div style={{
+            <div className="questions-index-stats" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
               gap: 12,
@@ -158,7 +158,7 @@ export default async function QuestionsIndexPage({ params }: Props) {
                 const ready = questionCount > 0
 
                 return (
-                  <Link key={ch.id} href={href} aria-disabled={!ready} style={{
+                  <Link className="questions-index-row" key={ch.id} href={href} aria-disabled={!ready} style={{
                       display: 'flex',
                       alignItems: 'center',
                       gap: 16,
@@ -170,7 +170,7 @@ export default async function QuestionsIndexPage({ params }: Props) {
                       opacity: ready ? 1 : 0.58,
                       pointerEvents: ready ? 'auto' : 'none',
                     }}>
-                      <div style={{
+                      <div className="questions-index-action" style={{
                         width: 44,
                         height: 44,
                         borderRadius: 8,

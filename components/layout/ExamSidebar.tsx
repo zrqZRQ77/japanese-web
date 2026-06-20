@@ -25,6 +25,22 @@ export default function ExamSidebar({ exam }: Props) {
   const base = `/exams/${exam.id}`
 
   return (
+    <>
+    <nav className="exam-mobile-nav" aria-label={`${exam.shortName} メニュー`}>
+      {NAV_ITEMS.filter(item => item.key !== 'ai').map(item => {
+        const href = `${base}${item.path}`
+        const isActive = item.path === ''
+          ? pathname === base || pathname === `${base}/`
+          : pathname.startsWith(href)
+        const Icon = item.icon
+        return (
+          <Link key={item.key} href={href} className={isActive ? 'is-active' : ''}>
+            <Icon size={17} />
+            <span>{item.label}</span>
+          </Link>
+        )
+      })}
+    </nav>
     <aside className="exam-sidebar" style={{
       width: 'var(--sidebar-width)',
       minWidth: 'var(--sidebar-width)',
@@ -94,5 +110,6 @@ export default function ExamSidebar({ exam }: Props) {
 
       {/* 学習ヒント（已移除应客户要求） */}
     </aside>
+    </>
   )
 }

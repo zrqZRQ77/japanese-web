@@ -38,8 +38,8 @@ export default function InlineQuestionCard({ questionSet, chapterTitle, examId, 
       </div>
 
       {open && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(15,23,42,0.62)', backdropFilter: 'blur(10px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-          <div style={{ width: 'min(98vw, 1500px)', height: 'min(94vh, 1100px)', background: '#fff', borderRadius: 24, overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 30px 80px rgba(15,23,42,0.35)', border: '1px solid rgba(255,255,255,0.18)' }}>
+        <div className="inline-question-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(15,23,42,0.62)', backdropFilter: 'blur(10px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+          <div className="inline-question-dialog" style={{ width: 'min(98vw, 1500px)', height: 'min(94vh, 1100px)', background: '#fff', borderRadius: 24, overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 30px 80px rgba(15,23,42,0.35)', border: '1px solid rgba(255,255,255,0.18)' }}>
             <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'linear-gradient(180deg, #fff 0%, #f8fafc 100%)' }}>
               <div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', fontWeight: 700, marginBottom: 4 }}>練習問題</div>

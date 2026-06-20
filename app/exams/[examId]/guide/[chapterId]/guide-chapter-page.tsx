@@ -48,11 +48,11 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
   return (
     <>
       <Navbar />
-      <div style={{ display: 'flex', height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
+      <div className="guide-page-shell" style={{ display: 'flex', height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
         {/* 学習ガイド内では ExamSidebar を非表示 */}
 
         {/* ガイドコンテンツエリア */}
-        <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+        <div className="guide-layout" style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
           <GuideSidebar
             examId={examId}
             chapters={chapters}

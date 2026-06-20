@@ -10,6 +10,7 @@ import { createPageMetadata } from '@/lib/seo'
 
 interface Props {
   params: Promise<{ examId: string; chapterId: string }>
+  searchParams: Promise<{ question?: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -33,8 +34,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-export default async function QuestionsPage({ params }: Props) {
+export default async function QuestionsPage({ params, searchParams }: Props) {
   const { examId, chapterId } = await params
+  const { question: initialQuestionId } = await searchParams
   const exam = getExamById(examId)
   if (!exam) notFound()
   const chapter = getChapterById(examId, chapterId)
@@ -106,12 +108,13 @@ export default async function QuestionsPage({ params }: Props) {
   return (
     <>
       <Navbar />
-      <div style={{ display: 'flex', height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
+      <div className="question-page-shell" style={{ display: 'flex', height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
         <QuestionClient
           questions={questionSet.questions}
           chapterTitle={questionSet.chapterTitle}
           examId={examId}
           chapterId={chapterId}
+          initialQuestionId={initialQuestionId}
         />
       </div>
     </>

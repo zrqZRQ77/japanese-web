@@ -34,13 +34,13 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
   return (
     <>
       <Navbar />
-      <div style={{
+      <div className="guide-page-shell" style={{
         display: 'flex',
         height: 'calc(100vh - 64px)',
         overflow: 'hidden',
         background: 'var(--color-bg-subtle)',
       }}>
-        <div style={{
+        <div className="guide-layout" style={{
           display: 'flex',
           width: '100%',
           height: '100%',
@@ -48,7 +48,7 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
           overflow: 'hidden',
         }}>
           <GuideSidebar examId={examId} chapters={chapters} currentChapterId="" progress={0} />
-          <main style={{
+          <main className="guide-index-main" style={{
             flex: 1, overflowY: 'auto',
             background: 'var(--color-bg-subtle)',
             display: 'flex',
@@ -84,7 +84,7 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
                 </h1>
                 <p style={{ fontSize: '1.05rem', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
                   全{chapters.length}章構成で、基礎から体系的に学べます。<br />
-                  左のメニューから章を選んで学習を始めましょう。
+                  章を選んで学習を始めましょう。
                 </p>
               </div>
 
@@ -119,7 +119,7 @@ export default async function GuideIndexPage({ params }: { params: Promise<{ exa
                     fontSize: '1rem', textDecoration: 'none',
                   }}>第1章から始める →</Link>
                   <div style={{ marginTop: 12, fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>
-                    または左のメニューから任意の章を選択
+                    または章メニューから任意の章を選択
                   </div>
                 </div>
               )}

@@ -45,7 +45,7 @@ export default function GuideContent({
   }, [base, chapter.id, currentSectionId, frontmatter.sectionNumber, frontmatter.sectionTitle, loaded, recordActivity])
 
   return (
-    <article ref={articleRef} style={{
+    <article ref={articleRef} className="guide-content" style={{
       flex: 1, overflowY: 'auto',
       background: 'var(--color-bg-subtle)',
       display: 'flex', flexDirection: 'column',
@@ -53,7 +53,7 @@ export default function GuideContent({
       minWidth: 0,
     }}>
       {/* トップバー：ブックマーク・お気に入り・共有 */}
-      <div style={{
+      <div className="guide-content-toolbar" style={{
         display: 'flex', alignItems: 'center',
         justifyContent: 'flex-end',
         width: '100%',
@@ -84,13 +84,13 @@ export default function GuideContent({
       </div>
 
       {/* 本文 */}
-      <div style={{
+      <div className="guide-content-body" style={{
         flex: 1,
         width: '100%',
         maxWidth: 920,
         padding: '42px 40px 36px',
       }}>
-        <div style={{
+        <div className="guide-content-inner" style={{
           maxWidth: 760,
           margin: '0 auto',
         }}>
@@ -110,7 +110,7 @@ export default function GuideContent({
         />
 
         {/* 練習問題へのリンク */}
-        <div style={{
+        <div className="guide-practice-cta" style={{
           marginTop: 40, padding: '20px 24px',
           background: '#fff',
           borderRadius: 8,
@@ -138,7 +138,7 @@ export default function GuideContent({
       </div>
 
       {/* 前へ / 次へ ナビゲーション */}
-      <div style={{
+      <div className="guide-content-pagination" style={{
         display: 'flex', justifyContent: 'space-between',
         width: '100%',
         maxWidth: 920,
@@ -148,7 +148,7 @@ export default function GuideContent({
         gap: 12, flexWrap: 'wrap',
       }}>
         {prevLink ? (
-          <Link href={prevLink.href} style={{
+          <Link className="guide-pagination-prev" href={prevLink.href} style={{
             padding: '10px 20px',
             border: '1px solid var(--color-border)',
             borderRadius: 'var(--radius-sm)',
@@ -158,7 +158,7 @@ export default function GuideContent({
           }}>← {prevLink.label}</Link>
         ) : <div />}
 
-        <Link href={`${base}/guide`} style={{
+        <Link className="guide-pagination-index" href={`${base}/guide`} style={{
           padding: '10px 20px',
           border: '1px solid var(--color-border)',
           borderRadius: 'var(--radius-sm)',
@@ -168,7 +168,7 @@ export default function GuideContent({
         }}>章のトップに戻る</Link>
 
         {nextLink ? (
-          <Link href={nextLink.href} style={{
+          <Link className="guide-pagination-next" href={nextLink.href} style={{
             padding: '10px 20px',
             background: 'var(--color-primary)', color: '#fff',
             borderRadius: 'var(--radius-sm)',

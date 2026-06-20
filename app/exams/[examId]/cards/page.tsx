@@ -23,8 +23,15 @@ export async function generateMetadata({
   })
 }
 
-export default async function Page({ params }: { params: Promise<{ examId: string }> }) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ examId: string }>
+  searchParams: Promise<{ chapter?: string; card?: string }>
+}) {
   const { examId } = await params
+  const { chapter: initialChapterId, card: initialCardId } = await searchParams
   const exam = getExamById(examId)
   if (!exam) notFound()
 
@@ -38,17 +45,23 @@ export default async function Page({ params }: { params: Promise<{ examId: strin
   return (
     <>
       <Navbar />
-      <div style={{
+      <div className="flashcard-page-shell" style={{
         height: 'calc(100vh - 64px)',
         overflow: 'hidden',
       }}>
-        <main style={{
+        <main className="flashcard-main" style={{
           height: '100%',
           overflowY: 'auto',
           background: 'var(--color-bg-subtle)',
           padding: '28px 32px',
         }}>
-          <FlashcardDeck examId={examId} examShortName={exam.shortName} groups={groups} />
+          <FlashcardDeck
+            examId={examId}
+            examShortName={exam.shortName}
+            groups={groups}
+            initialChapterId={initialChapterId}
+            initialCardId={initialCardId}
+          />
         </main>
       </div>
     </>

@@ -269,7 +269,7 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
                 const chapter = chapters.find(item => item.id === result.chapterId)
                 return (
                   <Link
-                    href={`${base}/questions/${result.chapterId}#${result.questionId}`}
+                    href={`${base}/questions/${result.chapterId}?question=${result.questionId}`}
                     key={result.questionId}
                   >
                     <AlertCircle size={17} />

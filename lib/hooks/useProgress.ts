@@ -175,7 +175,7 @@ export function useProgress(examId: string) {
         lastActivity: activityFor(
           'questions',
           chapterId,
-          `/exams/${examId}/questions/${chapterId}#${question.id}`,
+          `/exams/${examId}/questions/${chapterId}?question=${question.id}`,
           `${chapterTitle}の練習問題`,
         ),
       }

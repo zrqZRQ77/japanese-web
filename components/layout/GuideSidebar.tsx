@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { BookOpen } from 'lucide-react'
 import { ChapterMeta } from '@/lib/types'
 import { getExamById } from '@/lib/types/exams-registry'
@@ -15,11 +16,53 @@ interface Props {
 
 export default function GuideSidebar({ examId, chapters, currentChapterId, currentSectionId }: Props) {
   const [expanded, setExpanded] = useState<string>(currentChapterId)
+  const router = useRouter()
   const base = `/exams/${examId}/guide`
   const exam = getExamById(examId)
 
+  const currentChapter = chapters.find(chapter => chapter.id === currentChapterId)
+
   return (
-    <aside style={{
+    <>
+    <div className="guide-mobile-nav">
+      <Link href={`/exams/${examId}`} aria-label="ダッシュボードに戻る">←</Link>
+      <label>
+        <span>章</span>
+        <select
+          value={currentChapterId}
+          onChange={event => {
+            if (event.target.value) router.push(`${base}/${event.target.value}`)
+          }}
+        >
+          <option value="">章を選択</option>
+          {chapters.map(chapter => (
+            <option value={chapter.id} key={chapter.id}>
+              第{chapter.number}章 {chapter.title}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        <span>節</span>
+        <select
+          value={currentSectionId ?? ''}
+          disabled={!currentChapter}
+          onChange={event => {
+            if (currentChapter && event.target.value) {
+              router.push(`${base}/${currentChapter.id}?section=${event.target.value}`)
+            }
+          }}
+        >
+          <option value="">節を選択</option>
+          {currentChapter?.sections.map(section => (
+            <option value={section.id} key={section.id}>
+              {section.number} {section.title}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
+    <aside className="guide-sidebar" style={{
       width: 'var(--guide-sidebar-width)',
       minWidth: 'var(--guide-sidebar-width)',
       borderRight: '1px solid var(--color-border)',
@@ -140,5 +183,6 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
         })}
       </nav>
     </aside>
+    </>
   )
 }

@@ -68,13 +68,13 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
   return (
     <>
       <Navbar />
-      <div style={{
+      <div className="guide-page-shell" style={{
         display: 'flex',
         height: 'calc(100vh - 64px)',
         overflow: 'hidden',
         background: 'var(--color-bg-subtle)',
       }}>
-        <div style={{
+        <div className="guide-layout" style={{
           display: 'flex',
           width: '100%',
           height: '100%',

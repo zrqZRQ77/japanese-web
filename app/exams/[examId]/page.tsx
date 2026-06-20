@@ -65,7 +65,7 @@ export default async function ExamDashboardPage({
   return (
     <>
       <Navbar />
-      <div style={{
+      <div className="exam-shell" style={{
         display: 'flex',
         height: 'calc(100vh - 60px)',
         overflow: 'hidden',

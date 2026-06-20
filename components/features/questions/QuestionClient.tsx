@@ -3,7 +3,7 @@
 // 修改此文件 → 所有考试的练习题页面同步更新
 // ============================================================
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { Question } from '@/lib/types'
 import { useProgress } from '@/lib/hooks/useProgress'
@@ -13,10 +13,12 @@ interface Props {
   chapterTitle: string
   examId: string
   chapterId: string
+  initialQuestionId?: string
 }
 
-export default function QuestionClient({ questions, chapterTitle, examId, chapterId }: Props) {
-  const [current, setCurrent] = useState(0)
+export default function QuestionClient({ questions, chapterTitle, examId, chapterId, initialQuestionId }: Props) {
+  const initialQuestionIndex = Math.max(0, questions.findIndex(question => question.id === initialQuestionId))
+  const [current, setCurrent] = useState(initialQuestionIndex)
   const [selected, setSelected] = useState<string | null>(null)
   const [answered, setAnswered] = useState<Record<number, string>>({})
   const [reviewLater, setReviewLater] = useState(false)
@@ -26,13 +28,6 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
   const q = questions[current]
   const isAnswered = selected !== null
   const base = `/exams/${examId}`
-
-  useEffect(() => {
-    const questionId = window.location.hash.slice(1)
-    if (!questionId) return
-    const index = questions.findIndex(question => question.id === questionId)
-    if (index >= 0) setCurrent(index)
-  }, [questions])
 
   function isCorrect(question: Question, answer: string) {
     return Array.isArray(question.correctAnswer)
@@ -83,6 +78,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
   const optionStyle = (label: string): React.CSSProperties => {
     const base: React.CSSProperties = {
       display: 'flex', alignItems: 'center', gap: 14,
+      width: '100%', textAlign: 'left', fontFamily: 'inherit',
       padding: '18px 20px',
       border: '1px solid var(--color-border)',
       borderRadius: 8,
@@ -229,13 +225,13 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
       </div>
 
       {/* ===== 中央：問題本文 ===== */}
-      <main style={{
+      <main className="question-main" style={{
         flex: 1, overflowY: 'auto',
         background: 'transparent',
         padding: '40px 32px 48px',
       }}>
         {/* ヘッダー */}
-        <div style={{
+        <div className="question-header" style={{
           display: 'flex', justifyContent: 'space-between',
           alignItems: 'center', marginBottom: 24,
           maxWidth: 960, width: '100%', marginLeft: 'auto', marginRight: 'auto',
@@ -243,7 +239,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
           <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--color-text-secondary)' }}>
             問題 {current + 1} / {questions.length}
           </div>
-          <div style={{
+          <div className="question-chapter-badge" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '7px 12px', borderRadius: 8,
             background: 'rgba(255,255,255,0.82)',
@@ -254,7 +250,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
         </div>
 
         {/* 問題カード */}
-        <div style={{
+        <div className="question-card" style={{
           maxWidth: 960,
           width: '100%',
           margin: '0 auto',
@@ -281,7 +277,9 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
           }}>{q.text}</p>
 
           {(q.options ?? []).map(opt => (
-            <div key={opt.label}
+            <button key={opt.label}
+              type="button"
+              disabled={isAnswered}
               style={optionStyle(opt.label)}
               onClick={() => handleSelect(opt.label)}
             >
@@ -295,7 +293,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
               {isAnswered && opt.label === selected && !isCorrectOption(q, opt.label) && (
                 <span style={{ marginLeft: 'auto', color: 'var(--color-error)', fontWeight: 700 }}>✗</span>
               )}
-            </div>
+            </button>
           ))}
 
           {isAnswered && (
@@ -333,7 +331,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
             </div>
           )}
 
-          <div style={{
+          <div className="question-actions" style={{
             display: 'flex', justifyContent: 'space-between',
             alignItems: 'center', marginTop: 24,
             gap: 12,

@@ -139,7 +139,7 @@ export default function Navbar() {
 
         {/* モバイルメニュー */}
         {mobileOpen && (
-          <div style={{
+          <div className="mobile-nav-menu" style={{
             borderTop: '1px solid var(--color-border)',
             background: 'rgba(255,255,255,0.96)',
             padding: '16px 20px 20px',

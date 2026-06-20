@@ -1,7 +1,7 @@
 'use client'
 
 import type { CSSProperties } from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { RotateCcw, Layers, CheckCircle2 } from 'lucide-react'
 import { ChapterMeta, KnowledgeCard } from '@/lib/types'
 import { useProgress } from '@/lib/hooks/useProgress'
@@ -15,13 +15,23 @@ interface Props {
   examId: string
   examShortName: string
   groups: CardGroup[]
+  initialChapterId?: string
+  initialCardId?: string
 }
 
-export default function FlashcardDeck({ examId, examShortName, groups }: Props) {
-  const [activeChapterId, setActiveChapterId] = useState(groups[0]?.chapter.id ?? '')
-  const [activeCardIndex, setActiveCardIndex] = useState(0)
+export default function FlashcardDeck({
+  examId,
+  examShortName,
+  groups,
+  initialChapterId,
+  initialCardId,
+}: Props) {
+  const initialGroup = groups.find(group => group.chapter.id === initialChapterId) ?? groups[0]
+  const initialIndex = Math.max(0, initialGroup?.cards.findIndex(card => card.id === initialCardId) ?? 0)
+  const [activeChapterId, setActiveChapterId] = useState(initialGroup?.chapter.id ?? '')
+  const [activeCardIndex, setActiveCardIndex] = useState(initialIndex)
   const [flipped, setFlipped] = useState(false)
-  const { progress, loaded, recordActivity, setCardRemembered } = useProgress(examId)
+  const { progress, recordActivity, setCardRemembered } = useProgress(examId)
 
   const activeGroup = useMemo(
     () => groups.find(group => group.chapter.id === activeChapterId) ?? groups[0],
@@ -36,26 +46,6 @@ export default function FlashcardDeck({ examId, examShortName, groups }: Props) 
   const totalCards = groups.reduce((sum, group) => sum + group.cards.length, 0)
   const rememberedCount = rememberedCardIds.size
   const chapterRememberedCount = cards.filter(card => rememberedCardIds.has(card.id)).length
-
-  useEffect(() => {
-    if (!loaded) return
-    const urlParams = new URLSearchParams(window.location.search)
-    const recentParams = progress?.lastActivity?.type === 'cards'
-      ? new URL(progress.lastActivity.path, window.location.origin).searchParams
-      : null
-    const requestedChapter = urlParams.get('chapter')
-    const recentChapter = progress?.lastActivity?.type === 'cards'
-      ? progress.lastActivity.chapterId
-      : null
-    const nextChapter = requestedChapter ?? recentChapter
-    const nextGroup = groups.find(group => group.chapter.id === nextChapter)
-    if (nextChapter && nextGroup) {
-      setActiveChapterId(nextChapter)
-      const requestedCard = urlParams.get('card') ?? recentParams?.get('card')
-      const cardIndex = nextGroup.cards.findIndex(card => card.id === requestedCard)
-      if (cardIndex >= 0) setActiveCardIndex(cardIndex)
-    }
-  }, [groups, loaded, progress?.lastActivity])
 
   function selectChapter(chapterId: string) {
     setActiveChapterId(chapterId)
