@@ -127,23 +127,43 @@ export const CHAPTERS_REGISTRY: Record<string, ChapterMeta[]> = {
   ],
 
   itp: [
-    { id: 'ch1', number: 1, title: 'ITの基礎と論理', sections: [
-      { id: 'ch1-s1', number: '1-1', title: 'コンピュータの構成とソフトウェア' },
+    { id: 'ch1', number: 1, title: 'ITの基礎とコンピュータ', sections: [
+      { id: 'ch1-s1', number: '1-1', title: '基礎理論' },
+      { id: 'ch1-s2', number: '1-2', title: 'アルゴリズムとプログラミング' },
+      { id: 'ch1-s3', number: '1-3', title: 'コンピュータ構成要素' },
+      { id: 'ch1-s4', number: '1-4', title: 'システム構成要素' },
+      { id: 'ch1-s5', number: '1-5', title: 'ソフトウェア' },
+      { id: 'ch1-s6', number: '1-6', title: 'ハードウェア' },
     ]},
-    { id: 'ch2', number: 2, title: 'ネットワークとデータ', sections: [
-      { id: 'ch2-s1', number: '2-1', title: 'ネットワーク・DB・情報デザイン' },
+    { id: 'ch2', number: 2, title: '技術要素とデータ活用', sections: [
+      { id: 'ch2-s1', number: '2-1', title: '情報デザイン' },
+      { id: 'ch2-s2', number: '2-2', title: '情報メディア' },
+      { id: 'ch2-s3', number: '2-3', title: 'データベース' },
+      { id: 'ch2-s4', number: '2-4', title: 'ネットワーク' },
     ]},
     { id: 'ch3', number: 3, title: '情報セキュリティ', sections: [
-      { id: 'ch3-s1', number: '3-1', title: 'セキュリティの脅威と暗号化技術' },
+      { id: 'ch3-s1', number: '3-1', title: 'セキュリティの基礎とリスク' },
+      { id: 'ch3-s2', number: '3-2', title: '脅威と攻撃手法' },
+      { id: 'ch3-s3', number: '3-3', title: '暗号・認証・セキュリティ対策' },
     ]},
-    { id: 'ch4', number: 4, title: 'システムの開発と管理', sections: [
-      { id: 'ch4-s1', number: '4-1', title: '開発プロセス・プロジェクト・サービス管理' },
+    { id: 'ch4', number: 4, title: '開発・マネジメント・監査', sections: [
+      { id: 'ch4-s1', number: '4-1', title: 'システム開発技術' },
+      { id: 'ch4-s2', number: '4-2', title: 'ソフトウェア開発管理技術' },
+      { id: 'ch4-s3', number: '4-3', title: 'プロジェクトマネジメント' },
+      { id: 'ch4-s4', number: '4-4', title: 'サービスマネジメント' },
+      { id: 'ch4-s5', number: '4-5', title: 'システム監査' },
     ]},
-    { id: 'ch5', number: 5, title: 'ITと企業商業戦略', sections: [
-      { id: 'ch5-s1', number: '5-1', title: '企業活動・経営戦略・システム企画' },
+    { id: 'ch5', number: 5, title: '企業活動と経営戦略', sections: [
+      { id: 'ch5-s1', number: '5-1', title: '企業活動' },
+      { id: 'ch5-s2', number: '5-2', title: '経営戦略マネジメント' },
+      { id: 'ch5-s3', number: '5-3', title: '技術戦略マネジメント' },
+      { id: 'ch5-s4', number: '5-4', title: 'ビジネスインダストリ' },
+      { id: 'ch5-s5', number: '5-5', title: 'システム戦略' },
+      { id: 'ch5-s6', number: '5-6', title: 'システム企画' },
     ]},
     { id: 'ch6', number: 6, title: '法務とコンプライアンス', sections: [
-      { id: 'ch6-s1', number: '6-1', title: '知的財産権・セキュリティ法規・労働法' },
+      { id: 'ch6-s1', number: '6-1', title: '法務' },
+      { id: 'ch6-s2', number: '6-2', title: 'コンプライアンスと標準化' },
     ]},
   ],
 }
