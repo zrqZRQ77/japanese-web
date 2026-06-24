@@ -19,7 +19,7 @@ const config: Config = {
         page: 'var(--content-max-width)',
       },
       fontFamily: {
-        sans: ['Noto Sans JP', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)'],
       },
     },
   },

@@ -9,6 +9,13 @@ export function absoluteUrl(path = '/') {
   return `${SITE_URL}${normalizedPath}`
 }
 
+export const DEFAULT_OG_IMAGE = {
+  url: absoluteUrl('/opengraph-image'),
+  width: 1200,
+  height: 630,
+  alt: `${SITE_NAME} — 無料で学ぶ日本の資格`,
+}
+
 export function createPageMetadata({
   title,
   description = DEFAULT_DESCRIPTION,
@@ -33,11 +40,13 @@ export function createPageMetadata({
       siteName: SITE_NAME,
       locale: 'ja_JP',
       type: 'website',
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title,
       description,
+      images: [DEFAULT_OG_IMAGE.url],
     },
     robots: noIndex ? {
       index: false,
