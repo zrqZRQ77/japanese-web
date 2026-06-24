@@ -123,7 +123,7 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
               {nextChapter && (
                 <a href={`${base}/guide/${nextChapter.id}`} style={{
                   marginTop: 8, padding: '9px 20px',
-                  background: 'var(--color-primary)', color: '#fff',
+                  background: 'var(--color-primary)', color: 'var(--color-bg)',
                   borderRadius: 'var(--radius-sm)', fontWeight: 700,
                   fontSize: '0.875rem', textDecoration: 'none',
                 }}>次の章へ →</a>

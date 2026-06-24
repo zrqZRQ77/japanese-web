@@ -31,7 +31,7 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
   if (!loaded) {
     return (
       <div style={{
-        background: '#fff',
+        background: 'var(--color-bg)',
         border: '1px solid var(--color-border)',
         borderRadius: 'var(--radius-md)',
         padding: '32px',
@@ -49,8 +49,9 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
     ? Math.round((completed.length / totalChapters) * 100)
     : 0
 
-  // 現在の章（最後に完了した章の次、またはch1）
+  // 前回の実際の学習行動を優先し、なければ完了状況から次の章を推定する。
   const currentChapterId = (() => {
+    if (progress?.lastActivity?.chapterId) return progress.lastActivity.chapterId
     if (progress?.currentChapterId) return progress.currentChapterId
     if (completed.length < chapters.length) {
       return chapters[completed.length]?.id ?? chapters[0]?.id ?? 'ch1'
@@ -90,9 +91,24 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
   }
 
   const STATUS_STYLE = {
-    done:   { bg: '#f0fdf4', border: '#86efac', label: '✓ 完了',   labelColor: 'var(--color-success)' },
-    active: { bg: '#fffbeb', border: '#fcd34d', label: '学習中',   labelColor: 'var(--color-warning)' },
-    none:   { bg: '#f9fafb', border: 'var(--color-border)', label: '未学習', labelColor: 'var(--color-text-muted)' },
+    done: {
+      bg: 'var(--color-success-bg)',
+      border: 'var(--color-success-border)',
+      label: '✓ 完了',
+      labelColor: 'var(--color-success)',
+    },
+    active: {
+      bg: 'var(--color-warning-bg)',
+      border: 'var(--color-warning-border)',
+      label: '学習中',
+      labelColor: 'var(--color-warning)',
+    },
+    none: {
+      bg: 'var(--color-bg)',
+      border: 'var(--color-border)',
+      label: '未学習',
+      labelColor: 'var(--color-text-muted)',
+    },
   }
 
   return (
@@ -102,7 +118,7 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
 
         {/* 進捗リング＋現在の章 */}
         <div style={{
-          background: '#fff',
+          background: 'var(--color-bg)',
           border: '1px solid var(--color-border)',
           borderRadius: 'var(--radius-md)',
           padding: '24px 28px',
@@ -136,7 +152,7 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
               <Link href={continuePath} style={{
                 display: 'inline-block',
                 padding: '8px 18px',
-                background: 'var(--color-primary)', color: '#fff',
+                background: 'var(--color-primary)', color: 'var(--color-bg)',
                 borderRadius: 'var(--radius-sm)', fontWeight: 700,
                 fontSize: '0.875rem', textDecoration: 'none',
               }}>続きから学習する</Link>
@@ -157,17 +173,17 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
             {showResetConfirm && (
               <div style={{
                 marginTop: 12, padding: '10px 14px',
-                background: '#fef2f2', border: '1px solid #fca5a5',
+                background: 'var(--color-error-bg)', border: '1px solid var(--color-error-border)',
                 borderRadius: 'var(--radius-sm)', fontSize: '0.8rem',
               }}>
-                <div style={{ marginBottom: 8, fontWeight: 600, color: '#dc2626' }}>
+                <div style={{ marginBottom: 8, fontWeight: 600, color: 'var(--color-error)' }}>
                   進捗をリセットしますか？
                 </div>
                 <div style={{ display: 'flex', gap: 8 }}>
                   <button
                     onClick={() => { resetProgress(); setShowResetConfirm(false) }}
                     style={{
-                      background: '#dc2626', color: '#fff',
+                      background: 'var(--color-error)', color: 'var(--color-bg)',
                       border: 'none', borderRadius: 4,
                       padding: '4px 12px', cursor: 'pointer',
                       fontSize: '0.8rem', fontWeight: 700,
@@ -189,7 +205,7 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
 
         {/* 統計4項目 */}
         <div style={{
-          background: '#fff',
+          background: 'var(--color-bg)',
           border: '1px solid var(--color-border)',
           borderRadius: 'var(--radius-md)',
           padding: '20px 24px',

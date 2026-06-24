@@ -126,12 +126,12 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
     }
     if (!isAnswered) return { ...base }
     if (isCorrectOption(q, label)) return {
-      ...base, background: '#e3ece8',
+      ...base, background: 'var(--color-success-bg)',
       border: '1.5px solid var(--color-success)',
       boxShadow: '0 8px 24px rgba(47,107,95,0.08)',
     }
     if (label === selectedAnswer && !isCorrectOption(q, label)) return {
-      ...base, background: '#f4dfdb',
+      ...base, background: 'var(--color-error-bg)',
       border: '1.5px solid var(--color-error)',
       boxShadow: '0 8px 24px rgba(184,74,58,0.08)',
     }
@@ -332,7 +332,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
           {isAnswered && (
             <div style={{
               marginTop: 20,
-              background: '#eee9dc',
+              background: 'var(--color-bg-muted)',
               border: '1px solid var(--color-border)',
               borderRadius: 'var(--radius-md)',
               padding: '18px 20px',
@@ -350,7 +350,7 @@ export default function QuestionClient({ questions, chapterTitle, examId, chapte
                     fontWeight: 700,
                     padding: '4px 8px',
                     borderRadius: 'var(--radius-sm)',
-                    background: currentAnswerState === 'correct' ? '#e3ece8' : '#f4dfdb',
+                    background: currentAnswerState === 'correct' ? 'var(--color-success-bg)' : 'var(--color-error-bg)',
                     color: currentAnswerState === 'correct' ? 'var(--color-success)' : 'var(--color-error)',
                   }}>
                     {currentAnswerState === 'correct' ? '正解' : '不正解'}

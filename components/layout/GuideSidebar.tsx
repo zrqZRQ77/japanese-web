@@ -139,7 +139,7 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
                   width: 24,
                   height: 24,
                   borderRadius: 'var(--radius-sm)',
-                  background: isCurrentChapter ? 'var(--color-primary)' : '#fef3c7',
+                  background: isCurrentChapter ? 'var(--color-primary)' : 'var(--color-warning-bg)',
                   color: isCurrentChapter ? 'var(--color-bg)' : 'var(--color-warning)',
                   display: 'inline-flex',
                   alignItems: 'center',

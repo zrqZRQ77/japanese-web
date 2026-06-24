@@ -119,7 +119,7 @@ export default function GuidePage() {
                       padding: '9px 14px',
                       borderRadius: 'var(--radius-sm)',
                       background: 'var(--color-primary)',
-                      color: '#fff',
+                      color: 'var(--color-bg)',
                       textDecoration: 'none',
                       fontSize: '0.875rem',
                       fontWeight: 700,

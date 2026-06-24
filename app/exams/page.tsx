@@ -95,7 +95,7 @@ export default function ExamsPage() {
                       <span style={{
                         fontSize: '0.75rem', fontWeight: 600,
                         color: 'var(--color-success)',
-                        background: '#e3ece8',
+                        background: 'var(--color-success-bg)',
                         padding: '3px 8px', borderRadius: 'var(--radius-sm)',
                       }}>無料</span>
                     </div>

@@ -83,7 +83,7 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
             <div style={{
               flex: 1, display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center',
-              background: '#fff', color: 'var(--color-text-secondary)',
+              background: 'var(--color-bg)', color: 'var(--color-text-secondary)',
               gap: 12,
             }}>
               <BookOpen size={42} />
@@ -96,7 +96,7 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
               {nextChapter && (
                 <a href={`${base}/guide/${nextChapter.id}`} style={{
                   marginTop: 8, padding: '9px 20px',
-                  background: 'var(--color-primary)', color: '#fff',
+                  background: 'var(--color-primary)', color: 'var(--color-bg)',
                   borderRadius: 'var(--radius-sm)', fontWeight: 700,
                   fontSize: '0.875rem', textDecoration: 'none',
                 }}>次の章へ →</a>

@@ -32,14 +32,28 @@ export default function FlashcardDeck({
   const [activeChapterId, setActiveChapterId] = useState(initialGroup?.chapter.id ?? '')
   const [activeCardIndex, setActiveCardIndex] = useState(initialIndex)
   const [flipped, setFlipped] = useState(false)
+  const [reviewMode, setReviewMode] = useState<'all' | 'weak'>('all')
   const { progress, recordActivity, setCardRemembered } = useProgress(examId)
 
   const activeGroup = useMemo(
     () => groups.find(group => group.chapter.id === activeChapterId) ?? groups[0],
     [activeChapterId, groups]
   )
-  const cards = activeGroup?.cards ?? []
-  const activeCard = cards[activeCardIndex] ?? cards[0]
+  const cards = useMemo(() => activeGroup?.cards ?? [], [activeGroup])
+  const weakTags = useMemo(
+    () => new Set(
+      Object.values(progress?.questionProgress ?? {})
+        .filter(result => !result.isCorrect)
+        .flatMap(result => result.tags.length ? result.tags : [result.chapterId])
+    ),
+    [progress?.questionProgress]
+  )
+  const weakCards = useMemo(
+    () => cards.filter(card => card.tags?.some(tag => weakTags.has(tag))),
+    [cards, weakTags]
+  )
+  const visibleCards = reviewMode === 'weak' ? weakCards : cards
+  const activeCard = visibleCards[activeCardIndex] ?? visibleCards[0]
   const rememberedCardIds = useMemo(
     () => new Set(progress?.rememberedCardIds ?? []),
     [progress?.rememberedCardIds],
@@ -47,11 +61,13 @@ export default function FlashcardDeck({
   const totalCards = groups.reduce((sum, group) => sum + group.cards.length, 0)
   const rememberedCount = rememberedCardIds.size
   const chapterRememberedCount = cards.filter(card => rememberedCardIds.has(card.id)).length
+  const visibleRememberedCount = visibleCards.filter(card => rememberedCardIds.has(card.id)).length
 
   function selectChapter(chapterId: string) {
     setActiveChapterId(chapterId)
     setActiveCardIndex(0)
     setFlipped(false)
+    setReviewMode('all')
     const group = groups.find(item => item.chapter.id === chapterId)
     if (group) {
       const firstCardId = group.cards[0]?.id
@@ -65,14 +81,14 @@ export default function FlashcardDeck({
   }
 
   function moveCard(direction: 1 | -1) {
-    if (!cards.length) return
+    if (!visibleCards.length) return
     const candidate = activeCardIndex + direction
     const nextIndex = candidate < 0
-      ? cards.length - 1
-      : candidate >= cards.length ? 0 : candidate
+      ? visibleCards.length - 1
+      : candidate >= visibleCards.length ? 0 : candidate
     setActiveCardIndex(nextIndex)
     setFlipped(false)
-    const nextCard = cards[nextIndex]
+    const nextCard = visibleCards[nextIndex]
     if (nextCard && activeGroup) {
       recordActivity(
         'cards',
@@ -123,7 +139,13 @@ export default function FlashcardDeck({
     setFlipped(false)
   }
 
-  if (!activeGroup || !activeCard) {
+  function switchReviewMode(mode: 'all' | 'weak') {
+    setReviewMode(mode)
+    setActiveCardIndex(0)
+    setFlipped(false)
+  }
+
+  if (!activeGroup || !cards.length) {
     return (
       <div style={{
         background: 'var(--color-bg)',
@@ -174,6 +196,7 @@ export default function FlashcardDeck({
           <Metric label="総カード数" value={`${totalCards}枚`} />
           <Metric label="覚えたカード" value={`${rememberedCount}枚`} />
           <Metric label="この章" value={`${chapterRememberedCount}/${cards.length}枚`} />
+          <Metric label="弱点カード" value={`${weakCards.length}枚`} />
         </div>
 
         <div className="flashcard-chapter-heading">
@@ -187,6 +210,31 @@ export default function FlashcardDeck({
           </button>
         </div>
 
+        <div className="flashcard-mode-tabs" aria-label="カード表示モード">
+          <button
+            type="button"
+            className={reviewMode === 'all' ? 'is-active' : ''}
+            onClick={() => switchReviewMode('all')}
+          >
+            すべて
+          </button>
+          <button
+            type="button"
+            className={reviewMode === 'weak' ? 'is-active' : ''}
+            disabled={weakCards.length === 0}
+            onClick={() => switchReviewMode('weak')}
+          >
+            弱点カード
+          </button>
+        </div>
+
+        {reviewMode === 'weak' && weakCards.length === 0 ? (
+          <div className="flashcard-empty-filter">
+            この章には、未解決の間違いと関連するカードはまだありません。
+          </div>
+        ) : (
+          <>
+
         <div className="flashcard-stage">
           <button
             onClick={() => setFlipped(value => !value)}
@@ -197,7 +245,7 @@ export default function FlashcardDeck({
               <CardHeader
                 label="QUESTION"
                 current={activeCardIndex + 1}
-                total={cards.length}
+                total={visibleCards.length}
                 remembered={rememberedCardIds.has(activeCard.id)}
               />
               <div className="flashcard-main-text">{activeCard.front}</div>
@@ -207,7 +255,7 @@ export default function FlashcardDeck({
               <CardHeader
                 label="ANSWER"
                 current={activeCardIndex + 1}
-                total={cards.length}
+                total={visibleCards.length}
                 remembered={rememberedCardIds.has(activeCard.id)}
               />
               <div className="flashcard-answer">{activeCard.back}</div>
@@ -238,11 +286,13 @@ export default function FlashcardDeck({
         <div className="flashcard-progress">
           <div>
             <span style={{
-              width: `${cards.length ? (chapterRememberedCount / cards.length) * 100 : 0}%`,
+              width: `${visibleCards.length ? (visibleRememberedCount / visibleCards.length) * 100 : 0}%`,
             }} />
           </div>
-          <p>この章の達成度 {chapterRememberedCount}/{cards.length}枚</p>
+          <p>{reviewMode === 'weak' ? '弱点カード' : 'この章'}の達成度 {visibleRememberedCount}/{visibleCards.length}枚</p>
         </div>
+          </>
+        )}
       </section>
     </div>
   )

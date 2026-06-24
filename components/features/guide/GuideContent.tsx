@@ -137,7 +137,7 @@ export default function GuideContent({
             })}
             style={{
             padding: '9px 20px',
-            background: 'var(--color-primary)', color: '#fff',
+            background: 'var(--color-primary)', color: 'var(--color-bg)',
             borderRadius: 'var(--radius-sm)', fontWeight: 700,
             fontSize: '0.875rem', textDecoration: 'none', whiteSpace: 'nowrap',
           }}>練習問題を解く →</Link>
@@ -162,7 +162,7 @@ export default function GuideContent({
             borderRadius: 'var(--radius-sm)',
             fontSize: '0.875rem', fontWeight: 600,
             color: 'var(--color-text)', textDecoration: 'none',
-            background: '#fff',
+            background: 'var(--color-bg)',
           }}>← {prevLink.label}</Link>
         ) : <div />}
 
@@ -172,13 +172,13 @@ export default function GuideContent({
           borderRadius: 'var(--radius-sm)',
           fontSize: '0.875rem', fontWeight: 600,
           color: 'var(--color-text-secondary)', textDecoration: 'none',
-          background: '#fff',
+          background: 'var(--color-bg)',
         }}>章のトップに戻る</Link>
 
         {nextLink ? (
           <Link className="guide-pagination-next" href={nextLink.href} style={{
             padding: '10px 20px',
-            background: 'var(--color-primary)', color: '#fff',
+            background: 'var(--color-primary)', color: 'var(--color-bg)',
             borderRadius: 'var(--radius-sm)',
             fontSize: '0.875rem', fontWeight: 700,
             textDecoration: 'none',

@@ -957,7 +957,7 @@ function buildExamMaterial(sectionIndex: number, questionIndex: number, question
 const buttonBase: React.CSSProperties = {
   border: '1px solid var(--color-border)',
   borderRadius: 'var(--radius-sm)',
-  background: '#fff',
+  background: 'var(--color-bg)',
   color: 'var(--color-text)',
   fontWeight: 700,
   cursor: 'pointer',
@@ -982,6 +982,7 @@ export default function MockExam({
   const [currentSection, setCurrentSection] = useState(0)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({})
+  const [showRestartConfirm, setShowRestartConfirm] = useState(false)
 
   const examQuestions = useMemo<ExamQuestion[]>(
     () => examId === 'boki3' ? decorateBokiQuestions() : initialQuestions,
@@ -1093,6 +1094,7 @@ export default function MockExam({
   }
 
   function resetExam() {
+    setShowRestartConfirm(false)
     setStarted(false)
     setSubmitted(false)
     setTimeLeft(durationMinutes * 60)
@@ -1149,7 +1151,7 @@ export default function MockExam({
                 <button
                   type="button"
                   onClick={() => setStarted(true)}
-                  style={{ ...buttonBase, background: 'var(--color-primary)', color: '#fff', borderColor: 'var(--color-primary)' }}
+                  style={{ ...buttonBase, background: 'var(--color-primary)', color: 'var(--color-bg)', borderColor: 'var(--color-primary)' }}
                 >
                   <Clock3 size={18} />
                   試験を開始
@@ -1190,7 +1192,7 @@ export default function MockExam({
               <button
                 type="button"
                 onClick={submitExam}
-                style={{ ...buttonBase, background: 'var(--color-success)', color: '#fff', borderColor: 'var(--color-success)' }}
+                style={{ ...buttonBase, background: 'var(--color-success)', color: 'var(--color-bg)', borderColor: 'var(--color-success)' }}
               >
                 <Send size={17} />
                 採点する
@@ -1235,10 +1237,22 @@ export default function MockExam({
                     </div>
                   </div>
                   <div className="boki-result-actions">
-                    <button type="button" onClick={resetExam} style={buttonBase}>
-                      <RotateCcw size={17} />
-                      もう一度
-                    </button>
+                    <div style={{ position: 'relative', display: 'inline-flex' }}>
+                      <button type="button" onClick={() => setShowRestartConfirm(true)} style={buttonBase}>
+                        <RotateCcw size={17} />
+                        もう一度
+                      </button>
+                      {showRestartConfirm && (
+                        <div className="boki-restart-confirm">
+                          <strong>模試を最初からやり直しますか？</strong>
+                          <span>現在の解答と採点結果は画面から消えます。</span>
+                          <div>
+                            <button type="button" onClick={resetExam}>やり直す</button>
+                            <button type="button" onClick={() => setShowRestartConfirm(false)}>キャンセル</button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                     <Link href={`/exams/${examId}/guide`} style={buttonBase}>
                       <BookOpen size={17} />
                       復習する
@@ -1509,7 +1523,7 @@ export default function MockExam({
         .boki-weakness,
         .boki-result,
         .boki-empty {
-          background: #fff;
+          background: var(--color-bg);
           border: 1px solid var(--color-border);
           border-radius: var(--radius-md);
           box-shadow: var(--shadow-card);
@@ -1598,7 +1612,7 @@ export default function MockExam({
           grid-template-columns: auto minmax(90px, 140px);
           gap: 10px;
           align-items: center;
-          background: #fff;
+          background: var(--color-bg);
           border: 1px solid var(--color-border);
           border-radius: var(--radius-sm);
           padding: 9px 12px;
@@ -1696,7 +1710,7 @@ export default function MockExam({
           flex: 0 0 30px;
           border: 1px solid var(--color-border);
           border-radius: var(--radius-sm);
-          background: #fff;
+          background: var(--color-bg);
           color: var(--color-text-secondary);
           font-size: 0.76rem;
           font-weight: 800;
@@ -1712,19 +1726,19 @@ export default function MockExam({
         .boki-question-dots button.active {
           background: var(--color-primary);
           border-color: var(--color-primary);
-          color: #fff;
+          color: var(--color-bg);
         }
 
         .boki-result {
           padding: 18px;
           margin-bottom: 16px;
-          border-color: #fecaca;
-          background: #fff7f7;
+          border-color: var(--color-error-border);
+          background: var(--color-error-bg);
         }
 
         .boki-result.passed {
-          border-color: #bbf7d0;
-          background: #f0fdf4;
+          border-color: var(--color-success-border);
+          background: var(--color-success-bg);
         }
 
         .boki-result,
@@ -1748,6 +1762,56 @@ export default function MockExam({
           margin: 0;
           color: var(--color-text-secondary);
           font-size: 0.88rem;
+        }
+
+        .boki-restart-confirm {
+          position: absolute;
+          z-index: 5;
+          top: calc(100% + 8px);
+          right: 0;
+          width: min(280px, 72vw);
+          padding: 12px;
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-sm);
+          background: var(--color-bg);
+          box-shadow: var(--shadow-elevated);
+          display: grid;
+          gap: 8px;
+        }
+
+        .boki-restart-confirm strong {
+          color: var(--color-text);
+          font-size: 0.84rem;
+        }
+
+        .boki-restart-confirm span {
+          color: var(--color-text-secondary);
+          font-size: 0.75rem;
+          line-height: 1.55;
+        }
+
+        .boki-restart-confirm div {
+          display: flex;
+          gap: 8px;
+          justify-content: flex-end;
+        }
+
+        .boki-restart-confirm button {
+          min-height: 32px;
+          padding: 5px 10px;
+          border-radius: var(--radius-sm);
+          border: 1px solid var(--color-border);
+          background: var(--color-bg);
+          color: var(--color-text-secondary);
+          font-size: 0.76rem;
+          font-weight: 800;
+          cursor: pointer;
+        }
+
+        .boki-restart-confirm button:first-child {
+          border-color: var(--color-error);
+          background: var(--color-error);
+          color: var(--color-bg);
         }
 
         .boki-question-card {
@@ -1807,7 +1871,7 @@ export default function MockExam({
           padding: 18px;
           margin-bottom: 18px;
           max-width: 100%;
-          background: #fff;
+          background: var(--color-bg);
         }
 
         .boki-material-title {
@@ -1823,7 +1887,7 @@ export default function MockExam({
         }
 
         .boki-material.transaction {
-          background: #fbfdff;
+          background: var(--color-bg);
         }
 
         .boki-transaction-rows {
@@ -1832,7 +1896,7 @@ export default function MockExam({
           border: 1px solid var(--color-border);
           border-radius: var(--radius-sm);
           overflow: hidden;
-          background: #fff;
+          background: var(--color-bg);
         }
 
         .boki-transaction-row {
@@ -1918,7 +1982,7 @@ export default function MockExam({
           align-items: center;
           border: 1px solid var(--color-border);
           border-radius: var(--radius-md);
-          background: #fff;
+          background: var(--color-bg);
           padding: 14px 16px;
           cursor: pointer;
           min-height: 62px;
@@ -1936,18 +2000,18 @@ export default function MockExam({
 
         .boki-options label.correct {
           border-color: var(--color-success);
-          background: #f0fdf4;
+          background: var(--color-success-bg);
         }
 
         .boki-options label.wrong {
           border-color: var(--color-error);
-          background: #fef2f2;
+          background: var(--color-error-bg);
         }
 
         .boki-answer-sheet {
           border: 1px solid var(--color-border-strong);
           border-radius: var(--radius-sm);
-          background: #fff;
+          background: var(--color-bg);
           overflow: hidden;
           max-width: 100%;
         }
@@ -1969,7 +2033,7 @@ export default function MockExam({
 
         .boki-journal-grid > div:not(.boki-journal-row) {
           padding: 10px 12px;
-          background: #f8fafc;
+          background: var(--color-bg-subtle);
           border-bottom: 1px solid var(--color-border);
           font-size: 0.78rem;
           font-weight: 900;
@@ -1990,7 +2054,7 @@ export default function MockExam({
 
         .boki-journal-row > strong {
           color: var(--color-primary);
-          background: #fbfdff;
+          background: var(--color-bg);
           font-size: 0.86rem;
         }
 
@@ -2015,20 +2079,20 @@ export default function MockExam({
           border-radius: var(--radius-sm);
           padding: 8px 10px;
           color: var(--color-text);
-          background: #fff;
+          background: var(--color-bg);
           font: inherit;
         }
 
         .boki-journal-row label.correct input,
         .boki-blank-grid label.correct input {
           border-color: var(--color-success);
-          background: #f0fdf4;
+          background: var(--color-success-bg);
         }
 
         .boki-journal-row label.wrong input,
         .boki-blank-grid label.wrong input {
           border-color: var(--color-error);
-          background: #fef2f2;
+          background: var(--color-error-bg);
         }
 
         .boki-journal-row em,
@@ -2051,7 +2115,7 @@ export default function MockExam({
           border: 1px solid var(--color-border);
           border-radius: var(--radius-sm);
           padding: 12px;
-          background: #fbfdff;
+          background: var(--color-bg);
         }
 
         .boki-blank-grid label > div {
@@ -2075,7 +2139,7 @@ export default function MockExam({
           justify-content: center;
           font-weight: 900;
           color: var(--color-primary);
-          background: #fff;
+          background: var(--color-bg);
           border: 1px solid var(--color-border);
         }
 
@@ -2122,11 +2186,11 @@ export default function MockExam({
           border-radius: var(--radius-sm);
           background: var(--color-primary-light);
           color: var(--color-primary);
-          border: 1px solid #bfdbfe;
+          border: 1px solid var(--color-primary-light);
         }
 
         .boki-timer.danger {
-          background: #fef2f2;
+          background: var(--color-error-bg);
           color: var(--color-error);
         }
 
