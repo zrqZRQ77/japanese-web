@@ -93,14 +93,15 @@ export default function Navbar() {
             {/* 検索ボタン */}
             <button
               onClick={() => setSearchOpen(true)}
+              aria-label="検索"
+              title="検索（⌘K）"
               style={{
-                display: 'flex', alignItems: 'center', gap: 9,
-                padding: '8px 9px 8px 14px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: 36, height: 36,
                 background: 'linear-gradient(180deg, rgba(244,243,239,0.07), rgba(244,243,239,0.03))',
                 border: '1px solid rgba(201,162,75,0.22)',
-                borderRadius: 999,
-                cursor: 'pointer', color: 'rgba(244,243,239,0.82)',
-                fontSize: '0.85rem', fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0,
+                borderRadius: '50%',
+                cursor: 'pointer', flexShrink: 0,
                 boxShadow: '0 1px 2px rgba(0,0,0,0.12)',
                 transition: 'border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease',
               }}
@@ -115,13 +116,7 @@ export default function Navbar() {
                 e.currentTarget.style.boxShadow = '0 1px 2px rgba(0,0,0,0.12)'
               }}
             >
-              <Search size={15} strokeWidth={2} color="var(--color-primary)" />
-              検索
-              <kbd style={{
-                fontSize: '0.68rem', fontWeight: 600, color: 'rgba(201,162,75,0.85)',
-                background: 'rgba(201,162,75,0.12)', border: '1px solid rgba(201,162,75,0.3)',
-                borderRadius: 999, padding: '2px 7px', letterSpacing: '0.02em',
-              }}>⌘K</kbd>
+              <Search size={16} strokeWidth={2} color="var(--color-primary)" />
             </button>
 
 
