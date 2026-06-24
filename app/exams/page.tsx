@@ -33,7 +33,7 @@ export default function ExamsPage() {
         {/* ヘッダー */}
         <div style={{
           background: 'var(--color-hero-bg)',
-          padding: '48px 0 40px',
+          padding: '34px 0 28px',
           borderBottom: '1px solid var(--color-border)',
         }}>
           <div className="container-page">
@@ -55,7 +55,7 @@ export default function ExamsPage() {
           </div>
         </div>
 
-        <div className="container-page" style={{ padding: '40px 24px' }}>
+        <div className="container-page" style={{ padding: '28px 24px' }}>
 
           {/* 対応中の試験 */}
           <h2 style={{

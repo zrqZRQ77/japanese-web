@@ -153,12 +153,18 @@ export default function SearchModal({ open, onClose }: Props) {
               aria-label="検索語をクリア"
             ><X size={16} /></button>
           )}
-          <kbd style={{
-            fontSize: '0.72rem', color: 'var(--color-text-muted)',
-            background: 'var(--color-bg-subtle)',
-            border: '1px solid var(--color-border)',
-            borderRadius: 4, padding: '2px 6px', flexShrink: 0,
-          }}>ESC</kbd>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="検索を閉じる"
+            style={{
+              fontSize: '0.72rem', fontWeight: 600, color: 'var(--color-text-muted)',
+              background: 'var(--color-bg-subtle)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 4, padding: '3px 7px', flexShrink: 0,
+              cursor: 'pointer', fontFamily: 'inherit',
+            }}
+          >ESC</button>
         </div>
 
         {/* 結果リスト */}
@@ -290,30 +296,30 @@ export default function SearchModal({ open, onClose }: Props) {
 
         {/* 初期状態（ヒント） */}
         {!query && (
-          <div style={{
-            padding: '24px 20px',
-            display: 'flex', flexDirection: 'column', gap: 8,
-          }}>
+          <div style={{ padding: '24px 20px' }}>
             <div style={{
               fontSize: '0.78rem', fontWeight: 700,
-              color: 'var(--color-text-muted)', marginBottom: 4,
+              color: 'var(--color-text-muted)', marginBottom: 10,
             }}>検索例</div>
-            {['仕訳', '当座預金', 'ライフプランニング', 'FP 保険'].map(hint => (
-              <button key={hint}
-                onClick={() => { setQuery(hint); search(hint) }}
-                style={{
-                  textAlign: 'left', background: 'var(--color-bg-subtle)',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 'var(--radius-sm)',
-                  padding: '9px 14px', cursor: 'pointer',
-                  fontSize: '0.875rem', color: 'var(--color-text)',
-                  display: 'flex', alignItems: 'center', gap: 8,
-                }}
-              >
-                <Search size={15} style={{ color: 'var(--color-text-muted)' }} />
-                {hint}
-              </button>
-            ))}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {['仕訳', '当座預金', 'ライフプランニング', 'FP 保険'].map(hint => (
+                <button key={hint}
+                  onClick={() => { setQuery(hint); search(hint) }}
+                  style={{
+                    background: 'var(--color-bg-subtle)',
+                    border: '1px solid var(--color-border)',
+                    borderRadius: 999,
+                    padding: '7px 14px', cursor: 'pointer',
+                    fontSize: '0.83rem', color: 'var(--color-text)',
+                    display: 'inline-flex', alignItems: 'center', gap: 6,
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  <Search size={13} style={{ color: 'var(--color-text-muted)' }} />
+                  {hint}
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>

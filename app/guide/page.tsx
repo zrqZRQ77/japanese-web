@@ -18,7 +18,7 @@ export default function GuidePage() {
       <main style={{ background: 'var(--color-bg-subtle)', minHeight: 'calc(100vh - 64px)' }}>
         <section style={{
           background: 'var(--color-hero-bg)',
-          padding: '48px 0 40px',
+          padding: '34px 0 28px',
           borderBottom: '1px solid var(--color-border)',
         }}>
           <div className="container-page">
@@ -40,7 +40,7 @@ export default function GuidePage() {
           </div>
         </section>
 
-        <div className="container-page" style={{ padding: '40px 24px 56px' }}>
+        <div className="container-page" style={{ padding: '28px 24px 40px' }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',

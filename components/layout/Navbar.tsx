@@ -97,10 +97,10 @@ export default function Navbar() {
               title="検索（⌘K）"
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                width: 36, height: 36,
+                width: 44, height: 36,
                 background: 'linear-gradient(180deg, rgba(244,243,239,0.07), rgba(244,243,239,0.03))',
                 border: '1px solid rgba(201,162,75,0.22)',
-                borderRadius: '50%',
+                borderRadius: 18,
                 cursor: 'pointer', flexShrink: 0,
                 boxShadow: '0 1px 2px rgba(0,0,0,0.12)',
                 transition: 'border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease',
