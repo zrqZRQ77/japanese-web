@@ -12,21 +12,22 @@ export default function AffiliateRecommendations({ exam }: AffiliateRecommendati
   const info = exam.info
   if (!info) return null
 
-  const courses = info.courses.filter(course => course.isAffiliate).slice(0, 2)
+  const freeCourses = info.courses.filter(course => course.isFree && !course.isAffiliate)
+  const affiliateCourses = info.courses.filter(course => course.isAffiliate).slice(0, 2)
   const books = info.books.slice(0, 2)
+  const hasSponsoredItems = affiliateCourses.length > 0 || books.length > 0
 
-  if (courses.length === 0 && books.length === 0) return null
+  if (freeCourses.length === 0 && affiliateCourses.length === 0 && books.length === 0) return null
 
   return (
     <section className="affiliate-section" aria-labelledby="affiliate-heading">
       <div className="affiliate-section__heading">
         <div>
           <div className="affiliate-section__eyebrow">
-            <span>PR</span>
             学習サービス・教材
           </div>
           <h2 id="affiliate-heading">学習をもう一段進めたい方へ</h2>
-          <p>独学の補助として使いやすい講座と教材を、学習スタイル別にまとめました。</p>
+          <p>無料サービスから、独学の補助に使いやすい講座・教材まで、学習スタイル別にまとめました。</p>
         </div>
         <div className="affiliate-section__trust">
           <ShieldCheck size={17} />
@@ -35,7 +36,39 @@ export default function AffiliateRecommendations({ exam }: AffiliateRecommendati
       </div>
 
       <div className="affiliate-grid">
-        {courses.map((course, index) => (
+        {freeCourses.map(course => (
+          <a
+            className="affiliate-card affiliate-card--course"
+            href={course.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={course.title}
+            onClick={() => trackEvent('affiliate_click', {
+              exam_id: exam.id,
+              content_type: 'course',
+              provider: course.provider,
+              item_name: course.title,
+            })}
+          >
+            <div className="affiliate-card__topline">
+              <span className="affiliate-card__icon"><MonitorPlay size={19} /></span>
+              <span className="affiliate-card__type">オンライン講座</span>
+              <span className="affiliate-card__pick affiliate-card__pick--free">無料</span>
+            </div>
+            <div className="affiliate-card__provider">{course.provider}</div>
+            <h3>{course.title}</h3>
+            <p>{course.note}</p>
+            <div className="affiliate-card__fit">
+              <Check size={15} />
+              まず無料で試したい方に
+            </div>
+            <span className="affiliate-card__action">
+              公式サイトで確認 <ArrowUpRight size={16} />
+            </span>
+          </a>
+        ))}
+
+        {affiliateCourses.map(course => (
           <a
             className="affiliate-card affiliate-card--course"
             href={course.url}
@@ -52,14 +85,14 @@ export default function AffiliateRecommendations({ exam }: AffiliateRecommendati
             <div className="affiliate-card__topline">
               <span className="affiliate-card__icon"><MonitorPlay size={19} /></span>
               <span className="affiliate-card__type">オンライン講座</span>
-              {index === 0 && <span className="affiliate-card__pick">おすすめ</span>}
+              <span className="affiliate-card__pick">PR</span>
             </div>
             <div className="affiliate-card__provider">{course.provider}</div>
             <h3>{course.title}</h3>
             <p>{course.note}</p>
             <div className="affiliate-card__fit">
               <Check size={15} />
-              {course.isFree ? 'まず無料で試したい方に' : '動画で効率よく学びたい方に'}
+              動画で効率よく学びたい方に
             </div>
             <span className="affiliate-card__action">
               公式サイトで確認 <ArrowUpRight size={16} />
@@ -84,6 +117,7 @@ export default function AffiliateRecommendations({ exam }: AffiliateRecommendati
             <div className="affiliate-card__topline">
               <span className="affiliate-card__icon"><BookOpen size={19} /></span>
               <span className="affiliate-card__type">{book.type}</span>
+              <span className="affiliate-card__pick">PR</span>
             </div>
             <div className="affiliate-card__provider">Amazon</div>
             <h3>{book.title}</h3>
@@ -99,9 +133,11 @@ export default function AffiliateRecommendations({ exam }: AffiliateRecommendati
         ))}
       </div>
 
-      <p className="affiliate-section__disclosure">
-        ※PR／成果報酬型広告を含みます
-      </p>
+      {hasSponsoredItems && (
+        <p className="affiliate-section__disclosure">
+          ※「PR」表示の項目は成果報酬型広告を含みます
+        </p>
+      )}
     </section>
   )
 }

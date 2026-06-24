@@ -323,14 +323,6 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   font-weight: 800;
 }
 
-.affiliate-section__eyebrow span {
-  padding: 2px 6px;
-  border: 1px solid rgba(201, 162, 75, 0.34);
-  border-radius: 4px;
-  color: var(--color-primary-dark);
-  background: var(--color-primary-light);
-  font-size: 0.64rem;
-}
 
 .affiliate-section h2 {
   margin: 0 0 6px;
@@ -435,6 +427,11 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   border-radius: 4px;
   color: var(--color-primary-dark);
   background: var(--color-primary-light);
+}
+
+.affiliate-card__pick--free {
+  color: var(--color-success);
+  background: var(--color-success-bg);
 }
 
 .affiliate-card__provider {

@@ -78,10 +78,7 @@ export default async function ExamDashboardPage({
           background: 'var(--color-bg-subtle)',
           padding: '32px',
         }}>
-          {/* 試験概要セクション（ExamInfo） */}
-          <ExamInfoSection exam={exam} />
-
-          {/* 全体進捗ヘッダー */}
+          {/* 全体進捗ヘッダー（個人の学習状況を最優先で表示） */}
           <h2 style={{ fontSize: '1.05rem', fontWeight: 800, marginBottom: 16 }}>
             全体の学習進捗
           </h2>
@@ -90,6 +87,11 @@ export default async function ExamDashboardPage({
             chapters={chapters}
             totalChapters={exam.totalChapters}
           />
+
+          {/* 試験概要セクション（ExamInfo、自身のヘッダーで見出しを表示） */}
+          <div style={{ marginTop: 32 }}>
+            <ExamInfoSection exam={exam} />
+          </div>
 
           {/* 学習コンテンツ 4グリッド */}
           <h2 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: 14, marginTop: 32 }}>学習コンテンツ</h2>

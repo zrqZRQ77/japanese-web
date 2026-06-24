@@ -116,30 +116,6 @@ export default function ExamInfoSection({ exam }: Props) {
           </div>
         </div>
 
-        {info.courses.some(course => course.isFree) && (
-          <div>
-            <div style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--color-text)', marginBottom: 10 }}>
-              無料で使える外部学習サービス
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {info.courses.filter(course => course.isFree).map(course => (
-                <a
-                  href={course.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  key={course.title}
-                  style={{
-                    padding: '8px 12px', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-sm)',
-                    color: 'var(--color-primary-dark)', background: 'var(--color-bg)', textDecoration: 'none',
-                    fontSize: '0.8rem', fontWeight: 700,
-                  }}
-                >
-                  {course.title} ↗
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </section>
   )

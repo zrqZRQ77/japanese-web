@@ -150,13 +150,13 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
             <div style={{
               fontSize: '0.75rem', color: 'var(--color-text-muted)',
               fontWeight: 600, marginBottom: 4,
-            }}>学習中の章</div>
+            }}>{progress?.lastActivity ? '前回の続き' : '学習中の章'}</div>
             <div style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 2 }}>
-              {progress?.lastActivity ? '前回の続き' : `第${currentChapter?.number}章 ${currentChapter?.title}`}
+              {continueLabel}
             </div>
             <div style={{
               fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBottom: 14,
-            }}>{continueLabel} ・ 完了 {completed.length}/{totalChapters}章</div>
+            }}>完了 {completed.length}/{totalChapters}章</div>
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
               <Link href={continuePath} style={{
                 display: 'inline-block',
@@ -339,7 +339,7 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
                   display: 'grid',
                   gridTemplateColumns: 'auto minmax(0, 1fr) auto auto',
                   alignItems: 'center',
-                  gap: 10,
+                  gap: 12,
                 }}>
                   <Bookmark size={17} style={{ color: 'var(--color-primary)' }} />
                   <Link
@@ -364,10 +364,14 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
                     style={{
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       width: 26, height: 26,
-                      border: 'none', background: 'transparent',
+                      border: 'none', borderLeft: '1px solid var(--color-border)',
+                      paddingLeft: 12, marginLeft: 2,
+                      background: 'transparent',
                       color: 'var(--color-text-muted)', cursor: 'pointer',
-                      borderRadius: 'var(--radius-sm)',
+                      borderRadius: 0,
                     }}
+                    onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-error)' }}
+                    onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-text-muted)' }}
                   >
                     <X size={15} />
                   </button>
