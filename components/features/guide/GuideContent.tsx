@@ -6,7 +6,7 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Bookmark, Star, Trash2 } from 'lucide-react'
+import { Bookmark } from 'lucide-react'
 import { ChapterMeta, GuideFrontmatter } from '@/lib/types'
 import { useProgress } from '@/lib/hooks/useProgress'
 import { trackEvent } from '@/lib/analytics'
@@ -27,12 +27,9 @@ export default function GuideContent({
 }: Props) {
   const articleRef = useRef<HTMLElement>(null)
   const base = `/exams/${examId}`
-  const { loaded, recordActivity } = useProgress(examId)
-  const actions = [
-    { label: 'ブックマーク', icon: Bookmark },
-    { label: 'お気に入り', icon: Star },
-    { label: '削除', icon: Trash2 },
-  ]
+  const { loaded, progress, recordActivity, toggleBookmark } = useProgress(examId)
+  const sectionId = `${chapter.id}#${currentSectionId}`
+  const isBookmarked = progress?.bookmarkedSectionIds.includes(sectionId) ?? false
 
   useEffect(() => {
     articleRef.current?.scrollTo({ top: 0, left: 0 })
@@ -66,21 +63,34 @@ export default function GuideContent({
       }}>
         {/* アクションボタン */}
         <div style={{ display: 'flex', gap: 8 }}>
-          {actions.map(action => {
-            const Icon = action.icon
-            return (
-            <button key={action.label} aria-label={action.label} title={action.label} style={{
-              padding: '6px 10px', background: 'none',
-              border: '1px solid var(--color-border)',
+          <button
+            type="button"
+            aria-label={isBookmarked ? 'ブックマークを解除' : 'ブックマークする'}
+            aria-pressed={isBookmarked}
+            title={isBookmarked ? 'ブックマークを解除' : 'ブックマークする'}
+            onClick={() => {
+              toggleBookmark(sectionId)
+              trackEvent('guide_bookmark_toggle', {
+                exam_id: examId,
+                chapter_id: chapter.id,
+                section_id: currentSectionId,
+                bookmarked: !isBookmarked,
+              })
+            }}
+            style={{
+              padding: '6px 10px',
+              background: isBookmarked ? 'var(--color-primary-light)' : 'none',
+              border: `1px solid ${isBookmarked ? 'var(--color-primary)' : 'var(--color-border)'}`,
               borderRadius: 'var(--radius-sm)',
               cursor: 'pointer',
-              color: 'var(--color-text-secondary)',
+              color: isBookmarked ? 'var(--color-primary)' : 'var(--color-text-secondary)',
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-            }}><Icon size={17} strokeWidth={2} /></button>
-            )
-          })}
+            }}
+          >
+            <Bookmark size={17} strokeWidth={2} fill={isBookmarked ? 'currentColor' : 'none'} />
+          </button>
         </div>
       </div>
 

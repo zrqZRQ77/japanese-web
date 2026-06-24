@@ -191,6 +191,7 @@ export interface ExamProgress {
   chapterProgress: Record<string, ChapterLearningProgress>
   questionProgress: Record<string, QuestionProgress>
   rememberedCardIds: string[]
+  bookmarkedSectionIds: string[]
   lastActivity: LearningActivity | null
 }
 

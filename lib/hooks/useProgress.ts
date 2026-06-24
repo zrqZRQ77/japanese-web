@@ -31,6 +31,7 @@ export function getDefaultProgress(examId: string): ExamProgress {
     chapterProgress: {},
     questionProgress: {},
     rememberedCardIds: [],
+    bookmarkedSectionIds: [],
     lastActivity: null,
   }
 }
@@ -48,6 +49,7 @@ function normalizeProgress(examId: string, stored: Partial<ExamProgress> | null)
     chapterProgress: stored.chapterProgress ?? {},
     questionProgress: stored.questionProgress ?? {},
     rememberedCardIds: Array.isArray(stored.rememberedCardIds) ? stored.rememberedCardIds : [],
+    bookmarkedSectionIds: Array.isArray(stored.bookmarkedSectionIds) ? stored.bookmarkedSectionIds : [],
     lastActivity: stored.lastActivity ?? null,
   }
 }
@@ -237,6 +239,22 @@ export function useProgress(examId: string) {
     })
   }, [examId])
 
+  const toggleBookmark = useCallback((sectionId: string) => {
+    setProgress(prev => {
+      const base = prev ?? normalizeProgress(examId, loadProgressFromStorage(examId))
+      const bookmarked = new Set(base.bookmarkedSectionIds)
+      if (bookmarked.has(sectionId)) bookmarked.delete(sectionId)
+      else bookmarked.add(sectionId)
+
+      const next: ExamProgress = {
+        ...base,
+        bookmarkedSectionIds: Array.from(bookmarked),
+      }
+      saveProgressToStorage(next)
+      return next
+    })
+  }, [examId])
+
   const resetProgress = useCallback(() => {
     const fresh = getDefaultProgress(examId)
     deleteProgressFromStorage(examId)
@@ -250,6 +268,7 @@ export function useProgress(examId: string) {
     recordQuestionAnswer,
     recordActivity,
     setCardRemembered,
+    toggleBookmark,
     resetProgress,
   }
 }

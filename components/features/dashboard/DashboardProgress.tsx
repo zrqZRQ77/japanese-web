@@ -9,7 +9,8 @@ import ProgressRing from '@/components/features/dashboard/ProgressRing'
 import StatCard from '@/components/features/dashboard/StatCard'
 import { useProgress } from '@/lib/hooks/useProgress'
 import { ChapterMeta } from '@/lib/types'
-import { AlertCircle, ArrowRight, BarChart3 } from 'lucide-react'
+import { getChapterById } from '@/lib/types/chapters-registry'
+import { AlertCircle, ArrowRight, BarChart3, Bookmark } from 'lucide-react'
 
 interface Props {
   examId: string
@@ -83,6 +84,14 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
   const wrongQuestions = Object.values(progress?.questionProgress ?? {})
     .filter(result => !result.isCorrect)
     .sort((a, b) => b.answeredAt.localeCompare(a.answeredAt))
+
+  const bookmarkedSections = (progress?.bookmarkedSectionIds ?? []).flatMap(entry => {
+    const [chapterId, sectionId] = entry.split('#')
+    const chapter = getChapterById(examId, chapterId)
+    const section = chapter?.sections.find(s => s.id === sectionId)
+    if (!chapter || !section) return []
+    return [{ chapter, section }]
+  })
 
   const chapterStatus = (chId: string): 'done' | 'active' | 'none' => {
     if (completed.includes(chId)) return 'done'
@@ -304,6 +313,42 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
               <div>
                 <strong>未解決の間違いはありません</strong>
                 <span>間違えた問題はここからすぐに解き直せます。</span>
+              </div>
+            </div>
+          )}
+        </section>
+
+        <section className="learning-feedback-panel" aria-labelledby="bookmarked-sections-heading">
+          <div className="learning-feedback-panel__heading">
+            <div>
+              <h3 id="bookmarked-sections-heading">ブックマーク済みセクション</h3>
+              <p>学習ガイドで保存したセクションです</p>
+            </div>
+            <span>{bookmarkedSections.length}件</span>
+          </div>
+
+          {bookmarkedSections.length > 0 ? (
+            <div className="wrong-question-list">
+              {bookmarkedSections.map(({ chapter, section }) => (
+                <Link
+                  href={`${base}/guide/${chapter.id}?section=${section.id}`}
+                  key={`${chapter.id}#${section.id}`}
+                >
+                  <Bookmark size={17} />
+                  <div>
+                    <span>第{chapter.number}章 {chapter.title}</span>
+                    <strong>{section.number} {section.title}</strong>
+                  </div>
+                  <ArrowRight size={16} />
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="learning-feedback-empty">
+              <Bookmark size={22} />
+              <div>
+                <strong>ブックマークしたセクションはありません</strong>
+                <span>学習ガイドのブックマークボタンから後で見直したいセクションを保存できます。</span>
               </div>
             </div>
           )}
