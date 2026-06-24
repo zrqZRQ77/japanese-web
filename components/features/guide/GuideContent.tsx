@@ -119,10 +119,19 @@ export default function GuideContent({
           className="mdx-content"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
+        </div>
+      </div>
 
-        {/* 練習問題へのリンク */}
-        <div className="guide-practice-cta" style={{
-          marginTop: 40, padding: '20px 24px',
+      {/* 練習問題へのリンク */}
+      <div className="guide-practice-cta" style={{
+        width: '100%',
+        maxWidth: 920,
+        margin: '0 auto',
+        padding: '0 40px 28px',
+        boxSizing: 'border-box',
+      }}>
+        <div style={{
+          padding: '20px 24px',
           background: 'var(--color-bg)',
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--color-border)',
@@ -152,7 +161,6 @@ export default function GuideContent({
             fontSize: '0.875rem', textDecoration: 'none', whiteSpace: 'nowrap',
           }}>練習問題を解く →</Link>
         </div>
-        </div>
       </div>
 
       {/* 前へ / 次へ ナビゲーション */}
@@ -167,40 +175,23 @@ export default function GuideContent({
       }}>
         {prevLink ? (
           <Link className="guide-pagination-prev" href={prevLink.href} style={{
-            display: 'flex', flexDirection: 'column', gap: 2,
-            padding: '8px 16px',
+            padding: '10px 20px',
             border: '1px solid var(--color-border)',
             borderRadius: 'var(--radius-sm)',
+            fontSize: '0.875rem', fontWeight: 600,
             color: 'var(--color-text)', textDecoration: 'none',
             background: 'var(--color-bg)',
-          }}>
-            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--color-text-muted)' }}>← 前へ</span>
-            <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>{prevLink.label}</span>
-          </Link>
+          }}>← 前へ</Link>
         ) : <div />}
-
-        <Link className="guide-pagination-index" href={`${base}/guide`} style={{
-          alignSelf: 'center',
-          padding: '8px 16px',
-          border: '1px solid var(--color-border)',
-          borderRadius: 'var(--radius-sm)',
-          fontSize: '0.8rem', fontWeight: 600,
-          color: 'var(--color-text-secondary)', textDecoration: 'none',
-          background: 'var(--color-bg)',
-        }}>ガイド目次</Link>
 
         {nextLink ? (
           <Link className="guide-pagination-next" href={nextLink.href} style={{
-            display: 'flex', flexDirection: 'column', gap: 2,
-            alignItems: 'flex-end',
-            padding: '8px 16px',
+            padding: '10px 20px',
             background: 'var(--color-primary)', color: 'var(--color-bg)',
             borderRadius: 'var(--radius-sm)',
+            fontSize: '0.875rem', fontWeight: 700,
             textDecoration: 'none',
-          }}>
-            <span style={{ fontSize: '0.72rem', fontWeight: 700, opacity: 0.85 }}>次へ →</span>
-            <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>{nextLink.label}</span>
-          </Link>
+          }}>次へ →</Link>
         ) : <div />}
       </div>
     </article>
