@@ -4,16 +4,16 @@ import Navbar from '@/components/layout/Navbar'
 import ExamToolCard from '@/components/features/exams/ExamToolCard'
 import { EXAMS_REGISTRY } from '@/lib/types/exams-registry'
 import { getChaptersByExam } from '@/lib/types/chapters-registry'
-import { getQuestionSet } from '@/lib/content/question-loader'
+import { getCardSet } from '@/lib/content/card-loader'
 import { createPageMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = createPageMetadata({
-  title: '練習問題',
-  description: '日商簿記3級、FP3級、ITパスポートの練習問題一覧。章ごとの問題で理解度を確認できます。',
-  path: '/practice',
+  title: '知識カード',
+  description: '日商簿記3級、FP3級、ITパスポートの知識カード一覧。重要語句を章ごとに反復して覚えられます。',
+  path: '/cards',
 })
 
-export default function PracticePage() {
+export default function CardsPage() {
   return (
     <>
       <Navbar />
@@ -28,16 +28,16 @@ export default function PracticePage() {
               fontSize: '0.8rem', fontWeight: 700,
               color: 'var(--color-primary)',
               marginBottom: 12,
-            }}>練習問題</div>
+            }}>知識カード</div>
             <h1 style={{
               fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
               fontWeight: 900, color: 'var(--color-text)',
               marginBottom: 12, lineHeight: 1.2,
             }}>
-              試験ごとの問題を、章単位で確認する
+              重要語句を、短時間で反復する
             </h1>
             <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', maxWidth: 640 }}>
-              更新済みの教材に合わせて、各試験の章一覧と出題数をまとめています。ここから直接、問題ページへ進めます。
+              試験ごとの章一覧とカード収録数をまとめています。移動中やスキマ時間の復習に、ここから直接カードを開けます。
             </p>
           </div>
         </section>
@@ -51,23 +51,23 @@ export default function PracticePage() {
             {EXAMS_REGISTRY.map(exam => {
               const chapters = getChaptersByExam(exam.id)
               const chapterStats = chapters.map(ch => {
-                const set = getQuestionSet(exam.id, ch.id)
+                const set = getCardSet(exam.id, ch.id)
                 return {
                   chapter: ch,
-                  count: set?.questions.length ?? 0,
+                  count: set?.cards.length ?? 0,
                 }
               })
-              const totalQuestions = chapterStats.reduce((sum, item) => sum + item.count, 0)
+              const totalCards = chapterStats.reduce((sum, item) => sum + item.count, 0)
 
               return (
                 <ExamToolCard
                   key={exam.id}
                   category={exam.category}
                   title={exam.shortName}
-                  countBadge={`${totalQuestions}問`}
+                  countBadge={`${totalCards}枚`}
                   description={exam.description}
-                  tags={[`章数 ${chapters.length}`, `収録 ${totalQuestions}問`]}
-                  primaryAction={{ href: `/exams/${exam.id}/questions/${chapters[0]?.id ?? 'ch1'}`, label: '最初の章から始める' }}
+                  tags={[`章数 ${chapters.length}`, `収録 ${totalCards}枚`]}
+                  primaryAction={{ href: `/exams/${exam.id}/cards`, label: 'カードで覚える' }}
                   secondaryAction={{ href: `/exams/${exam.id}`, label: 'ダッシュボードへ' }}
                 >
                   <div style={{
@@ -78,7 +78,7 @@ export default function PracticePage() {
                     {chapterStats.map(({ chapter, count }) => (
                       <Link
                         key={chapter.id}
-                        href={`/exams/${exam.id}/questions/${chapter.id}`}
+                        href={`/exams/${exam.id}/cards?chapter=${chapter.id}`}
                         style={{
                           display: 'block',
                           textDecoration: 'none',
@@ -105,7 +105,7 @@ export default function PracticePage() {
                           fontSize: '0.75rem',
                           color: 'var(--color-primary)',
                           fontWeight: 700,
-                        }}>{count > 0 ? `${count}問を解く →` : '未収録'}</div>
+                        }}>{count > 0 ? `${count}枚を覚える →` : '未収録'}</div>
                       </Link>
                     ))}
                   </div>

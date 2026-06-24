@@ -8,6 +8,7 @@ const STATIC_PATHS = [
   '/exams',
   '/guide',
   '/practice',
+  '/cards',
   '/privacy',
   '/operator',
   '/contact',

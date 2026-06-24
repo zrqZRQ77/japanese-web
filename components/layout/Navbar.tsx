@@ -30,17 +30,20 @@ export default function Navbar() {
   }, [])
 
   // /exams/[examId]/guide や /exams/[examId]/questions のようなネストしたルートも
-  // 対応するナビ項目（学習ガイド／練習問題）として判定する
+  // 対応するナビ項目（学習ガイド／練習問題／知識カード）として判定する
   const isGuideActive = pathname.startsWith('/guide')
     || /^\/exams\/[^/]+\/guide(\/|$)/.test(pathname)
   const isPracticeActive = pathname.startsWith('/practice')
     || /^\/exams\/[^/]+\/questions(\/|$)/.test(pathname)
-  const isExamsActive = !isGuideActive && !isPracticeActive && pathname.startsWith('/exams')
+  const isCardsActive = pathname.startsWith('/cards')
+    || /^\/exams\/[^/]+\/cards(\/|$)/.test(pathname)
+  const isExamsActive = !isGuideActive && !isPracticeActive && !isCardsActive && pathname.startsWith('/exams')
 
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/'
     if (path === '/guide') return isGuideActive
     if (path === '/practice') return isPracticeActive
+    if (path === '/cards') return isCardsActive
     if (path === '/exams') return isExamsActive
     return pathname.startsWith(path)
   }
@@ -99,6 +102,7 @@ export default function Navbar() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginRight: 8 }}>
               <NavLink ref={guideLinkRef} href="/guide" active={isActive('/guide')}>学習ガイド</NavLink>
               <NavLink href="/practice" active={isActive('/practice')}>練習問題</NavLink>
+              <NavLink href="/cards" active={isActive('/cards')}>知識カード</NavLink>
               <NavLink href="/exams" active={isActive('/exams')}>資格一覧</NavLink>
             </div>
 
@@ -204,6 +208,7 @@ export default function Navbar() {
               {[
                 { href: '/guide', label: '学習ガイド' },
                 { href: '/practice', label: '練習問題' },
+                { href: '/cards', label: '知識カード' },
                 { href: '/exams', label: '資格一覧' },
               ].map(item => (
                 <Link key={item.href} href={item.href}
