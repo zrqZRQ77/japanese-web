@@ -53,7 +53,7 @@ export default async function Page({
           height: '100%',
           overflowY: 'auto',
           background: 'var(--color-bg-subtle)',
-          padding: '28px 32px',
+          padding: '20px 32px 24px',
         }}>
           <FlashcardDeck
             examId={examId}

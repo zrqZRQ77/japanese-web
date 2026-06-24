@@ -74,10 +74,9 @@ export default function Navbar() {
     <>
       <nav style={{
         position: 'sticky', top: 0, zIndex: 50,
-        background: 'rgba(26,29,41,0.96)',
+        background: '#1a1d29',
         borderBottom: '1px solid rgba(201,162,75,0.32)',
         boxShadow: '0 10px 24px rgba(26,29,41,0.12)',
-        backdropFilter: 'blur(14px)',
         color: 'var(--color-bg)',
         ['--color-brand' as string]: 'var(--color-bg)',
       }}>

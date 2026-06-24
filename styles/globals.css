@@ -1013,13 +1013,10 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
-  padding: 22px;
+  padding: 18px 22px;
 }
 
 .flashcard-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 5;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -1222,12 +1219,14 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
 
 .flashcard-stage {
   perspective: 1400px;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .flashcard {
   position: relative;
   width: 100%;
-  min-height: 360px;
+  min-height: 280px;
   border: 0;
   padding: 0;
   background: transparent;
@@ -1237,10 +1236,10 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
 }
 
 .flashcard-face {
-  min-height: 360px;
+  min-height: 280px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 28px;
+  padding: 22px;
   background: var(--color-bg);
   box-shadow: var(--shadow-elevated);
   display: flex;
@@ -1369,7 +1368,6 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   }
 
   .flashcard-toolbar {
-    top: -12px;
     padding-top: 4px;
   }
 
