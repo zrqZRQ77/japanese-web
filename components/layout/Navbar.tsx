@@ -20,9 +20,11 @@ export default function Navbar() {
   const [searchWidth, setSearchWidth] = useState(44)
 
   // 検索ボタンの幅を「学習ガイド」リンクの実際の表示幅に合わせる
+  // （モバイルではリンクが非表示=offsetWidth0のため、その場合は前の幅を維持する）
   useEffect(() => {
     function syncSearchWidth() {
-      if (guideLinkRef.current) setSearchWidth(guideLinkRef.current.offsetWidth)
+      const width = guideLinkRef.current?.offsetWidth
+      if (width) setSearchWidth(width)
     }
     syncSearchWidth()
     window.addEventListener('resize', syncSearchWidth)
@@ -105,40 +107,41 @@ export default function Navbar() {
               <NavLink href="/exams" active={isActive('/exams')}>資格一覧</NavLink>
             </div>
 
-            {/* 検索ボタン */}
-            <button
-              onClick={() => setSearchOpen(true)}
-              aria-label="検索"
-              title="検索（⌘K）"
-              style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                width: searchWidth, height: 36,
-                background: 'linear-gradient(180deg, rgba(244,243,239,0.07), rgba(244,243,239,0.03))',
-                border: '1px solid rgba(201,162,75,0.22)',
-                borderRadius: 18,
-                cursor: 'pointer', flexShrink: 0,
-                boxShadow: '0 1px 2px rgba(0,0,0,0.12)',
-                transition: 'border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = 'rgba(201,162,75,0.65)'
-                e.currentTarget.style.background = 'linear-gradient(180deg, rgba(201,162,75,0.14), rgba(201,162,75,0.04))'
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(201,162,75,0.18)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = 'rgba(201,162,75,0.22)'
-                e.currentTarget.style.background = 'linear-gradient(180deg, rgba(244,243,239,0.07), rgba(244,243,239,0.03))'
-                e.currentTarget.style.boxShadow = '0 1px 2px rgba(0,0,0,0.12)'
-              }}
-            >
-              <Search size={16} strokeWidth={2} color="var(--color-primary)" />
-            </button>
-
-
           </div>
 
-          {/* ハンバーガーボタン（モバイル） */}
+          {/* モバイルではここでロゴの右側を埋めて検索・ハンバーガーを右端に寄せる */}
           <div style={{ flex: 1 }} className="nav-mobile-spacer" />
+
+          {/* 検索ボタン（デスクトップ・モバイル共通で常時表示） */}
+          <button
+            onClick={() => setSearchOpen(true)}
+            aria-label="検索"
+            title="検索（⌘K）"
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              width: searchWidth, height: 36,
+              background: 'linear-gradient(180deg, rgba(244,243,239,0.07), rgba(244,243,239,0.03))',
+              border: '1px solid rgba(201,162,75,0.22)',
+              borderRadius: 18,
+              cursor: 'pointer', flexShrink: 0,
+              boxShadow: '0 1px 2px rgba(0,0,0,0.12)',
+              transition: 'border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = 'rgba(201,162,75,0.65)'
+              e.currentTarget.style.background = 'linear-gradient(180deg, rgba(201,162,75,0.14), rgba(201,162,75,0.04))'
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(201,162,75,0.18)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = 'rgba(201,162,75,0.22)'
+              e.currentTarget.style.background = 'linear-gradient(180deg, rgba(244,243,239,0.07), rgba(244,243,239,0.03))'
+              e.currentTarget.style.boxShadow = '0 1px 2px rgba(0,0,0,0.12)'
+            }}
+          >
+            <Search size={16} strokeWidth={2} color="var(--color-primary)" />
+          </button>
+
+          {/* ハンバーガーボタン（モバイル） */}
           <button
             className="nav-hamburger"
             onClick={() => setMobileOpen(v => !v)}

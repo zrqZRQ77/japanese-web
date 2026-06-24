@@ -10,7 +10,7 @@ import StatCard from '@/components/features/dashboard/StatCard'
 import { useProgress } from '@/lib/hooks/useProgress'
 import { ChapterMeta } from '@/lib/types'
 import { getChapterById } from '@/lib/types/chapters-registry'
-import { AlertCircle, ArrowRight, BarChart3, Bookmark } from 'lucide-react'
+import { AlertCircle, ArrowRight, BarChart3, Bookmark, X } from 'lucide-react'
 
 interface Props {
   examId: string
@@ -26,7 +26,7 @@ function formatMinutes(minutes: number): string {
 }
 
 export default function DashboardProgress({ examId, chapters, totalChapters }: Props) {
-  const { progress, loaded, resetProgress } = useProgress(examId)
+  const { progress, loaded, resetProgress, toggleBookmark } = useProgress(examId)
   const [showResetConfirm, setShowResetConfirm] = useState(false)
 
   if (!loaded) {
@@ -90,7 +90,7 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
     const chapter = getChapterById(examId, chapterId)
     const section = chapter?.sections.find(s => s.id === sectionId)
     if (!chapter || !section) return []
-    return [{ chapter, section }]
+    return [{ chapter, section, entry }]
   })
 
   const chapterStatus = (chId: string): 'done' | 'active' | 'none' => {
@@ -329,18 +329,49 @@ export default function DashboardProgress({ examId, chapters, totalChapters }: P
 
           {bookmarkedSections.length > 0 ? (
             <div className="wrong-question-list">
-              {bookmarkedSections.map(({ chapter, section }) => (
-                <Link
-                  href={`${base}/guide/${chapter.id}?section=${section.id}`}
-                  key={`${chapter.id}#${section.id}`}
-                >
-                  <Bookmark size={17} />
-                  <div>
+              {bookmarkedSections.map(({ chapter, section, entry }) => (
+                <div key={entry} style={{
+                  minWidth: 0,
+                  padding: '10px 11px',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 7,
+                  background: 'var(--color-bg)',
+                  display: 'grid',
+                  gridTemplateColumns: 'auto minmax(0, 1fr) auto auto',
+                  alignItems: 'center',
+                  gap: 10,
+                }}>
+                  <Bookmark size={17} style={{ color: 'var(--color-primary)' }} />
+                  <Link
+                    href={`${base}/guide/${chapter.id}?section=${section.id}`}
+                    style={{ minWidth: 0, display: 'grid', gap: 2, textDecoration: 'none', color: 'inherit' }}
+                  >
                     <span>第{chapter.number}章 {chapter.title}</span>
                     <strong>{section.number} {section.title}</strong>
-                  </div>
-                  <ArrowRight size={16} />
-                </Link>
+                  </Link>
+                  <Link
+                    href={`${base}/guide/${chapter.id}?section=${section.id}`}
+                    aria-label="このセクションを開く"
+                    style={{ color: 'var(--color-text-muted)', display: 'flex' }}
+                  >
+                    <ArrowRight size={16} />
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => toggleBookmark(entry)}
+                    aria-label="ブックマークを解除"
+                    title="ブックマークを解除"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      width: 26, height: 26,
+                      border: 'none', background: 'transparent',
+                      color: 'var(--color-text-muted)', cursor: 'pointer',
+                      borderRadius: 'var(--radius-sm)',
+                    }}
+                  >
+                    <X size={15} />
+                  </button>
+                </div>
               ))}
             </div>
           ) : (

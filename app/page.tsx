@@ -22,10 +22,12 @@ export const metadata: Metadata = createPageMetadata({
 })
 
 const TOOLS = [
-  { icon: BookOpen, title: '学習ガイド', desc: '試験範囲を章ごとに整理。基礎から順序よく理解できます。' },
-  { icon: PencilLine, title: '練習問題', desc: '学んだ内容をすぐに確認。回答結果は端末に保存されます。' },
-  { icon: Layers3, title: '知識カード', desc: '重要語句を短時間で反復。移動中の復習にも使えます。' },
+  { icon: BookOpen, title: '学習ガイド', desc: '試験範囲を章ごとに整理。基礎から順序よく理解できます。', href: '/guide' },
+  { icon: PencilLine, title: '練習問題', desc: '学んだ内容をすぐに確認。回答結果は端末に保存されます。', href: '/practice' },
+  { icon: Layers3, title: '知識カード', desc: '重要語句を短時間で反復。移動中の復習にも使えます。', href: '/cards' },
 ]
+
+const MAX_INDEX_ITEMS = 6
 
 export default function HomePage() {
   const exams = getAvailableExams()
@@ -43,6 +45,9 @@ export default function HomePage() {
   })
   const totalSections = examStats.reduce((sum, item) => sum + item.sectionCount, 0)
   const totalQuestions = examStats.reduce((sum, item) => sum + item.questionCount, 0)
+  const examNames = exams.map(exam => exam.shortName).join('・')
+  const visibleExamStats = examStats.slice(0, MAX_INDEX_ITEMS)
+  const hasMoreExams = examStats.length > MAX_INDEX_ITEMS
 
   return (
     <div className={styles.page}>
@@ -53,20 +58,17 @@ export default function HomePage() {
             <div className={styles.heroCopy}>
               <div className={styles.eyebrow}>日本の資格を、ひとつずつ確実に。</div>
               <h1>
-                <span className={styles.heroLead}>3つの資格を、</span>
+                <span className={styles.heroLead}>資格を、</span>
                 <span className={styles.heroAccent}>深く学べる場所。</span>
               </h1>
               <p>
-                日商簿記3級・FP3級・ITパスポートに絞り、学習ガイド・練習問題・知識カードを無料で公開しています。
+                {examNames}に対応。学習ガイド・練習問題・知識カードを無料で公開しています。
                 対象資格は、内容の質を保ちながら順次追加していきます。
               </p>
               <div className={styles.heroActions}>
                 <Link className={styles.primaryAction} href="/exams">
                   学ぶ資格を選ぶ
                   <ArrowRight size={17} aria-hidden="true" />
-                </Link>
-                <Link className={styles.secondaryAction} href="/guide">
-                  学習ガイドを見る
                 </Link>
               </div>
               <div className={styles.heroNotes} aria-label="サービスの特徴">
@@ -81,12 +83,12 @@ export default function HomePage() {
               <div className={styles.indexHeader}>
                 <div>
                   <span>対応資格</span>
-                  <h2>現在公開中の3資格</h2>
+                  <h2>現在公開中の{exams.length}資格</h2>
                 </div>
                 <strong>{exams.length}種</strong>
               </div>
               <div className={styles.indexList}>
-                {examStats.map(({ exam, chapterCount, questionCount }) => (
+                {visibleExamStats.map(({ exam, chapterCount, questionCount }) => (
                   <Link href={`/exams/${exam.id}`} key={exam.id}>
                     <span className={styles.examMark}>{exam.shortMark}</span>
                     <span className={styles.indexExamText}>
@@ -98,7 +100,11 @@ export default function HomePage() {
                 ))}
               </div>
               <div className={styles.indexFooter}>
-                まずはこの3資格を、迷わず学べる形に整えています。
+                {hasMoreExams ? (
+                  <Link href="/exams">すべての資格を見る →</Link>
+                ) : (
+                  '学習ガイド・練習問題・知識カードを、迷わず使える形に整えています。'
+                )}
               </div>
             </div>
           </div>
@@ -141,13 +147,17 @@ export default function HomePage() {
               {TOOLS.map(tool => {
                 const Icon = tool.icon
                 return (
-                  <article className={styles.toolItem} key={tool.title}>
+                  <Link className={styles.toolItem} key={tool.title} href={tool.href}>
                     <div className={styles.toolMeta}>
                       <Icon size={21} strokeWidth={1.8} aria-hidden="true" />
                     </div>
                     <h3>{tool.title}</h3>
                     <p>{tool.desc}</p>
-                  </article>
+                    <span className={styles.toolMore}>
+                      見る
+                      <ArrowRight size={14} aria-hidden="true" />
+                    </span>
+                  </Link>
                 )
               })}
             </div>

@@ -2,9 +2,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { BookOpen } from 'lucide-react'
+import { BookOpen, Bookmark } from 'lucide-react'
 import { ChapterMeta } from '@/lib/types'
 import { getExamById } from '@/lib/types/exams-registry'
+import { useProgress } from '@/lib/hooks/useProgress'
 
 interface Props {
   examId: string
@@ -19,6 +20,8 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
   const router = useRouter()
   const base = `/exams/${examId}/guide`
   const exam = getExamById(examId)
+  const { progress } = useProgress(examId)
+  const bookmarkedSectionIds = new Set(progress?.bookmarkedSectionIds ?? [])
 
   const currentChapter = chapters.find(chapter => chapter.id === currentChapterId)
 
@@ -159,11 +162,14 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
                 <div style={{ marginBottom: 10 }}>
                   {ch.sections.map(sec => {
                     const isActiveSection = sec.id === currentSectionId
+                    const isBookmarked = bookmarkedSectionIds.has(`${ch.id}#${sec.id}`)
                     return (
                       <Link key={sec.id}
                         href={`${base}/${ch.id}?section=${sec.id}`}
                         style={{
-                          display: 'block',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 6,
                           padding: '10px 28px 10px 68px',
                           fontSize: '0.88rem',
                           color: isActiveSection ? 'var(--color-text)' : 'var(--color-text-secondary)',
@@ -173,7 +179,12 @@ export default function GuideSidebar({ examId, chapters, currentChapterId, curre
                           fontWeight: isActiveSection ? 700 : 500,
                           lineHeight: 1.45,
                         }}
-                      >{sec.number} {sec.title}</Link>
+                      >
+                        <span style={{ minWidth: 0, flex: 1 }}>{sec.number} {sec.title}</span>
+                        {isBookmarked && (
+                          <Bookmark size={13} strokeWidth={2} fill="var(--color-primary)" style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                        )}
+                      </Link>
                     )
                   })}
                 </div>
