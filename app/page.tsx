@@ -27,12 +27,6 @@ const TOOLS = [
   { icon: Layers3, title: '知識カード', desc: '重要語句を短時間で反復。移動中の復習にも使えます。' },
 ]
 
-const EXAM_MARKS: Record<string, string> = {
-  boki3: 'BK',
-  fp3: 'FP',
-  itp: 'IT',
-}
-
 export default function HomePage() {
   const exams = getAvailableExams()
   const examStats = exams.map(exam => {
@@ -94,7 +88,7 @@ export default function HomePage() {
               <div className={styles.indexList}>
                 {examStats.map(({ exam, chapterCount, questionCount }) => (
                   <Link href={`/exams/${exam.id}`} key={exam.id}>
-                    <span className={styles.examMark}>{EXAM_MARKS[exam.id] ?? exam.shortName.slice(0, 2)}</span>
+                    <span className={styles.examMark}>{exam.shortMark}</span>
                     <span className={styles.indexExamText}>
                       <strong>{exam.shortName}</strong>
                       <small>{chapterCount}章 / {questionCount}問</small>

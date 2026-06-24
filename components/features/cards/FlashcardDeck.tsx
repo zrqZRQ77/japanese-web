@@ -33,6 +33,7 @@ export default function FlashcardDeck({
   const [activeCardIndex, setActiveCardIndex] = useState(initialIndex)
   const [flipped, setFlipped] = useState(false)
   const [reviewMode, setReviewMode] = useState<'all' | 'weak'>('all')
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
   const { progress, recordActivity, setCardRemembered } = useProgress(examId)
 
   const activeGroup = useMemo(
@@ -68,6 +69,7 @@ export default function FlashcardDeck({
     setActiveCardIndex(0)
     setFlipped(false)
     setReviewMode('all')
+    setShowResetConfirm(false)
     const group = groups.find(item => item.chapter.id === chapterId)
     if (group) {
       const firstCardId = group.cards[0]?.id
@@ -125,6 +127,7 @@ export default function FlashcardDeck({
 
   function resetChapter() {
     if (!activeGroup) return
+    setShowResetConfirm(false)
     activeGroup.cards.forEach(card => {
       if (rememberedCardIds.has(card.id)) {
         setCardRemembered(
@@ -143,6 +146,7 @@ export default function FlashcardDeck({
     setReviewMode(mode)
     setActiveCardIndex(0)
     setFlipped(false)
+    setShowResetConfirm(false)
   }
 
   if (!activeGroup || !cards.length) {
@@ -204,10 +208,26 @@ export default function FlashcardDeck({
             <span>第{activeGroup.chapter.number}章</span>
             <h2>{activeGroup.chapter.title}</h2>
           </div>
-          <button onClick={resetChapter} className="flashcard-reset-button">
-            <RotateCcw size={15} />
-            この章をリセット
-          </button>
+          <div className="flashcard-reset-wrap">
+            <button
+              type="button"
+              onClick={() => setShowResetConfirm(true)}
+              className="flashcard-reset-button"
+            >
+              <RotateCcw size={15} />
+              この章をリセット
+            </button>
+            {showResetConfirm && (
+              <div className="flashcard-reset-confirm">
+                <strong>この章のカード進捗をリセットしますか？</strong>
+                <span>この章で「覚えた」にしたカードが未完了に戻ります。</span>
+                <div>
+                  <button type="button" onClick={resetChapter}>リセット</button>
+                  <button type="button" onClick={() => setShowResetConfirm(false)}>キャンセル</button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="flashcard-mode-tabs" aria-label="カード表示モード">

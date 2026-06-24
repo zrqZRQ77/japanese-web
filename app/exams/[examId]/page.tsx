@@ -113,6 +113,10 @@ export default async function ExamDashboardPage({
 
           <AdSlot slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_EXAM_DASHBOARD} />
           <AffiliateRecommendations exam={exam} />
+          <AdSlot
+            slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_EXAM_SECONDARY}
+            label="関連広告"
+          />
         </main>
       </div>
     </>

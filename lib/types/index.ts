@@ -7,11 +7,16 @@ export interface ExamMeta {
   id: string           // e.g. "boki3"
   name: string         // e.g. "日商簿記3級"
   shortName: string    // e.g. "簿記3級"
+  shortMark: string    // e.g. "BK"
   category: string     // e.g. "会計・経理"
+  categorySlug: string // e.g. "accounting"
+  family: string       // e.g. "簿記"
+  familySlug: string   // e.g. "bookkeeping"
   description: string
   totalChapters: number
   color: string        // Tailwind color key e.g. "blue"
   icon: string         // lucide icon name
+  mockExam?: ExamMockConfig
   info?: ExamInfo
 }
 
@@ -69,6 +74,60 @@ export interface QuestionSet {
   chapterId: string
   chapterTitle: string
   questions: Question[]
+}
+
+export interface ExamMaterial {
+  kind: 'transaction' | 'table'
+  title: string
+  lead?: string
+  rows: string[][]
+  note?: string
+}
+
+export interface AnswerBlank {
+  id: string
+  label: string
+  answer: string
+  suffix?: string
+}
+
+export interface JournalLine {
+  id: string
+  side: '借方' | '貸方'
+  account: string
+  amount: string
+}
+
+export interface ExamAnswerSheet {
+  kind: 'journal' | 'blanks'
+  lines?: JournalLine[]
+  blanks?: AnswerBlank[]
+}
+
+export interface MockExamQuestion extends Question {
+  material?: ExamMaterial
+  prompt?: string
+  answerSheet?: ExamAnswerSheet
+}
+
+export interface MockQuestionSet {
+  examId: string
+  version: number
+  questions: MockExamQuestion[]
+}
+
+export interface MockExamSectionBlueprint {
+  id: string
+  title: string
+  focus: string
+  points: number
+  count: number
+}
+
+export interface ExamMockConfig {
+  durationMinutes: number
+  passRate: number
+  sectionBlueprints?: MockExamSectionBlueprint[]
 }
 
 /** 知識カード */

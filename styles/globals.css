@@ -1150,6 +1150,61 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   white-space: nowrap;
 }
 
+.flashcard-reset-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.flashcard-reset-confirm {
+  position: absolute;
+  z-index: 6;
+  top: calc(100% + 8px);
+  right: 0;
+  width: min(300px, 78vw);
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-elevated);
+  display: grid;
+  gap: 8px;
+}
+
+.flashcard-reset-confirm strong {
+  color: var(--color-text);
+  font-size: 0.84rem;
+}
+
+.flashcard-reset-confirm span {
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.flashcard-reset-confirm div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.flashcard-reset-confirm button {
+  min-height: 32px;
+  padding: 5px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.flashcard-reset-confirm button:first-child {
+  border-color: var(--color-error);
+  background: var(--color-error);
+  color: var(--color-bg);
+}
+
 .flashcard-mode-tabs {
   display: inline-flex;
   gap: 6px;
