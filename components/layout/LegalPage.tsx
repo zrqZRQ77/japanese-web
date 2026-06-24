@@ -3,7 +3,7 @@ import SiteFooter from '@/components/layout/SiteFooter'
 
 interface LegalSection {
   title: string
-  body: string[]
+  body: React.ReactNode[]
 }
 
 interface Props {
@@ -80,8 +80,8 @@ export default function LegalPage({ title, description, updatedAt, sections }: P
                   }}>
                     {section.title}
                   </h2>
-                  {section.body.map(paragraph => (
-                    <p key={paragraph} style={{
+                  {section.body.map((paragraph, i) => (
+                    <p key={i} style={{
                       color: 'var(--color-text)',
                       lineHeight: 1.9,
                       marginBottom: 10,

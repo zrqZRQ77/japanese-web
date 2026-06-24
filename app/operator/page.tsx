@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import LegalPage from '@/components/layout/LegalPage'
 import { createPageMetadata } from '@/lib/seo'
 
@@ -25,7 +26,11 @@ export default function OperatorPage() {
         },
         {
           title: 'サイトURL',
-          body: ['https://japanese-hub.com/'],
+          body: [
+            <Link href="/" style={{ color: 'var(--color-primary)', fontWeight: 700, textDecoration: 'underline' }}>
+              https://japanese-hub.com/
+            </Link>,
+          ],
         },
         {
           title: '運営目的',
@@ -36,7 +41,9 @@ export default function OperatorPage() {
         },
         {
           title: '連絡先',
-          body: ['お問い合わせは、当サイトのお問い合わせページよりご連絡ください。'],
+          body: [
+            <>お問い合わせは、当サイトの<Link href="/contact" style={{ color: 'var(--color-primary)', fontWeight: 700, textDecoration: 'underline' }}>お問い合わせページ</Link>よりご連絡ください。</>,
+          ],
         },
       ]}
     />

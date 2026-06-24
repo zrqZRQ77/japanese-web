@@ -19,7 +19,7 @@ export default function ContactPage() {
         {
           title: 'お問い合わせ先',
           body: [
-            'メール：contact@japanese-hub.com',
+            <>メール：<Link href="mailto:contact@japanese-hub.com" style={{ color: 'var(--color-primary)', fontWeight: 700, textDecoration: 'underline' }}>contact@japanese-hub.com</Link></>,
             '内容を確認のうえ、必要に応じて返信いたします。返信までお時間をいただく場合があります。',
           ],
         },
@@ -46,8 +46,4 @@ export default function ContactPage() {
       ]}
     />
   )
-}
-
-export function ContactMailLink() {
-  return <Link href="mailto:contact@japanese-hub.com">contact@japanese-hub.com</Link>
 }
