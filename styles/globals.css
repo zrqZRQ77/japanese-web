@@ -627,10 +627,6 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   font-weight: 700;
 }
 
-.mdx-content td:empty {
-  background: #eeeae0;
-}
-
 .mdx-content th[align="right"],
 .mdx-content td[align="right"] {
   text-align: right;

@@ -17,8 +17,21 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = usePathname()
 
-  const isActive = (path: string) =>
-    path === '/' ? pathname === '/' : pathname.startsWith(path)
+  // /exams/[examId]/guide や /exams/[examId]/questions のようなネストしたルートも
+  // 対応するナビ項目（学習ガイド／練習問題）として判定する
+  const isGuideActive = pathname.startsWith('/guide')
+    || /^\/exams\/[^/]+\/guide(\/|$)/.test(pathname)
+  const isPracticeActive = pathname.startsWith('/practice')
+    || /^\/exams\/[^/]+\/questions(\/|$)/.test(pathname)
+  const isExamsActive = !isGuideActive && !isPracticeActive && pathname.startsWith('/exams')
+
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/'
+    if (path === '/guide') return isGuideActive
+    if (path === '/practice') return isPracticeActive
+    if (path === '/exams') return isExamsActive
+    return pathname.startsWith(path)
+  }
 
   // Cmd+K / Ctrl+K でサーチを開く
   useEffect(() => {
@@ -81,24 +94,33 @@ export default function Navbar() {
             <button
               onClick={() => setSearchOpen(true)}
               style={{
-                display: 'flex', alignItems: 'center', gap: 8,
-                padding: '8px 12px',
-                background: 'rgba(244,243,239,0.06)',
-                border: '1px solid rgba(244,243,239,0.16)',
-                borderRadius: 'var(--radius-sm)',
-                cursor: 'pointer', color: 'rgba(244,243,239,0.78)',
-                fontSize: '0.875rem', whiteSpace: 'nowrap', flexShrink: 0,
-                boxShadow: 'none',
+                display: 'flex', alignItems: 'center', gap: 9,
+                padding: '8px 9px 8px 14px',
+                background: 'linear-gradient(180deg, rgba(244,243,239,0.07), rgba(244,243,239,0.03))',
+                border: '1px solid rgba(201,162,75,0.22)',
+                borderRadius: 999,
+                cursor: 'pointer', color: 'rgba(244,243,239,0.82)',
+                fontSize: '0.85rem', fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0,
+                boxShadow: '0 1px 2px rgba(0,0,0,0.12)',
+                transition: 'border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease',
               }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(201,162,75,0.72)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(244,243,239,0.16)')}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'rgba(201,162,75,0.65)'
+                e.currentTarget.style.background = 'linear-gradient(180deg, rgba(201,162,75,0.14), rgba(201,162,75,0.04))'
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(201,162,75,0.18)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(201,162,75,0.22)'
+                e.currentTarget.style.background = 'linear-gradient(180deg, rgba(244,243,239,0.07), rgba(244,243,239,0.03))'
+                e.currentTarget.style.boxShadow = '0 1px 2px rgba(0,0,0,0.12)'
+              }}
             >
-              <Search size={16} />
+              <Search size={15} strokeWidth={2} color="var(--color-primary)" />
               検索
               <kbd style={{
-                fontSize: '0.68rem', color: 'rgba(244,243,239,0.64)',
-                background: 'rgba(244,243,239,0.08)', border: '1px solid rgba(244,243,239,0.18)',
-                borderRadius: 3, padding: '1px 5px',
+                fontSize: '0.68rem', fontWeight: 600, color: 'rgba(201,162,75,0.85)',
+                background: 'rgba(201,162,75,0.12)', border: '1px solid rgba(201,162,75,0.3)',
+                borderRadius: 999, padding: '2px 7px', letterSpacing: '0.02em',
               }}>⌘K</kbd>
             </button>
 

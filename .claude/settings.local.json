@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(npx tsc *)",
-      "Bash(xargs ls)"
+      "Bash(xargs ls)",
+      "Bash(curl -s \"http://localhost:3000/exams/boki3/guide/ch1?section=ch1-s1\" -o /tmp/nav.html -w \"%{http_code}\\\\n\")",
+      "Bash(curl -s \"http://localhost:3000/\" -o /tmp/root.html -w \"root: %{http_code}\\\\n\")",
+      "Bash(curl -s \"http://localhost:3000/exams/boki3/guide/ch1?section=ch1-s1\" -o /tmp/nav.html -w \"guide: %{http_code}\\\\n\")",
+      "Read(//private/tmp/**)",
+      "Bash(python3 -)",
+      "Bash(pkill -f \"next dev\")"
     ]
   }
 }
