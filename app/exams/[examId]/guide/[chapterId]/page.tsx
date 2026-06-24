@@ -59,8 +59,27 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
     ? await getGuideContent(examId, chapterId, activeSection)
     : null
 
+  // 前後セクションリンク（章をまたいで連続したセクション単位でナビゲートする）
+  const flatSections = chapters.flatMap(c =>
+    getAllGuideSections(examId, c.id).map(sectionId => {
+      const sectionMeta = c.sections.find(s => s.id === sectionId)
+      return {
+        chapterId: c.id,
+        sectionId,
+        label: sectionMeta ? `${sectionMeta.number} ${sectionMeta.title}` : sectionId,
+      }
+    })
+  )
+  const currentIndex = flatSections.findIndex(
+    s => s.chapterId === chapterId && s.sectionId === activeSection
+  )
+  const prevSection = currentIndex > 0 ? flatSections[currentIndex - 1] : undefined
+  const nextSection = currentIndex >= 0 && currentIndex < flatSections.length - 1
+    ? flatSections[currentIndex + 1]
+    : undefined
+
+  // コンテンツ未作成時のフォールバック用：次の章へのリンク
   const chapterIndex = chapters.findIndex(c => c.id === chapterId)
-  const prevChapter = chapters[chapterIndex - 1]
   const nextChapter = chapters[chapterIndex + 1]
 
   const base = `/exams/${examId}`
@@ -99,11 +118,11 @@ export default async function GuideChapterPage({ params, searchParams }: Props) 
               sections={chapter.sections}
               currentSectionId={activeSection ?? firstSection ?? chapter.sections[0]?.id ?? ''}
               examId={examId}
-              prevLink={prevChapter
-                ? { href: `${base}/guide/${prevChapter.id}`, label: `第${prevChapter.number}章` }
+              prevLink={prevSection
+                ? { href: `${base}/guide/${prevSection.chapterId}?section=${prevSection.sectionId}`, label: prevSection.label }
                 : undefined}
-              nextLink={nextChapter
-                ? { href: `${base}/guide/${nextChapter.id}`, label: `第${nextChapter.number}章 ${nextChapter.title}` }
+              nextLink={nextSection
+                ? { href: `${base}/guide/${nextSection.chapterId}?section=${nextSection.sectionId}`, label: nextSection.label }
                 : undefined}
             />
           ) : (

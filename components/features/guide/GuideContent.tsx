@@ -167,32 +167,40 @@ export default function GuideContent({
       }}>
         {prevLink ? (
           <Link className="guide-pagination-prev" href={prevLink.href} style={{
-            padding: '10px 20px',
+            display: 'flex', flexDirection: 'column', gap: 2,
+            padding: '8px 16px',
             border: '1px solid var(--color-border)',
             borderRadius: 'var(--radius-sm)',
-            fontSize: '0.875rem', fontWeight: 600,
             color: 'var(--color-text)', textDecoration: 'none',
             background: 'var(--color-bg)',
-          }}>← {prevLink.label}</Link>
+          }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--color-text-muted)' }}>← 前へ</span>
+            <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>{prevLink.label}</span>
+          </Link>
         ) : <div />}
 
         <Link className="guide-pagination-index" href={`${base}/guide`} style={{
-          padding: '10px 20px',
+          alignSelf: 'center',
+          padding: '8px 16px',
           border: '1px solid var(--color-border)',
           borderRadius: 'var(--radius-sm)',
-          fontSize: '0.875rem', fontWeight: 600,
+          fontSize: '0.8rem', fontWeight: 600,
           color: 'var(--color-text-secondary)', textDecoration: 'none',
           background: 'var(--color-bg)',
-        }}>章のトップに戻る</Link>
+        }}>ガイド目次</Link>
 
         {nextLink ? (
           <Link className="guide-pagination-next" href={nextLink.href} style={{
-            padding: '10px 20px',
+            display: 'flex', flexDirection: 'column', gap: 2,
+            alignItems: 'flex-end',
+            padding: '8px 16px',
             background: 'var(--color-primary)', color: 'var(--color-bg)',
             borderRadius: 'var(--radius-sm)',
-            fontSize: '0.875rem', fontWeight: 700,
             textDecoration: 'none',
-          }}>次の項目 → {nextLink.label}</Link>
+          }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, opacity: 0.85 }}>次へ →</span>
+            <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>{nextLink.label}</span>
+          </Link>
         ) : <div />}
       </div>
     </article>
