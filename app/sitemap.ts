@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getChaptersByExam } from '@/lib/types/chapters-registry'
 import { getAvailableExams } from '@/lib/content/exams-loader'
+import { isMockExamPublic } from '@/lib/types/exams-registry'
 import { absoluteUrl } from '@/lib/seo'
 
 const STATIC_PATHS = [
@@ -53,8 +54,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }
     )
 
-    // 模擬試験は章別の専用データが整備されている試験のみ掲載する
-    if (exam.mockExam?.sectionBlueprints) {
+    // 模擬試験は正式公開中の試験のみ掲載する
+    if (isMockExamPublic(exam)) {
       urls.push({
         url: absoluteUrl(`${examBase}/mock-exam`),
         lastModified: now,

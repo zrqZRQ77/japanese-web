@@ -125,6 +125,7 @@ export interface MockExamSectionBlueprint {
 }
 
 export interface ExamMockConfig {
+  status?: 'draft' | 'public'
   durationMinutes: number
   passRate: number
   sectionBlueprints?: MockExamSectionBlueprint[]

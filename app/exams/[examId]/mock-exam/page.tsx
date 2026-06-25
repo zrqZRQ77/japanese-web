@@ -4,23 +4,30 @@ import Navbar from '@/components/layout/Navbar'
 import MockExam from '@/components/MockExam/MockExam'
 import { getMockQuestionSet } from '@/lib/content/mock-exam-loader'
 import { getAllQuestionSets } from '@/lib/content/question-loader'
-import { getExamById } from '@/lib/types/exams-registry'
-import type { MockExamQuestion } from '@/lib/types'
+import { getExamById, isMockExamPublic } from '@/lib/types/exams-registry'
+import type { ExamMeta, MockExamQuestion } from '@/lib/types'
 import { createPageMetadata } from '@/lib/seo'
 
 interface Props {
   params: Promise<{ examId: string }>
 }
 
+function canAccessMockExam(exam: ExamMeta): boolean {
+  return isMockExamPublic(exam)
+    || (process.env.ENABLE_DRAFT_MOCK_EXAM === 'true' && Boolean(exam.mockExam?.sectionBlueprints))
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { examId } = await params
   const exam = getExamById(examId)
   if (!exam) return createPageMetadata({ title: '模擬試験', path: `/exams/${examId}/mock-exam`, noIndex: true })
+  if (!canAccessMockExam(exam)) return createPageMetadata({ title: '模擬試験', path: `/exams/${examId}/mock-exam`, noIndex: true })
 
   return createPageMetadata({
     title: `${exam.shortName} 模擬試験`,
     description: `${exam.name}の模擬試験ページです。練習問題を使って実戦形式で確認できます。`,
     path: `/exams/${examId}/mock-exam`,
+    noIndex: !isMockExamPublic(exam),
   })
 }
 
@@ -29,9 +36,8 @@ export default async function MockExamPage({ params }: Props) {
   const exam = getExamById(examId)
   if (!exam) notFound()
 
-  // 章別の専用模試データ(sectionBlueprints)が用意されていない試験は、
-  // 内容の整合性が取れないため非公開とする(練習問題を流用した模試は提供しない)
-  if (!exam.mockExam?.sectionBlueprints) notFound()
+  // 未完成の模擬試験は機能を残したまま公開サイトから隠す
+  if (!canAccessMockExam(exam)) notFound()
 
   const mockQuestionSet = getMockQuestionSet(examId)
   const questions: MockExamQuestion[] = mockQuestionSet?.questions

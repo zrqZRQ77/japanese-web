@@ -18,6 +18,7 @@ export const EXAMS_REGISTRY: ExamMeta[] = [
     color: 'blue',
     icon: 'BookOpen',
     mockExam: {
+      status: 'draft',
       durationMinutes: 60,
       passRate: 70,
       sectionBlueprints: [
@@ -270,4 +271,8 @@ export const EXAMS_REGISTRY: ExamMeta[] = [
 
 export function getExamById(id: string): ExamMeta | undefined {
   return EXAMS_REGISTRY.find(e => e.id === id)
+}
+
+export function isMockExamPublic(exam: ExamMeta): boolean {
+  return exam.mockExam?.status === 'public' && Boolean(exam.mockExam.sectionBlueprints)
 }
