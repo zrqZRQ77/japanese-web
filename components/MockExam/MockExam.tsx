@@ -61,6 +61,25 @@ function buildSections(
   questions: MockExamQuestion[],
   blueprints: MockExamSectionBlueprint[],
 ): ExamSection[] {
+  // 章別に作問された専用データ(chapterId: "mock-s1"など)がある場合は、
+  // 大問ごとに対応するchapterIdの問題だけを抽出する（シャッフルで他の大問の問題が混ざらないようにする）
+  const hasCuratedChapters = questions.some(q => /^mock-s\d+$/.test(q.chapterId))
+
+  if (hasCuratedChapters) {
+    return blueprints.map((section, index) => {
+      const expectedChapterId = `mock-s${index + 1}`
+      const matching = questions.filter(q => q.chapterId === expectedChapterId)
+      return {
+        id: section.id,
+        title: section.title,
+        focus: section.focus,
+        points: section.points,
+        questions: stableShuffle(matching).slice(0, section.count),
+      }
+    }).filter(section => section.questions.length > 0)
+  }
+
+  // フォールバック：大問別の専用データがない試験は、全問題プールから人数分を割り振る
   const pool = stableShuffle(questions)
   let cursor = 0
 
@@ -425,6 +444,23 @@ export default function MockExam({
             </div>
             <div className="boki-start-panel">
               <h3>この模試の構成</h3>
+              <div className="boki-start-stats">
+                <div>
+                  <Clock3 size={16} />
+                  <strong>{durationMinutes}分</strong>
+                  <span>試験時間</span>
+                </div>
+                <div>
+                  <BadgeCheck size={16} />
+                  <strong>{passRate}点</strong>
+                  <span>合格基準</span>
+                </div>
+                <div>
+                  <ClipboardList size={16} />
+                  <strong>{totalQuestions}問</strong>
+                  <span>出題数</span>
+                </div>
+              </div>
               {sections.map(section => (
                 <div key={section.id} className="boki-plan-row">
                   <span>{section.title}</span>
@@ -748,7 +784,8 @@ export default function MockExam({
         }
 
         .boki-hero {
-          margin-bottom: 24px;
+          margin-bottom: 28px;
+          padding-top: 12px;
         }
 
         .boki-kicker {
@@ -823,7 +860,43 @@ export default function MockExam({
         }
 
         .boki-start-panel {
-          padding: 18px;
+          padding: 20px;
+        }
+
+        .boki-start-stats {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 8px;
+          margin-bottom: 14px;
+          padding-bottom: 14px;
+          border-bottom: 1px solid var(--color-border);
+        }
+
+        .boki-start-stats > div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          padding: 10px 6px;
+          border-radius: var(--radius-sm);
+          background: var(--color-bg-subtle);
+          text-align: center;
+        }
+
+        .boki-start-stats svg {
+          color: var(--color-primary);
+        }
+
+        .boki-start-stats strong {
+          font-size: 1rem;
+          font-weight: 900;
+          color: var(--color-text);
+        }
+
+        .boki-start-stats span {
+          font-size: 0.68rem;
+          font-weight: 700;
+          color: var(--color-text-muted);
         }
 
         .boki-plan-row,
@@ -913,48 +986,61 @@ export default function MockExam({
           gap: 10px;
         }
 
-        .boki-section-nav {
-          border-left: 1px solid var(--color-border);
-          padding-left: 10px;
-          min-width: 0;
-        }
-
-        .boki-section-nav > button {
+        .boki-nav-strip button {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 5px;
           width: 100%;
-          border: 0;
-          background: transparent;
+          min-width: 0;
+          border: 1px solid var(--color-border);
+          background: var(--color-bg);
           text-align: left;
           cursor: pointer;
-          padding: 8px 6px;
-          border-radius: var(--radius-sm);
+          padding: 12px 14px;
+          border-radius: var(--radius-md);
+          transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
         }
 
-        .boki-section-nav > button.active {
+        .boki-nav-strip button:hover {
+          border-color: rgba(201, 162, 75, 0.45);
+          transform: translateY(-1px);
+        }
+
+        .boki-nav-strip button.active {
           background: var(--color-primary-light);
+          border-color: var(--color-primary);
+          box-shadow: 0 10px 22px rgba(201, 162, 75, 0.16);
         }
 
-        .boki-section-nav span {
+        .boki-nav-strip button span {
           color: var(--color-primary);
           font-weight: 900;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
+          letter-spacing: 0.02em;
         }
 
-        .boki-section-nav strong {
+        .boki-nav-strip button strong {
           display: block;
           color: var(--color-text);
-          font-size: 0.8rem;
-          margin: 3px 0;
-          line-height: 1.3;
+          font-size: 0.88rem;
+          font-weight: 800;
+          line-height: 1.35;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          max-width: 100%;
         }
 
-        .boki-section-nav em {
+        .boki-nav-strip button em {
           color: var(--color-text-muted);
           font-style: normal;
-          font-size: 0.75rem;
+          font-size: 0.76rem;
           font-weight: 700;
+        }
+
+        .boki-nav-strip button.active em {
+          color: var(--color-primary-dark);
         }
 
         .boki-question-dots {
@@ -1512,12 +1598,6 @@ export default function MockExam({
 
           .boki-nav-strip {
             grid-template-columns: 1fr;
-          }
-
-          .boki-section-nav {
-            border-left: 0;
-            border-top: 1px solid var(--color-border);
-            padding: 8px 0 0;
           }
 
           .boki-nav-panel,

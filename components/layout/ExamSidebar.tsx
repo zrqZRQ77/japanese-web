@@ -6,9 +6,9 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ExamMeta } from '@/lib/types'
-import { LayoutGrid, BookOpen, PencilLine, LibraryBig } from 'lucide-react'
+import { LayoutGrid, BookOpen, PencilLine, LibraryBig, FileCheck2 } from 'lucide-react'
 
-const NAV_ITEMS = [
+const BASE_NAV_ITEMS = [
   { key: 'dashboard', label: 'ダッシュボード', icon: LayoutGrid, path: '' },
   { key: 'guide',     label: '学習ガイド',     icon: BookOpen, path: '/guide' },
   { key: 'questions', label: '練習問題',        icon: PencilLine, path: '/questions' },
@@ -22,6 +22,11 @@ interface Props {
 export default function ExamSidebar({ exam }: Props) {
   const pathname = usePathname()
   const base = `/exams/${exam.id}`
+  // 模擬試験は章別の専用データ(sectionBlueprints)が用意されている試験のみ案内する
+  // （内容が未整備の試験向けに誤った導線を出さないため）
+  const NAV_ITEMS = exam.mockExam?.sectionBlueprints
+    ? [...BASE_NAV_ITEMS, { key: 'mock-exam', label: '模擬試験', icon: FileCheck2, path: '/mock-exam' }]
+    : BASE_NAV_ITEMS
 
   return (
     <>

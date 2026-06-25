@@ -22,8 +22,8 @@ export const EXAMS_REGISTRY: ExamMeta[] = [
       passRate: 70,
       sectionBlueprints: [
         { id: 'section-1', title: '第1問', focus: '仕訳問題', points: 45, count: 9 },
-        { id: 'section-2', title: '第2問', focus: '補助簿・伝票・試算表', points: 20, count: 4 },
-        { id: 'section-3', title: '第3問', focus: '決算整理・精算表', points: 35, count: 7 },
+        { id: 'section-2', title: '第2問', focus: '補助簿・伝票・試算表', points: 20, count: 2 },
+        { id: 'section-3', title: '第3問', focus: '決算整理・精算表', points: 35, count: 4 },
       ],
     },
     info: {

@@ -50,14 +50,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.75,
-      },
-      {
+      }
+    )
+
+    // 模擬試験は章別の専用データが整備されている試験のみ掲載する
+    if (exam.mockExam?.sectionBlueprints) {
+      urls.push({
         url: absoluteUrl(`${examBase}/mock-exam`),
         lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.65,
-      }
-    )
+      })
+    }
 
     for (const chapter of getChaptersByExam(exam.id)) {
       urls.push(

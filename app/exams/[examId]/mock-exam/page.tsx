@@ -29,6 +29,10 @@ export default async function MockExamPage({ params }: Props) {
   const exam = getExamById(examId)
   if (!exam) notFound()
 
+  // 章別の専用模試データ(sectionBlueprints)が用意されていない試験は、
+  // 内容の整合性が取れないため非公開とする(練習問題を流用した模試は提供しない)
+  if (!exam.mockExam?.sectionBlueprints) notFound()
+
   const mockQuestionSet = getMockQuestionSet(examId)
   const questions: MockExamQuestion[] = mockQuestionSet?.questions
     ?? getAllQuestionSets(examId).flatMap(s => s.questions)
