@@ -90,6 +90,9 @@ export default function ExamInfoSection({ exam }: Props) {
           <div style={{ fontSize: '0.72rem', color: 'var(--color-text-secondary)', marginTop: 2 }}>
             {info.registrationNote}
           </div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', marginTop: 8, lineHeight: 1.6 }}>
+            受験料・日程・試験制度は変更される場合があります。申込前に必ず公式サイトで最新情報をご確認ください。
+          </div>
         </div>
       </div>
 

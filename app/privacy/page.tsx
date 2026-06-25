@@ -43,7 +43,7 @@ export default function PrivacyPage() {
               <Link href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" style={externalLinkStyle}>利用規約</Link>
               に基づいて管理されます。Cookieの利用はブラウザ設定により拒否できます。
             </>,
-            '広告配信サービスを利用する場合、利用者の興味に応じた広告が表示されることがあります。Cookieの利用はブラウザ設定により拒否できます。',
+            '当サイトではGoogle AdSenseなどの広告配信サービスを利用しています。広告配信事業者はCookie等を使用し、利用者の興味に応じた広告を表示する場合があります。Cookieの利用はブラウザ設定により拒否できます。',
           ],
         },
         {

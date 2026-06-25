@@ -76,11 +76,10 @@ export default async function ExamDashboardPage({
           {/* よくある質問（難易度・合格率などをQ&A形式で補足） */}
           <ExamFaqSection exam={exam} />
 
-          <AdSlot slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_EXAM_DASHBOARD} />
           <AffiliateRecommendations exam={exam} />
           <AdSlot
             slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_EXAM_SECONDARY}
-            label="関連広告"
+            label="広告"
           />
         </main>
       </div>
