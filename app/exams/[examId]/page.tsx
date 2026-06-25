@@ -7,33 +7,13 @@ import { notFound } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import ExamSidebar from '@/components/layout/ExamSidebar'
 import DashboardProgress from '@/components/features/dashboard/DashboardProgress'
-import ToolCard from '@/components/features/dashboard/ToolCard'
 import ExamInfoSection from '@/components/features/dashboard/ExamInfoSection'
 import ExamFaqSection from '@/components/features/dashboard/ExamFaqSection'
 import AdSlot from '@/components/monetization/AdSlot'
 import AffiliateRecommendations from '@/components/monetization/AffiliateRecommendations'
 import { getExamById } from '@/lib/types/exams-registry'
 import { getChaptersByExam } from '@/lib/types/chapters-registry'
-import { BookOpen, LibraryBig, PencilLine } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo'
-
-const TOOLS = [
-  {
-    icon: BookOpen, title: '学習ガイド', color: 'var(--color-primary)',
-    desc: '各章の解説を読んで基礎を理解する',
-    linkLabel: '章一覧を見る', path: '/guide',
-  },
-  {
-    icon: PencilLine, title: '練習問題', color: 'var(--color-warning)',
-    desc: '章ごとの問題を解いて理解を確認する',
-    linkLabel: '問題一覧を見る', path: '/questions',
-  },
-  {
-    icon: LibraryBig, title: '知識カード', color: 'var(--color-success)',
-    desc: '重要ポイントをカードで覚える',
-    linkLabel: 'カード一覧を見る', path: '/cards',
-  },
-]
 
 export async function generateMetadata({
   params,
@@ -61,7 +41,6 @@ export default async function ExamDashboardPage({
   if (!exam) notFound()
 
   const chapters = getChaptersByExam(examId)
-  const base = `/exams/${examId}`
 
   return (
     <>
@@ -96,26 +75,6 @@ export default async function ExamDashboardPage({
 
           {/* よくある質問（難易度・合格率などをQ&A形式で補足） */}
           <ExamFaqSection exam={exam} />
-
-          {/* 学習コンテンツ 4グリッド */}
-          <h2 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: 14, marginTop: 32 }}>学習コンテンツ</h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-            gap: 14, marginBottom: 32,
-          }}>
-            {TOOLS.map(t => (
-              <ToolCard
-                key={t.title}
-                icon={t.icon}
-                title={t.title}
-                desc={t.desc}
-                linkLabel={t.linkLabel}
-                href={`${base}${t.path}`}
-                color={t.color}
-              />
-            ))}
-          </div>
 
           <AdSlot slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_EXAM_DASHBOARD} />
           <AffiliateRecommendations exam={exam} />
