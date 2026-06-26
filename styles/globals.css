@@ -709,7 +709,6 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
 .mdx-journal-table th,
 .mdx-journal-table td {
   width: 25%;
-  text-align: center;
 }
 
 .mdx-journal-table th {
@@ -717,6 +716,7 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   color: var(--color-bg);
   font-size: 0.74rem;
   font-weight: 800;
+  text-align: center;
   letter-spacing: 0.03em;
   white-space: nowrap;
 }
@@ -728,8 +728,14 @@ body { line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--
   font-weight: 700;
 }
 
+.mdx-journal-table td:nth-child(1),
+.mdx-journal-table td:nth-child(3) {
+  text-align: left;
+}
+
 .mdx-journal-table td:nth-child(2),
 .mdx-journal-table td:nth-child(4) {
+  text-align: right;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
