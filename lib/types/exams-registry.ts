@@ -119,9 +119,9 @@ export const EXAMS_REGISTRY: ExamMeta[] = [
       studyHours: '60〜150時間',
       studyMonths: '1〜3ヶ月',
       examFee: '8,000円（学科4,000円＋実技4,000円）',
-      passRate: '70〜80%',
+      passRate: '50〜90%（実施団体・回により異なる。日本FP協会は80%台後半、きんざいは50%台が多い）',
       examFormat: 'CBT方式（通年実施）',
-      examTime: '学科60分・実技60分',
+      examTime: '学科90分・実技60分',
       officialUrl: 'https://www.jafp.or.jp/exam/',
       registrationNote: '日本FP協会または金融財政事情研究会（きんざい）から申し込み',
       valueAfterPass: [
